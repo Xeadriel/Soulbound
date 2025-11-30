@@ -41,11 +41,22 @@ Piranha plant?
 
 
 
+Combat mechanic idea:
+- when attack would hit, generous time to press button, which creates a tight quick action 2-4 buttons to press in sequence quickly. Success: block, fail: get hit
 
+player attack combos:
+	- player 1: 2x 3 hit combos, 
+		- one light, (slash slash stab)
+		- one heavy and slow but more range (stab, wide slash, wide slash)
+	- player 2:
+		- light, (pew pew pew, mini cool down, pew pew pew ...)
+		- heavy, charges as long as pew pew pew + mini cooldown, but then shoots 5 at once then minibreak
 
 
 Item ideas:
-chalice of life (uses enemy blood, once filled, can be thrown grows plants)
+- chalice of life (uses enemy blood, once filled, can be thrown grows plants)
+
+- chalice revives by going to underworld and fighting your way out, show that in tutorial by having them die
 
 
 
