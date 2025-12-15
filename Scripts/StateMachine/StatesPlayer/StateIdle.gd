@@ -10,7 +10,8 @@ func physicsProcess(_delta: float) -> void:
 		finished.emit("StateAttack")
 	elif Input.is_action_just_pressed(BLOCK):
 		finished.emit("StateBlock")
-	elif (Input.is_action_pressed(LEFT) or
+	elif (
+		Input.is_action_pressed(LEFT) or
 		Input.is_action_pressed(RIGHT) or
 		Input.is_action_pressed(UP) or
 		Input.is_action_pressed(DOWN)

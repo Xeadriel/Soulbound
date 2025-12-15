@@ -71,24 +71,27 @@ func takeDamage(dmg):
 	playerTakesDamage.emit(dmg)
 
 # attacks in facing direction
-func attack() -> void:
+# takes integer combo as parameter to specify which
+# animation in a potential attack combo to play
+func attack(combo : int) -> void:
+	var suffix = "" if combo == 0 else str(combo)
 	match direction:
 		Direction.UP:
 			attackUp.process_mode = PROCESS_MODE_INHERIT
 			attackUp.visible = true
-			animatedSprite.play("attackBack")
+			animatedSprite.play("attackBack" + suffix)
 		Direction.DOWN:
 			attackDown.process_mode = PROCESS_MODE_INHERIT
 			attackDown.visible = true
-			animatedSprite.play("attackFront")
+			animatedSprite.play("attackFront" + suffix)
 		Direction.LEFT:
 			attackLeft.process_mode = PROCESS_MODE_INHERIT
 			attackLeft.visible = true
-			animatedSprite.play("attackLeft")
+			animatedSprite.play("attackLeft" + suffix)
 		Direction.RIGHT:
 			attackRight.process_mode = PROCESS_MODE_INHERIT
 			attackRight.visible = true
-			animatedSprite.play("attackRight")
+			animatedSprite.play("attackRight" + suffix)
 
 func stopAttack() -> void:
 	attackUp.visible = false
