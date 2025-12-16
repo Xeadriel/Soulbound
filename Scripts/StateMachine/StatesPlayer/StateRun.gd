@@ -16,9 +16,9 @@ func process(_delta: float) -> void:
 	pass
 
 func physicsProcess(_delta: float) -> void:
-	if Input.is_action_just_pressed(HIT):
+	if EventHandler.isPlayerInputJustPressed(HIT):
 		finished.emit("StateAttack")
-	elif Input.is_action_just_pressed(BLOCK):
+	elif EventHandler.isPlayerInputJustPressed(BLOCK):
 		finished.emit("StateBlock")
 		
 	var direction :=  Vector2(Input.get_axis(LEFT, RIGHT), Input.get_axis(UP, DOWN))

@@ -39,6 +39,8 @@ Piranha plant?
 - exploration and loot
 - mini boss for item
 
+FIX NEEDED:
+	heart bugs when half health but getting hit for 2 damage
 
 Combat mechanic idea:
 - when attack would hit, generous time to press button, which creates a tight quick action 2-4 buttons to press in sequence quickly. Success: block, fail: get hit

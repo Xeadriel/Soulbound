@@ -6,15 +6,15 @@ func process(_delta: float) -> void:
 	pass
 
 func physicsProcess(_delta: float) -> void:
-	if Input.is_action_just_pressed(HIT):
+	if EventHandler.isPlayerInputJustPressed(HIT):
 		finished.emit("StateAttack")
-	elif Input.is_action_just_pressed(BLOCK):
+	elif EventHandler.isPlayerInputJustPressed(BLOCK):
 		finished.emit("StateBlock")
 	elif (
-		Input.is_action_pressed(LEFT) or
-		Input.is_action_pressed(RIGHT) or
-		Input.is_action_pressed(UP) or
-		Input.is_action_pressed(DOWN)
+		EventHandler.isPlayerInputPressed(LEFT) or
+		EventHandler.isPlayerInputPressed(RIGHT) or
+		EventHandler.isPlayerInputPressed(UP) or
+		EventHandler.isPlayerInputPressed(DOWN)
 		):
 		finished.emit("StateRun")
 	else:
