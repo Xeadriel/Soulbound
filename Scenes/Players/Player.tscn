@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://rafcdskaova5"]
+[gd_scene load_steps=92 format=3 uid="uid://rafcdskaova5"]
 
 [ext_resource type="Script" uid="uid://0jorh7okrj40" path="res://Scripts/Players/Player.gd" id="1_rpqav"]
 [ext_resource type="Texture2D" uid="uid://b481yv1fwibf7" path="res://Assets/PlayerSpriteSheet.png" id="2_52ee3"]
@@ -818,8 +818,6 @@ height = 108.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52ee3"]
 size = Vector2(47, 107)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_nn08x"]
-
 [sub_resource type="CanvasTexture" id="CanvasTexture_52ee3"]
 
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
@@ -859,65 +857,20 @@ script = ExtResource("8_bhhdu")
 BLOCK_DELAY = 1.0
 player = NodePath("../..")
 
-[node name="AttackUp" type="Area2D" parent="."]
+[node name="AttackPivotPoint" type="Node2D" parent="."]
 process_mode = 4
-visible = false
-position = Vector2(0, -79)
-rotation = 1.5708
+
+[node name="Attack" type="Area2D" parent="AttackPivotPoint"]
+position = Vector2(79, 0)
+collision_mask = 2
 monitorable = false
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackUp"]
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/Attack"]
 shape = SubResource("RectangleShape2D_52ee3")
 
-[node name="Sprite2D" type="Sprite2D" parent="AttackUp"]
-position = Vector2(-9.34601e-05, 0.424103)
-scale = Vector2(46.8024, 105.328)
-texture = SubResource("CanvasTexture_nn08x")
-
-[node name="AttackDown" type="Area2D" parent="."]
-process_mode = 4
-visible = false
-position = Vector2(0, 79)
-rotation = 1.5708
-monitorable = false
-
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackDown"]
-shape = SubResource("RectangleShape2D_52ee3")
-
-[node name="Sprite2D" type="Sprite2D" parent="AttackDown"]
-position = Vector2(-0.466232, 0.424421)
-scale = Vector2(46.8024, 105.328)
-texture = SubResource("CanvasTexture_nn08x")
-
-[node name="AttackRight" type="Area2D" parent="."]
-process_mode = 4
-visible = false
-position = Vector2(69, 0)
-monitorable = false
-
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackRight"]
-shape = SubResource("RectangleShape2D_52ee3")
-
-[node name="Sprite2D" type="Sprite2D" parent="AttackRight"]
+[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/Attack"]
 position = Vector2(-0.499998, 0.500004)
 scale = Vector2(47, 107)
 texture = SubResource("CanvasTexture_52ee3")
 
-[node name="AttackLeft" type="Area2D" parent="."]
-process_mode = 4
-visible = false
-position = Vector2(-70, 0)
-monitorable = false
-
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackLeft"]
-shape = SubResource("RectangleShape2D_52ee3")
-
-[node name="Sprite2D" type="Sprite2D" parent="AttackLeft"]
-position = Vector2(0.500015, 0.500004)
-scale = Vector2(47, 107)
-texture = SubResource("CanvasTexture_52ee3")
-
-[connection signal="body_entered" from="AttackUp" to="." method="swordHitSomething"]
-[connection signal="body_entered" from="AttackDown" to="." method="swordHitSomething"]
-[connection signal="body_entered" from="AttackRight" to="." method="swordHitSomething"]
-[connection signal="body_entered" from="AttackLeft" to="." method="swordHitSomething"]
+[connection signal="body_entered" from="AttackPivotPoint/Attack" to="." method="swordHitSomething"]

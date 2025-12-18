@@ -25,8 +25,14 @@ func physicsProcess(_delta: float) -> void:
 	if direction:
 		player.velocity = direction.normalized() * SPEED
 		setPlayerDirection(direction)
+		setAttackRotationFromDirection(direction)
 	else:
 		finished.emit("StateIdle")
+
+func setAttackRotationFromDirection(dir: Vector2) -> void:
+	assert(not dir == Vector2.ZERO, "Move direction should never be (0,0)")
+	
+	player.attackPivotPoint.rotation = dir.angle()
 
 func setPlayerDirection(direction : Vector2) -> void:
 	if direction.y < 0:

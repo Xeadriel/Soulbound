@@ -1,6 +1,6 @@
 class_name Enemy extends CharacterBody2D
 
-@export var maxHp := 100
+@export var maxHp := 3
 @export var atkRange := 100.0
 @export var aggroRange:= 500.0
 @export var telegraphTime := 1.0
@@ -46,6 +46,7 @@ func _physics_process(_delta: float) -> void:
 	
 func takeDamage(dmg: int) -> void:
 	currentHp -= dmg
+	print(currentHp )
 
 func getDirectionToPlayer() -> Direction:
 	var dir = global_position.direction_to(target.global_position)

@@ -1,9 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbu1akcu0w885"]
+[gd_scene load_steps=7 format=3 uid="uid://dbu1akcu0w885"]
 
 [ext_resource type="Script" uid="uid://cdgs82ki2b0ke" path="res://Scripts/Players/AutoCamera.gd" id="1_tjece"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_y2a76"]
-radius = 6.08276
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tjece"]
 friction = 0.0
@@ -29,22 +26,6 @@ motion_mode = 1
 script = ExtResource("1_tjece")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-754, -404)
-shape = SubResource("CircleShape2D_y2a76")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-754, 404)
-shape = SubResource("CircleShape2D_y2a76")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(754, 404)
-shape = SubResource("CircleShape2D_y2a76")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
-position = Vector2(754, -404)
-shape = SubResource("CircleShape2D_y2a76")
 
 [node name="CameraBorder" type="StaticBody2D" parent="."]
 collision_layer = 4

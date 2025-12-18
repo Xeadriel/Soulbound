@@ -338,3 +338,5 @@ hp = 6
 position = Vector2(1471, 33)
 maxHp = 6
 hp = 6
+
+[editable path="2DObjects/AutoCamera"]

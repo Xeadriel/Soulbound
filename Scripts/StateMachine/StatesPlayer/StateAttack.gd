@@ -36,7 +36,6 @@ func physicsProcess(_delta: float) -> void:
 func enter(_previous_state_path: String, _data := {}) -> void:
 	attackTimer = 0
 	currentCombo = 0
-	print("attack " + str(currentCombo))
 	attackAgain = false
 	player.attack(currentCombo)
 

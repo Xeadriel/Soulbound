@@ -18,10 +18,7 @@ var direction = Direction.DOWN
 
 @onready var stateMachine = $StateMachine
 
-@onready var attackUp : Area2D = $AttackUp
-@onready var attackDown : Area2D = $AttackDown
-@onready var attackLeft : Area2D = $AttackLeft
-@onready var attackRight : Area2D= $AttackRight
+@onready var attackPivotPoint : Node2D = $AttackPivotPoint
 
 var blockTimeStamp = 0
 @export var blockDelay = 500
@@ -77,31 +74,23 @@ func attack(combo : int) -> void:
 	var suffix = "" if combo == 0 else str(combo)
 	match direction:
 		Direction.UP:
-			attackUp.process_mode = PROCESS_MODE_INHERIT
-			attackUp.visible = true
 			animatedSprite.play("attackBack" + suffix)
 		Direction.DOWN:
-			attackDown.process_mode = PROCESS_MODE_INHERIT
-			attackDown.visible = true
 			animatedSprite.play("attackFront" + suffix)
 		Direction.LEFT:
-			attackLeft.process_mode = PROCESS_MODE_INHERIT
-			attackLeft.visible = true
 			animatedSprite.play("attackLeft" + suffix)
 		Direction.RIGHT:
-			attackRight.process_mode = PROCESS_MODE_INHERIT
-			attackRight.visible = true
 			animatedSprite.play("attackRight" + suffix)
+	
+	#turning off and on again, makes sure that the attack hitbox detects enemies that were damaged again
+	attackPivotPoint.visible = false
+	attackPivotPoint.process_mode = PROCESS_MODE_DISABLED
+	attackPivotPoint.visible = true
+	attackPivotPoint.process_mode = PROCESS_MODE_INHERIT
 
 func stopAttack() -> void:
-	attackUp.visible = false
-	attackDown.visible = false
-	attackLeft.visible = false
-	attackRight.visible = false
-	attackUp.process_mode = PROCESS_MODE_DISABLED
-	attackDown.process_mode = PROCESS_MODE_DISABLED
-	attackLeft.process_mode = PROCESS_MODE_DISABLED
-	attackRight.process_mode = PROCESS_MODE_DISABLED
+	attackPivotPoint.visible = false
+	attackPivotPoint.process_mode = PROCESS_MODE_DISABLED
 	
 	match direction:
 		Direction.UP:
@@ -142,6 +131,8 @@ func stopBlock() -> void:
 
 # signal when area2D collides with something
 func swordHitSomething(body: Node2D) -> void:
+	print("something hit?")
 	if body is Enemy:
+		print("enemy hit?")
 		var enemy : Enemy = body
 		enemy.takeDamage(DAMAGE)
