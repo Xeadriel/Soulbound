@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://rafcdskaova5"]
+[gd_scene load_steps=93 format=3 uid="uid://rafcdskaova5"]
 
 [ext_resource type="Script" uid="uid://0jorh7okrj40" path="res://Scripts/Players/Player.gd" id="1_rpqav"]
 [ext_resource type="Texture2D" uid="uid://b481yv1fwibf7" path="res://Assets/PlayerSpriteSheet.png" id="2_52ee3"]
@@ -816,9 +816,12 @@ radius = 44.0
 height = 108.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52ee3"]
-size = Vector2(47, 107)
+size = Vector2(46.5, 107)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_52ee3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1kdy"]
+size = Vector2(100, 44)
 
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
 collision_mask = 7
@@ -858,19 +861,59 @@ BLOCK_DELAY = 1.0
 player = NodePath("../..")
 
 [node name="AttackPivotPoint" type="Node2D" parent="."]
-process_mode = 4
 
-[node name="Attack" type="Area2D" parent="AttackPivotPoint"]
+[node name="LightAttacks" type="Node2D" parent="AttackPivotPoint"]
+
+[node name="LightAttack0" type="Area2D" parent="AttackPivotPoint/LightAttacks"]
+process_mode = 4
+visible = false
 position = Vector2(79, 0)
+collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/Attack"]
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/LightAttacks/LightAttack0"]
 shape = SubResource("RectangleShape2D_52ee3")
 
-[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/Attack"]
-position = Vector2(-0.499998, 0.500004)
+[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/LightAttacks/LightAttack0"]
+self_modulate = Color(0, 0, 1, 1)
 scale = Vector2(47, 107)
 texture = SubResource("CanvasTexture_52ee3")
 
-[connection signal="body_entered" from="AttackPivotPoint/Attack" to="." method="swordHitSomething"]
+[node name="LightAttack1" type="Area2D" parent="AttackPivotPoint/LightAttacks"]
+process_mode = 4
+visible = false
+position = Vector2(79, 0)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/LightAttacks/LightAttack1"]
+shape = SubResource("RectangleShape2D_52ee3")
+
+[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/LightAttacks/LightAttack1"]
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(47, 107)
+texture = SubResource("CanvasTexture_52ee3")
+
+[node name="LightAttack2" type="Area2D" parent="AttackPivotPoint/LightAttacks"]
+process_mode = 4
+visible = false
+position = Vector2(79, 0)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/LightAttacks/LightAttack2"]
+position = Vector2(26, 0)
+shape = SubResource("RectangleShape2D_x1kdy")
+
+[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/LightAttacks/LightAttack2"]
+self_modulate = Color(1, 0.733333, 0, 1)
+position = Vector2(26, -1.43051e-06)
+scale = Vector2(100, 44)
+texture = SubResource("CanvasTexture_52ee3")
+
+[connection signal="body_entered" from="AttackPivotPoint/LightAttacks/LightAttack0" to="." method="swordHitSomething"]
+[connection signal="body_entered" from="AttackPivotPoint/LightAttacks/LightAttack1" to="." method="swordHitSomething"]
+[connection signal="body_entered" from="AttackPivotPoint/LightAttacks/LightAttack2" to="." method="swordHitSomething"]

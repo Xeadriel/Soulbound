@@ -19,6 +19,7 @@ var direction = Direction.DOWN
 @onready var stateMachine = $StateMachine
 
 @onready var attackPivotPoint : Node2D = $AttackPivotPoint
+@onready var lightAttacks : Array = $AttackPivotPoint.get_node("LightAttacks").get_children()
 
 var blockTimeStamp = 0
 @export var blockDelay = 500
@@ -82,15 +83,17 @@ func attack(combo : int) -> void:
 		Direction.RIGHT:
 			animatedSprite.play("attackRight" + suffix)
 	
-	#turning off and on again, makes sure that the attack hitbox detects enemies that were damaged again
-	attackPivotPoint.visible = false
-	attackPivotPoint.process_mode = PROCESS_MODE_DISABLED
-	attackPivotPoint.visible = true
-	attackPivotPoint.process_mode = PROCESS_MODE_INHERIT
+	
+	lightAttacks[combo-1].visible = false
+	lightAttacks[combo-1].process_mode = PROCESS_MODE_DISABLED
+
+	lightAttacks[combo].visible = true
+	lightAttacks[combo].process_mode = PROCESS_MODE_INHERIT
 
 func stopAttack() -> void:
-	attackPivotPoint.visible = false
-	attackPivotPoint.process_mode = PROCESS_MODE_DISABLED
+	for atk in lightAttacks:
+		atk.visible = false
+		atk.process_mode = PROCESS_MODE_DISABLED
 	
 	match direction:
 		Direction.UP:
