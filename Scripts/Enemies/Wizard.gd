@@ -3,16 +3,16 @@ class_name Wizard extends Enemy
 @onready var fireballContainer: Node = $FireballsContainer
 @onready var atkSpawnPoint: Marker2D = $AtkSpawnPoint
 
-var fireballScene = preload("res://Scenes/Enemies/Fireball.tscn")
+@export var fireballScene : PackedScene = null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
-	
+
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
-	
+
 func takeDamage(dmg: int) -> void:
 	currentHp -= dmg
 

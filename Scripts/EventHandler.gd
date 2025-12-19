@@ -6,12 +6,14 @@ var playerInputs = {
 	"left" : false,
 	"right" : false,
 	"hit" : false,
+	"heavyHit" : false,
 	"block" : false,
 	"up2" : false, 
 	"down2" : false,
 	"left2" : false,
 	"right2" : false,
 	"hit2" : false,
+	"heavyHit2" : false,
 	"block2" : false
 	}
 
@@ -21,12 +23,14 @@ var playerInputsJustPressed = {
 	"left" : false,
 	"right" : false,
 	"hit" : false,
+	"heavyHit" : false,
 	"block" : false,
 	"up2" : false, 
 	"down2" : false,
 	"left2" : false,
 	"right2" : false,
 	"hit2" : false,
+	"heavyHit2" : false,
 	"block2" : false
 	}
 

@@ -1,28 +1,10 @@
-class_name Player extends CharacterBody2D
+class_name Player1 extends Player
 
-enum Direction {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT
-}
+@export var LIGHT_DAMAGE = 1
+@export var HEAVY_DAMAGE = 2
 
-signal playerDeath
-signal playerTakesDamage
-
-@export var maxHp = 3
-@export var hp = 3
-
-var direction = Direction.DOWN
-
-@onready var stateMachine = $StateMachine
-
-@onready var attackPivotPoint : Node2D = $AttackPivotPoint
-
-var blockTimeStamp = 0
-@export var blockDelay = 500
-
-@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var lightAttacks : Array = $AttackPivotPoint/LightAttacks.get_children()
+@onready var heavyAttacks : Array = $AttackPivotPoint/HeavyAttacks.get_children()
 
 func _ready() -> void:
 	playerDeath.connect(EventHandler.playerDied)
@@ -80,8 +62,56 @@ func attack(combo : int) -> void:
 			animatedSprite.play("attackLeft" + suffix)
 		Direction.RIGHT:
 			animatedSprite.play("attackRight" + suffix)
+	
+	
+	lightAttacks[combo-1].visible = false
+	lightAttacks[combo-1].process_mode = PROCESS_MODE_DISABLED
+
+	lightAttacks[combo].visible = true
+	lightAttacks[combo].process_mode = PROCESS_MODE_INHERIT
 
 func stopAttack() -> void:
+	for atk in lightAttacks:
+		atk.visible = false
+		atk.process_mode = PROCESS_MODE_DISABLED
+	
+	match direction:
+		Direction.UP:
+			animatedSprite.play("idleBack")
+		Direction.DOWN:
+			animatedSprite.play("idleFront")	
+		Direction.LEFT:
+			animatedSprite.play("idleLeft")
+		Direction.RIGHT:
+			animatedSprite.play("idleRight")
+
+# attacks in facing direction
+# takes integer combo as parameter to specify which
+# animation in a potential attack combo to play
+func attackHeavy(combo : int) -> void:
+	var suffix = "" if combo == 0 else str(combo)
+	match direction:
+		Direction.UP:
+			animatedSprite.play("attackHeavyBack" + suffix)
+		Direction.DOWN:
+			animatedSprite.play("attackHeavyFront" + suffix)
+		Direction.LEFT:
+			animatedSprite.play("attackHeavyLeft" + suffix)
+		Direction.RIGHT:
+			animatedSprite.play("attackHeavyRight" + suffix)
+	
+	
+	heavyAttacks[combo-1].visible = false
+	heavyAttacks[combo-1].process_mode = PROCESS_MODE_DISABLED
+
+	heavyAttacks[combo].visible = true
+	heavyAttacks[combo].process_mode = PROCESS_MODE_INHERIT
+
+func stopAttackHeavy() -> void:
+	for atk in heavyAttacks:
+		atk.visible = false
+		atk.process_mode = PROCESS_MODE_DISABLED
+	
 	match direction:
 		Direction.UP:
 			animatedSprite.play("idleBack")
@@ -117,3 +147,32 @@ func stopBlock() -> void:
 			animatedSprite.play("idleLeft")
 		Direction.RIGHT:
 			animatedSprite.play("idleRight")
+
+func setAttackRotationFromDirection(dir: Vector2) -> void:
+	assert(not dir == Vector2.ZERO, "Move direction should never be (0,0)")
+	
+	attackPivotPoint.rotation = dir.angle()
+
+func setPlayerDirection(dir : Vector2) -> void:
+	if dir.y < 0:
+		direction = Direction.UP
+	elif dir.y > 0:
+		direction = Direction.DOWN
+
+	# horizontal direction prioritized over vertical direction
+	if dir.x < 0:
+		direction = Direction.LEFT
+	elif dir.x > 0:
+		direction = Direction.RIGHT
+
+# signal when one of the light attacks area2D collides with something
+func lightAttackHitSomething(body: Node2D) -> void:
+	if body is Enemy:
+		var enemy : Enemy = body
+		enemy.takeDamage(LIGHT_DAMAGE)
+
+# signal when one of the heavy attacks area2D collides with something
+func heavyAttackHitSomething(body: Node2D) -> void:
+	if body is Enemy:
+		var enemy : Enemy = body
+		enemy.takeDamage(HEAVY_DAMAGE)

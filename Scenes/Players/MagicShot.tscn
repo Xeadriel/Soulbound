@@ -1,15 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://dehht20jmbr6h"]
+[gd_scene load_steps=6 format=3 uid="uid://bkrktx4p7r5ug"]
 
-[ext_resource type="Script" uid="uid://cpnsoaj4crx7c" path="res://Scripts/Enemies/Fireball.gd" id="1_bcuy3"]
-[ext_resource type="Texture2D" uid="uid://1oxg0tdndklm" path="res://Assets/Wizard/Fireball.png" id="1_vfhfp"]
+[ext_resource type="Script" uid="uid://dol7e3eyiijh7" path="res://Scripts/Players/MagicShot.gd" id="1_on2h3"]
+[ext_resource type="Texture2D" uid="uid://1oxg0tdndklm" path="res://Assets/Wizard/Fireball.png" id="2_88xrb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bcuy3"]
-atlas = ExtResource("1_vfhfp")
+atlas = ExtResource("2_88xrb")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pqxrk"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcuy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcuy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcuy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcuy3")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bcuy3")
 }],
@@ -21,11 +33,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_pqxrk"]
 radius = 21.0238
 
-[node name="Fireball" type="Area2D"]
+[node name="MagicShot" type="Area2D"]
 collision_layer = 0
-script = ExtResource("1_bcuy3")
+collision_mask = 3
+script = ExtResource("1_on2h3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0, 0.611765, 1, 1)
 position = Vector2(2.84217e-14, -1)
 scale = Vector2(1.0625, 1.3125)
 sprite_frames = SubResource("SpriteFrames_pqxrk")

@@ -8,7 +8,15 @@ var DOWN = "down"
 var LEFT = "left"
 var RIGHT = "right"
 var HIT = "hit"
+var HEAVY_HIT = "heavyHit"
 var BLOCK = "block"
+
+enum Direction {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT
+}
 
 func _ready() -> void:
 	assert(player != null)
@@ -20,6 +28,7 @@ func _ready() -> void:
 		LEFT = "left"
 		RIGHT = "right"
 		HIT = "hit"
+		HEAVY_HIT = "heavyHit"
 		BLOCK = "block"
 	elif player.name == "Player2":
 		UP = "up2"
@@ -27,6 +36,7 @@ func _ready() -> void:
 		LEFT = "left2"
 		RIGHT = "right2"
 		HIT = "hit2"
+		HEAVY_HIT = "heavyHit2"
 		BLOCK = "block2"
 
 ## Called by the state machine when receiving unhandled input events.

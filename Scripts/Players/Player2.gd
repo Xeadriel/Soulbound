@@ -1,28 +1,10 @@
-class_name Player extends CharacterBody2D
+class_name Player2 extends Player
 
-enum Direction {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT
-}
+@export var DAMAGE : int = 1
 
-signal playerDeath
-signal playerTakesDamage
+@export var magicShotSpawner : PackedScene = null
 
-@export var maxHp = 3
-@export var hp = 3
-
-var direction = Direction.DOWN
-
-@onready var stateMachine = $StateMachine
-
-@onready var attackPivotPoint : Node2D = $AttackPivotPoint
-
-var blockTimeStamp = 0
-@export var blockDelay = 500
-
-@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var spawnLocationMagicShot = $AttackPivotPoint/LightAttackSpawnLocation
 
 func _ready() -> void:
 	playerDeath.connect(EventHandler.playerDied)
@@ -81,7 +63,43 @@ func attack(combo : int) -> void:
 		Direction.RIGHT:
 			animatedSprite.play("attackRight" + suffix)
 
+	var magicShot = magicShotSpawner.instantiate()
+	magicShot.global_position = spawnLocationMagicShot.global_position
+	magicShot.player = self
+	magicShot.rotation = attackPivotPoint.rotation
+	magicShot.direction = Vector2(1, 0).rotated(magicShot.rotation)
+	
+	get_parent().add_child(magicShot)
+	
+
 func stopAttack() -> void:
+	match direction:
+		Direction.UP:
+			animatedSprite.play("idleBack")
+		Direction.DOWN:
+			animatedSprite.play("idleFront")	
+		Direction.LEFT:
+			animatedSprite.play("idleLeft")
+		Direction.RIGHT:
+			animatedSprite.play("idleRight")
+
+# attacks in facing direction
+# takes integer combo as parameter to specify which
+# animation in a potential attack combo to play
+func attackHeavy(combo : int) -> void:
+	var suffix = "" if combo == 0 else str(combo)
+	match direction:
+		Direction.UP:
+			animatedSprite.play("attackHeavyBack" + suffix)
+		Direction.DOWN:
+			animatedSprite.play("attackHeavyFront" + suffix)
+		Direction.LEFT:
+			animatedSprite.play("attackHeavyLeft" + suffix)
+		Direction.RIGHT:
+			animatedSprite.play("attackHeavyRight" + suffix)
+
+func stopAttackHeavy() -> void:
+	
 	match direction:
 		Direction.UP:
 			animatedSprite.play("idleBack")
@@ -117,3 +135,20 @@ func stopBlock() -> void:
 			animatedSprite.play("idleLeft")
 		Direction.RIGHT:
 			animatedSprite.play("idleRight")
+
+func setAttackRotationFromDirection(dir: Vector2) -> void:
+	assert(not dir == Vector2.ZERO, "Move direction should never be (0,0)")
+	
+	attackPivotPoint.rotation = dir.angle()
+
+func setPlayerDirection(dir : Vector2) -> void:
+	if dir.y < 0:
+		direction = Direction.UP
+	elif dir.y > 0:
+		direction = Direction.DOWN
+
+	# horizontal direction prioritized over vertical direction
+	if dir.x < 0:
+		direction = Direction.LEFT
+	elif dir.x > 0:
+		direction = Direction.RIGHT
