@@ -9,7 +9,8 @@ func physicsProcess(_delta: float) -> void:
 	if EventHandler.isPlayerInputJustPressed(HIT):
 		finished.emit("StateAttack")
 	elif EventHandler.isPlayerInputJustPressed(HEAVY_HIT):
-		finished.emit("StateHeavyAttack")
+		if player.name == "Player": finished.emit("StateHeavyAttack")
+		else: finished.emit("StateChargeUpAttack")
 	elif EventHandler.isPlayerInputJustPressed(BLOCK):
 		finished.emit("StateBlock")
 	elif (

@@ -7,8 +7,8 @@ var player = null
 
 var direction : Vector2
 
-func _ready() -> void:
-	rotation = direction.angle()
+#func _ready() -> void:
+	#rotation = direction.angle()
 
 func _physics_process(delta: float) -> void:
 	global_position += SPEED * direction * delta
@@ -22,3 +22,9 @@ func _on_body_entered(body: Node2D) -> void:
 		body.takeDamage(dmgValue)
 	if body != player:
 		queue_free()
+
+func waitForRelease():
+	process_mode = PROCESS_MODE_DISABLED
+
+func release():
+	process_mode = PROCESS_MODE_INHERIT

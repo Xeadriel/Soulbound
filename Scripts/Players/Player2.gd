@@ -5,6 +5,9 @@ class_name Player2 extends Player
 @export var magicShotSpawner : PackedScene = null
 
 @onready var spawnLocationMagicShot = $AttackPivotPoint/LightAttackSpawnLocation
+@onready var heavyAttackSpawnLocations = $AttackPivotPoint/HeavyAttackSpawnLocations.get_children()
+
+var heavyAttackCharges = []
 
 func _ready() -> void:
 	playerDeath.connect(EventHandler.playerDied)
@@ -86,17 +89,59 @@ func stopAttack() -> void:
 # attacks in facing direction
 # takes integer combo as parameter to specify which
 # animation in a potential attack combo to play
-func attackHeavy(combo : int) -> void:
-	var suffix = "" if combo == 0 else str(combo)
+func chargeAttackHeavy(charge : int) -> void:
 	match direction:
 		Direction.UP:
-			animatedSprite.play("attackHeavyBack" + suffix)
+			animatedSprite.play("attackHeavyBack")
 		Direction.DOWN:
-			animatedSprite.play("attackHeavyFront" + suffix)
+			animatedSprite.play("attackHeavyFront")
 		Direction.LEFT:
-			animatedSprite.play("attackHeavyLeft" + suffix)
+			animatedSprite.play("attackHeavyLeft")
 		Direction.RIGHT:
-			animatedSprite.play("attackHeavyRight" + suffix)
+			animatedSprite.play("attackHeavyRight")
+	
+	match charge:
+		1:
+			var magicShot = magicShotSpawner.instantiate()
+			heavyAttackSpawnLocations[0].add_child(magicShot)
+			heavyAttackCharges.append(magicShot)
+			magicShot.global_position = heavyAttackSpawnLocations[0].global_position
+			magicShot.player = self
+			magicShot.direction = Vector2(1, 0).rotated(attackPivotPoint.rotation)
+			
+			magicShot.waitForRelease()
+		2:
+			var magicShot = magicShotSpawner.instantiate()
+			heavyAttackSpawnLocations[1].add_child(magicShot)
+			heavyAttackCharges.append(magicShot)
+			magicShot.global_position = heavyAttackSpawnLocations[1].global_position
+			magicShot.player = self
+			magicShot.direction = Vector2(1, 0).rotated(attackPivotPoint.rotation)
+			
+			magicShot.waitForRelease()
+		3:
+			for i in range(2, 5):
+				var magicShot = magicShotSpawner.instantiate()
+				heavyAttackSpawnLocations[i].add_child(magicShot)
+				heavyAttackCharges.append(magicShot)
+				magicShot.global_position = heavyAttackSpawnLocations[i].global_position
+				magicShot.player = self
+				magicShot.direction = Vector2(1, 0).rotated(attackPivotPoint.rotation)
+				
+				magicShot.waitForRelease()
+
+func releaseAttackHeavy():
+	for i in range(len(heavyAttackCharges)):
+		heavyAttackSpawnLocations[i].remove_child(heavyAttackCharges[i])
+		get_parent().add_child(heavyAttackCharges[i])
+		heavyAttackCharges[i].global_position = heavyAttackSpawnLocations[i].global_position
+		heavyAttackCharges[i].player = self
+		heavyAttackCharges[i].direction = Vector2(1, 0).rotated(attackPivotPoint.rotation)
+		heavyAttackCharges[i].rotation = attackPivotPoint.rotation
+		
+		heavyAttackCharges[i].release()
+
+	heavyAttackCharges = []
 
 func stopAttackHeavy() -> void:
 	
@@ -140,6 +185,8 @@ func setAttackRotationFromDirection(dir: Vector2) -> void:
 	assert(not dir == Vector2.ZERO, "Move direction should never be (0,0)")
 	
 	attackPivotPoint.rotation = dir.angle()
+	#for charge in heavyAttackCharges:
+		#charge.rotation = charge.direction.angle()
 
 func setPlayerDirection(dir : Vector2) -> void:
 	if dir.y < 0:

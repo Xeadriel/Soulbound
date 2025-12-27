@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://ceausjasnh7kj"]
+[gd_scene load_steps=92 format=3 uid="uid://ceausjasnh7kj"]
 
 [ext_resource type="Script" uid="uid://cc45sc7rs3o0b" path="res://Scripts/Players/Player2.gd" id="1_gv048"]
 [ext_resource type="Texture2D" uid="uid://b481yv1fwibf7" path="res://Assets/PlayerSpriteSheet.png" id="2_7m8ro"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cto556i7c71ca" path="res://Scripts/StateMachine/StatesPlayer/StateRun.gd" id="5_nfgwa"]
 [ext_resource type="Script" uid="uid://d3jfdm06r0mnu" path="res://Scripts/StateMachine/StatesPlayer/StateAttack.gd" id="6_oixfn"]
 [ext_resource type="Script" uid="uid://31yxv8rxpcxp" path="res://Scripts/StateMachine/StatesPlayer/StateBlock.gd" id="7_yp5jh"]
+[ext_resource type="Script" uid="uid://dhfuuek8vxv6m" path="res://Scripts/StateMachine/StatesPlayer/StateChargeUpAttack.gd" id="8_bfxnb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
 atlas = ExtResource("2_7m8ro")
@@ -849,6 +850,10 @@ script = ExtResource("6_oixfn")
 COOLDOWN = 1000
 player = NodePath("../..")
 
+[node name="StateChargeUpAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("8_bfxnb")
+player = NodePath("../..")
+
 [node name="StateBlock" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("7_yp5jh")
 BLOCK_DELAY = 1.0
@@ -858,3 +863,20 @@ player = NodePath("../..")
 
 [node name="LightAttackSpawnLocation" type="Node2D" parent="AttackPivotPoint"]
 position = Vector2(65, 0)
+
+[node name="HeavyAttackSpawnLocations" type="Node2D" parent="AttackPivotPoint"]
+
+[node name="1" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations"]
+position = Vector2(64, -32)
+
+[node name="2" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations"]
+position = Vector2(64, 32)
+
+[node name="3" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations"]
+position = Vector2(64, 0)
+
+[node name="4" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations"]
+position = Vector2(88, -16)
+
+[node name="5" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations"]
+position = Vector2(88, 16)
