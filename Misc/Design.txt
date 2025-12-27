@@ -56,10 +56,21 @@ player attack combos:
 
 
 Item ideas:
-- chalice of life (uses enemy blood, once filled, can be thrown grows plants)
+- chalice of death? 
+	- enemies come back as one big dungeon monster at the end of each dungeon run
+	- choice on whether to kill the boss using the chalice, soaking blood from minions 
+	  (unlocking new optional ability?), leading to a "bad ending" reviving the god of death
+	- or choice to entrap the monster instead, getting no extra reward and having a few scripted
+	  outbreaks of monsters, but ultimately leading to a good ending, where hes not revived
+	- alternatively helping and not helping only make him stronger and weaker and he revives either
+	  way at the end and you can just side for or against him
 
 - chalice revives by going to underworld and fighting your way out, show that in tutorial by having them die
 
+- first jungle item: whip, later to be upgraded to grapling hook. can pull things and stun enemies, 
+  activate buttons/levers from afar
+
+- item for dashing 
 
 blow air,
 boomerang,
