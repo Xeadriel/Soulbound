@@ -46,9 +46,11 @@ func process(delta: float) -> void:
 				break
 	
 	if entity.target && inRangeThresh && timer4DirChange > 0 && timer4Telegraph > 0:
+		# if enemy is too close
 		if distance < entity.atkRange - distanceThreshold:
 			entity.velocity = entity.global_position.direction_to(
 				entity.target.global_position).normalized() * SPEED * -1
+		# if enemy is too far away
 		elif distance > entity.atkRange:
 			entity.velocity = entity.global_position.direction_to(
 				entity.target.global_position).normalized() * SPEED

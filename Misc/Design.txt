@@ -1,8 +1,8 @@
-1-2 Player
+2 Player
 	- sword and shield
 	- block only via timing
 	- move in 8 directions
-	- attack in 4 directions
+	- attack in 8 directions
 
 Enemies:
 
@@ -39,9 +39,6 @@ Piranha plant?
 - exploration and loot
 - mini boss for item
 
-FIX NEEDED:
-	heart bugs when half health but getting hit for 2 damage
-
 Combat mechanic idea:
 - when attack would hit, generous time to press button, which creates a tight quick action 2-4 buttons to press in sequence quickly. Success: block, fail: get hit
 
@@ -52,13 +49,28 @@ player attack combos:
 	- player 2:
 		- light, (pew pew pew, mini cool down, pew pew pew ...)
 		- heavy, charges as long as pew pew pew + mini cooldown, but then shoots 5 at once then minibreak
+		TODO: PLAYTEST:
+			a) projectile no collision with friend
+			b) projectile collision but no damage
+			c) projectile collision + damage
 
 
 Item ideas:
-- chalice of life (uses enemy blood, once filled, can be thrown grows plants)
+- chalice of death? 
+	- enemies come back as one big dungeon monster at the end of each dungeon run
+	- choice on whether to kill the boss using the chalice, soaking blood from minions 
+	  (unlocking new optional ability?), leading to a "bad ending" reviving the god of death
+	- or choice to entrap the monster instead, getting no extra reward and having a few scripted
+	  outbreaks of monsters, but ultimately leading to a good ending, where hes not revived
+	- alternatively helping and not helping only make him stronger and weaker and he revives either
+	  way at the end and you can just side for or against him
 
 - chalice revives by going to underworld and fighting your way out, show that in tutorial by having them die
 
+- first jungle item: whip, later to be upgraded to grapling hook. can pull things and stun enemies, 
+  activate buttons/levers from afar
+
+- item for dashing 
 
 blow air,
 boomerang,

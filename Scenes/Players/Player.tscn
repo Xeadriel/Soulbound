@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://rafcdskaova5"]
+[gd_scene load_steps=98 format=3 uid="uid://rafcdskaova5"]
 
 [ext_resource type="Script" uid="uid://0jorh7okrj40" path="res://Scripts/Players/Player1.gd" id="1_rpqav"]
 [ext_resource type="Texture2D" uid="uid://b481yv1fwibf7" path="res://Assets/PlayerSpriteSheet.png" id="2_52ee3"]
@@ -1056,18 +1056,24 @@ animations = [{
 radius = 44.0
 height = 108.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_52ee3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0nk7"]
 size = Vector2(46.5, 107)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_52ee3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1kdy"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sw0h5"]
+size = Vector2(46.5, 107)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80whf"]
 size = Vector2(100, 44)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0nk7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jarcg"]
 size = Vector2(121, 42)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sw0h5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_230ox"]
+size = Vector2(121, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qc7fn"]
 size = Vector2(78, 169)
 
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
@@ -1125,7 +1131,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/LightAttacks/LightAttack0"]
-shape = SubResource("RectangleShape2D_52ee3")
+shape = SubResource("RectangleShape2D_u0nk7")
 
 [node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/LightAttacks/LightAttack0"]
 self_modulate = Color(0, 0, 1, 1)
@@ -1141,7 +1147,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/LightAttacks/LightAttack1"]
-shape = SubResource("RectangleShape2D_52ee3")
+shape = SubResource("RectangleShape2D_sw0h5")
 
 [node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/LightAttacks/LightAttack1"]
 self_modulate = Color(1, 0, 0, 1)
@@ -1158,7 +1164,7 @@ monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/LightAttacks/LightAttack2"]
 position = Vector2(26, 0)
-shape = SubResource("RectangleShape2D_x1kdy")
+shape = SubResource("RectangleShape2D_80whf")
 
 [node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/LightAttacks/LightAttack2"]
 self_modulate = Color(1, 0.733333, 0, 1)
@@ -1178,7 +1184,7 @@ monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack0"]
 position = Vector2(30.5, 0)
-shape = SubResource("RectangleShape2D_u0nk7")
+shape = SubResource("RectangleShape2D_jarcg")
 
 [node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack0"]
 self_modulate = Color(0.545098, 0, 1, 1)
@@ -1196,7 +1202,7 @@ monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack1"]
 position = Vector2(30.5, 0)
-shape = SubResource("RectangleShape2D_u0nk7")
+shape = SubResource("RectangleShape2D_230ox")
 
 [node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack1"]
 self_modulate = Color(0.778978, 0.0085343, 0.47451, 1)
@@ -1214,7 +1220,7 @@ monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack2"]
 position = Vector2(-16, -2.5)
-shape = SubResource("RectangleShape2D_sw0h5")
+shape = SubResource("RectangleShape2D_qc7fn")
 
 [node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack2"]
 self_modulate = Color(0.684138, 0.316281, 0, 1)
@@ -1223,8 +1229,8 @@ scale = Vector2(78.5, 170)
 texture = SubResource("CanvasTexture_52ee3")
 
 [connection signal="body_entered" from="AttackPivotPoint/LightAttacks/LightAttack0" to="." method="lightAttackHitSomething"]
-[connection signal="body_entered" from="AttackPivotPoint/LightAttacks/LightAttack1" to="." method="swordHitSomething"]
-[connection signal="body_entered" from="AttackPivotPoint/LightAttacks/LightAttack2" to="." method="swordHitSomething"]
+[connection signal="body_entered" from="AttackPivotPoint/LightAttacks/LightAttack1" to="." method="lightAttackHitSomething"]
+[connection signal="body_entered" from="AttackPivotPoint/LightAttacks/LightAttack2" to="." method="lightAttackHitSomething"]
 [connection signal="body_entered" from="AttackPivotPoint/HeavyAttacks/HeavyAttack0" to="." method="heavyAttackHitSomething"]
 [connection signal="body_entered" from="AttackPivotPoint/HeavyAttacks/HeavyAttack1" to="." method="heavyAttackHitSomething"]
 [connection signal="body_entered" from="AttackPivotPoint/HeavyAttacks/HeavyAttack2" to="." method="heavyAttackHitSomething"]
