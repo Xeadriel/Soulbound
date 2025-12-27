@@ -1,4 +1,4 @@
-extends StateEnemy
+class_name StateAtkWizard extends StateEnemy
 
 var canAtk: bool = true
 var elapsedTime: float

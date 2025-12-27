@@ -1,6 +1,6 @@
 ## Virtual base class for all states.
 ## Extend this class and override its methods to implement a state.
-extends StateEnemy
+class_name StateRunWizard extends StateEnemy
 
 @export var SPEED : int
 
@@ -34,7 +34,7 @@ func process(_delta: float) -> void:
 		
 	elif runDirCooldown <= 0.0 && distance <= entity.panicRunThresholdDistance:
 		var r = int(randf() < entity.runChance)
-		if r == 0:
+		if r == 1:
 			for p in players:
 				var distanceToPlayer = entity.global_position.distance_to(p.global_position)
 				if distanceToPlayer <= entity.panicRunThresholdDistance:
@@ -42,8 +42,8 @@ func process(_delta: float) -> void:
 					fleeDirection += -directionToPlayer
 					var offset = randf_range(-PI/3, PI/3)
 					fleeDirection = fleeDirection.rotated(offset).normalized()
-					runDirCooldown = 1
-		elif r == 1:
+					runDirCooldown = 1.5
+		elif r == 0:
 			fleeDirection = Vector2.ZERO
 			finished.emit(TELEGRAPH)
 			

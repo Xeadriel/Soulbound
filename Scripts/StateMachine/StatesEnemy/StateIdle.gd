@@ -1,4 +1,4 @@
-extends StateEnemy
+class_name StateIdleEnemy extends StateEnemy
 
 @export var slowDownSpeed := 200.0
 ## Called by the state machine on the engine's main loop tick.
