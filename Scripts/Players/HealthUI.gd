@@ -9,6 +9,8 @@ extends Control
 
 var hearts
 
+var hp = 6
+
 const IDLE = "idle"
 const TAKEDAMAGE = "takeDamage"
 const HEAL = "heal"
@@ -18,6 +20,7 @@ func _ready() -> void:
 		queue_free()
 	
 	player.playerTakesDamage.connect(playerTookDamage)
+	player.hp = hp
 	
 	hearts = []
 	
@@ -66,5 +69,10 @@ func _ready() -> void:
 
 
 func playerTookDamage(dmgValue):
+	if hp == 0: return # skip animation if exceeding hp thats left
+	
 	for i in range(dmgValue):
-		hearts[i + player.hp].play(TAKEDAMAGE)
+		if hp - 1 - i < 0: break
+		hearts[hp - 1 - i].play(TAKEDAMAGE)
+	
+	hp = clamp(hp - dmgValue, 0, player.maxHp)

@@ -45,7 +45,7 @@ func takeDamage(dmg):
 		var playerNumber = 2 if name == "Player2" else 1
 		playerDeath.emit(playerNumber)
 		if hp < 0:
-			return
+			hp = 0
 	playerTakesDamage.emit(dmg)
 
 # attacks in facing direction
