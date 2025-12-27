@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://55caaw7yatfk"]
+[gd_scene load_steps=112 format=3 uid="uid://55caaw7yatfk"]
 
 [ext_resource type="Script" uid="uid://bpj3ehc46o68r" path="res://Scripts/Enemies/Wizard.gd" id="1_abp8v"]
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="2_lcgba"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://boxb6vvfpv8k" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateIdle.gd" id="4_627uw"]
 [ext_resource type="Script" uid="uid://dxv5sn1aoc86a" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateRun.gd" id="5_k0dhe"]
 [ext_resource type="Script" uid="uid://b27wv4ktxk24d" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateAtk.gd" id="6_xlfaq"]
-[ext_resource type="Script" uid="uid://o117oxka7qjv" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateRunCircle.gd" id="7_qle2o"]
 [ext_resource type="Script" uid="uid://52isesmkp53g" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateTelegraph.gd" id="8_luagb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
@@ -859,11 +858,6 @@ entity = NodePath("../..")
 
 [node name="StateAtk" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("6_xlfaq")
-entity = NodePath("../..")
-
-[node name="StateRunCircle" type="Node" parent="StateMachine" node_paths=PackedStringArray("obstacleDetection", "entity")]
-script = ExtResource("7_qle2o")
-obstacleDetection = NodePath("../../Area2D")
 entity = NodePath("../..")
 
 [node name="StateTelegraph" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
