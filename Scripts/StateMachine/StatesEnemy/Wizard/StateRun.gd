@@ -3,6 +3,7 @@
 extends StateEnemy
 
 @export var SPEED : int
+@export var runChance := 0.7
 
 var runDirCooldown := 0.0
 var fleeDirection := Vector2.ZERO
@@ -31,17 +32,22 @@ func process(_delta: float) -> void:
 		entity.direction = entity.getDirectionFromVector(direction)
 		entity.run()
 		
-	# run from target
 	elif runDirCooldown <= 0.0 && distance <= entity.panicRunThresholdDistance:
-		for p in players:
-			var distanceToPlayer = entity.global_position.distance_to(p.global_position)
-			if distanceToPlayer <= entity.panicRunThresholdDistance:
-				var directionToPlayer = entity.global_position.direction_to(p.global_position)
-				fleeDirection += -directionToPlayer
-				var offset = randf_range(-PI/3, PI/3)
-				fleeDirection = fleeDirection.rotated(offset).normalized()
-				runDirCooldown = 1
-				
+		var r = int(randf() < runChance)
+		if r == 0:
+			for p in players:
+				var distanceToPlayer = entity.global_position.distance_to(p.global_position)
+				if distanceToPlayer <= entity.panicRunThresholdDistance:
+					var directionToPlayer = entity.global_position.direction_to(p.global_position)
+					fleeDirection += -directionToPlayer
+					var offset = randf_range(-PI/3, PI/3)
+					fleeDirection = fleeDirection.rotated(offset).normalized()
+					runDirCooldown = 1
+		elif r == 1:
+			fleeDirection = Vector2.ZERO
+			finished.emit(TELEGRAPH)
+			
+	# run from target
 	elif fleeDirection != Vector2.ZERO:		
 		entity.velocity = fleeDirection * SPEED
 		entity.direction = entity.getDirectionFromVector(fleeDirection)
