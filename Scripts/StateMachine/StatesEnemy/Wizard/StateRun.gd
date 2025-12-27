@@ -32,7 +32,7 @@ func process(_delta: float) -> void:
 		entity.run()
 		
 	# run from target
-	elif runDirCooldown <= 0.0 && distance <= entity.panicRunThresholdDistance: 
+	elif runDirCooldown <= 0.0 && distance <= entity.panicRunThresholdDistance:
 		for p in players:
 			var distanceToPlayer = entity.global_position.distance_to(p.global_position)
 			if distanceToPlayer <= entity.panicRunThresholdDistance:
