@@ -1,8 +1,8 @@
-1-2 Player
+2 Player
 	- sword and shield
 	- block only via timing
 	- move in 8 directions
-	- attack in 4 directions
+	- attack in 8 directions
 
 Enemies:
 
@@ -52,6 +52,10 @@ player attack combos:
 	- player 2:
 		- light, (pew pew pew, mini cool down, pew pew pew ...)
 		- heavy, charges as long as pew pew pew + mini cooldown, but then shoots 5 at once then minibreak
+		TODO: PLAYTEST:
+			a) projectile no collision with friend
+			b) projectile collision but no damage
+			c) projectile collision + damage
 
 
 Item ideas:
