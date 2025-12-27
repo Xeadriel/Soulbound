@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="2_lcgba"]
 [ext_resource type="PackedScene" uid="uid://dehht20jmbr6h" path="res://Scenes/Enemies/Fireball.tscn" id="2_n0y0a"]
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="3_n0y0a"]
-[ext_resource type="Script" uid="uid://boxb6vvfpv8k" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateIdle.gd" id="4_627uw"]
+[ext_resource type="Script" uid="uid://blr2lvis0gtkh" path="res://Scripts/StateMachine/StatesEnemy/StateIdle.gd" id="5_abp8v"]
 [ext_resource type="Script" uid="uid://dxv5sn1aoc86a" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateRun.gd" id="5_k0dhe"]
 [ext_resource type="Script" uid="uid://b27wv4ktxk24d" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateAtk.gd" id="6_xlfaq"]
-[ext_resource type="Script" uid="uid://52isesmkp53g" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateTelegraph.gd" id="8_luagb"]
+[ext_resource type="Script" uid="uid://bf2js1oj25nid" path="res://Scripts/StateMachine/StatesEnemy/StateTelegraph.gd" id="8_abp8v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
 atlas = ExtResource("2_lcgba")
@@ -847,23 +847,20 @@ shape = SubResource("RectangleShape2D_4myx3")
 script = ExtResource("3_n0y0a")
 currentState = NodePath("StateIdle")
 
-[node name="StateIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = ExtResource("4_627uw")
-entity = NodePath("../..")
+[node name="StateIdle" type="Node" parent="StateMachine"]
+script = ExtResource("5_abp8v")
 
 [node name="StateRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("5_k0dhe")
 SPEED = 100
-runChance = null
 entity = NodePath("../..")
 
 [node name="StateAtk" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("6_xlfaq")
 entity = NodePath("../..")
 
-[node name="StateTelegraph" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = ExtResource("8_luagb")
-entity = NodePath("../..")
+[node name="StateTelegraph" type="Node" parent="StateMachine"]
+script = ExtResource("8_abp8v")
 
 [node name="FireballsContainer" type="Node" parent="."]
 
