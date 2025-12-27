@@ -5,6 +5,7 @@ class_name Wizard extends Enemy
 
 @export var fireballScene : PackedScene = null
 @export var panicRunThresholdDistance := 300
+@export var runChance := 0.7
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

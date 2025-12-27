@@ -3,7 +3,7 @@
 extends StateEnemy
 
 @export var SPEED : int
-@export var runChance := 0.7
+
 
 var runDirCooldown := 0.0
 var fleeDirection := Vector2.ZERO
@@ -33,7 +33,7 @@ func process(_delta: float) -> void:
 		entity.run()
 		
 	elif runDirCooldown <= 0.0 && distance <= entity.panicRunThresholdDistance:
-		var r = int(randf() < runChance)
+		var r = int(randf() < entity.runChance)
 		if r == 0:
 			for p in players:
 				var distanceToPlayer = entity.global_position.distance_to(p.global_position)

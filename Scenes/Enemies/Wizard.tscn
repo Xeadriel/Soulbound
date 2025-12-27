@@ -854,6 +854,7 @@ entity = NodePath("../..")
 [node name="StateRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("5_k0dhe")
 SPEED = 100
+runChance = null
 entity = NodePath("../..")
 
 [node name="StateAtk" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
