@@ -1,14 +1,13 @@
-[gd_scene load_steps=113 format=3 uid="uid://55caaw7yatfk"]
+[gd_scene load_steps=112 format=3 uid="uid://55caaw7yatfk"]
 
 [ext_resource type="Script" uid="uid://bpj3ehc46o68r" path="res://Scripts/Enemies/Wizard.gd" id="1_abp8v"]
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="2_lcgba"]
 [ext_resource type="PackedScene" uid="uid://dehht20jmbr6h" path="res://Scenes/Enemies/Fireball.tscn" id="2_n0y0a"]
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="3_n0y0a"]
-[ext_resource type="Script" uid="uid://boxb6vvfpv8k" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateIdle.gd" id="4_627uw"]
+[ext_resource type="Script" uid="uid://blr2lvis0gtkh" path="res://Scripts/StateMachine/StatesEnemy/StateIdle.gd" id="5_abp8v"]
 [ext_resource type="Script" uid="uid://dxv5sn1aoc86a" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateRun.gd" id="5_k0dhe"]
 [ext_resource type="Script" uid="uid://b27wv4ktxk24d" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateAtk.gd" id="6_xlfaq"]
-[ext_resource type="Script" uid="uid://o117oxka7qjv" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateRunCircle.gd" id="7_qle2o"]
-[ext_resource type="Script" uid="uid://52isesmkp53g" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateTelegraph.gd" id="8_luagb"]
+[ext_resource type="Script" uid="uid://bf2js1oj25nid" path="res://Scripts/StateMachine/StatesEnemy/StateTelegraph.gd" id="8_abp8v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
 atlas = ExtResource("2_lcgba")
@@ -826,7 +825,7 @@ collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_abp8v")
 fireballScene = ExtResource("2_n0y0a")
-atkRange = 300.0
+atkRange = 400.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lc4gu")
@@ -849,7 +848,7 @@ script = ExtResource("3_n0y0a")
 currentState = NodePath("StateIdle")
 
 [node name="StateIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = ExtResource("4_627uw")
+script = ExtResource("5_abp8v")
 entity = NodePath("../..")
 
 [node name="StateRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
@@ -861,13 +860,8 @@ entity = NodePath("../..")
 script = ExtResource("6_xlfaq")
 entity = NodePath("../..")
 
-[node name="StateRunCircle" type="Node" parent="StateMachine" node_paths=PackedStringArray("obstacleDetection", "entity")]
-script = ExtResource("7_qle2o")
-obstacleDetection = NodePath("../../Area2D")
-entity = NodePath("../..")
-
 [node name="StateTelegraph" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = ExtResource("8_luagb")
+script = ExtResource("8_abp8v")
 entity = NodePath("../..")
 
 [node name="FireballsContainer" type="Node" parent="."]

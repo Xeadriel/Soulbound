@@ -1,4 +1,4 @@
-extends StateEnemy
+class_name StateAtkGoblin extends StateEnemy
 
 @export var nextState = RUNCIRCLE
 

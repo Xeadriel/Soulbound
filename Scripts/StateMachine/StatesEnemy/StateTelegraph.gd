@@ -1,9 +1,10 @@
-extends StateEnemy
+class_name StateTelegraph extends StateEnemy
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
+	print(entity)
 	entity.animationFinishedSignal.connect(animationFinished)
 
 
@@ -26,5 +27,4 @@ func exit() -> void:
 func animationFinished(animatedSprite: AnimatedSprite2D):
 	if "telegraph" not in animatedSprite.animation:
 		return
-	
 	finished.emit(ATK)

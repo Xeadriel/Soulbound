@@ -1,13 +1,15 @@
-extends StateEnemy
+class_name StateIdleEnemy extends StateEnemy
 
 @export var slowDownSpeed := 200.0
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
 	entity.target = getClosestPlayer()
 	var distance = getDistanceSelf2Target()
-	entity.velocity = entity.velocity.move_toward(Vector2.ZERO, slowDownSpeed)
+	
 	if distance < entity.aggroRange:
 		finished.emit(RUN)
+	
+	entity.velocity = entity.velocity.move_toward(Vector2.ZERO, slowDownSpeed)
 
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:

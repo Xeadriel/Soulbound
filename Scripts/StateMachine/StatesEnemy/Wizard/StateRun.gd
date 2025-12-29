@@ -1,8 +1,12 @@
 ## Virtual base class for all states.
 ## Extend this class and override its methods to implement a state.
-extends StateEnemy
+class_name StateRunWizard extends StateEnemy
 
 @export var SPEED : int
+
+
+var runDirCooldown := 0.0
+var fleeDirection := Vector2.ZERO
 
 ## Called by the state machine when receiving unhandled input events.
 func handleInput() -> void:
@@ -10,16 +14,48 @@ func handleInput() -> void:
 
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
+	runDirCooldown  -= _delta
 	entity.target = getClosestPlayer()
 	var distance = entity.global_position.distance_to(entity.target.global_position)
+
+	
+	# not aggroed
 	if  entity.aggroRange < distance:
+		fleeDirection = Vector2.ZERO
 		finished.emit(IDLE)
-	elif entity.atkRange <= distance:
+		
+	# close distance to attack
+	elif entity.atkRange < distance:
+		fleeDirection = Vector2.ZERO
 		var direction = entity.global_position.direction_to(entity.target.global_position)
 		entity.velocity = direction.normalized() * SPEED
 		entity.direction = entity.getDirectionFromVector(direction)
 		entity.run()
-	else:
+		
+	elif runDirCooldown <= 0.0 && distance <= entity.panicRunThresholdDistance:
+		var r = int(randf() < entity.runChance)
+		if r == 1:
+			for p in players:
+				var distanceToPlayer = entity.global_position.distance_to(p.global_position)
+				if distanceToPlayer <= entity.panicRunThresholdDistance:
+					var directionToPlayer = entity.global_position.direction_to(p.global_position)
+					fleeDirection += -directionToPlayer
+					var offset = randf_range(-PI/3, PI/3)
+					fleeDirection = fleeDirection.rotated(offset).normalized()
+					runDirCooldown = 1.5
+		elif r == 0:
+			fleeDirection = Vector2.ZERO
+			finished.emit(TELEGRAPH)
+			
+	# run from target
+	elif fleeDirection != Vector2.ZERO:		
+		entity.velocity = fleeDirection * SPEED
+		entity.direction = entity.getDirectionFromVector(fleeDirection)
+		entity.run()
+		
+	# attacking
+	elif entity.atkRange >= distance:
+		fleeDirection = Vector2.ZERO
 		finished.emit(TELEGRAPH)
 
 ## Called by the state machine on the engine's physics update tick.

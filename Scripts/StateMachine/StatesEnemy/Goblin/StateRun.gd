@@ -1,6 +1,6 @@
 ## Virtual base class for all states.
 ## Extend this class and override its methods to implement a state.
-extends StateEnemy
+class_name StateRunGoblin extends StateEnemy
 
 @export var SPEED : int
 
