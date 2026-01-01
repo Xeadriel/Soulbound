@@ -7,7 +7,6 @@ func _ready() -> void:
 	print(entity)
 	entity.animationFinishedSignal.connect(animationFinished)
 
-
 func process(_delta: float) -> void:
 	pass
 

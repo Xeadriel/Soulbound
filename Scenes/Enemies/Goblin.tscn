@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dbhfk6b273blh" path="res://Scripts/Enemies/Goblin.gd" id="1_adqnq"]
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="3_g722j"]
-[ext_resource type="Script" uid="uid://blr2lvis0gtkh" path="res://Scripts/StateMachine/StatesEnemy/StateIdle.gd" id="4_adqnq"]
-[ext_resource type="Script" uid="uid://cblg18dtcsly8" path="res://Scripts/StateMachine/StatesEnemy/Goblin/StateRun.gd" id="5_6trl6"]
-[ext_resource type="Script" uid="uid://cmh0dmwy8nmdk" path="res://Scripts/StateMachine/StatesEnemy/Goblin/StateAtk.gd" id="6_cbm62"]
+[ext_resource type="Script" uid="uid://blr2lvis0gtkh" path="res://Scripts/StateMachine/StatesEnemy/StateIdleEnemy.gd" id="4_adqnq"]
+[ext_resource type="Script" uid="uid://cblg18dtcsly8" path="res://Scripts/StateMachine/StatesEnemy/Goblin/StateRunGoblin.gd" id="5_6trl6"]
+[ext_resource type="Script" uid="uid://cmh0dmwy8nmdk" path="res://Scripts/StateMachine/StatesEnemy/Goblin/StateAtkGoblin.gd" id="6_cbm62"]
 [ext_resource type="Script" uid="uid://dpmmdpv17053j" path="res://Scripts/StateMachine/StatesEnemy/Goblin/StateRunCircle.gd" id="7_yhhi5"]
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="8_0td7v"]
 [ext_resource type="Script" uid="uid://bf2js1oj25nid" path="res://Scripts/StateMachine/StatesEnemy/StateTelegraph.gd" id="8_f0wnp"]
