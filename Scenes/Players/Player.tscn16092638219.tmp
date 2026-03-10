@@ -1121,6 +1121,9 @@ player = NodePath("../..")
 
 [node name="StateDash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("9_sw0h5")
+DASH_DELAY = 0.3
+DASH_SPEED = 200.0
+DASH_COOLDOWN = 20.0
 player = NodePath("../..")
 
 [node name="AttackPivotPoint" type="Node2D" parent="."]

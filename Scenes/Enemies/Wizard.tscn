@@ -821,7 +821,7 @@ size = Vector2(152, 164)
 
 [node name="Wizard" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 11
 motion_mode = 1
 script = ExtResource("1_abp8v")
 fireballScene = ExtResource("2_n0y0a")

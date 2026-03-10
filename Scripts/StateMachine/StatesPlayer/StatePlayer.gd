@@ -10,6 +10,7 @@ var RIGHT = "right"
 var HIT = "hit"
 var HEAVY_HIT = "heavyHit"
 var BLOCK = "block"
+var DASH = "dash"
 
 enum Direction {
 	UP,
@@ -30,6 +31,7 @@ func _ready() -> void:
 		HIT = "hit"
 		HEAVY_HIT = "heavyHit"
 		BLOCK = "block"
+		DASH = "dash"
 	elif player.name == "Player2":
 		UP = "up2"
 		DOWN = "down2"
@@ -38,6 +40,7 @@ func _ready() -> void:
 		HIT = "hit2"
 		HEAVY_HIT = "heavyHit2"
 		BLOCK = "block2"
+		DASH = "dash2"
 
 ## Called by the state machine when receiving unhandled input events.
 func handleInput() -> void:

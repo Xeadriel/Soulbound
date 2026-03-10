@@ -1,4 +1,4 @@
-class_name StateBlock extends StatePlayer
+class_name StateDash extends StatePlayer
 
 @export var BLOCK_DELAY : float
 var blockTimer : float = 0

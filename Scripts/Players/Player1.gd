@@ -36,18 +36,6 @@ func _process(_delta) -> void:
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
-func takeDamage(dmg):
-	if stateMachine.currentState.name == "StateBlock" and blockTimeStamp + blockDelay >= Time.get_ticks_msec():
-		# spawn some block particle and make sound
-		return
-	hp -= dmg
-	if hp <= 0:
-		var playerNumber = 2 if name == "Player2" else 1
-		playerDeath.emit(playerNumber)
-		if hp < 0:
-			hp = 0
-	playerTakesDamage.emit(dmg)
-
 # attacks in facing direction
 # takes integer combo as parameter to specify which
 # animation in a potential attack combo to play
@@ -85,11 +73,11 @@ func stopAttack() -> void:
 		Direction.RIGHT:
 			animatedSprite.play("idleRight")
 
-# attacks in facing direction
 # takes integer combo as parameter to specify which
 # animation in a potential attack combo to play
-func attackHeavy(combo : int) -> void:
+func attackHeavyWindup(combo : int) -> void:
 	var suffix = "" if combo == 0 else str(combo)
+	animatedSprite.stop()
 	match direction:
 		Direction.UP:
 			animatedSprite.play("attackHeavyBack" + suffix)
@@ -99,8 +87,9 @@ func attackHeavy(combo : int) -> void:
 			animatedSprite.play("attackHeavyLeft" + suffix)
 		Direction.RIGHT:
 			animatedSprite.play("attackHeavyRight" + suffix)
-	
-	
+
+# attacks in facing direction, combo decides which hitbox is used
+func attackHeavy(combo : int) -> void:
 	heavyAttacks[combo-1].visible = false
 	heavyAttacks[combo-1].process_mode = PROCESS_MODE_DISABLED
 
