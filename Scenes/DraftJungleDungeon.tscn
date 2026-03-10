@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cy4vn64vtg0f7"]
+[gd_scene load_steps=12 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_gwj4l"]
 [ext_resource type="PackedScene" uid="uid://rafcdskaova5" path="res://Scenes/Players/Player.tscn" id="2_eb5f0"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ceausjasnh7kj" path="res://Scenes/Players/Player2.tscn" id="5_7f6id"]
 [ext_resource type="PackedScene" uid="uid://ckb4js3ol8fj4" path="res://Scenes/Players/HealthUI.tscn" id="5_8wfgm"]
 [ext_resource type="PackedScene" uid="uid://55caaw7yatfk" path="res://Scenes/Enemies/Wizard.tscn" id="6_ska8t"]
+[ext_resource type="PackedScene" uid="uid://h0citg7sqvl1" path="res://Scenes/UserInterface/GameUI.tscn" id="9_ykx26"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
 texture = ExtResource("1_gwj4l")
@@ -338,3 +339,5 @@ hp = 6
 position = Vector2(1471, 33)
 maxHp = 6
 hp = 6
+
+[node name="GameUI" parent="2DObjects" instance=ExtResource("9_ykx26")]
