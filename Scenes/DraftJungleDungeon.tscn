@@ -218,6 +218,12 @@ offset_right = 752.0
 offset_bottom = -403.0
 player = NodePath("../../Players/Player2")
 
+[node name="GameUI" parent="2DObjects/AutoCamera" instance=ExtResource("9_ykx26")]
+offset_left = -796.0
+offset_top = -454.0
+offset_right = 804.0
+offset_bottom = 446.0
+
 [node name="Enemies" type="Node" parent="2DObjects"]
 
 [node name="FoodRoom" type="Node2D" parent="2DObjects/Enemies"]
@@ -339,5 +345,3 @@ hp = 6
 position = Vector2(1471, 33)
 maxHp = 6
 hp = 6
-
-[node name="GameUI" parent="2DObjects" instance=ExtResource("9_ykx26")]
