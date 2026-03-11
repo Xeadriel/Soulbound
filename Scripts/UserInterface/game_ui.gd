@@ -34,12 +34,12 @@ func _process(delta: float) -> void:
 			closeMenu();
 		else:
 			openMenu();
-	elif self.visible && EventHandler.isPlayerInputJustPressed("right"):
+	elif self.visible && EventHandler.isPlayerInputJustPressed("interact"):
 		if(currentPageIndex < pages.size() - 1):
 			currentPageIndex += 1;
 			var tw = create_tween();
 			tw.tween_property(self, "position:x", -currentPageIndex * pageWidth - cameraOffset, 0.3);
-	elif self.visible && EventHandler.isPlayerInputJustPressed("left"):
+	elif self.visible && EventHandler.isPlayerInputJustPressed("block"):
 		if(currentPageIndex > 0):
 			currentPageIndex -= 1;
 			var tw = create_tween();

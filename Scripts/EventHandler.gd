@@ -18,7 +18,8 @@ var playerInputs = {
 	"block2" : false,
 	"pause" : false,
 	"pause2" : false,
-	"dash2" : false
+	"dash2" : false,
+	"interact": false
 	}
 
 var playerInputsJustPressed = {
@@ -39,7 +40,8 @@ var playerInputsJustPressed = {
 	"block2" : false,
 	"pause" : false,
 	"pause2" : false,
-	"dash2" : false
+	"dash2" : false,
+	"interact": false
 	}
 
 func _ready() -> void:
