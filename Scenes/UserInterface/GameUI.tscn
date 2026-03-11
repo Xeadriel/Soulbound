@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dy0ukkwrdc6vo" path="res://Scenes/UserInterface/PanelContainer/UI3.tscn" id="4_0efwd"]
 
 [node name="GameUI" type="Control"]
+process_mode = 3
 visible = false
 z_index = 10
 layout_mode = 3

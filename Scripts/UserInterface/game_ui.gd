@@ -17,15 +17,23 @@ func _ready() -> void:
 	
 	for i in pages.size():
 		pages[i].position.x = i * pageWidth;
-	
-func _unhandled_input(event: InputEvent) -> void:
+
+func openMenu() -> void:
+	currentPageIndex = 0;
+	self.position.x = -cameraOffset;
+	self.visible = true;
+	get_tree().paused = true;
+
+func closeMenu() -> void:
+	self.visible = false;
+	get_tree().paused = false;
+
+func _process(delta: float) -> void:
 	if EventHandler.isPlayerInputJustPressed("pause"):
 		if(self.visible):
-			self.visible = false;
-			currentPageIndex = 0;
-			self.position.x = -cameraOffset;
+			closeMenu();
 		else:
-			self.visible = true;
+			openMenu();
 	elif self.visible && EventHandler.isPlayerInputJustPressed("right"):
 		if(currentPageIndex < pages.size() - 1):
 			currentPageIndex += 1;
@@ -36,9 +44,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			currentPageIndex -= 1;
 			var tw = create_tween();
 			tw.tween_property(self, "position:x", -currentPageIndex * pageWidth - cameraOffset, 0.3);
-
-func _process(delta: float) -> void:
-	pass
 
 func _on_ui_1_focus_entered() -> void:
 	pass

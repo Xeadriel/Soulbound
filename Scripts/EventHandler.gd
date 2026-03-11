@@ -16,12 +16,9 @@ var playerInputs = {
 	"hit2" : false,
 	"heavyHit2" : false,
 	"block2" : false,
-<<<<<<< HEAD
 	"pause" : false,
 	"pause2" : false,
-=======
 	"dash2" : false
->>>>>>> 10353c75a1b8fab30ec1a0d9fb2f97f96a3c5877
 	}
 
 var playerInputsJustPressed = {
@@ -40,19 +37,20 @@ var playerInputsJustPressed = {
 	"hit2" : false,
 	"heavyHit2" : false,
 	"block2" : false,
-<<<<<<< HEAD
 	"pause" : false,
 	"pause2" : false,
-=======
 	"dash2" : false
->>>>>>> 10353c75a1b8fab30ec1a0d9fb2f97f96a3c5877
 	}
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func playerDied(playerNumber):
 	#print("player " + str(playerNumber) + " is ded")
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:
+
 	for input in playerInputs.keys():
 		if not event.is_action(input):
 			continue
