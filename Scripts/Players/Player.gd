@@ -10,8 +10,8 @@ enum Direction {
 signal playerDeath
 signal playerTakesDamage
 
-@export var maxHp = 3
-@export var hp = 3
+@export var maxHp = 6
+@export var hp = 6
 
 var direction = Direction.DOWN
 

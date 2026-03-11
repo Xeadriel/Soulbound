@@ -46,7 +46,6 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func playerDied(playerNumber):
-	#print("player " + str(playerNumber) + " is ded")
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:

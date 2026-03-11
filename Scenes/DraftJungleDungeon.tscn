@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/Players/AutoCamera.tscn" id="3_y4e11"]
 [ext_resource type="PackedScene" uid="uid://ceausjasnh7kj" path="res://Scenes/Players/Player2.tscn" id="5_7f6id"]
 [ext_resource type="PackedScene" uid="uid://ckb4js3ol8fj4" path="res://Scenes/Players/HealthUI.tscn" id="5_8wfgm"]
+[ext_resource type="PackedScene" uid="uid://csvo4bhjc4m03" path="res://Scenes/Players/ItemQuickSelect.tscn" id="5_ykx26"]
 [ext_resource type="PackedScene" uid="uid://55caaw7yatfk" path="res://Scenes/Enemies/Wizard.tscn" id="6_ska8t"]
 [ext_resource type="PackedScene" uid="uid://h0citg7sqvl1" path="res://Scenes/UserInterface/GameUI.tscn" id="9_ykx26"]
 
@@ -225,6 +226,19 @@ offset_top = -454.0
 offset_right = 804.0
 offset_bottom = 446.0
 
+[node name="ItemQuickSelect" parent="2DObjects/AutoCamera" instance=ExtResource("5_ykx26")]
+offset_left = -706.0
+offset_top = -260.0
+offset_right = -706.0
+offset_bottom = -260.0
+
+[node name="ItemQuickSelect2" parent="2DObjects/AutoCamera" instance=ExtResource("5_ykx26")]
+offset_left = 704.0
+offset_top = -248.0
+offset_right = 704.0
+offset_bottom = -248.0
+
+
 [node name="Enemies" type="Node" parent="2DObjects"]
 
 [node name="FoodRoom" type="Node2D" parent="2DObjects/Enemies"]
@@ -339,10 +353,6 @@ position = Vector2(22, 505)
 
 [node name="Player" parent="2DObjects/Players" instance=ExtResource("2_eb5f0")]
 position = Vector2(1281, 56)
-maxHp = 6
-hp = 6
 
 [node name="Player2" parent="2DObjects/Players" instance=ExtResource("5_7f6id")]
 position = Vector2(1471, 33)
-maxHp = 6
-hp = 6
