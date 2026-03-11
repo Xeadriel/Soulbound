@@ -20,6 +20,7 @@ config/icon="uid://bmdkrb4nsbixh"
 GlobalScope="*res://Scripts/GlobalScope.gd"
 EventHandler="*res://Scripts/EventHandler.gd"
 MadTalkGlobals="*res://addons/madtalk/runtime/MadTalkGlobals.tscn"
+MenuGlobals="*res://Scripts/MenuGlobals.gd"
 
 [display]
 

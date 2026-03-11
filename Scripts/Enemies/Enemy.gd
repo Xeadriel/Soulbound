@@ -46,7 +46,6 @@ func _physics_process(_delta: float) -> void:
 	
 func takeDamage(dmg: int) -> void:
 	currentHp -= dmg
-	print(currentHp )
 
 func getDirectionToPlayer() -> Direction:
 	var dir = global_position.direction_to(target.global_position)

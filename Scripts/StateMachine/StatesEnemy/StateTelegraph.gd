@@ -4,7 +4,6 @@ class_name StateTelegraph extends StateEnemy
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
-	print(entity)
 	entity.animationFinishedSignal.connect(animationFinished)
 
 func process(_delta: float) -> void:

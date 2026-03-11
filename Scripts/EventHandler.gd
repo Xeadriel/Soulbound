@@ -39,7 +39,6 @@ var playerInputsJustPressed = {
 	}
 
 func playerDied(playerNumber):
-	#print("player " + str(playerNumber) + " is ded")
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:
