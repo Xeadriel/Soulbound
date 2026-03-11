@@ -9,14 +9,6 @@ func process(_delta: float) -> void:
 	pass
 
 func physicsProcess(_delta: float) -> void:
-	if EventHandler.isPlayerInputJustPressed(HIT):
-		finished.emit("StateAttack")
-	elif EventHandler.isPlayerInputJustPressed(HEAVY_HIT):
-		if player.name == "Player": finished.emit("StateHeavyAttack")
-		else: finished.emit("StateChargeUpAttack")
-	elif EventHandler.isPlayerInputJustPressed(BLOCK):
-		finished.emit("StateBlock")
-		
 	var direction :=  Vector2(Input.get_axis(LEFT, RIGHT), Input.get_axis(UP, DOWN))
 	if direction:
 		player.velocity = direction.normalized() * SPEED
@@ -24,6 +16,16 @@ func physicsProcess(_delta: float) -> void:
 		setAttackRotationFromDirection(direction)
 	else:
 		finished.emit("StateIdle")
+	if EventHandler.isPlayerInputJustPressed(HIT):
+		finished.emit("StateAttack")
+	elif EventHandler.isPlayerInputJustPressed(HEAVY_HIT):
+		if player.name == "Player": finished.emit("StateHeavyAttack")
+		else: finished.emit("StateChargeUpAttack")
+	elif EventHandler.isPlayerInputJustPressed(BLOCK):
+		finished.emit("StateBlock")
+	elif EventHandler.isPlayerInputJustPressed(DASH):
+		finished.emit("StateDash")
+		
 
 func setAttackRotationFromDirection(dir: Vector2) -> void:
 	assert(not dir == Vector2.ZERO, "Move direction should never be (0,0)")

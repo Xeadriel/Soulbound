@@ -8,6 +8,7 @@ var cameraOffset;
 func _ready() -> void:
 	pageWidth = $UI1.size.x ;
 	cameraOffset = pageWidth / 2;
+	
 	pages = [
 		$UI1,
 		$UI2,

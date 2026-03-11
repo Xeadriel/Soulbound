@@ -59,11 +59,11 @@ func takeDamage(dmg):
 		# spawn some block particle and make sound
 		return
 	hp -= dmg
+	hp = clamp(hp - 1, 0, self.maxHp)
 	if hp <= 0:
 		var playerNumber = 2 if name == "Player2" else 1
 		playerDeath.emit(playerNumber)
-		if hp < 0:
-			return
+
 	playerTakesDamage.emit(dmg)
 
 # attacks in facing direction
@@ -108,6 +108,30 @@ func block() -> void:
 
 func stopBlock() -> void:
 	blockTimeStamp = 0
+	match direction:
+		Direction.UP:
+			animatedSprite.play("idleBack")
+		Direction.DOWN:
+			animatedSprite.play("idleFront")	
+		Direction.LEFT:
+			animatedSprite.play("idleLeft")
+		Direction.RIGHT:
+			animatedSprite.play("idleRight")
+
+func dash() -> void:
+	collision_layer = collision_layer & 0b0 #become unhittable
+	match direction:
+		Direction.UP:
+			animatedSprite.play("dashBack")
+		Direction.DOWN:
+			animatedSprite.play("dashFront")
+		Direction.LEFT:
+			animatedSprite.play("dashLeft")
+		Direction.RIGHT:
+			animatedSprite.play("dashRight")
+
+func stopDash() -> void:
+	collision_layer = collision_layer | 0b1 #become hittable
 	match direction:
 		Direction.UP:
 			animatedSprite.play("idleBack")

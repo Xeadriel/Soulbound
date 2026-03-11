@@ -13,6 +13,8 @@ func physicsProcess(_delta: float) -> void:
 		else: finished.emit("StateChargeUpAttack")
 	elif EventHandler.isPlayerInputJustPressed(BLOCK):
 		finished.emit("StateBlock")
+	elif EventHandler.isPlayerInputJustPressed(DASH):
+		finished.emit("StateDash")
 	elif (
 		EventHandler.isPlayerInputPressed(LEFT) or
 		EventHandler.isPlayerInputPressed(RIGHT) or

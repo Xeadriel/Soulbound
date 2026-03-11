@@ -34,6 +34,7 @@ func process(delta: float) -> void:
 			attackAgain = false
 			currentCombo += 1
 			player.stopAttackHeavy()
+			player.attackHeavyWindup(currentCombo)
 		else:
 			finished.emit("StateIdle")
 	# do stuff on timer then go to idle
@@ -47,6 +48,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	attackTimer = 0
 	currentCombo = 0
 	attackAgain = false
+	player.attackHeavyWindup(currentCombo)
 
 func exit() -> void:
 	attackTimer = 0

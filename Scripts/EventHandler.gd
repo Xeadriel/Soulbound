@@ -8,6 +8,7 @@ var playerInputs = {
 	"hit" : false,
 	"heavyHit" : false,
 	"block" : false,
+	"dash" : false,
 	"up2" : false, 
 	"down2" : false,
 	"left2" : false,
@@ -15,8 +16,12 @@ var playerInputs = {
 	"hit2" : false,
 	"heavyHit2" : false,
 	"block2" : false,
+<<<<<<< HEAD
 	"pause" : false,
 	"pause2" : false,
+=======
+	"dash2" : false
+>>>>>>> 10353c75a1b8fab30ec1a0d9fb2f97f96a3c5877
 	}
 
 var playerInputsJustPressed = {
@@ -27,6 +32,7 @@ var playerInputsJustPressed = {
 	"hit" : false,
 	"heavyHit" : false,
 	"block" : false,
+	"dash" : false,
 	"up2" : false, 
 	"down2" : false,
 	"left2" : false,
@@ -34,8 +40,12 @@ var playerInputsJustPressed = {
 	"hit2" : false,
 	"heavyHit2" : false,
 	"block2" : false,
+<<<<<<< HEAD
 	"pause" : false,
 	"pause2" : false,
+=======
+	"dash2" : false
+>>>>>>> 10353c75a1b8fab30ec1a0d9fb2f97f96a3c5877
 	}
 
 func playerDied(playerNumber):

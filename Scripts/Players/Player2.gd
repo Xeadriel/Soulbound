@@ -39,18 +39,6 @@ func _process(_delta) -> void:
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
-func takeDamage(dmg):
-	if stateMachine.currentState.name == "StateBlock" and blockTimeStamp + blockDelay >= Time.get_ticks_msec():
-		# spawn some block particle and make sound
-		return
-	hp -= dmg
-	if hp <= 0:
-		var playerNumber = 2 if name == "Player2" else 1
-		playerDeath.emit(playerNumber)
-		if hp < 0:
-			return
-	playerTakesDamage.emit(dmg)
-
 # attacks in facing direction
 # takes integer combo as parameter to specify which
 # animation in a potential attack combo to play

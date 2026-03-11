@@ -68,11 +68,9 @@ func _ready() -> void:
 			nextIsRight = not nextIsRight
 
 
-func playerTookDamage(dmgValue):
-	if hp == 0: return # skip animation if exceeding hp thats left
-	
+func playerTookDamage(dmgValue):	
 	for i in range(dmgValue):
-		if hp - 1 - i < 0: break
-		hearts[hp - 1 - i].play(TAKEDAMAGE)
+		if hp == 0: return
+		hp = clamp(hp - 1, 0, player.maxHp)
+		hearts[hp].play(TAKEDAMAGE)
 	
-	hp = clamp(hp - dmgValue, 0, player.maxHp)

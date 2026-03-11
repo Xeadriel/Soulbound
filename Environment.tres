@@ -1,0 +1,5 @@
+[gd_resource type="Environment" load_steps=0 format=3 uid="uid://c64exxvv5q2d8"]
+
+[resource]
+glow_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
