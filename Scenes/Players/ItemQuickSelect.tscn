@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://csvo4bhjc4m03"]
 
-[ext_resource type="Script" uid="uid://bkti7jp4b7vct" path="res://Scripts/Players/ItemQuickSelect.gd" id="1_ro8nj"]
+[ext_resource type="Script" path="res://Scripts/Players/ItemQuickSelect.gd" id="1_ro8nj"]
 [ext_resource type="Texture2D" uid="uid://c3n2p2dr5a7wf" path="res://Assets/ItemQuickSelect.png" id="2_wywns"]
 [ext_resource type="Texture2D" uid="uid://pxraiwvfbiui" path="res://Assets/WhipIcon.png" id="3_3q1xm"]
 
@@ -42,7 +42,6 @@ button_mask = 0
 flat = true
 alignment = 1
 expand_icon = true
-selected = 0
 fit_to_longest_item = false
 
 [node name="TopSelector" type="OptionButton" parent="Control"]
@@ -59,7 +58,6 @@ button_mask = 0
 flat = true
 alignment = 1
 expand_icon = true
-selected = 0
 fit_to_longest_item = false
 
 [node name="LeftSelector" type="OptionButton" parent="Control"]
@@ -76,7 +74,6 @@ button_mask = 0
 flat = true
 alignment = 1
 expand_icon = true
-selected = 0
 fit_to_longest_item = false
 
 [node name="RightSelector" type="OptionButton" parent="Control"]
@@ -93,5 +90,4 @@ button_mask = 0
 flat = true
 alignment = 1
 expand_icon = true
-selected = 0
 fit_to_longest_item = false
