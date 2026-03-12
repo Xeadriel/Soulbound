@@ -3,6 +3,7 @@ extends Node
 enum ItemIndices {
 	NOTHING,
 	WHIP,
+	POTION
 	# insert new items here
 }
 

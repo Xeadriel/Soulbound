@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=3 uid="uid://djscp4vkxkh4n"]
 
-[ext_resource type="Texture2D" uid="uid://dchhpjx8g4w5k" path="res://Assets/UI Pack OS/banner_classic_curtain.png" id="1_j146a"]
-[ext_resource type="Script" uid="uid://cjvtmubcghhv3" path="res://Scripts/UserInterface/Inventory.gd" id="1_jt5nw"]
-[ext_resource type="Texture2D" uid="uid://dedyd71j3juxf" path="res://Assets/UI Pack OS/panel_brown_damaged.png" id="2_78ja3"]
-[ext_resource type="Texture2D" uid="uid://cuwkkct6gq33k" path="res://Assets/UI Pack OS/panel_grey_blue.png" id="3_2onr6"]
-[ext_resource type="Texture2D" uid="uid://dw6mf4pqqavsc" path="res://Assets/UI Pack OS/panel_brown.png" id="3_kkwp6"]
-[ext_resource type="Texture2D" uid="uid://llvl0kapun32" path="res://Assets/UI Pack OS/panel_grey_red.png" id="4_kkwp6"]
+[ext_resource type="Script" uid="uid://cjvtmubcghhv3" path="res://Scripts/UserInterface/Inventory.gd" id="1_wl048"]
+[ext_resource type="Texture2D" uid="uid://dchhpjx8g4w5k" path="res://Assets/UI Pack OS/banner_classic_curtain.png" id="2_vx7b6"]
+[ext_resource type="Texture2D" uid="uid://dedyd71j3juxf" path="res://Assets/UI Pack OS/panel_brown_damaged.png" id="3_ccuis"]
+[ext_resource type="Texture2D" uid="uid://dw6mf4pqqavsc" path="res://Assets/UI Pack OS/panel_brown.png" id="4_kqowy"]
+[ext_resource type="Texture2D" uid="uid://cuwkkct6gq33k" path="res://Assets/UI Pack OS/panel_grey_blue.png" id="5_5uyoe"]
+[ext_resource type="Texture2D" uid="uid://llvl0kapun32" path="res://Assets/UI Pack OS/panel_grey_red.png" id="6_uupup"]
 
 [sub_resource type="Gradient" id="Gradient_xcowf"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -42,7 +42,7 @@ outline_size = 5
 outline_color = Color(1, 1, 0, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_48w2e"]
-texture = ExtResource("2_78ja3")
+texture = ExtResource("3_ccuis")
 texture_margin_left = 20.0
 texture_margin_top = 20.0
 texture_margin_right = 20.0
@@ -55,7 +55,7 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jt5nw"]
-texture = ExtResource("3_2onr6")
+texture = ExtResource("5_5uyoe")
 texture_margin_left = 20.0
 texture_margin_top = 20.0
 texture_margin_right = 20.0
@@ -68,7 +68,7 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m71pt"]
-texture = ExtResource("4_kkwp6")
+texture = ExtResource("6_uupup")
 texture_margin_left = 20.0
 texture_margin_top = 20.0
 texture_margin_right = 20.0
@@ -87,7 +87,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jt5nw")
+script = ExtResource("1_wl048")
 
 [node name="BgGradient" type="TextureRect" parent="."]
 layout_mode = 1
@@ -116,7 +116,7 @@ theme_override_constants/separation = 50
 
 [node name="HeaderTexture" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_j146a")
+texture = ExtResource("2_vx7b6")
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HeaderTexture"]
@@ -156,87 +156,87 @@ columns = 7
 
 [node name="ItemSlot1" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot2" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot3" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot4" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot5" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot6" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot7" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot8" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot9" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot10" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot11" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot12" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot13" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot14" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot15" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot16" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot17" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot18" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot19" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot20" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="ItemSlot21" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_kkwp6")
+texture = ExtResource("4_kqowy")
 
 [node name="DescriptionBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

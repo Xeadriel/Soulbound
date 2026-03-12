@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cy4vn64vtg0f7"]
+[gd_scene load_steps=13 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_gwj4l"]
 [ext_resource type="PackedScene" uid="uid://rafcdskaova5" path="res://Scenes/Players/Player.tscn" id="2_eb5f0"]
@@ -237,7 +237,6 @@ offset_left = 704.0
 offset_top = -248.0
 offset_right = 704.0
 offset_bottom = -248.0
-
 
 [node name="Enemies" type="Node" parent="2DObjects"]
 

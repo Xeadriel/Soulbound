@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://h0citg7sqvl1"]
 
-[ext_resource type="PackedScene" uid="uid://djscp4vkxkh4n" path="res://Scenes/UserInterface/PanelContainer/UI1.tscn" id="1_cf0at"]
+[ext_resource type="PackedScene" uid="uid://djscp4vkxkh4n" path="res://Scenes/UserInterface/PanelContainer/Inventory.tscn" id="1_cf0at"]
 [ext_resource type="Script" uid="uid://u4ikf6yrlbcw" path="res://Scripts/UserInterface/game_ui.gd" id="1_ku3ho"]
 [ext_resource type="PackedScene" uid="uid://dgacqwaotk5mh" path="res://Scenes/UserInterface/PanelContainer/UI2.tscn" id="2_3ox4t"]
 [ext_resource type="PackedScene" uid="uid://dy0ukkwrdc6vo" path="res://Scenes/UserInterface/PanelContainer/UI3.tscn" id="4_0efwd"]
@@ -17,21 +17,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ku3ho")
 
-[node name="UI1" parent="." instance=ExtResource("1_cf0at")]
+[node name="Inventory" parent="." instance=ExtResource("1_cf0at")]
 layout_mode = 1
-focus_neighbor_left = NodePath("../UI3")
-focus_neighbor_right = NodePath("../UI2")
+focus_mode = 2
 
 [node name="UI2" parent="." instance=ExtResource("2_3ox4t")]
 layout_mode = 1
-focus_neighbor_left = NodePath(".")
-focus_neighbor_right = NodePath("../UI3")
+focus_mode = 2
 
 [node name="UI3" parent="." instance=ExtResource("4_0efwd")]
 layout_mode = 1
-focus_neighbor_left = NodePath("../UI2")
-focus_neighbor_right = NodePath("../UI1")
-
-[connection signal="focus_entered" from="UI1" to="." method="_on_ui_1_focus_entered"]
-[connection signal="focus_entered" from="UI2" to="." method="_on_ui_2_focus_entered"]
-[connection signal="focus_entered" from="UI3" to="." method="_on_ui_3_focus_entered"]
+focus_mode = 2
