@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://rafcdskaova5"]
+[gd_scene load_steps=100 format=3 uid="uid://rafcdskaova5"]
 
 [ext_resource type="Script" uid="uid://0jorh7okrj40" path="res://Scripts/Players/Player1.gd" id="1_rpqav"]
 [ext_resource type="Texture2D" uid="uid://b481yv1fwibf7" path="res://Assets/PlayerSpriteSheet.png" id="2_52ee3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c3u2oumh8xcms" path="res://Scripts/StateMachine/StatesPlayer/StateHeavyAttack.gd" id="7_u0nk7"]
 [ext_resource type="Script" uid="uid://31yxv8rxpcxp" path="res://Scripts/StateMachine/StatesPlayer/StateBlock.gd" id="8_bhhdu"]
 [ext_resource type="Script" uid="uid://blutkobl052ip" path="res://Scripts/StateMachine/StatesPlayer/StateDash.gd" id="9_sw0h5"]
+[ext_resource type="Script" uid="uid://bkallxg37dshg" path="res://Scripts/StateMachine/StatesPlayer/StateWhipAttack.gd" id="10_80whf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
 atlas = ExtResource("2_52ee3")
@@ -1123,6 +1124,10 @@ player = NodePath("../..")
 script = ExtResource("9_sw0h5")
 player = NodePath("../..")
 
+[node name="StateWhipAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("10_80whf")
+player = NodePath("../..")
+
 [node name="AttackPivotPoint" type="Node2D" parent="."]
 
 [node name="LightAttacks" type="Node2D" parent="AttackPivotPoint"]
@@ -1232,6 +1237,14 @@ self_modulate = Color(0.684138, 0.316281, 0, 1)
 position = Vector2(-15.75, -2)
 scale = Vector2(78.5, 170)
 texture = SubResource("CanvasTexture_52ee3")
+
+[node name="WhipAttack" type="Node2D" parent="AttackPivotPoint"]
+
+[node name="Start" type="Node2D" parent="AttackPivotPoint/WhipAttack"]
+position = Vector2(85, 0)
+
+[node name="Goal" type="Node2D" parent="AttackPivotPoint/WhipAttack"]
+position = Vector2(372, 0)
 
 [connection signal="body_entered" from="AttackPivotPoint/LightAttacks/LightAttack0" to="." method="lightAttackHitSomething"]
 [connection signal="body_entered" from="AttackPivotPoint/LightAttacks/LightAttack1" to="." method="lightAttackHitSomething"]
