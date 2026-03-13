@@ -1,15 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccanomk3lyg0h"]
+[gd_scene load_steps=6 format=3 uid="uid://ccanomk3lyg0h"]
 
-[ext_resource type="Texture2D" uid="uid://ci6gnrpu60bau" path="res://Assets/UI Pack OS/panel_grey_bolts_detail_a.png" id="1_jci1g"]
-[ext_resource type="Texture2D" uid="uid://5mp41movqhcm" path="res://Assets/UI Pack OS/minimap_compass_future_s.png" id="2_vdrk6"]
+[ext_resource type="Texture2D" uid="uid://ci6gnrpu60bau" path="res://Assets/UI Pack OS/panel_grey_bolts_detail_a.png" id="1_82o1l"]
+[ext_resource type="Script" uid="uid://dgqabcq0550ci" path="res://Scripts/UserInterface/item.gd" id="2_3s76f"]
+[ext_resource type="Texture2D" uid="uid://5mp41movqhcm" path="res://Assets/UI Pack OS/minimap_compass_future_s.png" id="3_pp0ch"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_axucr"]
 font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_jci1g"]
 
-[node name="Potion" type="TextureRect"]
-texture = ExtResource("1_jci1g")
+[node name="Item" type="TextureRect"]
+texture = ExtResource("1_82o1l")
+script = ExtResource("2_3s76f")
 
 [node name="ItemIcon" type="TextureRect" parent="."]
 layout_mode = 1
@@ -24,7 +26,7 @@ offset_right = 29.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_vdrk6")
+texture = ExtResource("3_pp0ch")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
