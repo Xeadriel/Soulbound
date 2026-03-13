@@ -5,8 +5,10 @@ class_name Item extends TextureRect
 @export var description: String
 @export var itemAmount: int
 
+@onready var icon = $ItemIcon
+
 func setItemTexture(iconTexture: Texture2D):
-	$ItemIcon.texture = iconTexture
+	icon.texture = iconTexture
 
 func setBackgroundTexture(bgTexture: Texture2D):
 	self.texture = bgTexture
