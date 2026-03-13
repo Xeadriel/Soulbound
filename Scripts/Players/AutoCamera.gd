@@ -24,9 +24,14 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 
-func _on_game_ui_insert_quick_slot(itemEnum: Variant, quickslot: String) -> void:
+func _on_game_ui_insert_quick_slot(
+	itemEnum: MenuGlobals.ItemIndices, 
+	quickslot: MenuGlobals.SelectorIndices,
+	playerNumber: int) -> void:
+		
 	var itemQuickSelect
-	if quickslot.contains("2"):
+	if playerNumber == 2:
 		itemQuickSelect = $ItemQuickSelect2
-	else:
+	elif playerNumber == 1:
 		itemQuickSelect = $ItemQuickSelect
+		
