@@ -3,7 +3,13 @@ extends Control
 var pages = []
 var currentPageIndex = 0;
 var pageWidth;
-var cameraOffset; 
+var cameraOffset;
+
+signal insertQuickSlot(
+	itemEnum: MenuGlobals.ItemIndices, 
+	quickslot: MenuGlobals.SelectorIndices, 
+	playerNumber: int
+	)
 
 func _ready() -> void:
 	pageWidth = $Inventory.size.x ;
@@ -41,10 +47,22 @@ func _process(delta: float) -> void:
 			currentPageIndex += 1;
 			pages[currentPageIndex].grab_focus()
 			var tw = create_tween();
-			tw.tween_property(self, "position:x", -currentPageIndex * pageWidth - cameraOffset, 0.3);
+			tw.tween_property(self, "position:x", 
+			-currentPageIndex * pageWidth - cameraOffset, 
+			0.3);
 	elif self.visible && EventHandler.isPlayerInputJustPressed("block"):
 		if(currentPageIndex > 0):
 			currentPageIndex -= 1;
 			pages[currentPageIndex].grab_focus()
 			var tw = create_tween();
-			tw.tween_property(self, "position:x", -currentPageIndex * pageWidth - cameraOffset, 0.3);
+			tw.tween_property(self, 
+			"position:x", -currentPageIndex * pageWidth - cameraOffset, 
+			0.3);
+
+
+func _on_inventory_insert_quick_slot(
+	itemEnum: MenuGlobals.ItemIndices, 
+	quickslot: MenuGlobals.SelectorIndices, 
+	playerNumber: int
+	) -> void:
+	emit_signal("insertQuickSlot", itemEnum, quickslot, playerNumber)

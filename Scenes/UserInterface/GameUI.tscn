@@ -28,3 +28,5 @@ focus_mode = 2
 [node name="UI3" parent="." instance=ExtResource("4_0efwd")]
 layout_mode = 1
 focus_mode = 2
+
+[connection signal="insertQuickSlot" from="Inventory" to="." method="_on_inventory_insert_quick_slot"]

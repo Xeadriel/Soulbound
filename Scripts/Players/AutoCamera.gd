@@ -22,3 +22,11 @@ func _physics_process(_delta: float) -> void:
 	velocity = global_position.direction_to(targetLocation) * global_position.distance_to(targetLocation) * SPEED
 	velocity.clamp(Vector2(-SPEED, -SPEED), Vector2(SPEED, SPEED))
 	move_and_slide()
+
+
+func _on_game_ui_insert_quick_slot(itemEnum: Variant, quickslot: String) -> void:
+	var itemQuickSelect
+	if quickslot.contains("2"):
+		itemQuickSelect = $ItemQuickSelect2
+	else:
+		itemQuickSelect = $ItemQuickSelect
