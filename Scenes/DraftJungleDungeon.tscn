@@ -355,5 +355,3 @@ position = Vector2(1281, 56)
 
 [node name="Player2" parent="2DObjects/Players" instance=ExtResource("5_7f6id")]
 position = Vector2(1471, 33)
-
-[connection signal="insertQuickSlot" from="2DObjects/AutoCamera/GameUI" to="2DObjects/AutoCamera" method="_on_game_ui_insert_quick_slot"]

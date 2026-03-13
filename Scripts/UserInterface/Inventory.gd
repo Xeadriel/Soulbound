@@ -5,25 +5,22 @@ extends Control
 
 var playerSelectedIndex = [0, 0]
 
-var itemsDict = {
-	0: {
-		"enum": MenuGlobals.ItemIndices.POTION, 
-		"name": "potion", 
-		"scene": preload("res://Scenes/Items/Potion.tscn")
-	}
-	# add more items here #
-}
+@onready var gridContainer = $MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer
 
 signal insertQuickSlot(
 	itemEnum: MenuGlobals.ItemIndices, 
-	quickslot: MenuGlobals.SelectorIndices, 
-	playerNumber: int
+	quickslot: MenuGlobals.SelectorIndices
+	)
+
+signal insertQuickSlot2(
+	itemEnum: MenuGlobals.ItemIndices, 
+	quickslot: MenuGlobals.SelectorIndices
 	)
 
 func _ready() -> void:
+	
 	#just as a test
-	addItemDispatcher(MenuGlobals.ItemIndices.POTION)
-	addItemDispatcher(MenuGlobals.ItemIndices.POTION)
+	addItem(MenuGlobals.ItemIndices.POTION, 5)
 	
 	updateSelector()
 	
@@ -31,49 +28,49 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if self.has_focus():
 		
-		if EventHandler.isPlayerInputJustPressed("right") && !EventHandler.isPlayerInputPressed("hit"):
+		if EventHandler.isPlayerInputJustPressed("right"):
 				moveSelector(1, 0, 0)
-		elif EventHandler.isPlayerInputJustPressed("left") && !EventHandler.isPlayerInputPressed("hit"):
+		elif EventHandler.isPlayerInputJustPressed("left"):
 				moveSelector(-1, 0, 0)
-		elif EventHandler.isPlayerInputJustPressed("up") && !EventHandler.isPlayerInputPressed("hit"):
+		elif EventHandler.isPlayerInputJustPressed("up"):
 				moveSelector(0, -1, 0)
-		elif EventHandler.isPlayerInputJustPressed("down") && !EventHandler.isPlayerInputPressed("hit"):
+		elif EventHandler.isPlayerInputJustPressed("down"):
 				moveSelector(0, 1, 0)
-		elif EventHandler.isPlayerInputJustPressed("left2") && !EventHandler.isPlayerInputPressed("hit2"):
+		elif EventHandler.isPlayerInputJustPressed("left2"):
 				moveSelector(-1, 0, 1)
-		elif EventHandler.isPlayerInputJustPressed("up2") && !EventHandler.isPlayerInputPressed("hit2"):
+		elif EventHandler.isPlayerInputJustPressed("up2"):
 				moveSelector(0, -1, 1)
-		elif EventHandler.isPlayerInputJustPressed("down2") && !EventHandler.isPlayerInputPressed("hit2"):
+		elif EventHandler.isPlayerInputJustPressed("down2"):
 				moveSelector(0, 1, 1)
-		elif EventHandler.isPlayerInputJustPressed("right2") && !EventHandler.isPlayerInputPressed("hit2"):
+		elif EventHandler.isPlayerInputJustPressed("right2"):
 				moveSelector(1, 0, 1)
-		elif EventHandler.isPlayerInputPressed("hit") && EventHandler.isPlayerInputPressed("right"):
+		elif EventHandler.isPlayerInputPressed("quickSlotRight"):
 			toQuickSlot(playerSelectedIndex[0], MenuGlobals.SelectorIndices.RIGHT, 1)
-		elif EventHandler.isPlayerInputPressed("hit") && EventHandler.isPlayerInputPressed("left"):
+		elif EventHandler.isPlayerInputPressed("quickSlotLeft"):
 			toQuickSlot(playerSelectedIndex[0], MenuGlobals.SelectorIndices.LEFT, 1)
-		elif EventHandler.isPlayerInputPressed("hit") && EventHandler.isPlayerInputPressed("up"):
+		elif EventHandler.isPlayerInputPressed("quickSlotTop"):
 			toQuickSlot(playerSelectedIndex[0], MenuGlobals.SelectorIndices.TOP, 1)
-		elif EventHandler.isPlayerInputPressed("hit") && EventHandler.isPlayerInputPressed("down"):
+		elif EventHandler.isPlayerInputPressed("quickSlotBottom"):
 			toQuickSlot(playerSelectedIndex[0], MenuGlobals.SelectorIndices.BOTTOM, 1)
-		elif EventHandler.isPlayerInputPressed("hit2") && EventHandler.isPlayerInputPressed("right2"):
+		elif EventHandler.isPlayerInputPressed("quickSlotRight2"):
 			toQuickSlot(playerSelectedIndex[1], MenuGlobals.SelectorIndices.RIGHT, 2)
-		elif EventHandler.isPlayerInputPressed("hit2") && EventHandler.isPlayerInputPressed("left2"):
+		elif EventHandler.isPlayerInputPressed("quickSlotLeft2"):
 			toQuickSlot(playerSelectedIndex[1], MenuGlobals.SelectorIndices.LEFT, 2)
-		elif EventHandler.isPlayerInputPressed("hit2") && EventHandler.isPlayerInputPressed("up2"):
+		elif EventHandler.isPlayerInputPressed("quickSlotTop2"):
 			toQuickSlot(playerSelectedIndex[1], MenuGlobals.SelectorIndices.TOP, 2)
-		elif EventHandler.isPlayerInputPressed("hit2") && EventHandler.isPlayerInputPressed("down2"):
+		elif EventHandler.isPlayerInputPressed("quickSlotBottom2"):
 			toQuickSlot(playerSelectedIndex[1], MenuGlobals.SelectorIndices.BOTTOM, 2)
 
 func toQuickSlot(itemIndex: int, quickslot: MenuGlobals.SelectorIndices, playerNumber: int):
-	var itemSlot = $MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer.get_child(itemIndex)
-	var itemName = itemSlot.get_child(0).get_node("MarginContainer/ItemName").text.to_lower()
-	var itemRecognized = false
-	for i in itemsDict:
-		if itemsDict[i]["name"] == itemName:
-			itemRecognized = true
-			emit_signal("insertQuickSlot", itemsDict[i]["enum"], quickslot, playerNumber)
-	if !itemRecognized:
-		print("Inserting to QuickSlot failed : Enum not recognized")
+	var itemSlot: Item = gridContainer.get_child(itemIndex).get_child(0)
+	if itemSlot != null && itemSlot.visible:
+		match playerNumber:
+			1: 
+				emit_signal("insertQuickSlot", itemSlot, quickslot)
+			2: 
+				emit_signal("insertQuickSlot2", itemSlot, quickslot)
+	else:
+		print("itemSlot is empty: " + str(itemIndex))
 
 func moveSelector(dx: int, dy: int, playerNumber: int) -> void:
 	var row = playerSelectedIndex[playerNumber] / columns
@@ -86,9 +83,8 @@ func moveSelector(dx: int, dy: int, playerNumber: int) -> void:
 	updateSelector()
 
 func updateSelector():
-	var gc = $MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer
-	for i in gc.get_child_count():
-		var slot = gc.get_child(i)
+	for i in gridContainer.get_child_count():
+		var slot = gridContainer.get_child(i)
 		if playerSelectedIndex[0] == i:
 			slot.modulate = Color(0, 0, 1)
 		elif playerSelectedIndex[1] == i:
@@ -96,34 +92,14 @@ func updateSelector():
 		elif playerSelectedIndex[0] != i && playerSelectedIndex[1] != i:
 			slot.modulate = Color(0.3, 0.3, 0.3)
 
-func addItemDispatcher(itemEnum: MenuGlobals.ItemIndices) -> void:
-	var itemRecognized = false
-	for i in itemsDict:
-		if itemsDict[i]["enum"] == itemEnum:
-			itemRecognized = true
-			addItem(itemsDict[i]["name"], itemsDict[i]["scene"])
-	if !itemRecognized:
-		print("Invalid Item Enum value!")
-
-func addItem(itemName: String, itemScene):
-	var itemSlots = $MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer.get_children()
-	var existedSlot = null;
+func addItem(itemEnum: MenuGlobals.ItemIndices, amount: int):
+	var itemSlots = gridContainer.get_children()
+	var targetSlot: Item = null;
 	for i in itemSlots.size():
-		if itemSlots[i].get_child_count() == 1 && itemSlots[i].get_child(0).name.to_lower() == itemName:
-			existedSlot = itemSlots[i]
+		var slot: Item = itemSlots[i].get_child(0)
+		if slot.id == itemEnum:
+			targetSlot = slot
 			break
-	if existedSlot != null:
-		var countStr = existedSlot.get_child(0).get_node("MarginContainer/ItemCount").text
-		var countInt = 1 if int(countStr) == 0 else int(countStr)
-		existedSlot.get_child(0).get_node("MarginContainer/ItemCount").text = str(countInt+1)
-	else:
-		var freeSlot = null
-		for i in itemSlots.size():
-			if itemSlots[i].get_child_count() == 0:
-				freeSlot = itemSlots[i]
-				break
-		if freeSlot != null:
-			var newItem = itemScene.instantiate()
-			freeSlot.add_child(newItem)
-		else:
-			print("Inventory is full!")
+	if !targetSlot.visible:
+		targetSlot.visible = true
+	targetSlot.addItemAmount(amount)
