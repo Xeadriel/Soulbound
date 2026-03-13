@@ -19,7 +19,20 @@ var playerInputs = {
 	"pause" : false,
 	"pause2" : false,
 	"dash2" : false,
-	"interact": false
+	"interact": false,
+	"interact2": false,
+	"quickSlotBottom": false,
+	"quickSlotTop": false,
+	"quickSlotLeft": false,
+	"quickSlotRight": false,
+	"quickSlotBottom2": false,
+	"quickSlotTop2": false,
+	"quickSlotLeft2": false,
+	"quickSlotRight2": false,
+	"uiScrollLeft": false,
+	"uiScrollRight": false,
+	"uiScrollLeft2": false,
+	"uiScrollRight2": false
 	}
 
 var playerInputsJustPressed = {
@@ -41,7 +54,20 @@ var playerInputsJustPressed = {
 	"pause" : false,
 	"pause2" : false,
 	"dash2" : false,
-	"interact": false
+	"interact": false,
+	"interact2": false,
+	"quickSlotBottom": false,
+	"quickSlotTop": false,
+	"quickSlotLeft": false,
+	"quickSlotRight": false,
+	"quickSlotBottom2": false,
+	"quickSlotTop2": false,
+	"quickSlotLeft2": false,
+	"quickSlotRight2": false,
+	"uiScrollLeft": false,
+	"uiScrollRight": false,
+	"uiScrollLeft2": false,
+	"uiScrollRight2": false
 	}
 
 func _ready() -> void:

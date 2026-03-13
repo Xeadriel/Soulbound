@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bkti7jp4b7vct" path="res://Scripts/Players/ItemQuickSelect.gd" id="1_ro8nj"]
 [ext_resource type="Texture2D" uid="uid://c3n2p2dr5a7wf" path="res://Assets/ItemQuickSelect.png" id="2_wywns"]
 [ext_resource type="Texture2D" uid="uid://pxraiwvfbiui" path="res://Assets/WhipIcon.png" id="4_o5kgx"]
-[ext_resource type="PackedScene" uid="uid://ccanomk3lyg0h" path="res://Scenes/Items/Item.tscn" id="4_yofk7"]
+[ext_resource type="PackedScene" uid="uid://ccanomk3lyg0h" path="res://Scenes/UserInterface/Menu/Item.tscn" id="4_yofk7"]
 
 [node name="ItemQuickSelect" type="Control"]
 layout_mode = 3
@@ -25,39 +25,71 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="BottomItem" parent="Control" instance=ExtResource("4_yofk7")]
+visible = true
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = -33.0
 offset_top = 46.0
 offset_right = 37.0
 offset_bottom = 116.0
+grow_horizontal = 1
+grow_vertical = 1
+texture = ExtResource("4_o5kgx")
 expand_mode = 3
 id = 1
 
-[node name="ItemIcon" parent="Control/BottomItem" index="0"]
-texture = ExtResource("4_o5kgx")
-
 [node name="TopItem" parent="Control" instance=ExtResource("4_yofk7")]
+visible = true
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = -33.0
 offset_top = -117.0
 offset_right = 37.0
 offset_bottom = -47.0
+grow_horizontal = 1
+grow_vertical = 1
 expand_mode = 3
 
 [node name="LeftItem" parent="Control" instance=ExtResource("4_yofk7")]
+visible = true
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = -117.0
 offset_top = -36.0
 offset_right = -47.0
 offset_bottom = 34.0
+grow_horizontal = 1
+grow_vertical = 1
 expand_mode = 3
 
 [node name="RightItem" parent="Control" instance=ExtResource("4_yofk7")]
+visible = true
+custom_minimum_size = Vector2(0, 0)
 layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = 49.0
 offset_top = -38.0
 offset_right = 119.0
 offset_bottom = 32.0
+grow_horizontal = 1
+grow_vertical = 1
 expand_mode = 3
-
-[editable path="Control/BottomItem"]

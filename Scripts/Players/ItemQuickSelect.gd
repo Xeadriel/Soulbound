@@ -5,12 +5,12 @@ class_name ItemQuickSelect extends Control
 func _ready() -> void:
 	pass
 
-func switchItem(quickSlotIndex : MenuGlobals.SelectorIndices, item : Item):
+func switchItem(quickSlotIndex : GlobalConstants.SelectorIndices, item : Item):
 	var quickSlot : Item = quickSlots[quickSlotIndex]
 	quickSlot.id = item.id
 	quickSlot.itemAmount = item.itemAmount
 	quickSlot.setItemTexture(item.icon)
 
-func getItem(quickSlotIndex : MenuGlobals.SelectorIndices) -> MenuGlobals.ItemIndices:
+func getItem(quickSlotIndex : GlobalConstants.SelectorIndices) -> GlobalConstants.ItemIndices:
 	var quickSlot : Item = quickSlots[quickSlotIndex]
 	return quickSlot.id

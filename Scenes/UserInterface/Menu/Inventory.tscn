@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://djscp4vkxkh4n"]
+[gd_scene load_steps=16 format=3 uid="uid://djscp4vkxkh4n"]
 
 [ext_resource type="Script" uid="uid://cjvtmubcghhv3" path="res://Scripts/UserInterface/Inventory.gd" id="1_wl048"]
 [ext_resource type="Texture2D" uid="uid://dchhpjx8g4w5k" path="res://Assets/UI Pack OS/banner_classic_curtain.png" id="2_vx7b6"]
 [ext_resource type="Texture2D" uid="uid://dedyd71j3juxf" path="res://Assets/UI Pack OS/panel_brown_damaged.png" id="3_ccuis"]
 [ext_resource type="Texture2D" uid="uid://dw6mf4pqqavsc" path="res://Assets/UI Pack OS/panel_brown.png" id="4_kqowy"]
 [ext_resource type="Texture2D" uid="uid://cuwkkct6gq33k" path="res://Assets/UI Pack OS/panel_grey_blue.png" id="5_5uyoe"]
+[ext_resource type="PackedScene" uid="uid://ccanomk3lyg0h" path="res://Scenes/UserInterface/Menu/Item.tscn" id="5_ccuis"]
+[ext_resource type="Texture2D" uid="uid://dokl57s0bipag" path="res://Assets/UI Pack OS/minimap_arrow_b.png" id="6_kqowy"]
 [ext_resource type="Texture2D" uid="uid://llvl0kapun32" path="res://Assets/UI Pack OS/panel_grey_red.png" id="6_uupup"]
 
 [sub_resource type="Gradient" id="Gradient_xcowf"]
@@ -157,6 +159,13 @@ columns = 7
 [node name="ItemSlot1" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
 texture = ExtResource("4_kqowy")
+
+[node name="Item" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer/ItemSlot1" instance=ExtResource("5_ccuis")]
+layout_mode = 1
+texture = ExtResource("6_kqowy")
+id = 2
+itemName = "Gay Potion"
+description = "Brewed with love and dicks"
 
 [node name="ItemSlot2" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://h0citg7sqvl1"]
 
-[ext_resource type="PackedScene" uid="uid://djscp4vkxkh4n" path="res://Scenes/UserInterface/PanelContainer/Inventory.tscn" id="1_cf0at"]
+[ext_resource type="PackedScene" uid="uid://djscp4vkxkh4n" path="res://Scenes/UserInterface/Menu/Inventory.tscn" id="1_cf0at"]
 [ext_resource type="Script" uid="uid://u4ikf6yrlbcw" path="res://Scripts/UserInterface/game_ui.gd" id="1_ku3ho"]
-[ext_resource type="PackedScene" uid="uid://dgacqwaotk5mh" path="res://Scenes/UserInterface/PanelContainer/UI2.tscn" id="2_3ox4t"]
-[ext_resource type="PackedScene" uid="uid://dy0ukkwrdc6vo" path="res://Scenes/UserInterface/PanelContainer/UI3.tscn" id="4_0efwd"]
+[ext_resource type="PackedScene" uid="uid://dgacqwaotk5mh" path="res://Scenes/UserInterface/Menu/UI2.tscn" id="2_3ox4t"]
+[ext_resource type="PackedScene" uid="uid://dy0ukkwrdc6vo" path="res://Scenes/UserInterface/Menu/UI3.tscn" id="4_0efwd"]
 
 [node name="GameUI" type="Control"]
 process_mode = 3

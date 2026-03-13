@@ -5,12 +5,6 @@ var currentPageIndex = 0;
 var pageWidth;
 var cameraOffset;
 
-signal insertQuickSlot(
-	itemEnum: MenuGlobals.ItemIndices, 
-	quickslot: MenuGlobals.SelectorIndices, 
-	playerNumber: int
-	)
-
 func _ready() -> void:
 	pageWidth = $Inventory.size.x ;
 	cameraOffset = pageWidth / 2;
@@ -58,11 +52,3 @@ func _process(delta: float) -> void:
 			tw.tween_property(self, 
 			"position:x", -currentPageIndex * pageWidth - cameraOffset, 
 			0.3);
-
-
-func _on_inventory_insert_quick_slot(
-	itemEnum: MenuGlobals.ItemIndices, 
-	quickslot: MenuGlobals.SelectorIndices, 
-	playerNumber: int
-	) -> void:
-	emit_signal("insertQuickSlot", itemEnum, quickslot, playerNumber)
