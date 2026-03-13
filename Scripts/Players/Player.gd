@@ -19,6 +19,10 @@ var direction = Direction.DOWN
 
 @onready var attackPivotPoint : Node2D = $AttackPivotPoint
 
+@export var whipAttackSpawner : PackedScene =  null
+@onready var spawnLocationWhipAttack = $AttackPivotPoint/WhipAttack/Start 
+@onready var goalWhipAttack = $AttackPivotPoint/WhipAttack/Goal
+
 var blockTimeStamp = 0
 @export var blockDelay = 500
 
@@ -141,3 +145,33 @@ func stopDash() -> void:
 			animatedSprite.play("idleLeft")
 		Direction.RIGHT:
 			animatedSprite.play("idleRight")
+
+func whipAttack():
+	#match direction:
+		#Direction.UP:
+			#animatedSprite.play("attackBack")
+		#Direction.DOWN:
+			#animatedSprite.play("attackFront")
+		#Direction.LEFT:
+			#animatedSprite.play("attackLeft")
+		#Direction.RIGHT:
+			#animatedSprite.play("attackRight")
+
+	var whip = whipAttackSpawner.instantiate()
+	whip.global_position = spawnLocationWhipAttack.global_position
+	whip.player = self
+	whip.rotation = attackPivotPoint.rotation
+	whip.direction = Vector2(1, 0).rotated(whip.rotation)
+	
+	get_parent().add_child(whip)
+
+func stopWhipAttack():
+		match direction:
+			Direction.UP:
+				animatedSprite.play("idleBack")
+			Direction.DOWN:
+				animatedSprite.play("idleFront")	
+			Direction.LEFT:
+				animatedSprite.play("idleLeft")
+			Direction.RIGHT:
+				animatedSprite.play("idleRight")

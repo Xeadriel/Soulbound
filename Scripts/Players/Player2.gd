@@ -61,7 +61,6 @@ func attack(combo : int) -> void:
 	magicShot.direction = Vector2(1, 0).rotated(magicShot.rotation)
 	
 	get_parent().add_child(magicShot)
-	
 
 func stopAttack() -> void:
 	match direction:
