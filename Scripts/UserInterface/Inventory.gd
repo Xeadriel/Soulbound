@@ -5,16 +5,23 @@ extends Control
 
 var playerSelectedIndex = [0, 0]
 
-var itemEnumsList = MenuGlobals.ItemIndices
+var itemEnums = MenuGlobals.ItemIndices
 
-var itemScenes = {
-	itemEnumsList.POTION: preload("res://Scenes/Items/Potion.tscn")
+var itemsDict = {
+	0: {
+		"enum": itemEnums.POTION, 
+		"name": "potion", 
+		"scene": preload("res://Scenes/Items/Potion.tscn")
+	}
+	# add more items here #
 }
+
+signal insertQuickSlot(itemEnum, quickslot)
 
 func _ready() -> void:
 	#just as a test
-	addItemDispatcher(itemEnumsList.POTION)
-	addItemDispatcher(itemEnumsList.POTION)
+	addItemDispatcher(itemEnums.POTION)
+	addItemDispatcher(itemEnums.POTION)
 	
 	updateSelector()
 	
@@ -55,8 +62,16 @@ func _process(delta: float) -> void:
 		elif EventHandler.isPlayerInputPressed("hit2") && EventHandler.isPlayerInputPressed("down2"):
 			toQuickSlot(playerSelectedIndex[1], "down2")
 
-func toQuickSlot(itemIndex, quickslot):
-	print("to quick Slot : " + str(itemIndex) + quickslot)
+func toQuickSlot(itemIndex: int, quickslot: String):
+	var itemSlot = $MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer.get_child(itemIndex)
+	var itemName = itemSlot.get_child(0).get_node("MarginContainer/ItemName").text.to_lower()
+	var itemRecognized = false
+	for i in itemsDict:
+		if itemsDict[i]["name"] == itemName:
+			itemRecognized = true
+			emit_signal("insertQuickSlot", itemsDict[i]["enum"], quickslot)
+	if !itemRecognized:
+		print("Inserting to QuickSlot failed : Enum not recognized")
 
 func moveSelector(dx: int, dy: int, playerNumber: int) -> void:
 	var row = playerSelectedIndex[playerNumber] / columns
@@ -80,33 +95,25 @@ func updateSelector():
 			slot.modulate = Color(0.3, 0.3, 0.3)
 
 func addItemDispatcher(itemEnum: int) -> void:
-	var itemName = null
-	var itemScene = null
-	match itemEnum:
-		itemEnumsList.POTION:
-			itemName = "Potion"
-			itemScene = itemScenes[itemEnum]
-			
-		#
-		#add more items here
-		#
-		
-	if itemName != null && itemScene != null:
-		addItem(itemName, itemScene)
-	else:
+	var itemRecognized = false
+	for i in itemsDict:
+		if itemsDict[i]["enum"] == itemEnum:
+			itemRecognized = true
+			addItem(itemsDict[i]["name"], itemsDict[i]["scene"])
+	if !itemRecognized:
 		print("Invalid Item Enum value!")
 
 func addItem(itemName: String, itemScene):
 	var itemSlots = $MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer.get_children()
 	var existedSlot = null;
 	for i in itemSlots.size():
-		if itemSlots[i].get_child_count() == 1 && itemSlots[i].get_children()[0].name == itemName:
+		if itemSlots[i].get_child_count() == 1 && itemSlots[i].get_child(0).name.to_lower() == itemName:
 			existedSlot = itemSlots[i]
 			break
 	if existedSlot != null:
-		var countStr = existedSlot.get_children()[0].get_node("MarginContainer/ItemCount").text
+		var countStr = existedSlot.get_child(0).get_node("MarginContainer/ItemCount").text
 		var countInt = 1 if int(countStr) == 0 else int(countStr)
-		existedSlot.get_children()[0].get_node("MarginContainer/ItemCount").text = str(countInt+1)
+		existedSlot.get_child(0).get_node("MarginContainer/ItemCount").text = str(countInt+1)
 	else:
 		var freeSlot = null
 		for i in itemSlots.size():
