@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccanomk3lyg0h"]
+
+[ext_resource type="Texture2D" uid="uid://ci6gnrpu60bau" path="res://Assets/UI Pack OS/panel_grey_bolts_detail_a.png" id="1_jci1g"]
+[ext_resource type="Texture2D" uid="uid://5mp41movqhcm" path="res://Assets/UI Pack OS/minimap_compass_future_s.png" id="2_vdrk6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_axucr"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_jci1g"]
+
+[node name="Potion" type="TextureRect"]
+texture = ExtResource("1_jci1g")
+
+[node name="ItemIcon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -30.0
+offset_right = 29.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vdrk6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 15
+
+[node name="ItemCount" type="Label" parent="MarginContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+label_settings = SubResource("LabelSettings_axucr")
+
+[node name="ItemName" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Potion"
+label_settings = SubResource("LabelSettings_jci1g")

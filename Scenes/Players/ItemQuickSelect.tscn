@@ -42,7 +42,6 @@ button_mask = 0
 flat = true
 alignment = 1
 expand_icon = true
-selected = 0
 fit_to_longest_item = false
 
 [node name="TopSelector" type="OptionButton" parent="Control"]
@@ -59,7 +58,6 @@ button_mask = 0
 flat = true
 alignment = 1
 expand_icon = true
-selected = 0
 fit_to_longest_item = false
 
 [node name="LeftSelector" type="OptionButton" parent="Control"]
@@ -76,7 +74,6 @@ button_mask = 0
 flat = true
 alignment = 1
 expand_icon = true
-selected = 0
 fit_to_longest_item = false
 
 [node name="RightSelector" type="OptionButton" parent="Control"]
@@ -93,5 +90,4 @@ button_mask = 0
 flat = true
 alignment = 1
 expand_icon = true
-selected = 0
 fit_to_longest_item = false

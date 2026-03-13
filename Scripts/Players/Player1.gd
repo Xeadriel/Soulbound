@@ -165,5 +165,3 @@ func heavyAttackHitSomething(body: Node2D) -> void:
 	if body is Enemy:
 		var enemy : Enemy = body
 		enemy.takeDamage(HEAVY_DAMAGE)
-
-

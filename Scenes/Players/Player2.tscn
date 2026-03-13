@@ -1125,3 +1125,11 @@ position = Vector2(88, -16)
 
 [node name="5" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations"]
 position = Vector2(88, 16)
+
+[node name="WhipAttack" type="Node2D" parent="AttackPivotPoint"]
+
+[node name="Start" type="Node2D" parent="AttackPivotPoint/WhipAttack"]
+position = Vector2(85, 0)
+
+[node name="Goal" type="Node2D" parent="AttackPivotPoint/WhipAttack"]
+position = Vector2(372, 0)

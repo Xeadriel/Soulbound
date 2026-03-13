@@ -7,7 +7,6 @@ size = Vector2(30, 30)
 
 [node name="WhipAttack" type="Area2D"]
 process_mode = 4
-visible = false
 collision_layer = 0
 collision_mask = 2
 monitorable = false
