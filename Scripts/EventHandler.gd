@@ -70,6 +70,10 @@ var playerInputsJustPressed = {
 	"uiScrollRight2": false
 	}
 
+# item signals
+signal name1
+signal name2
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
@@ -100,3 +104,9 @@ func isPlayerInputJustPressed(input : String):
 
 func isPlayerInputPressed(input : String):
 	return playerInputs[input]
+
+func itemPickedUp(itemIndex):
+	pass
+
+func itemEquipped(quickSlotIndex):
+	pass
