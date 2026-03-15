@@ -9,12 +9,12 @@ var playerSelectedIndex = [0, 0]
 
 signal insertQuickSlot(
 	itemEnum: GlobalConstants.ItemIndices, 
-	quickslot: GlobalConstants.SelectorIndices
+	quickslot: GlobalConstants.QuickSlotIndices
 	)
 
 signal insertQuickSlot2(
 	itemEnum: GlobalConstants.ItemIndices, 
-	quickslot: GlobalConstants.SelectorIndices
+	quickslot: GlobalConstants.QuickSlotIndices
 	)
 
 func _ready() -> void:
@@ -45,23 +45,23 @@ func _process(delta: float) -> void:
 		elif EventHandler.isPlayerInputJustPressed("right2"):
 				moveSelector(1, 0, 1)
 		elif EventHandler.isPlayerInputPressed("quickSlotRight"):
-			toQuickSlot(playerSelectedIndex[0], GlobalConstants.SelectorIndices.RIGHT, 1)
+			toQuickSlot(playerSelectedIndex[0], GlobalConstants.QuickSlotIndices.RIGHT, 1)
 		elif EventHandler.isPlayerInputPressed("quickSlotLeft"):
-			toQuickSlot(playerSelectedIndex[0], GlobalConstants.SelectorIndices.LEFT, 1)
+			toQuickSlot(playerSelectedIndex[0], GlobalConstants.QuickSlotIndices.LEFT, 1)
 		elif EventHandler.isPlayerInputPressed("quickSlotTop"):
-			toQuickSlot(playerSelectedIndex[0], GlobalConstants.SelectorIndices.TOP, 1)
+			toQuickSlot(playerSelectedIndex[0], GlobalConstants.QuickSlotIndices.TOP, 1)
 		elif EventHandler.isPlayerInputPressed("quickSlotBottom"):
-			toQuickSlot(playerSelectedIndex[0], GlobalConstants.SelectorIndices.BOTTOM, 1)
+			toQuickSlot(playerSelectedIndex[0], GlobalConstants.QuickSlotIndices.BOTTOM, 1)
 		elif EventHandler.isPlayerInputPressed("quickSlotRight2"):
-			toQuickSlot(playerSelectedIndex[1], GlobalConstants.SelectorIndices.RIGHT, 2)
+			toQuickSlot(playerSelectedIndex[1], GlobalConstants.QuickSlotIndices.RIGHT, 2)
 		elif EventHandler.isPlayerInputPressed("quickSlotLeft2"):
-			toQuickSlot(playerSelectedIndex[1], GlobalConstants.SelectorIndices.LEFT, 2)
+			toQuickSlot(playerSelectedIndex[1], GlobalConstants.QuickSlotIndices.LEFT, 2)
 		elif EventHandler.isPlayerInputPressed("quickSlotTop2"):
-			toQuickSlot(playerSelectedIndex[1], GlobalConstants.SelectorIndices.TOP, 2)
+			toQuickSlot(playerSelectedIndex[1], GlobalConstants.QuickSlotIndices.TOP, 2)
 		elif EventHandler.isPlayerInputPressed("quickSlotBottom2"):
-			toQuickSlot(playerSelectedIndex[1], GlobalConstants.SelectorIndices.BOTTOM, 2)
+			toQuickSlot(playerSelectedIndex[1], GlobalConstants.QuickSlotIndices.BOTTOM, 2)
 
-func toQuickSlot(itemIndex: int, quickslot: GlobalConstants.SelectorIndices, playerNumber: int):
+func toQuickSlot(itemIndex: int, quickslot: GlobalConstants.QuickSlotIndices, playerNumber: int):
 	var itemSlot: Item = gridContainer.get_child(itemIndex).get_child(0)
 	if itemSlot != null && itemSlot.visible:
 		match playerNumber:

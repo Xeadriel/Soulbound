@@ -7,9 +7,11 @@ enum ItemIndices {
 	# insert new items here
 }
 
-enum SelectorIndices {
+enum QuickSlotIndices {
 	BOTTOM,
 	TOP,
 	LEFT,
 	RIGHT
 }
+
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://55caaw7yatfk"]
+[gd_scene load_steps=113 format=3 uid="uid://55caaw7yatfk"]
 
 [ext_resource type="Script" uid="uid://bpj3ehc46o68r" path="res://Scripts/Enemies/Wizard.gd" id="1_abp8v"]
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="2_lcgba"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dxv5sn1aoc86a" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateRunWizard.gd" id="5_k0dhe"]
 [ext_resource type="Script" uid="uid://b27wv4ktxk24d" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateAtkWizard.gd" id="6_xlfaq"]
 [ext_resource type="Script" uid="uid://bf2js1oj25nid" path="res://Scripts/StateMachine/StatesEnemy/StateTelegraph.gd" id="8_abp8v"]
+[ext_resource type="Script" uid="uid://dtva533g5uawt" path="res://Scripts/StateMachine/StatesEnemy/StateStunned.gd" id="9_lcgba"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
 atlas = ExtResource("2_lcgba")
@@ -864,6 +865,10 @@ entity = NodePath("../..")
 script = ExtResource("8_abp8v")
 entity = NodePath("../..")
 
+[node name="StateStunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+script = ExtResource("9_lcgba")
+entity = NodePath("../..")
+
 [node name="FireballsContainer" type="Node" parent="."]
 
-[node name="AtkSpawnPoint" type="Marker2D" parent="."]
+[node name="AtkSpawnPoint" type="Node2D" parent="."]

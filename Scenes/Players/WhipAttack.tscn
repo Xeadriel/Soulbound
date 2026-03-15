@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6653e24vrnxw"]
+[gd_scene load_steps=4 format=3 uid="uid://b6653e24vrnxw"]
+
+[ext_resource type="Script" uid="uid://3a7wn7jl40mr" path="res://Scripts/Players/WhipAttack.gd" id="1_lb7yd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_un3mk"]
 size = Vector2(30, 30)
@@ -6,10 +8,10 @@ size = Vector2(30, 30)
 [sub_resource type="CanvasTexture" id="CanvasTexture_y3dc4"]
 
 [node name="WhipAttack" type="Area2D"]
-process_mode = 4
 collision_layer = 0
 collision_mask = 2
 monitorable = false
+script = ExtResource("1_lb7yd")
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_un3mk")
@@ -19,3 +21,5 @@ self_modulate = Color(0, 0, 1, 1)
 position = Vector2(4.76837e-07, 0)
 scale = Vector2(30, 30)
 texture = SubResource("CanvasTexture_y3dc4")
+
+[connection signal="body_entered" from="." to="." method="hitSomething"]

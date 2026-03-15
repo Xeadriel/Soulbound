@@ -25,7 +25,14 @@ func physicsProcess(_delta: float) -> void:
 		finished.emit("StateBlock")
 	elif EventHandler.isPlayerInputJustPressed(DASH):
 		finished.emit("StateDash")
-		
+	elif EventHandler.isPlayerInputJustPressed(QUICKSLOTBOT):
+		checkQuickSlotAndSwitchState(QUICKSLOTBOT)
+	elif EventHandler.isPlayerInputJustPressed(QUICKSLOTTOP):
+		checkQuickSlotAndSwitchState(QUICKSLOTTOP)
+	elif EventHandler.isPlayerInputJustPressed(QUICKSLOTLEFT):
+		checkQuickSlotAndSwitchState(QUICKSLOTLEFT)
+	elif EventHandler.isPlayerInputJustPressed(QUICKSLOTRIGHT):
+		checkQuickSlotAndSwitchState(QUICKSLOTRIGHT)
 
 func setAttackRotationFromDirection(dir: Vector2) -> void:
 	assert(not dir == Vector2.ZERO, "Move direction should never be (0,0)")
@@ -49,3 +56,29 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 
 func exit() -> void:
 	pass
+
+func checkQuickSlotAndSwitchState(quickSlotInput : String):
+	var index = 0
+	
+	# choose correct index
+	match quickSlotInput:
+		QUICKSLOTBOT:
+			index = GlobalConstants.QuickSlotIndices.BOTTOM
+		QUICKSLOTTOP:
+			index = GlobalConstants.QuickSlotIndices.TOP
+		QUICKSLOTLEFT:
+			index = GlobalConstants.QuickSlotIndices.LEFT
+		QUICKSLOTRIGHT:
+			index = GlobalConstants.QuickSlotIndices.RIGHT
+	
+	if not player.canQuickSlotItemBeUsed(index): return
+	
+	var id : GlobalConstants.ItemIndices = player.getQuickSlotItemID(index)
+	
+	match id:
+		GlobalConstants.ItemIndices.NOTHING:
+			return
+		GlobalConstants.ItemIndices.WHIP:
+			finished.emit("StateWhipAttack")
+		GlobalConstants.ItemIndices.NOTHING:
+			return

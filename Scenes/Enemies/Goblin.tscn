@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://c3weh3qljrsjs"]
+[gd_scene load_steps=116 format=3 uid="uid://c3weh3qljrsjs"]
 
 [ext_resource type="Script" uid="uid://dbhfk6b273blh" path="res://Scripts/Enemies/Goblin.gd" id="1_adqnq"]
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="3_g722j"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dpmmdpv17053j" path="res://Scripts/StateMachine/StatesEnemy/Goblin/StateRunCircle.gd" id="7_yhhi5"]
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="8_0td7v"]
 [ext_resource type="Script" uid="uid://bf2js1oj25nid" path="res://Scripts/StateMachine/StatesEnemy/StateTelegraph.gd" id="8_f0wnp"]
+[ext_resource type="Script" uid="uid://dtva533g5uawt" path="res://Scripts/StateMachine/StatesEnemy/StateStunned.gd" id="9_6trl6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
 atlas = ExtResource("8_0td7v")
@@ -873,6 +874,10 @@ entity = NodePath("../..")
 
 [node name="StateTelegraph" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("8_f0wnp")
+entity = NodePath("../..")
+
+[node name="StateStunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+script = ExtResource("9_6trl6")
 entity = NodePath("../..")
 
 [node name="AttackUp" type="Area2D" parent="."]

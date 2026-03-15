@@ -1,7 +1,7 @@
 class_name Wizard extends Enemy
 
 @onready var fireballContainer: Node = $FireballsContainer
-@onready var atkSpawnPoint: Marker2D = $AtkSpawnPoint
+@onready var atkSpawnPoint: Node2D = $AtkSpawnPoint
 
 @export var fireballScene : PackedScene = null
 @export var panicRunThresholdDistance := 300

@@ -1,6 +1,7 @@
 class_name StateWhipAttack extends StatePlayer
 
-@export var ATTACK_DELAY : float = 1.0
+#time attack takes
+@export var ATTACK_DELAY : float = 0.5
 # time in msecs that needs to have passed since 
 # last attack for a new attack combo to be started
 @export var COOLDOWN : int = 200
@@ -28,7 +29,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 		finished.emit("StateIdle")
 		return
 	
-	player.whipAttack()
+	player.whipAttack(ATTACK_DELAY)
 	lastAttackTimeStamp = Time.get_ticks_msec()
 
 func exit() -> void:

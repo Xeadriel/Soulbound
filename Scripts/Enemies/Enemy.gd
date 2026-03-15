@@ -6,6 +6,7 @@ class_name Enemy extends CharacterBody2D
 @export var telegraphTime := 1.0
 
 var target: Player
+@onready var stateMachine = $StateMachine
 
 enum Direction {
 	UP,
@@ -47,6 +48,9 @@ func _physics_process(_delta: float) -> void:
 func takeDamage(dmg: int) -> void:
 	currentHp -= dmg
 
+func hitByWhip():
+	stateMachine._transition_to_next_state("StateStunned", {"duration" : 1.0})
+
 func getDirectionToPlayer() -> Direction:
 	var dir = global_position.direction_to(target.global_position)
 	
@@ -80,25 +84,36 @@ func animationFinished():
 
 func idle():
 	match direction:
-			Direction.UP:
-				animatedSprite.play("idleBack")
-			Direction.DOWN:
-				animatedSprite.play("idleFront")	
-			Direction.LEFT:
-				animatedSprite.play("idleLeft")
-			Direction.RIGHT:
-				animatedSprite.play("idleRight")
+		Direction.UP:
+			animatedSprite.play("idleBack")
+		Direction.DOWN:
+			animatedSprite.play("idleFront")	
+		Direction.LEFT:
+			animatedSprite.play("idleLeft")
+		Direction.RIGHT:
+			animatedSprite.play("idleRight")
+
+func stunned():
+	match direction:
+		Direction.UP:
+			animatedSprite.play("stunnedBack")
+		Direction.DOWN:
+			animatedSprite.play("stunnedFront")	
+		Direction.LEFT:
+			animatedSprite.play("stunnedLeft")
+		Direction.RIGHT:
+			animatedSprite.play("stunnedRight")
 
 func run():
 	match direction:
-			Direction.UP:
-				animatedSprite.play("runBack")
-			Direction.DOWN:
-				animatedSprite.play("runFront")	
-			Direction.LEFT:
-				animatedSprite.play("runLeft")
-			Direction.RIGHT:
-				animatedSprite.play("runRight")
+		Direction.UP:
+			animatedSprite.play("runBack")
+		Direction.DOWN:
+			animatedSprite.play("runFront")	
+		Direction.LEFT:
+			animatedSprite.play("runLeft")
+		Direction.RIGHT:
+			animatedSprite.play("runRight")
 
 func telegraphAttack() -> void:
 	match direction:

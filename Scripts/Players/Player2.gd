@@ -10,7 +10,8 @@ class_name Player2 extends Player
 var heavyAttackCharges = []
 
 func _ready() -> void:
-	playerDeath.connect(EventHandler.playerDied)
+	super._ready()
+	assert(magicShotSpawner != null, "MagicShotSpawner should not be null")
 
 func _process(_delta) -> void:
 	if "block" in animatedSprite.animation or "attack" in animatedSprite.animation:

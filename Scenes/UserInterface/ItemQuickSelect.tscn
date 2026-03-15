@@ -42,6 +42,7 @@ grow_vertical = 1
 texture = ExtResource("4_o5kgx")
 expand_mode = 3
 id = 1
+itemAmount = 1
 
 [node name="TopItem" parent="Control" instance=ExtResource("4_yofk7")]
 visible = true

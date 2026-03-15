@@ -7,7 +7,7 @@ class_name Player1 extends Player
 @onready var heavyAttacks : Array = $AttackPivotPoint/HeavyAttacks.get_children()
 
 func _ready() -> void:
-	playerDeath.connect(EventHandler.playerDied)
+	super._ready()
 
 func _process(_delta) -> void:
 	if "block" in animatedSprite.animation or "attack" in animatedSprite.animation:

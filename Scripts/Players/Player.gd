@@ -16,12 +16,13 @@ signal playerTakesDamage
 var direction = Direction.DOWN
 
 @onready var stateMachine = $StateMachine
+@export var ItemQuickSlots : ItemQuickSelect
 
 @onready var attackPivotPoint : Node2D = $AttackPivotPoint
 
 @export var whipAttackSpawner : PackedScene =  null
 @onready var spawnLocationWhipAttack = $AttackPivotPoint/WhipAttack/Start 
-@onready var goalWhipAttack = $AttackPivotPoint/WhipAttack/Goal
+@onready var goalWhipAttackGoal = $AttackPivotPoint/WhipAttack/Goal
 
 var blockTimeStamp = 0
 @export var blockDelay = 500
@@ -29,6 +30,8 @@ var blockTimeStamp = 0
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
+	assert(ItemQuickSlots != null, "ItemQuickSlots should not be null")
+	assert(whipAttackSpawner != null, "WhipAttackSpawner should not be null" )
 	playerDeath.connect(EventHandler.playerDied)
 
 func _process(_delta) -> void:
@@ -57,6 +60,13 @@ func _process(_delta) -> void:
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
+
+func getQuickSlotItemID(index : GlobalConstants.QuickSlotIndices):
+	return ItemQuickSlots.quickSlots[index].id
+
+# there could be other conditions here later if needed
+func canQuickSlotItemBeUsed(index : GlobalConstants.QuickSlotIndices):
+	return ItemQuickSlots.quickSlots[index].itemAmount >= 1
 
 func takeDamage(dmg):
 	if stateMachine.currentState.name == "StateBlock" and blockTimeStamp + blockDelay >= Time.get_ticks_msec():
@@ -146,7 +156,7 @@ func stopDash() -> void:
 		Direction.RIGHT:
 			animatedSprite.play("idleRight")
 
-func whipAttack():
+func whipAttack(attackDelay):
 	#match direction:
 		#Direction.UP:
 			#animatedSprite.play("attackBack")
@@ -159,9 +169,9 @@ func whipAttack():
 
 	var whip = whipAttackSpawner.instantiate()
 	whip.global_position = spawnLocationWhipAttack.global_position
-	whip.player = self
 	whip.rotation = attackPivotPoint.rotation
-	whip.direction = Vector2(1, 0).rotated(whip.rotation)
+	whip.goal = goalWhipAttackGoal.global_position
+	whip.attackDelay = attackDelay
 	
 	get_parent().add_child(whip)
 

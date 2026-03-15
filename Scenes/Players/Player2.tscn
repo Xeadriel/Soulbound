@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://ceausjasnh7kj"]
+[gd_scene load_steps=94 format=3 uid="uid://ceausjasnh7kj"]
 
 [ext_resource type="Script" uid="uid://cc45sc7rs3o0b" path="res://Scripts/Players/Player2.gd" id="1_gv048"]
 [ext_resource type="Texture2D" uid="uid://b481yv1fwibf7" path="res://Assets/PlayerSpriteSheet.png" id="2_7m8ro"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://31yxv8rxpcxp" path="res://Scripts/StateMachine/StatesPlayer/StateBlock.gd" id="7_yp5jh"]
 [ext_resource type="Script" uid="uid://dhfuuek8vxv6m" path="res://Scripts/StateMachine/StatesPlayer/StateChargeUpAttack.gd" id="8_bfxnb"]
 [ext_resource type="Script" uid="uid://blutkobl052ip" path="res://Scripts/StateMachine/StatesPlayer/StateDash.gd" id="10_wkfp8"]
+[ext_resource type="Script" uid="uid://bkallxg37dshg" path="res://Scripts/StateMachine/StatesPlayer/StateWhipAttack.gd" id="11_xrcod"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
 atlas = ExtResource("2_7m8ro")
@@ -1102,6 +1103,10 @@ player = NodePath("../..")
 
 [node name="StateDash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("10_wkfp8")
+player = NodePath("../..")
+
+[node name="StateWhipAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("11_xrcod")
 player = NodePath("../..")
 
 [node name="AttackPivotPoint" type="Node2D" parent="."]
