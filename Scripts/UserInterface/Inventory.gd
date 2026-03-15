@@ -7,27 +7,16 @@ var playerSelectedIndex = [0, 0]
 
 @onready var gridContainer = $MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer
 
-signal insertQuickSlot(
-	itemEnum: GlobalConstants.ItemIndices, 
-	quickslot: GlobalConstants.QuickSlotIndices
-	)
-
-signal insertQuickSlot2(
-	itemEnum: GlobalConstants.ItemIndices, 
-	quickslot: GlobalConstants.QuickSlotIndices
-	)
-
 func _ready() -> void:
 	
 	#just as a test
-	addItem(GlobalConstants.ItemIndices.POTION, 5)
-	
+	addItem(GlobalConstants.ItemIndices.WHIP, 5)
+	addItem(GlobalConstants.ItemIndices.POTION, 2)
 	updateSelector()
 	
 
 func _process(delta: float) -> void:
 	if self.has_focus():
-		
 		if EventHandler.isPlayerInputJustPressed("right"):
 				moveSelector(1, 0, 0)
 		elif EventHandler.isPlayerInputJustPressed("left"):
@@ -66,9 +55,9 @@ func toQuickSlot(itemIndex: int, quickslot: GlobalConstants.QuickSlotIndices, pl
 	if itemSlot != null && itemSlot.visible:
 		match playerNumber:
 			1: 
-				insertQuickSlot.emit(itemSlot, quickslot)
+				EventHandler.itemAssignedToQuickSlot.emit(itemSlot, quickslot)
 			2: 
-				insertQuickSlot.emit(itemSlot, quickslot)
+				EventHandler.itemAssignedToQuickSlot2.emit(itemSlot, quickslot)
 	else:
 		print("itemSlot is empty: " + str(itemIndex))
 
