@@ -13,3 +13,6 @@ script = ExtResource("1_qa5va")
 [node name="PropertyCollidable" parent="." instance=ExtResource("2_qa5va")]
 
 [node name="PropertyWhippable" parent="." instance=ExtResource("4_g7syt")]
+
+[connection signal="interacted" from="PropertyInteractable" to="." method="leverPulled"]
+[connection signal="gotWhipped" from="PropertyWhippable" to="." method="leverPulled"]
