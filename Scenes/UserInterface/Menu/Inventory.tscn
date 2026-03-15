@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://djscp4vkxkh4n"]
+[gd_scene load_steps=17 format=3 uid="uid://djscp4vkxkh4n"]
 
 [ext_resource type="Script" uid="uid://cjvtmubcghhv3" path="res://Scripts/UserInterface/Inventory.gd" id="1_wl048"]
 [ext_resource type="Texture2D" uid="uid://dchhpjx8g4w5k" path="res://Assets/UI Pack OS/banner_classic_curtain.png" id="2_vx7b6"]
@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dw6mf4pqqavsc" path="res://Assets/UI Pack OS/panel_brown.png" id="4_kqowy"]
 [ext_resource type="Texture2D" uid="uid://cuwkkct6gq33k" path="res://Assets/UI Pack OS/panel_grey_blue.png" id="5_5uyoe"]
 [ext_resource type="PackedScene" uid="uid://ccanomk3lyg0h" path="res://Scenes/UserInterface/Menu/Item.tscn" id="5_ccuis"]
-[ext_resource type="Texture2D" uid="uid://dokl57s0bipag" path="res://Assets/UI Pack OS/minimap_arrow_b.png" id="6_kqowy"]
+[ext_resource type="Texture2D" uid="uid://pxraiwvfbiui" path="res://Assets/WhipIcon.png" id="6_glrsl"]
 [ext_resource type="Texture2D" uid="uid://llvl0kapun32" path="res://Assets/UI Pack OS/panel_grey_red.png" id="6_uupup"]
+[ext_resource type="Texture2D" uid="uid://cw7c8463d0h6m" path="res://Assets/UI Pack OS/minimap_arrow_c.png" id="7_gsyyp"]
 
 [sub_resource type="Gradient" id="Gradient_xcowf"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -162,14 +163,21 @@ texture = ExtResource("4_kqowy")
 
 [node name="Item" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer/ItemSlot1" instance=ExtResource("5_ccuis")]
 layout_mode = 1
-texture = ExtResource("6_kqowy")
-id = 2
-itemName = "Gay Potion"
-description = "Brewed with love and dicks"
+texture = ExtResource("6_glrsl")
+id = 1
+itemName = "Whip"
+description = "yes daddy"
 
 [node name="ItemSlot2" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
 texture = ExtResource("4_kqowy")
+
+[node name="Item" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer/ItemSlot2" instance=ExtResource("5_ccuis")]
+layout_mode = 1
+texture = ExtResource("7_gsyyp")
+id = 2
+itemName = "POtion"
+description = "yes daddy"
 
 [node name="ItemSlot3" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2

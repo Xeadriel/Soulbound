@@ -13,5 +13,3 @@ enum QuickSlotIndices {
 	LEFT,
 	RIGHT
 }
-
-

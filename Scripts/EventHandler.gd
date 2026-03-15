@@ -71,8 +71,8 @@ var playerInputsJustPressed = {
 	}
 
 # item signals
-signal name1
-signal name2
+signal itemAssignedToQuickSlot(item: Item, quickslot: GlobalConstants.QuickSlotIndices)
+signal itemAssignedToQuickSlot2(item: Item, quickslot: GlobalConstants.QuickSlotIndices)
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -105,8 +105,4 @@ func isPlayerInputJustPressed(input : String):
 func isPlayerInputPressed(input : String):
 	return playerInputs[input]
 
-func itemPickedUp(itemIndex):
-	pass
-
-func itemEquipped(quickSlotIndex):
-	pass
+# ----- SIGNALBUS FUNCTIONS ----- #
