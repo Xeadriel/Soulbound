@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbctngdl1vc4s"]
+[gd_scene load_steps=4 format=3 uid="uid://coyp2rxvihcx8"]
 
 [ext_resource type="PackedScene" uid="uid://c3weh3qljrsjs" path="res://Scenes/Enemies/Goblin.tscn" id="1_8uh7m"]
 [ext_resource type="PackedScene" uid="uid://rafcdskaova5" path="res://Scenes/Players/Player.tscn" id="2_6uqi0"]
