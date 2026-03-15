@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://erxaxotkoy7w"]
+
+[ext_resource type="Script" uid="uid://bhcenobgya5r3" path="res://Scripts/World/WorldObjects/Lever.gd" id="1_qa5va"]
+[ext_resource type="PackedScene" uid="uid://cyck0cne5uii3" path="res://Scenes/World/WorldObjects/Properties/PropertyInteractable.tscn" id="2_co6tc"]
+[ext_resource type="PackedScene" uid="uid://c4vt4ib6jioy7" path="res://Scenes/World/WorldObjects/Properties/PropertyCollidable.tscn" id="2_qa5va"]
+[ext_resource type="PackedScene" uid="uid://bcn0234oil0j3" path="res://Scenes/World/WorldObjects/Properties/PropertyWhippable.tscn" id="4_g7syt"]
+
+[node name="Lever" type="Node2D"]
+script = ExtResource("1_qa5va")
+
+[node name="PropertyInteractable" parent="." instance=ExtResource("2_co6tc")]
+
+[node name="PropertyCollidable" parent="." instance=ExtResource("2_qa5va")]
+
+[node name="PropertyWhippable" parent="." instance=ExtResource("4_g7syt")]

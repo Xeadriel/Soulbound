@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="Soulbound"
-run/main_scene="uid://cy4vn64vtg0f7"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="uid://bmdkrb4nsbixh"
 
@@ -205,6 +204,7 @@ uiScrollRight2={
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Camera Border"
 2d_physics/layer_4="Obstacle"
+2d_physics/layer_5="Whip"
 
 [rendering]
 

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4vt4ib6jioy7"]
+
+[ext_resource type="Script" uid="uid://dy1c0bwsa7fng" path="res://Scripts/World/WorldObjects/PropertyCollidable.gd" id="1_w7f04"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g7syt"]
+
+[node name="PropertyCollidable" type="Area2D"]
+script = ExtResource("1_w7f04")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g7syt")
+
+[node name="CollisionStaticBody" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionStaticBody"]
+shape = SubResource("CircleShape2D_g7syt")

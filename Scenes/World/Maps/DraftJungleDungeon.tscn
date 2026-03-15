@@ -1,19 +1,19 @@
 [gd_scene load_steps=14 format=4 uid="uid://cy4vn64vtg0f7"]
 
-[ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_gwj4l"]
-[ext_resource type="PackedScene" uid="uid://rafcdskaova5" path="res://Scenes/Players/Player.tscn" id="2_eb5f0"]
-[ext_resource type="PackedScene" uid="uid://c3weh3qljrsjs" path="res://Scenes/Enemies/Goblin.tscn" id="2_hro2n"]
-[ext_resource type="Texture2D" uid="uid://bt7t10hfomw11" path="res://Assets/placeholder.png" id="3_xbxf7"]
-[ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/UserInterface/AutoCamera.tscn" id="3_y4e11"]
-[ext_resource type="PackedScene" uid="uid://ceausjasnh7kj" path="res://Scenes/Players/Player2.tscn" id="5_7f6id"]
-[ext_resource type="PackedScene" uid="uid://ckb4js3ol8fj4" path="res://Scenes/UserInterface/HealthUI.tscn" id="5_8wfgm"]
-[ext_resource type="PackedScene" uid="uid://csvo4bhjc4m03" path="res://Scenes/UserInterface/ItemQuickSelect.tscn" id="5_ykx26"]
-[ext_resource type="PackedScene" uid="uid://55caaw7yatfk" path="res://Scenes/Enemies/Wizard.tscn" id="6_ska8t"]
-[ext_resource type="PackedScene" uid="uid://h0citg7sqvl1" path="res://Scenes/UserInterface/Menu/GameUI.tscn" id="9_ykx26"]
-[ext_resource type="PackedScene" uid="uid://b6653e24vrnxw" path="res://Scenes/Players/WhipAttack.tscn" id="10_v5tbi"]
+[ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_ewn0l"]
+[ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/UserInterface/AutoCamera.tscn" id="2_8p3qi"]
+[ext_resource type="Texture2D" uid="uid://bt7t10hfomw11" path="res://Assets/placeholder.png" id="3_5yy2f"]
+[ext_resource type="PackedScene" uid="uid://ckb4js3ol8fj4" path="res://Scenes/UserInterface/HealthUI.tscn" id="4_p0qse"]
+[ext_resource type="PackedScene" uid="uid://h0citg7sqvl1" path="res://Scenes/UserInterface/Menu/GameUI.tscn" id="5_g3l2s"]
+[ext_resource type="PackedScene" uid="uid://csvo4bhjc4m03" path="res://Scenes/UserInterface/ItemQuickSelect.tscn" id="6_hkek3"]
+[ext_resource type="PackedScene" uid="uid://c3weh3qljrsjs" path="res://Scenes/Enemies/Goblin.tscn" id="7_2n2dr"]
+[ext_resource type="PackedScene" uid="uid://55caaw7yatfk" path="res://Scenes/Enemies/Wizard.tscn" id="8_6m3rn"]
+[ext_resource type="PackedScene" uid="uid://rafcdskaova5" path="res://Scenes/Players/Player.tscn" id="9_0r1y5"]
+[ext_resource type="PackedScene" uid="uid://b6653e24vrnxw" path="res://Scenes/Players/WhipAttack.tscn" id="10_uhk1o"]
+[ext_resource type="PackedScene" uid="uid://ceausjasnh7kj" path="res://Scenes/Players/Player2.tscn" id="11_pwrpc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
-texture = ExtResource("1_gwj4l")
+texture = ExtResource("1_ewn0l")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -125,7 +125,7 @@ tile_set = SubResource("TileSet_hj7eh")
 
 [node name="2DObjects" type="Node" parent="."]
 
-[node name="AutoCamera" parent="2DObjects" instance=ExtResource("3_y4e11")]
+[node name="AutoCamera" parent="2DObjects" instance=ExtResource("2_8p3qi")]
 position = Vector2(1340, -423)
 collision_layer = 2
 collision_mask = 2
@@ -146,48 +146,48 @@ offset_bottom = -100.0
 self_modulate = Color(0.427493, 0.427493, 0.427493, 1)
 position = Vector2(726.5, 169)
 scale = Vector2(4.49074, 8.39744)
-texture = ExtResource("3_xbxf7")
+texture = ExtResource("3_5yy2f")
 
 [node name="face" type="Sprite2D" parent="2DObjects/AutoCamera/Dialogue/portrait?"]
 position = Vector2(-1.22474, -10.4794)
 scale = Vector2(0.439569, 0.0499999)
-texture = ExtResource("3_xbxf7")
+texture = ExtResource("3_5yy2f")
 
 [node name="face2" type="Sprite2D" parent="2DObjects/AutoCamera/Dialogue/portrait?/face"]
 position = Vector2(-49.1391, -300.092)
 scale = Vector2(0.232634, 0.958016)
-texture = ExtResource("3_xbxf7")
+texture = ExtResource("3_5yy2f")
 
 [node name="face3" type="Sprite2D" parent="2DObjects/AutoCamera/Dialogue/portrait?/face"]
 position = Vector2(53.1918, -300.092)
 scale = Vector2(0.232634, 0.958016)
-texture = ExtResource("3_xbxf7")
+texture = ExtResource("3_5yy2f")
 
 [node name="portrait char 2?" type="Sprite2D" parent="2DObjects/AutoCamera/Dialogue/portrait?"]
 self_modulate = Color(0.427493, 0.427493, 0.427493, 1)
 position = Vector2(251.295, 0.396903)
 scale = Vector2(0.915444, 1.01476)
-texture = ExtResource("3_xbxf7")
+texture = ExtResource("3_5yy2f")
 
 [node name="face2" type="Sprite2D" parent="2DObjects/AutoCamera/Dialogue/portrait?/portrait char 2?"]
 position = Vector2(-3.4056, -11.4222)
 scale = Vector2(0.48017, 0.0492727)
-texture = ExtResource("3_xbxf7")
+texture = ExtResource("3_5yy2f")
 
 [node name="face2" type="Sprite2D" parent="2DObjects/AutoCamera/Dialogue/portrait?/portrait char 2?/face2"]
 position = Vector2(-49.1391, -300.092)
 scale = Vector2(0.232634, 0.958016)
-texture = ExtResource("3_xbxf7")
+texture = ExtResource("3_5yy2f")
 
 [node name="face3" type="Sprite2D" parent="2DObjects/AutoCamera/Dialogue/portrait?/portrait char 2?/face2"]
 position = Vector2(53.1918, -300.092)
 scale = Vector2(0.232634, 0.958016)
-texture = ExtResource("3_xbxf7")
+texture = ExtResource("3_5yy2f")
 
 [node name="Placeholder" type="Sprite2D" parent="2DObjects/AutoCamera/Dialogue/portrait?"]
 position = Vector2(122.946, 21.0779)
 scale = Vector2(3.29642, 0.483969)
-texture = ExtResource("3_xbxf7")
+texture = ExtResource("3_5yy2f")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="2DObjects/AutoCamera/Dialogue"]
 self_modulate = Color(1, 0, 0, 1)
@@ -205,7 +205,7 @@ offset_top = -82.0
 offset_right = 14.0
 offset_bottom = -59.0
 
-[node name="HealthUIPlayer" parent="2DObjects/AutoCamera" node_paths=PackedStringArray("player") instance=ExtResource("5_8wfgm")]
+[node name="HealthUIPlayer" parent="2DObjects/AutoCamera" node_paths=PackedStringArray("player") instance=ExtResource("4_p0qse")]
 z_index = 7
 offset_left = -790.0
 offset_top = -443.0
@@ -213,7 +213,7 @@ offset_right = -750.0
 offset_bottom = -403.0
 player = NodePath("../../Players/Player")
 
-[node name="HealthUIPlayer2" parent="2DObjects/AutoCamera" node_paths=PackedStringArray("player") instance=ExtResource("5_8wfgm")]
+[node name="HealthUIPlayer2" parent="2DObjects/AutoCamera" node_paths=PackedStringArray("player") instance=ExtResource("4_p0qse")]
 z_index = 7
 offset_left = 712.0
 offset_top = -443.0
@@ -221,19 +221,19 @@ offset_right = 752.0
 offset_bottom = -403.0
 player = NodePath("../../Players/Player2")
 
-[node name="GameUI" parent="2DObjects/AutoCamera" instance=ExtResource("9_ykx26")]
+[node name="GameUI" parent="2DObjects/AutoCamera" instance=ExtResource("5_g3l2s")]
 offset_left = -796.0
 offset_top = -454.0
 offset_right = 804.0
 offset_bottom = 446.0
 
-[node name="ItemQuickSelect" parent="2DObjects/AutoCamera" instance=ExtResource("5_ykx26")]
+[node name="ItemQuickSelect" parent="2DObjects/AutoCamera" instance=ExtResource("6_hkek3")]
 offset_left = -706.0
 offset_top = -260.0
 offset_right = -706.0
 offset_bottom = -260.0
 
-[node name="ItemQuickSelect2" parent="2DObjects/AutoCamera" instance=ExtResource("5_ykx26")]
+[node name="ItemQuickSelect2" parent="2DObjects/AutoCamera" instance=ExtResource("6_hkek3")]
 offset_left = 704.0
 offset_top = -248.0
 offset_right = 704.0
@@ -244,119 +244,119 @@ offset_bottom = -248.0
 [node name="FoodRoom" type="Node2D" parent="2DObjects/Enemies"]
 position = Vector2(-2290, 84)
 
-[node name="Goblin1" parent="2DObjects/Enemies/FoodRoom" instance=ExtResource("2_hro2n")]
+[node name="Goblin1" parent="2DObjects/Enemies/FoodRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(-200, -80)
 
-[node name="Goblin2" parent="2DObjects/Enemies/FoodRoom" instance=ExtResource("2_hro2n")]
+[node name="Goblin2" parent="2DObjects/Enemies/FoodRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(334, -30)
 
-[node name="Goblin3" parent="2DObjects/Enemies/FoodRoom" instance=ExtResource("2_hro2n")]
+[node name="Goblin3" parent="2DObjects/Enemies/FoodRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(-150, 274)
 
 [node name="Placeholder" type="Sprite2D" parent="2DObjects/Enemies/FoodRoom"]
 self_modulate = Color(0, 0, 0.662745, 1)
 position = Vector2(-1054.5, 131)
 scale = Vector2(2.26852, 44.9744)
-texture = ExtResource("3_xbxf7")
+texture = ExtResource("3_5yy2f")
 
 [node name="Placeholder2" type="Sprite2D" parent="2DObjects/Enemies/FoodRoom"]
 position = Vector2(12, 650)
-texture = ExtResource("3_xbxf7")
+texture = ExtResource("3_5yy2f")
 
 [node name="ChaliceAltarRoom" type="Node2D" parent="2DObjects/Enemies"]
 
-[node name="Goblin1" parent="2DObjects/Enemies/ChaliceAltarRoom" instance=ExtResource("2_hro2n")]
+[node name="Goblin1" parent="2DObjects/Enemies/ChaliceAltarRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(1153, -401)
 
-[node name="Goblin2" parent="2DObjects/Enemies/ChaliceAltarRoom" instance=ExtResource("2_hro2n")]
+[node name="Goblin2" parent="2DObjects/Enemies/ChaliceAltarRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(1500, -406)
 
 [node name="Altar with chalice" type="Sprite2D" parent="2DObjects/Enemies/ChaliceAltarRoom"]
 modulate = Color(0.233925, 0.233925, 0.233925, 1)
 position = Vector2(1283, -817.5)
 scale = Vector2(1.59259, 1.19231)
-texture = ExtResource("3_xbxf7")
+texture = ExtResource("3_5yy2f")
 
-[node name="Wizard2" parent="2DObjects/Enemies/ChaliceAltarRoom" instance=ExtResource("6_ska8t")]
+[node name="Wizard2" parent="2DObjects/Enemies/ChaliceAltarRoom" instance=ExtResource("8_6m3rn")]
 position = Vector2(1637, -549)
 atkRange = 500.0
 aggroRange = 800.0
 
-[node name="Wizard3" parent="2DObjects/Enemies/ChaliceAltarRoom" instance=ExtResource("6_ska8t")]
+[node name="Wizard3" parent="2DObjects/Enemies/ChaliceAltarRoom" instance=ExtResource("8_6m3rn")]
 position = Vector2(1074, -545)
 atkRange = 500.0
 aggroRange = 800.0
 
 [node name="FoodHallway" type="Node2D" parent="2DObjects/Enemies"]
 
-[node name="Goblin1" parent="2DObjects/Enemies/FoodHallway" instance=ExtResource("2_hro2n")]
+[node name="Goblin1" parent="2DObjects/Enemies/FoodHallway" instance=ExtResource("7_2n2dr")]
 position = Vector2(-780, 1136)
 
-[node name="Goblin2" parent="2DObjects/Enemies/FoodHallway" instance=ExtResource("2_hro2n")]
+[node name="Goblin2" parent="2DObjects/Enemies/FoodHallway" instance=ExtResource("7_2n2dr")]
 position = Vector2(-952, 1294)
 
 [node name="ChiefHallway" type="Node2D" parent="2DObjects/Enemies"]
 position = Vector2(2694, 1200)
 
-[node name="Goblin1" parent="2DObjects/Enemies/ChiefHallway" instance=ExtResource("2_hro2n")]
+[node name="Goblin1" parent="2DObjects/Enemies/ChiefHallway" instance=ExtResource("7_2n2dr")]
 position = Vector2(-399, -77)
 
-[node name="Goblin2" parent="2DObjects/Enemies/ChiefHallway" instance=ExtResource("2_hro2n")]
+[node name="Goblin2" parent="2DObjects/Enemies/ChiefHallway" instance=ExtResource("7_2n2dr")]
 position = Vector2(188, 104)
 
 [node name="ChiefRoom" type="Node2D" parent="2DObjects/Enemies"]
 position = Vector2(4522, 844)
 
-[node name="Goblin1" parent="2DObjects/Enemies/ChiefRoom" instance=ExtResource("2_hro2n")]
+[node name="Goblin1" parent="2DObjects/Enemies/ChiefRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(-73, -345)
 
-[node name="Goblin2" parent="2DObjects/Enemies/ChiefRoom" instance=ExtResource("2_hro2n")]
+[node name="Goblin2" parent="2DObjects/Enemies/ChiefRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(-250, 390)
 
-[node name="Goblin3" parent="2DObjects/Enemies/ChiefRoom" instance=ExtResource("2_hro2n")]
+[node name="Goblin3" parent="2DObjects/Enemies/ChiefRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(168, 160)
 
-[node name="Goblin4" parent="2DObjects/Enemies/ChiefRoom" instance=ExtResource("2_hro2n")]
+[node name="Goblin4" parent="2DObjects/Enemies/ChiefRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(181, -207)
 
-[node name="Goblin5" parent="2DObjects/Enemies/ChiefRoom" instance=ExtResource("2_hro2n")]
+[node name="Goblin5" parent="2DObjects/Enemies/ChiefRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(-153, -94)
 
 [node name="Barracks" type="Node2D" parent="2DObjects/Enemies"]
 position = Vector2(3982, 1764)
 
-[node name="Goblin1" parent="2DObjects/Enemies/Barracks" instance=ExtResource("2_hro2n")]
+[node name="Goblin1" parent="2DObjects/Enemies/Barracks" instance=ExtResource("7_2n2dr")]
 position = Vector2(0, 1)
 
-[node name="Goblin2" parent="2DObjects/Enemies/Barracks" instance=ExtResource("2_hro2n")]
+[node name="Goblin2" parent="2DObjects/Enemies/Barracks" instance=ExtResource("7_2n2dr")]
 position = Vector2(-232, 122)
 
-[node name="Goblin3" parent="2DObjects/Enemies/Barracks" instance=ExtResource("2_hro2n")]
+[node name="Goblin3" parent="2DObjects/Enemies/Barracks" instance=ExtResource("7_2n2dr")]
 position = Vector2(-502, 126)
 
-[node name="Goblin4" parent="2DObjects/Enemies/Barracks" instance=ExtResource("2_hro2n")]
+[node name="Goblin4" parent="2DObjects/Enemies/Barracks" instance=ExtResource("7_2n2dr")]
 position = Vector2(-794, -7)
 
 [node name="RoundRoom" type="Node2D" parent="2DObjects/Enemies"]
 position = Vector2(466, 3397)
 
-[node name="Goblin1" parent="2DObjects/Enemies/RoundRoom" instance=ExtResource("2_hro2n")]
+[node name="Goblin1" parent="2DObjects/Enemies/RoundRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(-5, -517)
 
-[node name="Goblin2" parent="2DObjects/Enemies/RoundRoom" instance=ExtResource("2_hro2n")]
+[node name="Goblin2" parent="2DObjects/Enemies/RoundRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(-531, 4)
 
-[node name="Goblin3" parent="2DObjects/Enemies/RoundRoom" instance=ExtResource("2_hro2n")]
+[node name="Goblin3" parent="2DObjects/Enemies/RoundRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(22, 505)
 
 [node name="Players" type="Node" parent="2DObjects"]
 
-[node name="Player" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("2_eb5f0")]
+[node name="Player" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("9_0r1y5")]
 position = Vector2(1281, 56)
 ItemQuickSlots = NodePath("../../AutoCamera/ItemQuickSelect")
-whipAttackSpawner = ExtResource("10_v5tbi")
+whipAttackSpawner = ExtResource("10_uhk1o")
 
-[node name="Player2" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("5_7f6id")]
+[node name="Player2" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("11_pwrpc")]
 position = Vector2(1471, 33)
 ItemQuickSlots = NodePath("../../AutoCamera/ItemQuickSelect2")
-whipAttackSpawner = ExtResource("10_v5tbi")
+whipAttackSpawner = ExtResource("10_uhk1o")

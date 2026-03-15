@@ -1,4 +1,4 @@
-extends Area2D
+class_name WhipAttack extends Area2D
 
 
 var start : Vector2
@@ -22,7 +22,5 @@ func hitSomething(body: Node2D) -> void:
 	if body is Enemy:
 		body.hitByWhip()
 		queue_free()
-	#elif body is Lever:
-		#pass
 	else:
 		queue_free()
