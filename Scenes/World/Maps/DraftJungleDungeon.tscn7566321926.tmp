@@ -364,3 +364,4 @@ whipAttackSpawner = ExtResource("10_uhk1o")
 
 [node name="Door" parent="2DObjects" instance=ExtResource("12_8p3qi")]
 position = Vector2(1341, 192)
+scale = Vector2(5, 5)
