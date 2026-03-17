@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://erxaxotkoy7w" path="res://Scenes/World/WorldObjects/Lever.tscn" id="9_8p3qi"]
 [ext_resource type="PackedScene" uid="uid://b6653e24vrnxw" path="res://Scenes/Players/WhipAttack.tscn" id="10_uhk1o"]
 [ext_resource type="PackedScene" uid="uid://ceausjasnh7kj" path="res://Scenes/Players/Player2.tscn" id="11_pwrpc"]
-[ext_resource type="PackedScene" uid="uid://oiw5vk886tmw" path="res://Scenes/World/WorldObjects/Door.tscn" id="12_8p3qi"]
+[ext_resource type="PackedScene" uid="uid://gmsqxr0sxmb6" path="res://Scenes/World/WorldObjects/Door.tscn" id="12_8p3qi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
 texture = ExtResource("1_ewn0l")
@@ -490,3 +490,4 @@ whipAttackSpawner = ExtResource("10_uhk1o")
 
 [node name="Door" parent="2DObjects" instance=ExtResource("12_8p3qi")]
 position = Vector2(1341, 192)
+rotation = 1.5708

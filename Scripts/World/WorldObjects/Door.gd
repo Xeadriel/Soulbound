@@ -1,4 +1,4 @@
-extends Node2D
+class_name Door extends WorldObject
 
 var isOpen = false
 var unlocked = false
@@ -12,7 +12,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_property_interactable_interacted() -> void:
+func onInteract() -> void:
 	var keyAvailable = false
 	if !unlocked && GlobalStates.inventory.get(key, 0) > 0:
 		keyAvailable = true
@@ -23,8 +23,8 @@ func _on_property_interactable_interacted() -> void:
 		if isOpen:
 			isOpen = false
 			$PropertyCollidable.process_mode = Node.PROCESS_MODE_INHERIT
-			$AnimatedSprite2D.play("Close")
+			play("Close")
 		else:
 			isOpen = true
 			$PropertyCollidable.process_mode = Node.PROCESS_MODE_DISABLED
-			$AnimatedSprite2D.play("Open")
+			play("Open")
