@@ -39,6 +39,10 @@ Piranha plant?
 - exploration and loot
 - mini boss for item
 
+Map mechanic:
+- maps only in dungeon otherwise just fancy image with approximate location
+- dungeon map automatically draws up rooms that were discovered
+
 Combat mechanic idea:
 - when attack would hit, generous time to press button, which creates a tight quick action 2-4 buttons to press in sequence quickly. Success: block, fail: get hit
 
