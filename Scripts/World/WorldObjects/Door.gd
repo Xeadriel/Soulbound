@@ -23,8 +23,8 @@ func _on_property_interactable_interacted() -> void:
 		if isOpen:
 			isOpen = false
 			$PropertyCollidable.process_mode = Node.PROCESS_MODE_INHERIT
-			$TextureRect.visible = true
+			$AnimatedSprite2D.play("Close")
 		else:
 			isOpen = true
 			$PropertyCollidable.process_mode = Node.PROCESS_MODE_DISABLED
-			$TextureRect.visible = false
+			$AnimatedSprite2D.play("Open")

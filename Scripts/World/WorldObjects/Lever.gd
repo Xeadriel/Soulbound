@@ -8,4 +8,3 @@ func _ready() -> void:
 
 func leverPulled() -> void:
 	leverState = not leverState
-
