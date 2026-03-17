@@ -7,6 +7,7 @@
 
 [node name="Door" type="Node2D"]
 script = ExtResource("1_dxfhr")
+key = 2
 
 [node name="PropertyInteractable" parent="." instance=ExtResource("2_t03iu")]
 scale = Vector2(6, 6)
@@ -21,3 +22,5 @@ offset_right = 49.0
 offset_bottom = 50.0
 texture = ExtResource("4_t03iu")
 expand_mode = 1
+
+[connection signal="interacted" from="PropertyInteractable" to="." method="_on_property_interactable_interacted"]

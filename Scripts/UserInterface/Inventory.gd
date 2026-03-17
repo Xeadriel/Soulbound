@@ -10,14 +10,6 @@ var playerSelectedIndex = [0, 0]
 func _ready() -> void:
 	GlobalStates.inventory[GlobalConstants.ItemIndices.POTION] = 5
 	GlobalStates.inventory[GlobalConstants.ItemIndices.WHIP] = 1
-	
-	for key in GlobalStates.inventory:
-		var itemSlots = gridContainer.get_children()
-		for i in itemSlots.size():
-			var item: Item = itemSlots[i].get_child(0)
-			if item != null && item.id == key:
-				item.visible = true
-				item.addItemAmount(GlobalStates.inventory[key])
 	updateSelector()
 
 func _process(delta: float) -> void:
@@ -89,3 +81,13 @@ func updateSelector():
 func updateDescriptionBox():
 	var p1Text = gridContainer[playerSelectedIndex[0]].get_child(0).Description
 	var p2Text = gridContainer[playerSelectedIndex[1]].get_child(0).Description
+
+func updateInventoryState():
+	for key in GlobalStates.inventory:
+		var itemSlots = gridContainer.get_children()
+		for i in itemSlots.size():
+			var item: Item = itemSlots[i].get_child(0)
+			if item != null && item.id == key:
+				item.visible = true
+				item.itemAmount = 0
+				item.addItemAmount(GlobalStates.inventory[key])
