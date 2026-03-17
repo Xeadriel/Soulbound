@@ -1,4 +1,4 @@
-class_name DoorTrigger extends Node2D
+class_name DoorTrigger extends WorldObject
 
 @onready var propertyCollidable = $PropertyCollidable
 

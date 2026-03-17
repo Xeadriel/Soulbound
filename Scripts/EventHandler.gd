@@ -73,6 +73,7 @@ var playerInputsJustPressed = {
 # item signals
 signal itemAssignedToQuickSlot(item: Item, quickslot: GlobalConstants.QuickSlotIndices)
 signal itemAssignedToQuickSlot2(item: Item, quickslot: GlobalConstants.QuickSlotIndices)
+signal itemReceived(item : GlobalConstants.ItemIndices, amount : int)
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS

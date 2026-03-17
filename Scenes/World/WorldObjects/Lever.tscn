@@ -31,14 +31,10 @@ radius = 42.0119
 [sub_resource type="CircleShape2D" id="CircleShape2D_qa5va"]
 radius = 57.0701
 
-[node name="Lever" type="Node2D"]
-script = ExtResource("1_qa5va")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-0.249999, 0.249989)
-scale = Vector2(0.763889, 1.05769)
+[node name="Lever" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_5301d")
 animation = &"off"
+script = ExtResource("1_qa5va")
 
 [node name="PropertyInteractable" type="Area2D" parent="."]
 script = ExtResource("3_12oq8")
@@ -68,6 +64,4 @@ shape = SubResource("CircleShape2D_qa5va")
 
 [connection signal="body_entered" from="PropertyInteractable" to="PropertyInteractable" method="onBodyEntered"]
 [connection signal="body_exited" from="PropertyInteractable" to="PropertyInteractable" method="onBodyExited"]
-[connection signal="interacted" from="PropertyInteractable" to="." method="leverPulled"]
 [connection signal="area_entered" from="PropertyWhippable" to="PropertyWhippable" method="onAreaEntered"]
-[connection signal="gotWhipped" from="PropertyWhippable" to="." method="leverPulled"]

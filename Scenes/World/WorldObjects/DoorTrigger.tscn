@@ -6,29 +6,29 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_les2w"]
 animations = [{
 "frames": [],
-"loop": true,
-"name": &"alreadyClosed",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"alreadyOpen",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
+"loop": false,
 "name": &"close",
 "speed": 5.0
 }, {
 "frames": [],
-"loop": true,
+"loop": false,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
 "name": &"open",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"opened",
 "speed": 5.0
 }]
 
 [node name="DoorTrigger" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_les2w")
-animation = &"alreadyOpen"
+animation = &"opened"
 script = ExtResource("1_les2w")
 
 [node name="PropertyCollidable" parent="." instance=ExtResource("2_tssvu")]
