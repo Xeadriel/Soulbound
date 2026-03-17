@@ -14,6 +14,7 @@ func setBackgroundTexture(bgTexture: Texture2D):
 func addItemAmount(amount: int):
 	itemAmount += amount
 	$MarginContainer/ItemCount.text = str(itemAmount)
+	GlobalStates.inventory[id] = amount
 
 func _ready() -> void:
 	$MarginContainer/ItemName.text = itemName
