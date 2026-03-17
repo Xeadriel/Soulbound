@@ -21,6 +21,7 @@ GlobalScope="*res://Scripts/GlobalScope.gd"
 EventHandler="*res://Scripts/EventHandler.gd"
 MadTalkGlobals="*res://addons/madtalk/runtime/MadTalkGlobals.tscn"
 GlobalConstants="*res://Scripts/GlobalConstants.gd"
+GlobalStates="*res://Scripts/GlobalStates.gd"
 
 [display]
 

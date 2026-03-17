@@ -8,10 +8,8 @@ func _ready() -> void:
 
 func leverPulled() -> void:
 	leverState = not leverState
-	
 	match leverState:
 		true:
 			play("on")
 		false:
 			play("off")
-

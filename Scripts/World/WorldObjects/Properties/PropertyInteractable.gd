@@ -9,7 +9,7 @@ func _process(delta: float) -> void:
 	if player1CloseEnough:
 		if EventHandler.isPlayerInputJustPressed("interact"):
 			interacted.emit()
-	elif player2CloseEnough:
+	if player2CloseEnough:
 		if EventHandler.isPlayerInputJustPressed("interact2"):
 			interacted.emit()
 

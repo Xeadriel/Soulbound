@@ -24,6 +24,7 @@ func openMenu() -> void:
 	self.position.x = -cameraOffset;
 	pages[currentPageIndex].grab_focus()
 	self.visible = true;
+	$Inventory.updateInventoryState()
 	get_tree().paused = true;
 
 func closeMenu() -> void:

@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://oiw5vk886tmw"]
+
+[ext_resource type="Script" uid="uid://dmv8e7eseese5" path="res://Scripts/World/WorldObjects/Door.gd" id="1_dxfhr"]
+[ext_resource type="PackedScene" uid="uid://cyck0cne5uii3" path="res://Scenes/World/WorldObjects/Properties/PropertyInteractable.tscn" id="2_t03iu"]
+[ext_resource type="PackedScene" uid="uid://c4vt4ib6jioy7" path="res://Scenes/World/WorldObjects/Properties/PropertyCollidable.tscn" id="3_s3h2b"]
+[ext_resource type="Texture2D" uid="uid://bul1ubwp7vunr" path="res://Assets/UI Pack OS/scrollbar_grey.png" id="4_t03iu"]
+[ext_resource type="Texture2D" uid="uid://bpfqlg0ic61rb" path="res://Assets/UI Pack OS/scrollbar_future_transparent.png" id="5_s3h2b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpyks"]
+atlas = ExtResource("4_t03iu")
+region = Rect2(0, 0, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vpyv"]
+atlas = ExtResource("5_s3h2b")
+region = Rect2(0, 0, 32, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wj75x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpyks")
+}],
+"loop": true,
+"name": &"Close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vpyv")
+}],
+"loop": true,
+"name": &"Open",
+"speed": 5.0
+}]
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_dxfhr")
+key = 2
+
+[node name="PropertyInteractable" parent="." instance=ExtResource("2_t03iu")]
+scale = Vector2(6, 6)
+
+[node name="PropertyCollidable" parent="." instance=ExtResource("3_s3h2b")]
+scale = Vector2(5, 5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wj75x")
+animation = &"Close"
+autoplay = "Close"
+
+[connection signal="interacted" from="PropertyInteractable" to="." method="_on_property_interactable_interacted"]

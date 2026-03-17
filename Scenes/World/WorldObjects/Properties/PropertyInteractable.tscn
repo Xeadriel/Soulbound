@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cro3bhfcbtv0j" path="res://Scripts/World/WorldObjects/Properties/PropertyInteractable.gd" id="1_43e8p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_co6tc"]
+size = Vector2(30, 30)
 
 [node name="PropertyInteractable" type="Area2D"]
 script = ExtResource("1_43e8p")

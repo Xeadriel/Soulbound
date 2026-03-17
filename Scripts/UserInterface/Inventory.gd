@@ -8,12 +8,9 @@ var playerSelectedIndex = [0, 0]
 @onready var gridContainer = $MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer
 
 func _ready() -> void:
-	
-	#just as a test
-	addItem(GlobalConstants.ItemIndices.WHIP, 5)
-	addItem(GlobalConstants.ItemIndices.POTION, 2)
+	GlobalStates.inventory[GlobalConstants.ItemIndices.POTION] = 5
+	GlobalStates.inventory[GlobalConstants.ItemIndices.WHIP] = 1
 	updateSelector()
-	
 
 func _process(delta: float) -> void:
 	if self.has_focus():
@@ -81,14 +78,16 @@ func updateSelector():
 		elif playerSelectedIndex[0] != i && playerSelectedIndex[1] != i:
 			slot.modulate = Color(0.3, 0.3, 0.3)
 
-func addItem(itemEnum: GlobalConstants.ItemIndices, amount: int):
-	var itemSlots = gridContainer.get_children()
-	var targetSlot: Item = null;
-	for i in itemSlots.size():
-		var slot: Item = itemSlots[i].get_child(0)
-		if slot.id == itemEnum:
-			targetSlot = slot
-			break
-	if !targetSlot.visible:
-		targetSlot.visible = true
-	targetSlot.addItemAmount(amount)
+func updateDescriptionBox():
+	var p1Text = gridContainer[playerSelectedIndex[0]].get_child(0).Description
+	var p2Text = gridContainer[playerSelectedIndex[1]].get_child(0).Description
+
+func updateInventoryState():
+	for key in GlobalStates.inventory:
+		var itemSlots = gridContainer.get_children()
+		for i in itemSlots.size():
+			var item: Item = itemSlots[i].get_child(0)
+			if item != null && item.id == key:
+				item.visible = true
+				item.itemAmount = 0
+				item.addItemAmount(GlobalStates.inventory[key])
