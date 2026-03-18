@@ -11,7 +11,7 @@ func _ready() -> void:
 	
 	pages = [
 		$Inventory,
-		$UI2,
+		$Map,
 		$UI3
 	];
 	

@@ -15,9 +15,9 @@ func _process(delta: float) -> void:
 
 func onBodyEntered(body: Node2D) -> void:
 	if body is Player:
-		if body.name == "Player":
+		if body is Player1:
 			player1CloseEnough = true
-		elif body.name == "Player2":
+		elif body is Player2:
 			player2CloseEnough = true
 		else:
 			printerr("wtf? wrong player name")

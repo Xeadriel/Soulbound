@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://dm3pm4k0erp0v"]
+
+[ext_resource type="Texture2D" uid="uid://bt7t10hfomw11" path="res://Assets/placeholder.png" id="1_gaja6"]
+[ext_resource type="Script" uid="uid://d1cyuscbly7t6" path="res://Scripts/World/WorldObjects/Chest.gd" id="2_gaja6"]
+[ext_resource type="Script" uid="uid://dy1c0bwsa7fng" path="res://Scripts/World/WorldObjects/Properties/PropertyCollidable.gd" id="3_gaja6"]
+[ext_resource type="Script" uid="uid://cro3bhfcbtv0j" path="res://Scripts/World/WorldObjects/Properties/PropertyInteractable.gd" id="4_uiwyq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_les2w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gaja6")
+}],
+"loop": false,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5u7w"]
+size = Vector2(108, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_co6tc"]
+size = Vector2(154, 124)
+
+[node name="Chest" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_les2w")
+animation = &"closed"
+autoplay = "closed"
+script = ExtResource("2_gaja6")
+
+[node name="PropertyCollidable" type="Area2D" parent="."]
+script = ExtResource("3_gaja6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyCollidable"]
+shape = SubResource("RectangleShape2D_x5u7w")
+
+[node name="CollisionStaticBody" type="StaticBody2D" parent="PropertyCollidable"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyCollidable/CollisionStaticBody"]
+shape = SubResource("RectangleShape2D_x5u7w")
+
+[node name="PropertyInteractable" type="Area2D" parent="."]
+script = ExtResource("4_uiwyq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyInteractable"]
+shape = SubResource("RectangleShape2D_co6tc")
+
+[connection signal="body_entered" from="PropertyInteractable" to="PropertyInteractable" method="onBodyEntered"]
+[connection signal="body_exited" from="PropertyInteractable" to="PropertyInteractable" method="onBodyExited"]
+[connection signal="interacted" from="PropertyInteractable" to="." method="interacted"]

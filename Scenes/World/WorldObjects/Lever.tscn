@@ -12,12 +12,12 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_12oq8")
 }],
-"loop": true,
+"loop": false,
 "name": &"off",
 "speed": 5.0
 }, {
 "frames": [],
-"loop": true,
+"loop": false,
 "name": &"on",
 "speed": 5.0
 }]
@@ -31,14 +31,10 @@ radius = 42.0119
 [sub_resource type="CircleShape2D" id="CircleShape2D_qa5va"]
 radius = 57.0701
 
-[node name="Lever" type="Node2D"]
-script = ExtResource("1_qa5va")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-0.249999, 0.249989)
-scale = Vector2(0.763889, 1.05769)
+[node name="Lever" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_5301d")
 animation = &"off"
+script = ExtResource("1_qa5va")
 
 [node name="PropertyInteractable" type="Area2D" parent="."]
 script = ExtResource("3_12oq8")

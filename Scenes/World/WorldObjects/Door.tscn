@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://oiw5vk886tmw"]
+[gd_scene load_steps=10 format=3 uid="uid://gmsqxr0sxmb6"]
 
 [ext_resource type="Script" uid="uid://dmv8e7eseese5" path="res://Scripts/World/WorldObjects/Door.gd" id="1_dxfhr"]
 [ext_resource type="PackedScene" uid="uid://cyck0cne5uii3" path="res://Scenes/World/WorldObjects/Properties/PropertyInteractable.tscn" id="2_t03iu"]
-[ext_resource type="PackedScene" uid="uid://c4vt4ib6jioy7" path="res://Scenes/World/WorldObjects/Properties/PropertyCollidable.tscn" id="3_s3h2b"]
 [ext_resource type="Texture2D" uid="uid://bul1ubwp7vunr" path="res://Assets/UI Pack OS/scrollbar_grey.png" id="4_t03iu"]
+[ext_resource type="Script" uid="uid://dy1c0bwsa7fng" path="res://Scripts/World/WorldObjects/Properties/PropertyCollidable.gd" id="5_qpyks"]
 [ext_resource type="Texture2D" uid="uid://bpfqlg0ic61rb" path="res://Assets/UI Pack OS/scrollbar_future_transparent.png" id="5_s3h2b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpyks"]
@@ -20,32 +20,50 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qpyks")
 }],
-"loop": true,
+"loop": false,
 "name": &"Close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_t03iu")
+}],
+"loop": false,
+"name": &"Closed",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4vpyv")
 }],
-"loop": true,
+"loop": false,
 "name": &"Open",
 "speed": 5.0
 }]
 
-[node name="Door" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3h2b"]
+size = Vector2(4.8, 26.2)
+
+[node name="Door" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_wj75x")
+animation = &"Open"
 script = ExtResource("1_dxfhr")
-key = 2
 
 [node name="PropertyInteractable" parent="." instance=ExtResource("2_t03iu")]
 scale = Vector2(6, 6)
 
-[node name="PropertyCollidable" parent="." instance=ExtResource("3_s3h2b")]
+[node name="PropertyCollidable" type="Area2D" parent="."]
 scale = Vector2(5, 5)
+script = ExtResource("5_qpyks")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_wj75x")
-animation = &"Close"
-autoplay = "Close"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyCollidable"]
+position = Vector2(0.200001, -0.499999)
+shape = SubResource("RectangleShape2D_s3h2b")
 
-[connection signal="interacted" from="PropertyInteractable" to="." method="_on_property_interactable_interacted"]
+[node name="CollisionStaticBody" type="StaticBody2D" parent="PropertyCollidable"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyCollidable/CollisionStaticBody"]
+position = Vector2(0.200001, -0.499999)
+shape = SubResource("RectangleShape2D_s3h2b")
+
+[connection signal="interacted" from="PropertyInteractable" to="." method="onInteract"]

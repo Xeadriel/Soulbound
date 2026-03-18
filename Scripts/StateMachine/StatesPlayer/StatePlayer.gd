@@ -24,10 +24,10 @@ enum Direction {
 }
 
 func _ready() -> void:
-	assert(player != null)
-	assert(player.name == "Player" or player.name == "Player2")
+	assert(player != null, "don't forget to assign a player to the state")
+	assert(player is Player1 or player is Player2, "player must be either one of the player classes")
 	
-	if player.name == "Player":
+	if player is Player1:
 		UP = "up"
 		DOWN = "down"
 		LEFT = "left"
@@ -40,7 +40,7 @@ func _ready() -> void:
 		QUICKSLOTTOP = "quickSlotTop"
 		QUICKSLOTLEFT = "quickSlotLeft"
 		QUICKSLOTRIGHT = "quickSlotRight"
-	elif player.name == "Player2":
+	elif player is Player2:
 		UP = "up2"
 		DOWN = "down2"
 		LEFT = "left2"

@@ -1,9 +1,21 @@
-class_name DoorTrigger extends Node2D
+class_name DoorTrigger extends WorldObject
 
 @onready var propertyCollidable = $PropertyCollidable
+@export var open = false
 
-func onTriggered():
-	if propertyCollidable.process_mode == Node.PROCESS_MODE_INHERIT:
+func _ready() -> void:
+	if open:
+		play("Opened")
 		propertyCollidable.process_mode = Node.PROCESS_MODE_DISABLED
-	elif propertyCollidable.process_mode == Node.PROCESS_MODE_INHERIT:
+	else:
+		play("Closed")
+		propertyCollidable.process_mode = Node.PROCESS_MODE_INHERIT
+
+func onTriggered(state = true):
+	if state:
 		propertyCollidable.process_mode = Node.PROCESS_MODE_DISABLED
+		play("Open")
+	else:
+		propertyCollidable.process_mode = Node.PROCESS_MODE_INHERIT
+		play("Close")
+		

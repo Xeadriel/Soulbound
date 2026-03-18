@@ -167,6 +167,7 @@ texture = ExtResource("6_glrsl")
 id = 1
 itemName = "Whip"
 description = "yes daddy"
+itemAmount = null
 
 [node name="ItemSlot2" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2
@@ -178,6 +179,7 @@ texture = ExtResource("7_gsyyp")
 id = 2
 itemName = "POtion"
 description = "yes daddy"
+itemAmount = null
 
 [node name="ItemSlot3" type="TextureRect" parent="MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer"]
 layout_mode = 2

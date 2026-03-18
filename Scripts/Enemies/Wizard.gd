@@ -1,6 +1,5 @@
 class_name Wizard extends Enemy
 
-@onready var fireballContainer: Node = $FireballsContainer
 @onready var atkSpawnPoint: Node2D = $AtkSpawnPoint
 
 @export var fireballScene : PackedScene = null
@@ -88,7 +87,7 @@ func attack() -> void:
 	atkSpawnPoint.global_position = global_position + atkDirection * 100
 	fireball.global_position = atkSpawnPoint.global_position
 	fireball.direction = fireball.global_position.direction_to(target.global_position)
-	fireballContainer.add_child(fireball)
+	get_parent().add_child(fireball)
 	
 	match direction:
 		Direction.UP:
