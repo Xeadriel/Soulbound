@@ -1,5 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cy4vn64vtg0f7"]
-
+[gd_scene load_steps=37 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_ewn0l"]
 [ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/UserInterface/AutoCamera.tscn" id="2_8p3qi"]
@@ -8,15 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://h0citg7sqvl1" path="res://Scenes/UserInterface/Menu/GameUI.tscn" id="5_g3l2s"]
 [ext_resource type="PackedScene" uid="uid://csvo4bhjc4m03" path="res://Scenes/UserInterface/ItemQuickSelect.tscn" id="6_hkek3"]
 [ext_resource type="PackedScene" uid="uid://c3weh3qljrsjs" path="res://Scenes/Enemies/Goblin.tscn" id="7_2n2dr"]
+[ext_resource type="Script" uid="uid://cpsglkwpt5min" path="res://Scripts/Rooms.gd" id="7_6m3rn"]
 [ext_resource type="PackedScene" uid="uid://55caaw7yatfk" path="res://Scenes/Enemies/Wizard.tscn" id="8_6m3rn"]
 [ext_resource type="PackedScene" uid="uid://rafcdskaova5" path="res://Scenes/Players/Player.tscn" id="9_0r1y5"]
 [ext_resource type="PackedScene" uid="uid://erxaxotkoy7w" path="res://Scenes/World/WorldObjects/Lever.tscn" id="9_8p3qi"]
 [ext_resource type="Script" uid="uid://dldk0s0g0yn6y" path="res://Scripts/World/WorldObjects/Properties/PropertyDetectingPlayer.gd" id="10_p0qse"]
 [ext_resource type="PackedScene" uid="uid://b6653e24vrnxw" path="res://Scenes/Players/WhipAttack.tscn" id="10_uhk1o"]
-[ext_resource type="PackedScene" uid="uid://yxpocneli8ug" path="res://Scenes/World/WorldObjects/DoorTrigger.tscn" id="11_p0qse"]
+[ext_resource type="PackedScene" path="res://Scenes/World/WorldObjects/DoorTrigger.tscn" id="11_p0qse"]
 [ext_resource type="PackedScene" uid="uid://ceausjasnh7kj" path="res://Scenes/Players/Player2.tscn" id="11_pwrpc"]
 [ext_resource type="PackedScene" uid="uid://gmsqxr0sxmb6" path="res://Scenes/World/WorldObjects/Door.tscn" id="12_8p3qi"]
-[ext_resource type="PackedScene" uid="uid://dqfevetwhseag" path="res://Scenes/World/WorldObjects/EnemyCounter.tscn" id="12_g3l2s"]
+[ext_resource type="PackedScene" path="res://Scenes/World/WorldObjects/EnemyCounter.tscn" id="12_g3l2s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
 texture = ExtResource("1_ewn0l")
@@ -297,6 +297,7 @@ offset_right = 704.0
 offset_bottom = -248.0
 
 [node name="Rooms" type="Node" parent="2DObjects"]
+script = ExtResource("7_6m3rn")
 
 [node name="ChaliceAltarRoom" type="Node2D" parent="2DObjects/Rooms"]
 
@@ -321,9 +322,6 @@ aggroRange = 800.0
 position = Vector2(873, 21)
 atkRange = 500.0
 aggroRange = 800.0
-
-[node name="ChaliceRoomDoor" parent="2DObjects/Rooms/ChaliceAltarRoom" instance=ExtResource("12_8p3qi")]
-position = Vector2(1341, 192)
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/ChaliceAltarRoom"]
 position = Vector2(1321, -762)
@@ -365,14 +363,6 @@ texture = ExtResource("3_5yy2f")
 [node name="Lever" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("9_8p3qi")]
 position = Vector2(2151, 4414)
 
-[node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/MainHallway"]
-position = Vector2(1360, 1314)
-script = ExtResource("10_p0qse")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer"]
-position = Vector2(40, 1242)
-shape = SubResource("RectangleShape2D_go142")
-
 [node name="Door" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("12_8p3qi")]
 position = Vector2(1393, 192)
 rotation = 1.5708
@@ -395,6 +385,13 @@ position = Vector2(1397.97, 4675)
 rotation = 1.5708
 scale = Vector2(1, 7.50942)
 
+[node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/MainHallway"]
+position = Vector2(1360, 1314)
+script = ExtResource("10_p0qse")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer"]
+position = Vector2(40, 1242)
+shape = SubResource("RectangleShape2D_go142")
 
 [node name="PuzzleRoomHallway" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(2694, 1200)
@@ -410,19 +407,19 @@ position = Vector2(-96, -36)
 atkRange = 500.0
 aggroRange = 800.0
 
-[node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/PuzzleRoomHallway"]
-script = ExtResource("10_p0qse")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/PuzzleRoomHallway/PropertyDetectingPlayer"]
-position = Vector2(110, -2)
-shape = SubResource("RectangleShape2D_d6jdp")
-
 [node name="Door" parent="2DObjects/Rooms/PuzzleRoomHallway" instance=ExtResource("12_8p3qi")]
 position = Vector2(1081, 17)
 
 [node name="Door2" parent="2DObjects/Rooms/PuzzleRoomHallway" instance=ExtResource("12_8p3qi")]
 position = Vector2(698, 270)
 rotation = 1.5708
+
+[node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/PuzzleRoomHallway"]
+script = ExtResource("10_p0qse")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/PuzzleRoomHallway/PropertyDetectingPlayer"]
+position = Vector2(110, -2)
+shape = SubResource("RectangleShape2D_d6jdp")
 
 [node name="Barracks" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(3982, 1764)
@@ -443,10 +440,6 @@ position = Vector2(-794, -7)
 position = Vector2(-1363.5, 39)
 scale = Vector2(0.768519, 1)
 texture = ExtResource("3_5yy2f")
-
-[node name="BarracksDoor" parent="2DObjects/Rooms/Barracks" instance=ExtResource("12_8p3qi")]
-position = Vector2(-589, -296)
-rotation = 1.5708
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/Barracks"]
 position = Vector2(-682, 34)
@@ -470,9 +463,6 @@ position = Vector2(-264, 360)
 atkRange = 500.0
 aggroRange = 800.0
 
-[node name="PuzzleRoomDoor" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("12_8p3qi")]
-position = Vector2(-746, 374)
-
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/PuzzleRoom"]
 script = ExtResource("10_p0qse")
 
@@ -491,10 +481,6 @@ position = Vector2(4522, 844)
 position = Vector2(-105, -536)
 scale = Vector2(0.768519, 1)
 texture = ExtResource("3_5yy2f")
-
-[node name="PuzzleRoomRewardDoor" parent="2DObjects/Rooms/PuzzleRoomReward" instance=ExtResource("12_8p3qi")]
-position = Vector2(-108, -264)
-rotation = 1.5708
 
 [node name="FoodHallway" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(-980, 1167)
@@ -768,6 +754,7 @@ whipAttackSpawner = ExtResource("10_uhk1o")
 
 [connection signal="body_entered" from="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" method="_on_body_exited"]
+[connection signal="leverFlipped" from="2DObjects/Rooms/MainHallway/Lever" to="2DObjects/Rooms/MainHallway/DungeonExit" method="onTriggered"]
 [connection signal="body_entered" from="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer" method="_on_body_exited"]
 [connection signal="body_entered" from="2DObjects/Rooms/PuzzleRoomHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoomHallway/PropertyDetectingPlayer" method="_on_body_entered"]
@@ -786,6 +773,8 @@ whipAttackSpawner = ExtResource("10_uhk1o")
 [connection signal="body_exited" from="2DObjects/Rooms/MiniBossHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/MiniBossHallway/PropertyDetectingPlayer" method="_on_body_exited"]
 [connection signal="body_entered" from="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" method="_on_body_exited"]
+[connection signal="enemiesCleared" from="2DObjects/Rooms/MiniBossRoom/EnemiesCounter" to="2DObjects/Rooms/MiniBossRoom/DoorTrigger2" method="onTriggered"]
+[connection signal="died" from="2DObjects/Rooms/MiniBossRoom/Goblin" to="2DObjects/Rooms/MiniBossRoom/EnemiesCounter" method="onEnemyDied"]
 [connection signal="body_entered" from="2DObjects/Rooms/WhipPuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/WhipPuzzleRoom/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/WhipPuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/WhipPuzzleRoom/PropertyDetectingPlayer" method="_on_body_exited"]
 [connection signal="body_entered" from="2DObjects/Rooms/RuinedDormitoryHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryHallway/PropertyDetectingPlayer" method="_on_body_entered"]
@@ -800,8 +789,3 @@ whipAttackSpawner = ExtResource("10_uhk1o")
 [connection signal="body_exited" from="2DObjects/Rooms/RuinedDormitoryBotRight/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBotRight/PropertyDetectingPlayer" method="_on_body_exited"]
 [connection signal="body_entered" from="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer" method="_on_body_exited"]
-
-[connection signal="leverFlipped" from="2DObjects/Rooms/MainHallway/Lever" to="2DObjects/Rooms/MainHallway/DungeonExit" method="onTriggered"]
-[connection signal="enemiesCleared" from="2DObjects/Rooms/MiniBossRoom/EnemiesCounter" to="2DObjects/Rooms/MiniBossRoom/DoorTrigger2" method="onTriggered"]
-[connection signal="died" from="2DObjects/Rooms/MiniBossRoom/Goblin" to="2DObjects/Rooms/MiniBossRoom/EnemiesCounter" method="onEnemyDied"]
-
