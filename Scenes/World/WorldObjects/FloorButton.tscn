@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg6qjhdlijf55"]
+
+[ext_resource type="Texture2D" uid="uid://bt7t10hfomw11" path="res://Assets/placeholder.png" id="1_8phud"]
+[ext_resource type="Script" uid="uid://bqbbmlanbd2ud" path="res://Scripts/World/WorldObjects/FloorButton.gd" id="2_8phud"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5301d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8phud")
+}],
+"loop": false,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"on",
+"speed": 5.0
+}]
+
+[node name="FloorButton" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_5301d")
+animation = &"off"
+script = ExtResource("2_8phud")
