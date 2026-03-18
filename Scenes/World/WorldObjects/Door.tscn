@@ -46,7 +46,7 @@ size = Vector2(4.8, 26.2)
 
 [node name="Door" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_wj75x")
-animation = &"Open"
+animation = &"Closed"
 script = ExtResource("1_dxfhr")
 
 [node name="PropertyInteractable" parent="." instance=ExtResource("2_t03iu")]
