@@ -20,6 +20,7 @@ animations = [{
 [node name="Dungeon1" type="Panel"]
 
 [node name="MainHallway" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
 position = Vector2(2, 117.25)
 scale = Vector2(1, 12.0449)
 sprite_frames = SubResource("SpriteFrames_3wbry")
@@ -54,34 +55,40 @@ scale = Vector2(4.17593, 6.41026)
 sprite_frames = SubResource("SpriteFrames_3wbry")
 
 [node name="FoodHallway" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
 position = Vector2(-279, -144)
 rotation = -1.56784
 scale = Vector2(1, 5.82138)
 sprite_frames = SubResource("SpriteFrames_3wbry")
 
 [node name="FoodHallway2" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
 position = Vector2(-558, -130)
 scale = Vector2(1, 4.84659)
 sprite_frames = SubResource("SpriteFrames_3wbry")
 
 [node name="MiniBossHallway" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
 position = Vector2(-836, 249)
 scale = Vector2(1, 4.84659)
 sprite_frames = SubResource("SpriteFrames_3wbry")
 
 [node name="corridor5" type="AnimatedSprite2D" parent="MiniBossHallway"]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
 position = Vector2(193.147, -28.061)
 rotation = 1.5708
 scale = Vector2(0.206331, 3.48385)
 sprite_frames = SubResource("SpriteFrames_3wbry")
 
 [node name="PuzzleRoomHallway" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
 position = Vector2(299, -142)
 rotation = -1.56784
 scale = Vector2(1, 6.20709)
 sprite_frames = SubResource("SpriteFrames_3wbry")
 
 [node name="RuinedDormitoryHallway" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
 position = Vector2(301, 174)
 rotation = 1.5708
 scale = Vector2(1, 6.20709)

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dldk0s0g0yn6y" path="res://Scripts/World/WorldObjects/Properties/PropertyDetectingPlayer.gd" id="1_34kjh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1be7"]
-size = Vector2(1760, 660)
+size = Vector2(1760, 614)
 
 [node name="PropertyDetectingPlayer" type="Area2D"]
 script = ExtResource("1_34kjh")
