@@ -5,10 +5,8 @@ class_name DoorTrigger extends WorldObject
 
 func _ready() -> void:
 	if open:
-		print(animation)
 		play("Opened")
 		propertyCollidable.process_mode = Node.PROCESS_MODE_DISABLED
-		print(animation)
 	else:
 		play("Closed")
 		propertyCollidable.process_mode = Node.PROCESS_MODE_INHERIT
