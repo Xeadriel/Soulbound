@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://jddgy55dplip"]
+
+[ext_resource type="Script" uid="uid://dldk0s0g0yn6y" path="res://Scripts/World/WorldObjects/Properties/PropertyDetectingPlayer.gd" id="1_34kjh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1be7"]
+size = Vector2(1760, 660)
+
+[node name="PropertyDetectingPlayer" type="Area2D"]
+script = ExtResource("1_34kjh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j1be7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
