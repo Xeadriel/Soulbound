@@ -12,12 +12,12 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_12oq8")
 }],
-"loop": true,
+"loop": false,
 "name": &"off",
 "speed": 5.0
 }, {
 "frames": [],
-"loop": true,
+"loop": false,
 "name": &"on",
 "speed": 5.0
 }]
@@ -64,4 +64,6 @@ shape = SubResource("CircleShape2D_qa5va")
 
 [connection signal="body_entered" from="PropertyInteractable" to="PropertyInteractable" method="onBodyEntered"]
 [connection signal="body_exited" from="PropertyInteractable" to="PropertyInteractable" method="onBodyExited"]
+[connection signal="interacted" from="PropertyInteractable" to="." method="leverPulled"]
 [connection signal="area_entered" from="PropertyWhippable" to="PropertyWhippable" method="onAreaEntered"]
+[connection signal="gotWhipped" from="PropertyWhippable" to="." method="leverPulled"]

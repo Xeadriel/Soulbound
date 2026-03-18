@@ -1,34 +1,70 @@
-[gd_scene load_steps=4 format=3 uid="uid://yxpocneli8ug"]
+[gd_scene load_steps=9 format=3 uid="uid://yxpocneli8ug"]
 
+[ext_resource type="Texture2D" uid="uid://bul1ubwp7vunr" path="res://Assets/UI Pack OS/scrollbar_grey.png" id="1_4acy1"]
 [ext_resource type="Script" uid="uid://de7o5t88lb1ko" path="res://Scripts/World/WorldObjects/DoorTrigger.gd" id="1_les2w"]
-[ext_resource type="PackedScene" uid="uid://c4vt4ib6jioy7" path="res://Scenes/World/WorldObjects/Properties/PropertyCollidable.tscn" id="2_tssvu"]
+[ext_resource type="Texture2D" uid="uid://bpfqlg0ic61rb" path="res://Assets/UI Pack OS/scrollbar_future_transparent.png" id="2_t67ef"]
+[ext_resource type="Script" uid="uid://dy1c0bwsa7fng" path="res://Scripts/World/WorldObjects/Properties/PropertyCollidable.gd" id="4_4acy1"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_les2w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpyks"]
+atlas = ExtResource("1_4acy1")
+region = Rect2(0, 0, 32, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vpyv"]
+atlas = ExtResource("2_t67ef")
+region = Rect2(0, 0, 32, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4acy1"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpyks")
+}],
 "loop": false,
-"name": &"close",
+"name": &"Close",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4acy1")
+}],
 "loop": false,
-"name": &"closed",
+"name": &"Closed",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vpyv")
+}],
 "loop": false,
-"name": &"open",
+"name": &"Open",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vpyv")
+}],
 "loop": false,
-"name": &"opened",
+"name": &"Opened",
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4acy1"]
+size = Vector2(29, 116)
+
 [node name="DoorTrigger" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_les2w")
-animation = &"opened"
+sprite_frames = SubResource("SpriteFrames_4acy1")
+animation = &"Closed"
 script = ExtResource("1_les2w")
 
-[node name="PropertyCollidable" parent="." instance=ExtResource("2_tssvu")]
+[node name="PropertyCollidable" type="Area2D" parent="."]
+script = ExtResource("4_4acy1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyCollidable"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_4acy1")
+
+[node name="CollisionStaticBody" type="StaticBody2D" parent="PropertyCollidable"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyCollidable/CollisionStaticBody"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_4acy1")

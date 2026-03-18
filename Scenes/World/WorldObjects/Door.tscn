@@ -20,15 +20,23 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qpyks")
 }],
-"loop": true,
+"loop": false,
 "name": &"Close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_t03iu")
+}],
+"loop": false,
+"name": &"Closed",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4vpyv")
 }],
-"loop": true,
+"loop": false,
 "name": &"Open",
 "speed": 5.0
 }]
@@ -38,8 +46,7 @@ size = Vector2(4.8, 26.2)
 
 [node name="Door" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_wj75x")
-animation = &"Close"
-autoplay = "Close"
+animation = &"Open"
 script = ExtResource("1_dxfhr")
 
 [node name="PropertyInteractable" parent="." instance=ExtResource("2_t03iu")]

@@ -26,10 +26,13 @@ var direction = Direction.DOWN
 	set(newHP):
 		currentHp = newHP
 		if currentHp < 1:
+			died.emit()
 			queue_free()
 
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
+
 signal animationFinishedSignal
+signal died
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

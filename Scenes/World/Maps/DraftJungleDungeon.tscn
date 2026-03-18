@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cy4vn64vtg0f7"]
+[gd_scene load_steps=18 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_ewn0l"]
 [ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/UserInterface/AutoCamera.tscn" id="2_8p3qi"]
@@ -11,8 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://rafcdskaova5" path="res://Scenes/Players/Player.tscn" id="9_0r1y5"]
 [ext_resource type="PackedScene" uid="uid://erxaxotkoy7w" path="res://Scenes/World/WorldObjects/Lever.tscn" id="9_8p3qi"]
 [ext_resource type="PackedScene" uid="uid://b6653e24vrnxw" path="res://Scenes/Players/WhipAttack.tscn" id="10_uhk1o"]
+[ext_resource type="PackedScene" uid="uid://yxpocneli8ug" path="res://Scenes/World/WorldObjects/DoorTrigger.tscn" id="11_p0qse"]
 [ext_resource type="PackedScene" uid="uid://ceausjasnh7kj" path="res://Scenes/Players/Player2.tscn" id="11_pwrpc"]
 [ext_resource type="PackedScene" uid="uid://gmsqxr0sxmb6" path="res://Scenes/World/WorldObjects/Door.tscn" id="12_8p3qi"]
+[ext_resource type="PackedScene" uid="uid://dqfevetwhseag" path="res://Scenes/World/WorldObjects/EnemyCounter.tscn" id="12_g3l2s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
 texture = ExtResource("1_ewn0l")
@@ -299,6 +301,28 @@ texture = ExtResource("3_5yy2f")
 [node name="Lever" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("9_8p3qi")]
 position = Vector2(2151, 4414)
 
+[node name="Door" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("12_8p3qi")]
+position = Vector2(1393, 192)
+rotation = 1.5708
+
+[node name="Door2" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("12_8p3qi")]
+position = Vector2(1907, 1216)
+
+[node name="Door5" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("12_8p3qi")]
+position = Vector2(1908, 3140)
+
+[node name="DoorTrigger" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("11_p0qse")]
+position = Vector2(886, 3135)
+
+[node name="LockedDoor" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("12_8p3qi")]
+position = Vector2(880, 1217)
+key = 2
+
+[node name="DungeonExit" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("11_p0qse")]
+position = Vector2(1397.97, 4675)
+rotation = 1.5708
+scale = Vector2(1, 7.50942)
+
 [node name="PuzzleRoomHallway" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(2694, 1200)
 
@@ -312,6 +336,13 @@ position = Vector2(188, 104)
 position = Vector2(-96, -36)
 atkRange = 500.0
 aggroRange = 800.0
+
+[node name="Door" parent="2DObjects/Rooms/PuzzleRoomHallway" instance=ExtResource("12_8p3qi")]
+position = Vector2(1081, 17)
+
+[node name="Door2" parent="2DObjects/Rooms/PuzzleRoomHallway" instance=ExtResource("12_8p3qi")]
+position = Vector2(698, 270)
+rotation = 1.5708
 
 [node name="Barracks" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(3982, 1764)
@@ -347,6 +378,10 @@ position = Vector2(-264, 360)
 atkRange = 500.0
 aggroRange = 800.0
 
+[node name="DoorTrigger" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("11_p0qse")]
+position = Vector2(-108, -272)
+rotation = 1.5708
+
 [node name="PuzzleRoomReward" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(4522, 844)
 
@@ -364,6 +399,9 @@ position = Vector2(232, 145)
 [node name="Goblin2" parent="2DObjects/Rooms/FoodHallway" instance=ExtResource("7_2n2dr")]
 position = Vector2(253, -39)
 
+[node name="Door" parent="2DObjects/Rooms/FoodHallway" instance=ExtResource("12_8p3qi")]
+position = Vector2(-234, 62)
+
 [node name="FoodHallway2" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(-1508, 1343)
 
@@ -376,6 +414,15 @@ aggroRange = 800.0
 position = Vector2(149, 446)
 atkRange = 500.0
 aggroRange = 800.0
+
+[node name="Door" parent="2DObjects/Rooms/FoodHallway2" instance=ExtResource("12_8p3qi")]
+position = Vector2(41, -1155)
+rotation = 1.5708
+
+[node name="LockedDoor" parent="2DObjects/Rooms/FoodHallway2" instance=ExtResource("12_8p3qi")]
+position = Vector2(31, 900)
+rotation = 1.5708
+key = 2
 
 [node name="FoodRoom" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(-1359, -621)
@@ -429,6 +476,23 @@ position = Vector2(8.99997, 8)
 scale = Vector2(1.69907, 2.23077)
 texture = ExtResource("3_5yy2f")
 
+[node name="DoorTrigger" parent="2DObjects/Rooms/MiniBossRoom" instance=ExtResource("11_p0qse")]
+position = Vector2(-833, -760)
+rotation = 1.5708
+animation = &"Open"
+open = true
+
+[node name="DoorTrigger2" parent="2DObjects/Rooms/MiniBossRoom" instance=ExtResource("11_p0qse")]
+position = Vector2(961, -756)
+rotation = 1.5708
+
+[node name="EnemiesCounter" parent="2DObjects/Rooms/MiniBossRoom" instance=ExtResource("12_g3l2s")]
+position = Vector2(14, -578)
+enemiesLeft = 1
+
+[node name="Goblin" parent="2DObjects/Rooms/MiniBossRoom" instance=ExtResource("7_2n2dr")]
+position = Vector2(73, -289)
+
 [node name="WhipPuzzleRoom" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(-616, 3109)
 
@@ -450,6 +514,25 @@ aggroRange = 800.0
 position = Vector2(526, 121)
 atkRange = 500.0
 aggroRange = 800.0
+
+[node name="Door" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("12_8p3qi")]
+position = Vector2(-65, -227)
+rotation = 1.5708
+
+[node name="Door2" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("12_8p3qi")]
+position = Vector2(-59, 288)
+rotation = 1.5708
+
+[node name="Door3" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("12_8p3qi")]
+position = Vector2(703, 278)
+rotation = 1.5708
+
+[node name="Door4" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("12_8p3qi")]
+position = Vector2(709, -233)
+rotation = 1.5708
+
+[node name="Door5" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("12_8p3qi")]
+position = Vector2(1215, 30)
 
 [node name="RuinedDormitoryBotLeft" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(2613, 3698)
@@ -479,15 +562,15 @@ texture = ExtResource("3_5yy2f")
 [node name="Players" type="Node" parent="2DObjects"]
 
 [node name="Player" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("9_0r1y5")]
-position = Vector2(1191, -469)
+position = Vector2(-2512, 3576)
 ItemQuickSlots = NodePath("../../AutoCamera/ItemQuickSelect")
 whipAttackSpawner = ExtResource("10_uhk1o")
 
 [node name="Player2" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("11_pwrpc")]
-position = Vector2(1453, -453)
+position = Vector2(-2250, 3592)
 ItemQuickSlots = NodePath("../../AutoCamera/ItemQuickSelect2")
 whipAttackSpawner = ExtResource("10_uhk1o")
 
-[node name="Door" parent="2DObjects" instance=ExtResource("12_8p3qi")]
-position = Vector2(1341, 192)
-rotation = 1.5708
+[connection signal="leverFlipped" from="2DObjects/Rooms/MainHallway/Lever" to="2DObjects/Rooms/MainHallway/DungeonExit" method="onTriggered"]
+[connection signal="enemiesCleared" from="2DObjects/Rooms/MiniBossRoom/EnemiesCounter" to="2DObjects/Rooms/MiniBossRoom/DoorTrigger2" method="onTriggered"]
+[connection signal="died" from="2DObjects/Rooms/MiniBossRoom/Goblin" to="2DObjects/Rooms/MiniBossRoom/EnemiesCounter" method="onEnemyDied"]
