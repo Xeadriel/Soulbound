@@ -1,0 +1,143 @@
+[gd_scene load_steps=4 format=3 uid="uid://rb6uyrvvg0hc"]
+
+[ext_resource type="Texture2D" uid="uid://xavvovekq5ap" path="res://Assets/placeholder2.png" id="1_e4cy3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4cy3"]
+atlas = ExtResource("1_e4cy3")
+region = Rect2(0, 0, 108, 78)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3wbry"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4cy3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Dungeon1" type="Panel"]
+
+[node name="MainHallway" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(2, 117.25)
+scale = Vector2(1, 12.0449)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="BrokenBridgeWhip" type="AnimatedSprite2D" parent="MainHallway"]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(109, 24.637)
+scale = Vector2(0.981481, 0.108568)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="chaliceRoom2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -483)
+scale = Vector2(4.96296, 3.63461)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="FoodRoom" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(-700, -456)
+scale = Vector2(4.96296, 3.63461)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="MiniBossRoom" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(-664, 579)
+scale = Vector2(4.96296, 3.63461)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="WhipPuzzleRoom" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(-276, 186)
+scale = Vector2(4.17593, 6.41026)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="FoodHallway" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(-279, -144)
+rotation = -1.56784
+scale = Vector2(1, 5.82138)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="FoodHallway2" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(-558, -130)
+scale = Vector2(1, 4.84659)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="MiniBossHallway" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(-836, 249)
+scale = Vector2(1, 4.84659)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="corridor5" type="AnimatedSprite2D" parent="MiniBossHallway"]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(193.147, -28.061)
+rotation = 1.5708
+scale = Vector2(0.206331, 3.48385)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="PuzzleRoomHallway" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(299, -142)
+rotation = -1.56784
+scale = Vector2(1, 6.20709)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="RuinedDormitoryHallway" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(301, 174)
+rotation = 1.5708
+scale = Vector2(1, 6.20709)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="PuzzleRoom" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(732, -139)
+scale = Vector2(3.55556, 2.64103)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="Barracks" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(296, -39)
+scale = Vector2(3.02778, 1.25641)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="PuzzleRoomReward" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(726, -295)
+scale = Vector2(0.981481, 1.30769)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="RuinedDormitoryTopLeft" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(228, 66)
+scale = Vector2(0.981481, 1.30769)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="RuinedDormitoryTopRight" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(357, 67)
+scale = Vector2(0.981481, 1.30769)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="RuinedDormitoryBotRight" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(358, 282)
+scale = Vector2(0.981481, 1.30769)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="RuinedDormitoryBig" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(630, 168)
+scale = Vector2(1.68056, 2.35897)
+sprite_frames = SubResource("SpriteFrames_3wbry")
+
+[node name="RuinedDormitoryBotLeft" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(229, 281)
+scale = Vector2(0.981481, 1.30769)
+sprite_frames = SubResource("SpriteFrames_3wbry")
