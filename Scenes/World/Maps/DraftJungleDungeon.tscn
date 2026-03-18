@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://cy4vn64vtg0f7"]
+[gd_scene load_steps=36 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_ewn0l"]
 [ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/UserInterface/AutoCamera.tscn" id="2_8p3qi"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://h0citg7sqvl1" path="res://Scenes/UserInterface/Menu/GameUI.tscn" id="5_g3l2s"]
 [ext_resource type="PackedScene" uid="uid://csvo4bhjc4m03" path="res://Scenes/UserInterface/ItemQuickSelect.tscn" id="6_hkek3"]
 [ext_resource type="PackedScene" uid="uid://c3weh3qljrsjs" path="res://Scenes/Enemies/Goblin.tscn" id="7_2n2dr"]
-[ext_resource type="Script" uid="uid://cpsglkwpt5min" path="res://Scripts/Rooms.gd" id="7_6m3rn"]
 [ext_resource type="PackedScene" uid="uid://55caaw7yatfk" path="res://Scenes/Enemies/Wizard.tscn" id="8_6m3rn"]
 [ext_resource type="PackedScene" uid="uid://rafcdskaova5" path="res://Scenes/Players/Player.tscn" id="9_0r1y5"]
 [ext_resource type="PackedScene" uid="uid://erxaxotkoy7w" path="res://Scenes/World/WorldObjects/Lever.tscn" id="9_8p3qi"]
@@ -297,7 +296,6 @@ offset_right = 704.0
 offset_bottom = -248.0
 
 [node name="Rooms" type="Node" parent="2DObjects"]
-script = ExtResource("7_6m3rn")
 
 [node name="ChaliceAltarRoom" type="Node2D" parent="2DObjects/Rooms"]
 
