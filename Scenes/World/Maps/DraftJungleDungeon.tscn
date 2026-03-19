@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://cy4vn64vtg0f7"]
+[gd_scene load_steps=37 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_ewn0l"]
 [ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/UserInterface/AutoCamera.tscn" id="2_8p3qi"]
@@ -12,10 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://erxaxotkoy7w" path="res://Scenes/World/WorldObjects/Lever.tscn" id="9_8p3qi"]
 [ext_resource type="Script" uid="uid://dldk0s0g0yn6y" path="res://Scripts/World/WorldObjects/Properties/PropertyDetectingPlayer.gd" id="10_p0qse"]
 [ext_resource type="PackedScene" uid="uid://b6653e24vrnxw" path="res://Scenes/Players/WhipAttack.tscn" id="10_uhk1o"]
-[ext_resource type="PackedScene" path="res://Scenes/World/WorldObjects/DoorTrigger.tscn" id="11_p0qse"]
+[ext_resource type="PackedScene" uid="uid://yxpocneli8ug" path="res://Scenes/World/WorldObjects/DoorTrigger.tscn" id="11_p0qse"]
 [ext_resource type="PackedScene" uid="uid://ceausjasnh7kj" path="res://Scenes/Players/Player2.tscn" id="11_pwrpc"]
 [ext_resource type="PackedScene" uid="uid://gmsqxr0sxmb6" path="res://Scenes/World/WorldObjects/Door.tscn" id="12_8p3qi"]
-[ext_resource type="PackedScene" path="res://Scenes/World/WorldObjects/EnemyCounter.tscn" id="12_g3l2s"]
+[ext_resource type="PackedScene" uid="uid://dqfevetwhseag" path="res://Scenes/World/WorldObjects/EnemyCounter.tscn" id="12_g3l2s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
 texture = ExtResource("1_ewn0l")
@@ -129,6 +129,9 @@ size = Vector2(2010, 1162)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_go142"]
 size = Vector2(976, 4660)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhwbx"]
+size = Vector2(464, 462)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d6jdp"]
 size = Vector2(1898, 464)
@@ -390,6 +393,14 @@ script = ExtResource("10_p0qse")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer"]
 position = Vector2(40, 1242)
 shape = SubResource("RectangleShape2D_go142")
+
+[node name="PropertyDetectingPlayer2" type="Area2D" parent="2DObjects/Rooms/MainHallway"]
+position = Vector2(2689, 4024)
+script = ExtResource("10_p0qse")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer2"]
+position = Vector2(-530, 394)
+shape = SubResource("RectangleShape2D_nhwbx")
 
 [node name="PuzzleRoomHallway" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(2694, 1200)
@@ -755,6 +766,8 @@ whipAttackSpawner = ExtResource("10_uhk1o")
 [connection signal="leverFlipped" from="2DObjects/Rooms/MainHallway/Lever" to="2DObjects/Rooms/MainHallway/DungeonExit" method="onTriggered"]
 [connection signal="body_entered" from="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer" method="_on_body_exited"]
+[connection signal="body_entered" from="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer2" to="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer2" method="_on_body_entered"]
+[connection signal="body_exited" from="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer2" to="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer2" method="_on_body_exited"]
 [connection signal="body_entered" from="2DObjects/Rooms/PuzzleRoomHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoomHallway/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/PuzzleRoomHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoomHallway/PropertyDetectingPlayer" method="_on_body_exited"]
 [connection signal="body_entered" from="2DObjects/Rooms/Barracks/PropertyDetectingPlayer" to="2DObjects/Rooms/Barracks/PropertyDetectingPlayer" method="_on_body_entered"]
