@@ -1,4 +1,4 @@
-class_name EnemyCounter extends AnimatedSprite2D
+class_name EnemyCounter extends WorldObject
 
 @export var enemiesLeft = 0
 

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://breu2j1tgd3kj"]
+
+[ext_resource type="Texture2D" uid="uid://q1l4hs0yrgrk" path="res://Assets/SlippyBoxPushPuzzleBoxBlue.png" id="1_fkuam"]
+[ext_resource type="Script" uid="uid://bwynw8g2wrp38" path="res://Scripts/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzleBoxBlue.gd" id="1_ue118"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8boa"]
+size = Vector2(65, 59)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l8boa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fkuam")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SlippyBoxPushPuzzleBoxBlue" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_ue118")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -0.5)
+shape = SubResource("RectangleShape2D_l8boa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -1)
+sprite_frames = SubResource("SpriteFrames_l8boa")

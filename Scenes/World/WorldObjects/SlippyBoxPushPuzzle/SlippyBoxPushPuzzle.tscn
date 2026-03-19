@@ -1,0 +1,145 @@
+[gd_scene load_steps=10 format=3 uid="uid://cel6itjonug3b"]
+
+[ext_resource type="Texture2D" uid="uid://c252vnemvlpfg" path="res://Assets/SlippyBoxPushPuzzle.png" id="1_gjpjw"]
+[ext_resource type="Script" uid="uid://eltijqoooyw2" path="res://Scripts/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzle.gd" id="2_mkii4"]
+[ext_resource type="PackedScene" uid="uid://dk8f8mca5nee4" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzleBoxGreen.tscn" id="3_7wicf"]
+[ext_resource type="PackedScene" uid="uid://btq4po11so2c6" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzleBoxRed.tscn" id="4_6yaoj"]
+[ext_resource type="PackedScene" uid="uid://breu2j1tgd3kj" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzleBoxBlue.tscn" id="5_x2dp6"]
+[ext_resource type="Texture2D" uid="uid://bm2a7ogixw8t5" path="res://Assets/SlippyBoxPushPuzzleBoxGoal.png" id="6_4r25k"]
+[ext_resource type="PackedScene" uid="uid://dxa7w77pqyf4e" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzleBoxBlack.tscn" id="6_6yaoj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ycpa"]
+size = Vector2(66, 59)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ycpa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_4r25k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SlippyBoxPushPuzzle" type="Sprite2D"]
+texture = ExtResource("1_gjpjw")
+script = ExtResource("2_mkii4")
+
+[node name="SlippyBoxPushPuzzleBoxBlue" parent="." instance=ExtResource("5_x2dp6")]
+position = Vector2(-271, 253)
+
+[node name="SlippyBoxPushPuzzleBoxGoal" type="Area2D" parent="."]
+position = Vector2(273, -252)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlippyBoxPushPuzzleBoxGoal"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_5ycpa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SlippyBoxPushPuzzleBoxGoal"]
+sprite_frames = SubResource("SpriteFrames_5ycpa")
+
+[node name="Blacks" type="Node2D" parent="."]
+
+[node name="SlippyBoxPushPuzzleBoxBlack" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(-272, 0)
+
+[node name="SlippyBoxPushPuzzleBoxBlack3" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(-340, -63)
+
+[node name="SlippyBoxPushPuzzleBoxBlack2" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(-204, 315)
+
+[node name="SlippyBoxPushPuzzleBoxBlack4" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(273, 315)
+
+[node name="SlippyBoxPushPuzzleBoxBlack6" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(273, 126)
+
+[node name="SlippyBoxPushPuzzleBoxBlack7" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(273, 0)
+
+[node name="SlippyBoxPushPuzzleBoxBlack8" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(69, 63)
+
+[node name="SlippyBoxPushPuzzleBoxBlack9" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(68, -63)
+
+[node name="SlippyBoxPushPuzzleBoxBlack10" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(69, -126)
+
+[node name="SlippyBoxPushPuzzleBoxBlack11" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(137, -126)
+
+[node name="SlippyBoxPushPuzzleBoxBlack12" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(-68, -189)
+
+[node name="SlippyBoxPushPuzzleBoxBlack15" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(341, -189)
+
+[node name="SlippyBoxPushPuzzleBoxBlack16" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(341, -252)
+
+[node name="SlippyBoxPushPuzzleBoxBlack17" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(69, -315)
+
+[node name="SlippyBoxPushPuzzleBoxBlack18" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(-68, -315)
+
+[node name="SlippyBoxPushPuzzleBoxBlack14" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(-272, -252)
+
+[node name="SlippyBoxPushPuzzleBoxBlack13" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(-136, -126)
+
+[node name="SlippyBoxPushPuzzleBoxBlack5" parent="Blacks" instance=ExtResource("6_6yaoj")]
+position = Vector2(137, 252)
+
+[node name="Greens" type="Node2D" parent="."]
+
+[node name="SlippyBoxPushPuzzleBoxGreen" parent="Greens" instance=ExtResource("3_7wicf")]
+position = Vector2(-136, 252)
+
+[node name="SlippyBoxPushPuzzleBoxGreen3" parent="Greens" instance=ExtResource("3_7wicf")]
+position = Vector2(-204, 0)
+
+[node name="SlippyBoxPushPuzzleBoxGreen5" parent="Greens" instance=ExtResource("3_7wicf")]
+position = Vector2(-272, -126)
+
+[node name="SlippyBoxPushPuzzleBoxGreen4" parent="Greens" instance=ExtResource("3_7wicf")]
+position = Vector2(-68, 0)
+
+[node name="SlippyBoxPushPuzzleBoxGreen6" parent="Greens" instance=ExtResource("3_7wicf")]
+position = Vector2(0, -63)
+
+[node name="SlippyBoxPushPuzzleBoxGreen7" parent="Greens" instance=ExtResource("3_7wicf")]
+position = Vector2(204, -252)
+
+[node name="SlippyBoxPushPuzzleBoxGreen2" parent="Greens" instance=ExtResource("3_7wicf")]
+position = Vector2(-68, 315)
+
+[node name="Reds" type="Node2D" parent="."]
+
+[node name="SlippyBoxPushPuzzleBoxRed" parent="Reds" instance=ExtResource("4_6yaoj")]
+position = Vector2(0, 252)
+
+[node name="SlippyBoxPushPuzzleBoxRed4" parent="Reds" instance=ExtResource("4_6yaoj")]
+position = Vector2(273, 252)
+
+[node name="SlippyBoxPushPuzzleBoxRed5" parent="Reds" instance=ExtResource("4_6yaoj")]
+position = Vector2(340, -126)
+
+[node name="SlippyBoxPushPuzzleBoxRed6" parent="Reds" instance=ExtResource("4_6yaoj")]
+position = Vector2(204, -189)
+
+[node name="SlippyBoxPushPuzzleBoxRed7" parent="Reds" instance=ExtResource("4_6yaoj")]
+position = Vector2(273, -315)
+
+[node name="SlippyBoxPushPuzzleBoxRed2" parent="Reds" instance=ExtResource("4_6yaoj")]
+position = Vector2(-272, 189)
+
+[node name="SlippyBoxPushPuzzleBoxRed3" parent="Reds" instance=ExtResource("4_6yaoj")]
+position = Vector2(-136, 126)
+
+[connection signal="body_entered" from="SlippyBoxPushPuzzleBoxGoal" to="." method="onBoxEnteredGoal"]
+[connection signal="body_exited" from="SlippyBoxPushPuzzleBoxGoal" to="." method="onBoxExitedGoal"]

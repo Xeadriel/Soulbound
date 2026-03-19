@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://cy4vn64vtg0f7"]
+[gd_scene load_steps=39 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_ewn0l"]
 [ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/UserInterface/AutoCamera.tscn" id="2_8p3qi"]
@@ -16,7 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://ceausjasnh7kj" path="res://Scenes/Players/Player2.tscn" id="11_pwrpc"]
 [ext_resource type="PackedScene" uid="uid://gmsqxr0sxmb6" path="res://Scenes/World/WorldObjects/Door.tscn" id="12_8p3qi"]
 [ext_resource type="PackedScene" uid="uid://dqfevetwhseag" path="res://Scenes/World/WorldObjects/EnemyCounter.tscn" id="12_g3l2s"]
-[ext_resource type="PackedScene" uid="uid://cel6itjonug3b" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle.tscn" id="13_2n2dr"]
+[ext_resource type="PackedScene" uid="uid://cel6itjonug3b" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzle.tscn" id="13_2n2dr"]
+[ext_resource type="PackedScene" uid="uid://cg6qjhdlijf55" path="res://Scenes/World/WorldObjects/FloorButton.tscn" id="13_6m3rn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
 texture = ExtResource("1_ewn0l")
@@ -486,6 +487,18 @@ rotation = 1.5708
 
 [node name="Lever" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("9_8p3qi")]
 position = Vector2(904, 168)
+
+[node name="FloorButtonUp" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("13_6m3rn")]
+position = Vector2(-71, 318)
+
+[node name="FloorButtonDown" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("13_6m3rn")]
+position = Vector2(-71, 494)
+
+[node name="FloorButtonLeft" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("13_6m3rn")]
+position = Vector2(-143, 403)
+
+[node name="FloorButtonRight" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("13_6m3rn")]
+position = Vector2(1, 403)
 
 [node name="SlippyBoxPushPuzzle" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("13_2n2dr")]
 position = Vector2(425, 174)
