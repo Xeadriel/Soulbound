@@ -1,8 +1,4 @@
 extends Control
 
-
-func _ready() -> void:
-	pass # Replace with function body.
-
-func _process(delta: float) -> void:
-	pass
+func getPosFrom(id: int):
+	print(self.get_child(id).global_position)

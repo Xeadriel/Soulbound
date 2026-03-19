@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6u20aowetxb"]
+
+[ext_resource type="Texture2D" uid="uid://6tv27vk3bac4" path="res://Assets/UI Pack OS/minimap_compass_future_n.png" id="1_wad0n"]
+
+[node name="CurrentLocationSign" type="TextureRect"]
+offset_right = 13.0
+offset_bottom = 15.0
+texture = ExtResource("1_wad0n")
