@@ -330,6 +330,7 @@ aggroRange = 800.0
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/ChaliceAltarRoom"]
 position = Vector2(1321, -762)
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer"]
@@ -394,6 +395,7 @@ scale = Vector2(1, 7.50942)
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/MainHallway"]
 position = Vector2(1360, 1314)
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer"]
@@ -402,6 +404,7 @@ shape = SubResource("RectangleShape2D_go142")
 
 [node name="PropertyDetectingPlayer2" type="Area2D" parent="2DObjects/Rooms/MainHallway"]
 position = Vector2(2689, 4024)
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer2"]
@@ -432,6 +435,7 @@ position = Vector2(698, 270)
 rotation = 1.5708
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/PuzzleRoomHallway"]
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/PuzzleRoomHallway/PropertyDetectingPlayer"]
@@ -462,6 +466,7 @@ texture = ExtResource("3_5yy2f")
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/Barracks"]
 position = Vector2(-682, 34)
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/Barracks/PropertyDetectingPlayer"]
@@ -485,6 +490,7 @@ atkRange = 500.0
 aggroRange = 800.0
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/PuzzleRoom"]
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer"]
@@ -524,6 +530,7 @@ position = Vector2(253, -39)
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/FoodHallway"]
 position = Vector2(746, 24)
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer"]
@@ -549,6 +556,7 @@ atkRange = 500.0
 aggroRange = 800.0
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/FoodHallway2"]
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/FoodHallway2/PropertyDetectingPlayer"]
@@ -603,6 +611,7 @@ texture = ExtResource("3_5yy2f")
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/FoodRoom"]
 position = Vector2(23, 237)
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/FoodRoom/PropertyDetectingPlayer"]
@@ -622,6 +631,7 @@ position = Vector2(-136, -84)
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/MiniBossHallway"]
 position = Vector2(254, 231)
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/MiniBossHallway/PropertyDetectingPlayer"]
@@ -639,6 +649,7 @@ scale = Vector2(1.69907, 2.23077)
 texture = ExtResource("3_5yy2f")
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/MiniBossRoom"]
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer"]
@@ -669,6 +680,7 @@ metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/WhipPuzzleRoom"]
 position = Vector2(462, 13)
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/WhipPuzzleRoom/PropertyDetectingPlayer"]
@@ -697,6 +709,7 @@ atkRange = 500.0
 aggroRange = 800.0
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryHallway"]
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/RuinedDormitoryHallway/PropertyDetectingPlayer"]
@@ -728,6 +741,7 @@ script = ExtResource("7_6m3rn")
 metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryBotLeft"]
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/RuinedDormitoryBotLeft/PropertyDetectingPlayer"]
@@ -745,6 +759,7 @@ scale = Vector2(0.768519, 1)
 texture = ExtResource("3_5yy2f")
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryTopLeft"]
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/RuinedDormitoryTopLeft/PropertyDetectingPlayer"]
@@ -757,6 +772,7 @@ script = ExtResource("7_6m3rn")
 metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryTopRight"]
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/RuinedDormitoryTopRight/PropertyDetectingPlayer"]
@@ -770,6 +786,7 @@ metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryBotRight"]
 position = Vector2(29, -39)
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/RuinedDormitoryBotRight/PropertyDetectingPlayer"]
@@ -787,6 +804,7 @@ scale = Vector2(0.768519, 1)
 texture = ExtResource("3_5yy2f")
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryBig"]
+collision_layer = 0
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer"]
