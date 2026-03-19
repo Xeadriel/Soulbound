@@ -26,18 +26,29 @@ func openMenu() -> void:
 	self.visible = true;
 	$Inventory.updateInventoryState()
 	get_tree().paused = true;
+	updateMapState()
 
 func closeMenu() -> void:
 	self.visible = false;
 	get_tree().paused = false;
-
+	
+func updateMapState():
+	var dungeonMapNode: Panel = $Map/MarginContainer/VBoxContainer/MapPanel/Dungeon
+	var pointers: Node = $Map/MarginContainer/VBoxContainer/MapPanel/Dungeon/pointers
+	for key in GlobalStates.seenRooms:
+		var roomNode: AnimatedSprite2D = dungeonMapNode.get_child(GlobalStates.seenRooms[key])
+		roomNode.self_modulate = Color(1, 1, 1)
+	for p in pointers.get_children():
+		p.visible = false
+	pointers.get_child(GlobalStates.lastRoomVisited).visible = true
+	
 func _process(delta: float) -> void:
 	if EventHandler.isPlayerInputJustPressed("pause"):
 		if(self.visible):
 			closeMenu();
 		else:
 			openMenu();
-	elif self.visible && EventHandler.isPlayerInputJustPressed("interact"):
+	elif self.visible && (EventHandler.isPlayerInputJustPressed("interact") || EventHandler.isPlayerInputJustPressed("interact2")):
 		if(currentPageIndex < pages.size() - 1):
 			currentPageIndex += 1;
 			pages[currentPageIndex].grab_focus()
@@ -45,7 +56,7 @@ func _process(delta: float) -> void:
 			tw.tween_property(self, "position:x", 
 			-currentPageIndex * pageWidth - cameraOffset, 
 			0.3);
-	elif self.visible && EventHandler.isPlayerInputJustPressed("block"):
+	elif self.visible && (EventHandler.isPlayerInputJustPressed("block") || EventHandler.isPlayerInputJustPressed("block2")):
 		if(currentPageIndex > 0):
 			currentPageIndex -= 1;
 			pages[currentPageIndex].grab_focus()

@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgacqwaotk5mh"]
+[gd_scene load_steps=9 format=3 uid="uid://dgacqwaotk5mh"]
 
 [ext_resource type="PackedScene" uid="uid://rb6uyrvvg0hc" path="res://Scenes/DungeonMaps/Dungeon1.tscn" id="1_hfx5t"]
-[ext_resource type="Script" uid="uid://b18osj4y4olx6" path="res://Scripts/UserInterface/map.gd" id="1_ufglk"]
 
 [sub_resource type="Gradient" id="Gradient_xcowf"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -41,7 +40,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ufglk")
 
 [node name="BgGradient" type="TextureRect" parent="."]
 layout_mode = 1
@@ -99,7 +97,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.47451, 0.47451, 0.47451, 1)
 
-[node name="Dungeon1" parent="MarginContainer/VBoxContainer/MapPanel" instance=ExtResource("1_hfx5t")]
+[node name="Dungeon" parent="MarginContainer/VBoxContainer/MapPanel" instance=ExtResource("1_hfx5t")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

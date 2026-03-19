@@ -75,13 +75,6 @@ signal itemAssignedToQuickSlot(item: Item, quickslot: GlobalConstants.QuickSlotI
 signal itemAssignedToQuickSlot2(item: Item, quickslot: GlobalConstants.QuickSlotIndices)
 signal itemReceived(item : GlobalConstants.ItemIndices, amount : int)
 
-signal player1Entered
-signal player1Exited
-signal player2Entered
-signal player2Exited
-signal bothPlayersEntered
-signal bothPlayersExited
-
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
