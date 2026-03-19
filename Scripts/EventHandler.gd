@@ -82,11 +82,9 @@ func playerDied(playerNumber):
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:
-
 	for input in playerInputs.keys():
 		if not event.is_action(input):
 			continue
-
 		if event.is_pressed() and not playerInputs[input]:
 			playerInputs[input] = true
 			playerInputsJustPressed[input] = true
