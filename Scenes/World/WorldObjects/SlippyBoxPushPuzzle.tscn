@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cel6itjonug3b"]
+
+[ext_resource type="Texture2D" uid="uid://c252vnemvlpfg" path="res://Assets/SlippyBoxPushPuzzle.png" id="1_gjpjw"]
+
+[node name="SlippyBoxPushPuzzle" type="Sprite2D"]
+texture = ExtResource("1_gjpjw")
