@@ -37,10 +37,12 @@ func updateMapState():
 	var pointers: Node = $Map/MarginContainer/VBoxContainer/MapPanel/Dungeon/pointers
 	for key in GlobalStates.seenRooms:
 		var roomNode: AnimatedSprite2D = dungeonMapNode.get_child(GlobalStates.seenRooms[key])
-		roomNode.self_modulate = Color(1, 1, 1)
+		roomNode.self_modulate = Color(0.329, 0.329, 0.329)
+		roomNode.visible = true
 	for p in pointers.get_children():
 		p.visible = false
 	pointers.get_child(GlobalStates.lastRoomVisited).visible = true
+	dungeonMapNode.get_child(GlobalStates.lastRoomVisited).self_modulate = Color(1, 1, 1)
 	
 func _process(delta: float) -> void:
 	if EventHandler.isPlayerInputJustPressed("pause"):
