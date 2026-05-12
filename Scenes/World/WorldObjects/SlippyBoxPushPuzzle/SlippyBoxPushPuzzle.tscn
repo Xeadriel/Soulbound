@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://cel6itjonug3b"]
+[gd_scene load_steps=9 format=3 uid="uid://cel6itjonug3b"]
 
-[ext_resource type="Texture2D" uid="uid://c252vnemvlpfg" path="res://Assets/SlippyBoxPushPuzzle.png" id="1_gjpjw"]
 [ext_resource type="Script" uid="uid://eltijqoooyw2" path="res://Scripts/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzle.gd" id="2_mkii4"]
 [ext_resource type="PackedScene" uid="uid://dk8f8mca5nee4" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzleBoxGreen.tscn" id="3_7wicf"]
 [ext_resource type="PackedScene" uid="uid://btq4po11so2c6" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzleBoxRed.tscn" id="4_6yaoj"]
@@ -23,11 +22,11 @@ animations = [{
 }]
 
 [node name="SlippyBoxPushPuzzle" type="Sprite2D"]
-texture = ExtResource("1_gjpjw")
+position = Vector2(372, 344)
 script = ExtResource("2_mkii4")
 
 [node name="SlippyBoxPushPuzzleBoxBlue" parent="." instance=ExtResource("5_x2dp6")]
-position = Vector2(-271, 253)
+position = Vector2(-272, 252)
 
 [node name="SlippyBoxPushPuzzleBoxGoal" type="Area2D" parent="."]
 position = Vector2(273, -252)
@@ -38,6 +37,26 @@ shape = SubResource("RectangleShape2D_5ycpa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SlippyBoxPushPuzzleBoxGoal"]
 sprite_frames = SubResource("SpriteFrames_5ycpa")
+
+[node name="Borders" type="Node2D" parent="."]
+
+[node name="BorderLeft" parent="Borders" instance=ExtResource("6_6yaoj")]
+position = Vector2(-375.5, -1.50003)
+scale = Vector2(0.0769231, 11.9153)
+
+[node name="BorderRight" parent="Borders" instance=ExtResource("6_6yaoj")]
+position = Vector2(376.5, -1.50003)
+scale = Vector2(0.0769231, 11.9153)
+
+[node name="BorderTop" parent="Borders" instance=ExtResource("6_6yaoj")]
+position = Vector2(5.83984, -347.5)
+rotation = 1.5708
+scale = Vector2(0.0769231, 13.4808)
+
+[node name="BorderBot" parent="Borders" instance=ExtResource("6_6yaoj")]
+position = Vector2(5.83972, 347.5)
+rotation = 1.5708
+scale = Vector2(0.0769231, 13.4808)
 
 [node name="Blacks" type="Node2D" parent="."]
 
@@ -66,10 +85,10 @@ position = Vector2(69, 63)
 position = Vector2(68, -63)
 
 [node name="SlippyBoxPushPuzzleBoxBlack10" parent="Blacks" instance=ExtResource("6_6yaoj")]
-position = Vector2(69, -126)
+position = Vector2(68, -126)
 
 [node name="SlippyBoxPushPuzzleBoxBlack11" parent="Blacks" instance=ExtResource("6_6yaoj")]
-position = Vector2(137, -126)
+position = Vector2(136, -126)
 
 [node name="SlippyBoxPushPuzzleBoxBlack12" parent="Blacks" instance=ExtResource("6_6yaoj")]
 position = Vector2(-68, -189)
@@ -90,7 +109,7 @@ position = Vector2(-68, -315)
 position = Vector2(-272, -252)
 
 [node name="SlippyBoxPushPuzzleBoxBlack13" parent="Blacks" instance=ExtResource("6_6yaoj")]
-position = Vector2(-136, -126)
+position = Vector2(-137, -126)
 
 [node name="SlippyBoxPushPuzzleBoxBlack5" parent="Blacks" instance=ExtResource("6_6yaoj")]
 position = Vector2(137, 252)
@@ -127,7 +146,7 @@ position = Vector2(0, 252)
 position = Vector2(273, 252)
 
 [node name="SlippyBoxPushPuzzleBoxRed5" parent="Reds" instance=ExtResource("4_6yaoj")]
-position = Vector2(340, -126)
+position = Vector2(341, -126)
 
 [node name="SlippyBoxPushPuzzleBoxRed6" parent="Reds" instance=ExtResource("4_6yaoj")]
 position = Vector2(204, -189)

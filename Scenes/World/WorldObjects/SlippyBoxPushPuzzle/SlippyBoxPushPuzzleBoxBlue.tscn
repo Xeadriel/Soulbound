@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bwynw8g2wrp38" path="res://Scripts/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzleBoxBlue.gd" id="1_ue118"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8boa"]
-size = Vector2(65, 59)
+size = Vector2(63, 58)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l8boa"]
 animations = [{
@@ -18,13 +18,13 @@ animations = [{
 }]
 
 [node name="SlippyBoxPushPuzzleBoxBlue" type="CharacterBody2D"]
+collision_layer = 524288
+collision_mask = 524288
 motion_mode = 1
 script = ExtResource("1_ue118")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, -0.5)
 shape = SubResource("RectangleShape2D_l8boa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -1)
 sprite_frames = SubResource("SpriteFrames_l8boa")

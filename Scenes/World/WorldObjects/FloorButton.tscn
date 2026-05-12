@@ -40,3 +40,7 @@ shape = SubResource("RectangleShape2D_qqy2b")
 
 [connection signal="body_entered" from="PropertyDetectingPlayer" to="PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="PropertyDetectingPlayer" to="PropertyDetectingPlayer" method="_on_body_exited"]
+[connection signal="player1Entered" from="PropertyDetectingPlayer" to="." method="onEntered"]
+[connection signal="player1Exited" from="PropertyDetectingPlayer" to="." method="onExited"]
+[connection signal="player2Entered" from="PropertyDetectingPlayer" to="." method="onEntered"]
+[connection signal="player2Exited" from="PropertyDetectingPlayer" to="." method="onExited"]

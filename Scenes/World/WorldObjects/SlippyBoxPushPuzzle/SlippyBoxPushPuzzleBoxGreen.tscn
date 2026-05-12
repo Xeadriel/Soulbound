@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk8f8mca5nee4"]
+[gd_scene load_steps=5 format=3 uid="uid://dk8f8mca5nee4"]
 
 [ext_resource type="Texture2D" uid="uid://n46q1j0i7lbc" path="res://Assets/SlippyBoxPushPuzzleBoxGreen.png" id="1_7lpgd"]
+[ext_resource type="Script" uid="uid://d1sd533guvaol" path="res://Scripts/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzleBoxTogglable.gd" id="2_f3gfp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lnspb"]
 animations = [{
@@ -14,12 +15,15 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4r25k"]
-size = Vector2(73, 66)
+size = Vector2(71, 67)
 
 [node name="SlippyBoxPushPuzzleBoxGreen" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_lnspb")
+script = ExtResource("2_f3gfp")
 
 [node name="SlippyBoxPushPuzzleBoxGreen" type="StaticBody2D" parent="."]
+collision_layer = 524288
+collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlippyBoxPushPuzzleBoxGreen"]
 shape = SubResource("RectangleShape2D_4r25k")

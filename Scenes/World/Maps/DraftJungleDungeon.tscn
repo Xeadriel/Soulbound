@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://cy4vn64vtg0f7"]
+[gd_scene load_steps=40 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_ewn0l"]
 [ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/UserInterface/AutoCamera.tscn" id="2_8p3qi"]
@@ -305,7 +305,6 @@ offset_bottom = -248.0
 
 [node name="ChaliceAltarRoom" type="Node2D" parent="2DObjects/Rooms"]
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="Goblin1" parent="2DObjects/Rooms/ChaliceAltarRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(1093, -33)
@@ -341,7 +340,6 @@ shape = SubResource("RectangleShape2D_g3l2s")
 [node name="MainHallway" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(-52, 0)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="Wizard4" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("8_6m3rn")]
 position = Vector2(1677, 1505)
@@ -415,7 +413,6 @@ shape = SubResource("RectangleShape2D_nhwbx")
 [node name="PuzzleRoomHallway" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(2694, 1200)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="Goblin1" parent="2DObjects/Rooms/PuzzleRoomHallway" instance=ExtResource("7_2n2dr")]
 position = Vector2(-399, -77)
@@ -446,7 +443,6 @@ shape = SubResource("RectangleShape2D_d6jdp")
 [node name="Barracks" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(3982, 1764)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="Goblin1" parent="2DObjects/Rooms/Barracks" instance=ExtResource("7_2n2dr")]
 position = Vector2(0, 1)
@@ -477,7 +473,6 @@ shape = SubResource("RectangleShape2D_hkek3")
 [node name="PuzzleRoom" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(4522, 844)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="Goblin1" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(-195, 128)
@@ -502,7 +497,7 @@ shape = SubResource("RectangleShape2D_p0qse")
 position = Vector2(-108, -272)
 rotation = 1.5708
 
-[node name="Lever" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("9_8p3qi")]
+[node name="ColorSwitch" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("9_8p3qi")]
 position = Vector2(904, 168)
 
 [node name="FloorButtonUp" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("13_6m3rn")]
@@ -523,7 +518,6 @@ position = Vector2(425, 174)
 [node name="PuzzleRoomReward" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(4522, 844)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="ChestPlaceholder2" type="Sprite2D" parent="2DObjects/Rooms/PuzzleRoomReward"]
 position = Vector2(-105, -536)
@@ -533,7 +527,6 @@ texture = ExtResource("3_5yy2f")
 [node name="FoodHallway" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(-980, 1167)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="Goblin1" parent="2DObjects/Rooms/FoodHallway" instance=ExtResource("7_2n2dr")]
 position = Vector2(232, 145)
@@ -556,7 +549,6 @@ position = Vector2(-234, 62)
 [node name="FoodHallway2" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(-1508, 1343)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="Wizard3" parent="2DObjects/Rooms/FoodHallway2" instance=ExtResource("8_6m3rn")]
 position = Vector2(-57, 460)
@@ -588,7 +580,6 @@ key = 2
 [node name="FoodRoom" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(-1359, -621)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="FirePlace" type="Sprite2D" parent="2DObjects/Rooms/FoodRoom"]
 position = Vector2(-347, 101)
@@ -634,7 +625,6 @@ shape = SubResource("RectangleShape2D_2n2dr")
 [node name="MiniBossHallway" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(-2290, 2756)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="Goblin" parent="2DObjects/Rooms/MiniBossHallway" instance=ExtResource("7_2n2dr")]
 position = Vector2(-42, 152)
@@ -654,7 +644,6 @@ shape = SubResource("RectangleShape2D_km6ku")
 [node name="MiniBossRoom" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(-1538, 4533)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="ChestPlaceholder3" type="Sprite2D" parent="2DObjects/Rooms/MiniBossRoom"]
 position = Vector2(8.99997, 8)
@@ -689,7 +678,6 @@ position = Vector2(73, -289)
 [node name="WhipPuzzleRoom" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(-616, 3109)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/WhipPuzzleRoom"]
 position = Vector2(462, 13)
@@ -703,7 +691,6 @@ shape = SubResource("RectangleShape2D_6m3rn")
 [node name="RuinedDormitoryHallway" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(2688, 3109)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="Goblin5" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("7_2n2dr")]
 position = Vector2(9, -68)
@@ -751,7 +738,6 @@ position = Vector2(1215, 30)
 [node name="RuinedDormitoryBotLeft" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(2613, 3698)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryBotLeft"]
 collision_layer = 0
@@ -764,7 +750,6 @@ shape = SubResource("RectangleShape2D_0r1y5")
 [node name="RuinedDormitoryTopLeft" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(2584, 2622)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="ChestPlaceholder3" type="Sprite2D" parent="2DObjects/Rooms/RuinedDormitoryTopLeft"]
 position = Vector2(31, -253)
@@ -782,7 +767,6 @@ shape = SubResource("RectangleShape2D_uhk1o")
 [node name="RuinedDormitoryTopRight" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(3365, 2599)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryTopRight"]
 collision_layer = 0
@@ -795,7 +779,6 @@ shape = SubResource("RectangleShape2D_pwrpc")
 [node name="RuinedDormitoryBotRight" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(3375, 3725)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryBotRight"]
 position = Vector2(29, -39)
@@ -809,7 +792,6 @@ shape = SubResource("RectangleShape2D_0kwpc")
 [node name="RuinedDormitoryBig" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(4249, 3131)
 script = ExtResource("7_6m3rn")
-metadata/_custom_type_script = "uid://cpsglkwpt5min"
 
 [node name="ChestPlaceholder4" type="Sprite2D" parent="2DObjects/Rooms/RuinedDormitoryBig"]
 position = Vector2(290, 10)
@@ -855,6 +837,12 @@ whipAttackSpawner = ExtResource("10_uhk1o")
 [connection signal="body_entered" from="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" method="_on_body_exited"]
 [connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoom" method="updateRoomStatus"]
+[connection signal="leverFlipped" from="2DObjects/Rooms/PuzzleRoom/ColorSwitch" to="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" method="pressSwitchColorButton"]
+[connection signal="triggered" from="2DObjects/Rooms/PuzzleRoom/FloorButtonUp" to="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" method="pressUpButton"]
+[connection signal="triggered" from="2DObjects/Rooms/PuzzleRoom/FloorButtonDown" to="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" method="pressDownButton"]
+[connection signal="triggered" from="2DObjects/Rooms/PuzzleRoom/FloorButtonLeft" to="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" method="pressLeftButton"]
+[connection signal="triggered" from="2DObjects/Rooms/PuzzleRoom/FloorButtonRight" to="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" method="pressRightButton"]
+[connection signal="solved" from="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" to="2DObjects/Rooms/PuzzleRoom/DoorTrigger" method="onTriggered"]
 [connection signal="body_entered" from="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" method="_on_body_exited"]
 [connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodHallway" method="updateRoomStatus"]
