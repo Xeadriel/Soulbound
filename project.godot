@@ -8,6 +8,10 @@
 
 config_version=5
 
+[addons]
+
+markdown_book/docs_folder="res://"
+
 [application]
 
 config/name="Soulbound"
@@ -31,7 +35,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/madtalk/plugin.cfg")
+enabled=PackedStringArray("res://addons/markdown_book/plugin.cfg", "res://addons/markdownlabel/plugin.cfg")
 
 [global_group]
 

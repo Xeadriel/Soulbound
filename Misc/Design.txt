@@ -6,6 +6,35 @@
 
 Enemies:
 
+Miniboss:
+	- elf, hermit death cult member (former leader of religion of death)
+	attacks:
+		- single swipe melee attack
+		- dagger cone
+		- needs goblin sacrifice: at goblin location: 12 blood daggers in all directions
+		- needs goblin sacrifice: 3 blood daggers circle random player, 
+		- needs goblin sacrifice: gain shield
+	movement:
+		- moves slowly strafing nearest player trying hold distance (weak priority to hold distance)
+		- occasionally (or on certain hp damage) sacrifices goblin to teleport
+	behavior:
+		1 keep minimum distance, on random time choose weighted action, 
+		  on random time and if blood dagger circle exist: goto 3
+		2 strafe closest player, goto 1 if too close,
+		  on random time and if blood dagger circle exist: goto 3,
+		  on random time choose random action based on probability,
+		3 telegraf, goto 4 or goto 1 if circling dagger chosen
+		4 attack, goto 1
+	weighted action probability:
+		- point system, assign points to each action, divide points by total points => probability
+		- melee attack swipe: hasShield +5, isTooClose: +5, isTooFar: set to 0
+		- teleport: isTooClose: +5, hasNoShield: +5, isFarEnough: -5, hasNoGoblin: set to 0
+		- dagger cone: TooCloseAndHasShield: +5, isFarEnough: +10, hasNoGoblin: +5
+		- dagger explosion: TooClose: -10, hasShield: +5, isFarEnough: +10, hasNoGoblin: set to 0
+		- 3 circling daggers: TooClose: -10, hasShield: +5, isFarEnough: +10, hasNoGoblin: set to 0
+		- 
+		
+
 Goblin:
 	1 walk up to nearest player
 	2 walk in circle around player

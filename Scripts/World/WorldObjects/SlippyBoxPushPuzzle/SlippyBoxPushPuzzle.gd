@@ -16,7 +16,7 @@ func onBoxEnteredGoal(box):
 
 func onBoxExitedGoal(box):
 	if box is SlippyBoxPushPuzzleBoxBlue:
-		solved.emit(true)
+		solved.emit(false)
 
 func pressUpButton(state : bool):
 	if state:

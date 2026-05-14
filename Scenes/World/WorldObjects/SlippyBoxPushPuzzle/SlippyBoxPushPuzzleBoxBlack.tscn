@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dowl8x8vn5ox4" path="res://Assets/SlippyBoxPushPuzzleBoxBlack.png" id="1_4rqob"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46ql5"]
+size = Vector2(64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_46ql5"]
 animations = [{
 "frames": [{
@@ -13,15 +16,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_46ql5"]
-size = Vector2(71, 67)
-
-[node name="SlippyBoxPushPuzzleBoxBlack" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_46ql5")
-
-[node name="SlippyBoxPushPuzzleBoxBlack" type="StaticBody2D" parent="."]
+[node name="SlippyBoxPushPuzzleBoxBlack" type="StaticBody2D"]
 collision_layer = 524288
 collision_mask = 524288
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SlippyBoxPushPuzzleBoxBlack"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
 shape = SubResource("RectangleShape2D_46ql5")
+
+[node name="SlippyBoxPushPuzzleBoxBlack" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_46ql5")
+centered = false

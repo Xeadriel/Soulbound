@@ -15,6 +15,8 @@ func _physics_process(delta: float) -> void:
 	if distance <= 1:
 		velocity.x = 0
 		velocity.y = 0
+	
+	
 
 func onPushedUp():
 	if velocity.x == 0 and velocity.y == 0:
@@ -33,4 +35,5 @@ func onPushedRight():
 		velocity.x = SPEED
 
 func reachGoal():
-	set_physics_process(false)
+	#set_physics_process(false)
+	pass

@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://n46q1j0i7lbc" path="res://Assets/SlippyBoxPushPuzzleBoxGreen.png" id="1_7lpgd"]
 [ext_resource type="Script" uid="uid://d1sd533guvaol" path="res://Scripts/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzleBoxTogglable.gd" id="2_f3gfp"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r25k"]
+size = Vector2(64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_lnspb"]
 animations = [{
 "frames": [{
@@ -14,16 +17,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r25k"]
-size = Vector2(71, 67)
-
-[node name="SlippyBoxPushPuzzleBoxGreen" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_lnspb")
-script = ExtResource("2_f3gfp")
-
-[node name="SlippyBoxPushPuzzleBoxGreen" type="StaticBody2D" parent="."]
+[node name="SlippyBoxPushPuzzleBoxGreen" type="StaticBody2D"]
 collision_layer = 524288
 collision_mask = 524288
+script = ExtResource("2_f3gfp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SlippyBoxPushPuzzleBoxGreen"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
 shape = SubResource("RectangleShape2D_4r25k")
+
+[node name="SlippyBoxPushPuzzleBoxGreen" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.19209e-07, -7.15256e-07)
+sprite_frames = SubResource("SpriteFrames_lnspb")
+centered = false
