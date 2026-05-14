@@ -8,10 +8,6 @@
 
 config_version=5
 
-[addons]
-
-markdown_book/docs_folder="res://"
-
 [application]
 
 config/name="Soulbound"
@@ -23,7 +19,6 @@ config/icon="uid://bmdkrb4nsbixh"
 
 GlobalScope="*res://Scripts/GlobalScope.gd"
 EventHandler="*res://Scripts/EventHandler.gd"
-MadTalkGlobals="*res://addons/madtalk/runtime/MadTalkGlobals.tscn"
 GlobalConstants="*res://Scripts/GlobalConstants.gd"
 GlobalStates="*res://Scripts/GlobalStates.gd"
 
@@ -32,10 +27,6 @@ GlobalStates="*res://Scripts/GlobalStates.gd"
 window/size/viewport_width=1600
 window/size/viewport_height=900
 window/stretch/mode="viewport"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/markdown_book/plugin.cfg", "res://addons/markdownlabel/plugin.cfg")
 
 [global_group]
 
