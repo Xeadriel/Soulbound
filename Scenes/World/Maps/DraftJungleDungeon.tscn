@@ -701,16 +701,6 @@ position = Vector2(9, -68)
 [node name="Goblin6" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("7_2n2dr")]
 position = Vector2(13, 111)
 
-[node name="Wizard4" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("8_6m3rn")]
-position = Vector2(541, -58)
-atkRange = 500.0
-aggroRange = 800.0
-
-[node name="Wizard5" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("8_6m3rn")]
-position = Vector2(526, 121)
-atkRange = 500.0
-aggroRange = 800.0
-
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryHallway"]
 collision_layer = 0
 script = ExtResource("10_p0qse")
@@ -737,6 +727,16 @@ rotation = 1.5708
 
 [node name="Door5" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("12_8p3qi")]
 position = Vector2(1215, 30)
+
+[node name="Wizard5" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("8_6m3rn")]
+position = Vector2(541, -58)
+atkRange = 500.0
+aggroRange = 800.0
+
+[node name="Wizard6" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("8_6m3rn")]
+position = Vector2(526, 121)
+atkRange = 500.0
+aggroRange = 800.0
 
 [node name="RuinedDormitoryBotLeft" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(2613, 3698)
@@ -813,15 +813,17 @@ shape = SubResource("RectangleShape2D_vgay6")
 
 [node name="Player" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("9_0r1y5")]
 z_index = 5
-position = Vector2(4030, 1231)
+position = Vector2(2780, 3806)
 ItemQuickSlots = NodePath("../../AutoCamera/ItemQuickSelect")
 whipAttackSpawner = ExtResource("10_uhk1o")
 
 [node name="Player2" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("11_pwrpc")]
 z_index = 5
-position = Vector2(4063, 1032)
+position = Vector2(2886, 3628)
 ItemQuickSlots = NodePath("../../AutoCamera/ItemQuickSelect2")
 whipAttackSpawner = ExtResource("10_uhk1o")
+
+[node name="Projectiles" type="Node" parent="2DObjects"]
 
 [connection signal="body_entered" from="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" method="_on_body_exited"]
