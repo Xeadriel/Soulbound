@@ -4,13 +4,6 @@ class_name StateEnemy extends State
 
 @export var entity: Enemy = null
 
-const IDLE = "StateIdle"
-const RUN = "StateRun"
-const ATK = "StateAtk"
-const RUNCIRCLE = "StateRunCircle"
-const TELEGRAPH = "StateTelegraph"
-const STUNNED = "StateTelegraph"
-
 enum inRangeBehavior {ATK, CIRCLE}
 
 # Called when the node enters the scene tree for the first time.

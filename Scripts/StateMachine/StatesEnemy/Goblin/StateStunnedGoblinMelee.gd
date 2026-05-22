@@ -1,4 +1,4 @@
-class_name StateStunned extends StateEnemy
+extends StateNamesGoblinMelee
 
 var stunDurationSecs = 1.0
 var timePassed = 0

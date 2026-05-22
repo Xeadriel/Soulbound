@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://bcn44g4gb3bcc" path="res://Scripts/Enemies/boss_1.gd" id="1_ptgot"]
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="3_pqa8w"]
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="4_f76i4"]
-[ext_resource type="Script" uid="uid://ctap3ttkvlrey" path="res://Scripts/StateMachine/StatesEnemy/Boss1/StateIdle.gd" id="4_ptgot"]
-[ext_resource type="Script" uid="uid://cjdagsts0n8yh" path="res://Scripts/StateMachine/StatesEnemy/Boss1/StateStrafe.gd" id="5_6rxbb"]
-[ext_resource type="Script" uid="uid://dyrtdad8yh5ff" path="res://Scripts/StateMachine/StatesEnemy/Boss1/StateAtkMelee.gd" id="6_4lrbx"]
-[ext_resource type="Script" uid="uid://b6j1dce8bo67a" path="res://Scripts/StateMachine/StatesEnemy/Boss1/StateTelegraphSwipe.gd" id="7_6rxbb"]
-[ext_resource type="Script" uid="uid://chxki3s4o7101" path="res://Scripts/StateMachine/StatesEnemy/Boss1/StateStunned.gd" id="8_pqa8w"]
-[ext_resource type="Script" uid="uid://d1vhc0thbyqo8" path="res://Scripts/StateMachine/StatesEnemy/Boss1/StateTelegraphDaggerCone.gd" id="9_4lrbx"]
-[ext_resource type="Script" uid="uid://ddow07p80aku" path="res://Scripts/StateMachine/StatesEnemy/Boss1/StateTelegraphDaggerExplosion.gd" id="10_pqa8w"]
-[ext_resource type="Script" uid="uid://duf01t6bhsb6d" path="res://Scripts/StateMachine/StatesEnemy/Boss1/StateTelegraphCirclingDaggers.gd" id="11_f76i4"]
+[ext_resource type="Script" uid="uid://ctap3ttkvlrey" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateIdle.gd" id="4_ptgot"]
+[ext_resource type="Script" uid="uid://cjdagsts0n8yh" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateStrafe.gd" id="5_6rxbb"]
+[ext_resource type="Script" uid="uid://dyrtdad8yh5ff" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateAtkSwipe.gd" id="6_4lrbx"]
+[ext_resource type="Script" uid="uid://b6j1dce8bo67a" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTelegraphSwipe.gd" id="7_6rxbb"]
+[ext_resource type="Script" uid="uid://chxki3s4o7101" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateStunned.gd" id="8_pqa8w"]
+[ext_resource type="Script" uid="uid://d1vhc0thbyqo8" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTelegraphDaggerCone.gd" id="9_4lrbx"]
+[ext_resource type="Script" uid="uid://ddow07p80aku" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTelegraphDaggerExplosion.gd" id="10_pqa8w"]
+[ext_resource type="Script" uid="uid://duf01t6bhsb6d" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTelegraphCirclingDaggers.gd" id="11_f76i4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
 atlas = ExtResource("3_pqa8w")
@@ -822,7 +822,7 @@ height = 108.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4myx3"]
 size = Vector2(152, 164)
 
-[node name="Boss1" type="CharacterBody2D"]
+[node name="MiniBossDeathHighPriest" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 11
 motion_mode = 1
@@ -850,6 +850,7 @@ currentState = NodePath("StateIdle")
 
 [node name="StateIdle" type="Node" parent="StateMachine"]
 script = ExtResource("4_ptgot")
+slowDownSpeed = null
 
 [node name="StateStrafe" type="Node" parent="StateMachine"]
 script = ExtResource("5_6rxbb")

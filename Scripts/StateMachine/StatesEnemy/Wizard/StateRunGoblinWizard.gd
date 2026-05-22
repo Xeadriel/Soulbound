@@ -1,6 +1,6 @@
 ## Virtual base class for all states.
 ## Extend this class and override its methods to implement a state.
-class_name StateStrafe extends StateEnemy
+extends StateNamesGoblinMelee
 
 @export var SPEED : int
 
@@ -17,10 +17,13 @@ func process(_delta: float) -> void:
 	runDirCooldown  -= _delta
 	entity.target = getClosestPlayer()
 	var distance = entity.global_position.distance_to(entity.target.global_position)
+
+	
 	# not aggroed
 	if  entity.aggroRange < distance:
 		fleeDirection = Vector2.ZERO
 		finished.emit(IDLE)
+		
 	# close distance to attack
 	elif entity.atkRange < distance:
 		fleeDirection = Vector2.ZERO

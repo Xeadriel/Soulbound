@@ -1,6 +1,4 @@
-class_name StateAtkGoblin extends StateEnemy
-
-@export var nextState = RUNCIRCLE
+extends StateNamesMiniBossDeathHighPriest
 
 var canAtk: bool = true
 var elapsedTime: float
@@ -21,16 +19,14 @@ func process(_delta: float) -> void:
 func physicsProcess(_delta: float) -> void:
 	pass
 
-func enter(_pssssssrevious_state_path: String, _data := {}) -> void:
-	entity.target = getClosestPlayer()
-	entity.velocity = Vector2.ZERO
-	entity.attack()
+func enter(_previous_state_path: String, _data := {}) -> void:
+	pass
 
 func exit() -> void:
-	entity.stopAttack()
+	pass
 
 func animationFinished(animatedSprite: AnimatedSprite2D) -> void:
 	if animatedSprite.animation not in ["attackFront", "attackBack", "attackLeft", "attackRight"]:
 		return
 	
-	finished.emit(nextState)
+	finished.emit(RUN)

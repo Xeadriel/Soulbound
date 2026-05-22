@@ -1,4 +1,4 @@
-class_name StateTelegraph extends StateEnemy
+extends StateNamesMiniBossDeathHighPriest
 
 
 # Called when the node enters the scene tree for the first time.

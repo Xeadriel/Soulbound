@@ -1,4 +1,4 @@
-class_name StateAtkWizard extends StateEnemy
+extends StateNamesMiniBossDeathHighPriest
 
 var canAtk: bool = true
 var elapsedTime: float
@@ -13,6 +13,7 @@ enum Direction {
 func _ready() -> void:
 	super()
 	entity.animationFinishedSignal.connect(animationFinished)
+	
 func process(_delta: float) -> void:
 	pass
 	
@@ -20,9 +21,7 @@ func physicsProcess(_delta: float) -> void:
 	pass
 
 func enter(_previous_state_path: String, _data := {}) -> void:
-	entity.target = getClosestPlayer()
-	entity.velocity = Vector2.ZERO
-	entity.attack()
+	pass
 
 func exit() -> void:
 	pass

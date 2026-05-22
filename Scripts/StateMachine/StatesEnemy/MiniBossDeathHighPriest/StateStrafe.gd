@@ -1,8 +1,11 @@
 ## Virtual base class for all states.
 ## Extend this class and override its methods to implement a state.
-class_name StateRunGoblin extends StateEnemy
+extends StateNamesMiniBossDeathHighPriest
 
 @export var SPEED : int
+
+var runDirCooldown := 0.0
+var strafeDistance := 100.0
 
 ## Called by the state machine when receiving unhandled input events.
 func handleInput() -> void:
@@ -10,17 +13,19 @@ func handleInput() -> void:
 
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
+	runDirCooldown  -= _delta
+	
+	# get direction to player
 	entity.target = getClosestPlayer()
+	var targetDirection = entity.target.global_position - entity.global_position
 	var distance = entity.global_position.distance_to(entity.target.global_position)
-	if  entity.aggroRange < distance:
-		finished.emit(IDLE)
-	elif entity.atkRange <= distance:
-		var direction = entity.global_position.direction_to(entity.target.global_position)
-		entity.velocity = direction.normalized() * SPEED
-		entity.direction = entity.getDirectionFromVector(direction)
-		entity.run()
-	else:
-		finished.emit(RUNCIRCLE)
+	
+	# strafe direction 
+	var strafeDirection = Vector2(-targetDirection.y, targetDirection.x)
+	var distanceDiff = distance - strafeDistance
+	
+	
+	
 
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:

@@ -1,4 +1,4 @@
-class_name StateAtkGoblin extends StateEnemy
+extends StateNamesGoblinMelee
 
 @export var nextState = RUNCIRCLE
 

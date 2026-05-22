@@ -1,6 +1,6 @@
 ## Virtual base class for all states.
 ## Extend this class and override its methods to implement a state.
-class_name StateRunCircle extends StateEnemy
+extends StateNamesGoblinMelee
 
 @export var SPEED : float = 100.0
 @export var minDuration4DirChange: float = 3
