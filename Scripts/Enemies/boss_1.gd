@@ -1,10 +1,4 @@
-class_name Wizard extends Enemy
-
-@onready var atkSpawnPoint: Node2D = $AtkSpawnPoint
-
-@export var fireballScene : PackedScene = null
-@export var panicRunThresholdDistance := 300
-@export var runChance := 0.7
+class_name Boss1 extends Enemy
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -18,16 +12,13 @@ func takeDamage(dmg: int) -> void:
 
 func getDirectionToPlayer() -> Direction:
 	var dir = global_position.direction_to(target.global_position)
-	
 	var angle = dir.angle()
 	angle =  rad_to_deg(angle)
-	
 	return getDirectionFromAngle(angle)
 
 func getDirectionFromVector(dir: Vector2) -> Direction:
 	var angle = dir.angle()
 	angle =  rad_to_deg(angle)
-	
 	return getDirectionFromAngle(angle)
 
 func getDirectionFromAngle(angle: float) -> Direction:
@@ -81,13 +72,6 @@ func telegraphAttack() -> void:
 			animatedSprite.play("telegraphRight")
 
 func attack() -> void:
-	var fireball = fireballScene.instantiate()
-	var atkDirection = global_position.direction_to(target.global_position)
-	atkSpawnPoint.global_position = global_position + atkDirection * 100
-	fireball.global_position = atkSpawnPoint.global_position
-	fireball.direction = fireball.global_position.direction_to(target.global_position)
-	GlobalStates.projectileNode.add_child(fireball)
-	
 	match direction:
 		Direction.UP:
 			animatedSprite.play("attackBack")
