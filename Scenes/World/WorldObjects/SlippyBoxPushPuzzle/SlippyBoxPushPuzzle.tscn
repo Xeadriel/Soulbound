@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cel6itjonug3b"]
+[gd_scene load_steps=10 format=3 uid="uid://cel6itjonug3b"]
 
+[ext_resource type="Texture2D" uid="uid://q1l4hs0yrgrk" path="res://Assets/SlippyBoxPushPuzzleBoxBlue.png" id="2_6yaoj"]
 [ext_resource type="Script" uid="uid://eltijqoooyw2" path="res://Scripts/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzle.gd" id="2_mkii4"]
 [ext_resource type="PackedScene" uid="uid://dk8f8mca5nee4" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzleBoxGreen.tscn" id="3_7wicf"]
 [ext_resource type="PackedScene" uid="uid://btq4po11so2c6" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzleBoxRed.tscn" id="4_6yaoj"]
@@ -8,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://dxa7w77pqyf4e" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzleBoxBlack.tscn" id="6_6yaoj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ycpa"]
-size = Vector2(64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ycpa"]
 animations = [{
@@ -24,6 +24,13 @@ animations = [{
 [node name="SlippyBoxPushPuzzle" type="Sprite2D"]
 z_index = 1
 script = ExtResource("2_mkii4")
+
+[node name="BackgroundPlaceholder" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 1, 1)
+z_index = -1
+position = Vector2(36.5001, 45.25)
+scale = Vector2(23.2969, 15.3984)
+texture = ExtResource("2_6yaoj")
 
 [node name="SlippyBoxPushPuzzleBoxBlue" parent="." instance=ExtResource("5_x2dp6")]
 position = Vector2(-272, 272)
@@ -366,5 +373,6 @@ position = Vector2(272, -80)
 [node name="SlippyBoxPushPuzzleBoxRed3" parent="Reds" instance=ExtResource("4_6yaoj")]
 position = Vector2(-304, 304)
 
+[connection signal="stoppedMoving" from="SlippyBoxPushPuzzleBoxBlue" to="." method="onBoxStoppedMoving"]
 [connection signal="body_entered" from="SlippyBoxPushPuzzleBoxGoal" to="." method="onBoxEnteredGoal"]
 [connection signal="body_exited" from="SlippyBoxPushPuzzleBoxGoal" to="." method="onBoxExitedGoal"]

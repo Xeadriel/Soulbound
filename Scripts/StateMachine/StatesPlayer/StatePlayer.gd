@@ -15,6 +15,17 @@ var QUICKSLOTBOT = "quickSlotBottom"
 var QUICKSLOTTOP = "quickSlotTop"
 var QUICKSLOTLEFT = "quickSlotLeft"
 var QUICKSLOTRIGHT = "quickSlotRight"
+var INTERACT = "interact"
+
+# State Names
+const STATEIDLE = "StateIdle"
+const STATERUN = "StateRun"
+const STATEATTACK = "StateAttack"
+const STATEHEAVYATTACK = "StateHeavyAttack"
+const STATEBLOCK = "StateBlock"
+const STATEDASH = "StateDash"
+const STATEWHIPATTACK = "StateWhipAttack"
+const STATEINTERACTING = "StateInteracting"
 
 enum Direction {
 	UP,
@@ -28,31 +39,33 @@ func _ready() -> void:
 	assert(player is Player1 or player is Player2, "player must be either one of the player classes")
 	
 	if player is Player1:
-		UP = "up"
-		DOWN = "down"
-		LEFT = "left"
-		RIGHT = "right"
-		HIT = "hit"
-		HEAVY_HIT = "heavyHit"
-		BLOCK = "block"
-		DASH = "dash"
-		QUICKSLOTBOT = "quickSlotBottom"
-		QUICKSLOTTOP = "quickSlotTop"
-		QUICKSLOTLEFT = "quickSlotLeft"
-		QUICKSLOTRIGHT = "quickSlotRight"
+		UP = GlobalConstants.P1UP
+		DOWN = GlobalConstants.P1DOWN
+		LEFT = GlobalConstants.P1LEFT
+		RIGHT = GlobalConstants.P1RIGHT
+		HIT = GlobalConstants.P1HIT
+		HEAVY_HIT = GlobalConstants.P1HEAVY_HIT
+		BLOCK = GlobalConstants.P1BLOCK
+		DASH = GlobalConstants.P1DASH
+		QUICKSLOTBOT = GlobalConstants.P1QUICKSLOTBOT
+		QUICKSLOTTOP = GlobalConstants.P1QUICKSLOTTOP
+		QUICKSLOTLEFT = GlobalConstants.P1QUICKSLOTLEFT
+		QUICKSLOTRIGHT = GlobalConstants.P1QUICKSLOTRIGHT
+		INTERACT = GlobalConstants.P1INTERACT
 	elif player is Player2:
-		UP = "up2"
-		DOWN = "down2"
-		LEFT = "left2"
-		RIGHT = "right2"
-		HIT = "hit2"
-		HEAVY_HIT = "heavyHit2"
-		BLOCK = "block2"
-		DASH = "dash2"
-		QUICKSLOTBOT = "quickSlotBottom2"
-		QUICKSLOTTOP = "quickSlotTop2"
-		QUICKSLOTLEFT = "quickSlotLeft2"
-		QUICKSLOTRIGHT = "quickSlotRight2"
+		UP = GlobalConstants.P2UP
+		DOWN = GlobalConstants.P2DOWN
+		LEFT = GlobalConstants.P2LEFT
+		RIGHT = GlobalConstants.P2RIGHT
+		HIT = GlobalConstants.P2HIT
+		HEAVY_HIT = GlobalConstants.P2HEAVY_HIT
+		BLOCK = GlobalConstants.P2BLOCK
+		DASH = GlobalConstants.P2DASH
+		QUICKSLOTBOT = GlobalConstants.P2QUICKSLOTBOT
+		QUICKSLOTTOP = GlobalConstants.P2QUICKSLOTTOP
+		QUICKSLOTLEFT = GlobalConstants.P2QUICKSLOTLEFT
+		QUICKSLOTRIGHT = GlobalConstants.P2QUICKSLOTRIGHT
+		INTERACT = GlobalConstants.P2INTERACT
 
 ## Called by the state machine when receiving unhandled input events.
 func handleInput() -> void:

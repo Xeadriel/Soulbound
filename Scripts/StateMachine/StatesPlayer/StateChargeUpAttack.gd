@@ -36,7 +36,7 @@ func process(delta: float) -> void:
 			attackTimer = 0
 			player.releaseAttackHeavy()
 		elif startedRelease and attackTimer >= ATTACK_RELEASE_DELAY:
-			finished.emit("StateIdle")
+			finished.emit(STATEIDLE)
 
 
 

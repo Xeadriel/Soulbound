@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://gmsqxr0sxmb6" path="res://Scenes/World/WorldObjects/Door.tscn" id="12_8p3qi"]
 [ext_resource type="PackedScene" uid="uid://dqfevetwhseag" path="res://Scenes/World/WorldObjects/EnemyCounter.tscn" id="12_g3l2s"]
 [ext_resource type="PackedScene" uid="uid://cel6itjonug3b" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzle.tscn" id="13_2n2dr"]
-[ext_resource type="PackedScene" uid="uid://day27nflhuxcp" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/PuzzleTerminal.tscn" id="16_uhk1o"]
+[ext_resource type="PackedScene" uid="uid://cg6qjhdlijf55" path="res://Scenes/World/WorldObjects/FloorButton.tscn" id="13_6m3rn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
 texture = ExtResource("1_ewn0l")
@@ -510,13 +510,23 @@ shape = SubResource("RectangleShape2D_p0qse")
 position = Vector2(-108, -272)
 rotation = 1.5708
 
-[node name="SlippyBoxPushPuzzle" parent="2DObjects/Rooms/PuzzleRoom" node_paths=PackedStringArray("camera") instance=ExtResource("13_2n2dr")]
-visible = false
-position = Vector2(713, 38)
-camera = NodePath("../../../AutoCamera")
+[node name="ColorSwitch" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("9_8p3qi")]
+position = Vector2(1312, 480)
 
-[node name="PuzzleTerminal" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("16_uhk1o")]
-position = Vector2(701, 122)
+[node name="FloorButtonUp" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("13_6m3rn")]
+position = Vector2(121, 318)
+
+[node name="FloorButtonDown" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("13_6m3rn")]
+position = Vector2(121, 494)
+
+[node name="FloorButtonLeft" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("13_6m3rn")]
+position = Vector2(49, 403)
+
+[node name="FloorButtonRight" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("13_6m3rn")]
+position = Vector2(193, 403)
+
+[node name="SlippyBoxPushPuzzle" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("13_2n2dr")]
+position = Vector2(713, 38)
 
 [node name="PuzzleRoomReward" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(4522, 844)
@@ -854,10 +864,12 @@ whipAttackSpawner = ExtResource("10_uhk1o")
 [connection signal="body_entered" from="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" method="_on_body_exited"]
 [connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoom" method="updateRoomStatus"]
+[connection signal="leverFlipped" from="2DObjects/Rooms/PuzzleRoom/ColorSwitch" to="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" method="pressSwitchColorButton"]
+[connection signal="triggered" from="2DObjects/Rooms/PuzzleRoom/FloorButtonUp" to="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" method="pressUpButton"]
+[connection signal="triggered" from="2DObjects/Rooms/PuzzleRoom/FloorButtonDown" to="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" method="pressDownButton"]
+[connection signal="triggered" from="2DObjects/Rooms/PuzzleRoom/FloorButtonLeft" to="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" method="pressLeftButton"]
+[connection signal="triggered" from="2DObjects/Rooms/PuzzleRoom/FloorButtonRight" to="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" method="pressRightButton"]
 [connection signal="solved" from="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" to="2DObjects/Rooms/PuzzleRoom/DoorTrigger" method="onTriggered"]
-[connection signal="solved" from="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" to="2DObjects/Rooms/PuzzleRoom/PuzzleTerminal" method="onPuzzleSolved"]
-[connection signal="start" from="2DObjects/Rooms/PuzzleRoom/PuzzleTerminal" to="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" method="activate"]
-[connection signal="stop" from="2DObjects/Rooms/PuzzleRoom/PuzzleTerminal" to="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" method="deactivate"]
 [connection signal="body_entered" from="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" method="_on_body_exited"]
 [connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodHallway" method="updateRoomStatus"]

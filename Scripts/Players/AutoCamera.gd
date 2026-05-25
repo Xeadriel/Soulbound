@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name AutoCamera extends CharacterBody2D
 
 
 @export var SPEED = 10.0

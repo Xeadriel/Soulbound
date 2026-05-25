@@ -29,6 +29,11 @@ var blockTimeStamp = 0
 
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
+# this is set by an object when getting close enough to it's interact range
+# null means there is none right now
+# the state machine checks this when the interact button is pressed
+var interactableObject = null
+
 func _ready() -> void:
 	assert(ItemQuickSlots != null, "ItemQuickSlots should not be null")
 	assert(whipAttackSpawner != null, "WhipAttackSpawner should not be null" )
@@ -185,3 +190,6 @@ func stopWhipAttack():
 				animatedSprite.play("idleLeft")
 			Direction.RIGHT:
 				animatedSprite.play("idleRight")
+
+func setInteractable(object):
+	interactableObject = object
