@@ -87,7 +87,7 @@ func attack() -> void:
 	atkSpawnPoint.global_position = global_position + atkDirection * 100
 	fireball.global_position = atkSpawnPoint.global_position
 	fireball.direction = fireball.global_position.direction_to(target.global_position)
-	get_parent().add_child(fireball)
+	GlobalStates.projectileNode.add_child(fireball)
 	
 	match direction:
 		Direction.UP:
