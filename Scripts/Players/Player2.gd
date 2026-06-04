@@ -8,10 +8,12 @@ class_name Player2 extends Player
 @onready var heavyAttackSpawnLocations = $AttackPivotPoint/HeavyAttackSpawnLocations.get_children()
 
 var heavyAttackCharges = []
+var projecttileNode: Node
 
 func _ready() -> void:
 	super._ready()
 	assert(magicShotSpawner != null, "MagicShotSpawner should not be null")
+	projecttileNode = get_tree().get_first_node_in_group("ProjectileNode")
 
 func _process(_delta) -> void:
 	if "block" in animatedSprite.animation or "attack" in animatedSprite.animation:
@@ -61,7 +63,7 @@ func attack(combo : int) -> void:
 	magicShot.rotation = attackPivotPoint.rotation
 	magicShot.direction = Vector2(1, 0).rotated(magicShot.rotation)
 	
-	get_parent().add_child(magicShot)
+	projecttileNode.add_child(magicShot)
 
 func stopAttack() -> void:
 	match direction:

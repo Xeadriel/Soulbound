@@ -6,6 +6,11 @@ class_name Wizard extends Enemy
 @export var panicRunThresholdDistance := 300
 @export var runChance := 0.7
 
+var projectileNode: Node
+
+func _ready() -> void:
+	projectileNode = get_tree().get_first_node_in_group("ProjectileNode")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
@@ -86,7 +91,8 @@ func attack() -> void:
 	atkSpawnPoint.global_position = global_position + atkDirection * 100
 	fireball.global_position = atkSpawnPoint.global_position
 	fireball.direction = fireball.global_position.direction_to(target.global_position)
-	GlobalStates.projectileNode.add_child(fireball)
+	projectileNode.add_child(fireball)
+	
 	
 	match direction:
 		Direction.UP:
@@ -97,6 +103,9 @@ func attack() -> void:
 			animatedSprite.play("attackLeft")
 		Direction.RIGHT:
 			animatedSprite.play("attackRight")
+
+func stopAttack() -> void:
+	pass
 
 # signal when area2D collides with something
 func hitSomething(body: Node2D) -> void:
