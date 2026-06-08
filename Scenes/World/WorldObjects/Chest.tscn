@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dm3pm4k0erp0v"]
+[gd_scene load_steps=9 format=3 uid="uid://dm3pm4k0erp0v"]
 
 [ext_resource type="Texture2D" uid="uid://bt7t10hfomw11" path="res://Assets/placeholder.png" id="1_gaja6"]
 [ext_resource type="Script" uid="uid://d1cyuscbly7t6" path="res://Scripts/World/WorldObjects/Chest.gd" id="2_gaja6"]
+[ext_resource type="Texture2D" uid="uid://c7r8mv8pxs043" path="res://Assets/placeholderX.png" id="2_uiwyq"]
 [ext_resource type="Script" uid="uid://dy1c0bwsa7fng" path="res://Scripts/World/WorldObjects/Properties/PropertyCollidable.gd" id="3_gaja6"]
 [ext_resource type="Script" uid="uid://cro3bhfcbtv0j" path="res://Scripts/World/WorldObjects/Properties/PropertyInteractable.gd" id="4_uiwyq"]
 
@@ -15,7 +16,10 @@ animations = [{
 "name": &"closed",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uiwyq")
+}],
 "loop": false,
 "name": &"open",
 "speed": 5.0
@@ -29,7 +33,7 @@ size = Vector2(154, 124)
 
 [node name="Chest" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_les2w")
-animation = &"closed"
+animation = &"open"
 autoplay = "closed"
 script = ExtResource("2_gaja6")
 
@@ -52,4 +56,3 @@ shape = SubResource("RectangleShape2D_co6tc")
 
 [connection signal="body_entered" from="PropertyInteractable" to="PropertyInteractable" method="onBodyEntered"]
 [connection signal="body_exited" from="PropertyInteractable" to="PropertyInteractable" method="onBodyExited"]
-[connection signal="interacted" from="PropertyInteractable" to="." method="interacted"]

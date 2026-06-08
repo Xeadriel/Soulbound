@@ -65,5 +65,3 @@ shape = SubResource("RectangleShape2D_s3h2b")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyCollidable/CollisionStaticBody"]
 position = Vector2(0.200001, -0.499999)
 shape = SubResource("RectangleShape2D_s3h2b")
-
-[connection signal="interacted" from="PropertyInteractable" to="." method="onInteract"]

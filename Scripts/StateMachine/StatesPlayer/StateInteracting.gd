@@ -6,11 +6,9 @@ func process(_delta: float) -> void:
 
 func physicsProcess(_delta: float) -> void:
 	if EventHandler.isPlayerInputJustPressed(INTERACT):
+		if player.interactableObject is PuzzleTerminal:
+				player.interactableObject.onInteract(0 if player is Player1 else 1)
 		finished.emit(STATEIDLE)
-	
-	if player.interactableObject is PuzzleTerminal:
-		if EventHandler.isPlayerInputJustPressed(INTERACT):
-			player.interactableObject.onInteract(0 if player is Player1 else 1)
 	
 	if player.interactableObject == null:
 		finished.emit(STATEIDLE)

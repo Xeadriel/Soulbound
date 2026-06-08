@@ -5,4 +5,5 @@ signal gotWhipped
 func onAreaEntered(area: Area2D) -> void:
 	if area is WhipAttack:
 		area.queue_free()
-		gotWhipped.emit()
+		var playerNumber = area.getPlayerNumber()
+		gotWhipped.emit(playerNumber)

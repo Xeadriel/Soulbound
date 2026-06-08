@@ -7,6 +7,8 @@ var timePassed : float= 0
 # time it should take to reach the goal in seconds
 var attackDelay : float = 1.0
 
+var player : Player
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _ready() -> void:
 	start = global_position
@@ -24,3 +26,6 @@ func hitSomething(body: Node2D) -> void:
 		queue_free()
 	else:
 		queue_free()
+
+func getPlayerNumber():
+	return 0 if player is Player1 else 1

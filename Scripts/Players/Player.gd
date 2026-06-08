@@ -162,21 +162,13 @@ func stopDash() -> void:
 			animatedSprite.play("idleRight")
 
 func whipAttack(attackDelay):
-	#match direction:
-		#Direction.UP:
-			#animatedSprite.play("attackBack")
-		#Direction.DOWN:
-			#animatedSprite.play("attackFront")
-		#Direction.LEFT:
-			#animatedSprite.play("attackLeft")
-		#Direction.RIGHT:
-			#animatedSprite.play("attackRight")
 
 	var whip = whipAttackSpawner.instantiate()
 	whip.global_position = spawnLocationWhipAttack.global_position
 	whip.rotation = attackPivotPoint.rotation
 	whip.goal = goalWhipAttackGoal.global_position
 	whip.attackDelay = attackDelay
+	whip.player = self
 	
 	get_parent().add_child(whip)
 
