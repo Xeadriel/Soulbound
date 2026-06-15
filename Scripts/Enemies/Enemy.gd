@@ -5,7 +5,9 @@ class_name Enemy extends CharacterBody2D
 @export var aggroRange:= 500.0
 @export var telegraphTime := 1.0
 
+var players
 var target: Player
+
 @onready var stateMachine = $StateMachine
 
 enum Direction {
@@ -38,7 +40,7 @@ signal died
 func _ready() -> void:
 	currentHp = maxHp
 	animatedSprite.animation_finished.connect(animationFinished)
-	
+	players = get_tree().get_nodes_in_group("Players")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -56,16 +58,13 @@ func hitByWhip():
 
 func getDirectionToPlayer() -> Direction:
 	var dir = global_position.direction_to(target.global_position)
-	
 	var angle = dir.angle()
 	angle =  rad_to_deg(angle)
-	
 	return getDirectionFromAngle(angle)
 
 func getDirectionFromVector(dir: Vector2) -> Direction:
 	var angle = dir.angle()
 	angle =  rad_to_deg(angle)
-	
 	return getDirectionFromAngle(angle)
 
 func getDirectionFromAngle(angle: float) -> Direction:
@@ -77,6 +76,17 @@ func getDirectionFromAngle(angle: float) -> Direction:
 		return Direction.UP
 	else: 
 		return Direction.DOWN
+		
+func getClosestPlayer() -> Player:
+	var closestPlayer: Player
+	var closestDistance = INF
+	for p in players:
+		var distanceToPlayer = p.global_position.distance_to(global_position)
+		if(distanceToPlayer < closestDistance):
+			closestDistance = distanceToPlayer
+			closestPlayer = p
+	return closestPlayer
+
 
 """
 Animations
@@ -95,6 +105,8 @@ func idle():
 			animatedSprite.play("idleLeft")
 		Direction.RIGHT:
 			animatedSprite.play("idleRight")
+			
+
 
 func stunned():
 	match direction:

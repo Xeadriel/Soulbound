@@ -9,6 +9,7 @@ class_name Wizard extends Enemy
 var projectileNode: Node
 
 func _ready() -> void:
+	super._ready()
 	projectileNode = get_tree().get_first_node_in_group("ProjectileNode")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

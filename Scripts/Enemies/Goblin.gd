@@ -9,30 +9,6 @@ func _physics_process(_delta: float) -> void:
 func takeDamage(dmg: int) -> void:
 	currentHp -= dmg
 
-func getDirectionToPlayer() -> Direction:
-	var dir = global_position.direction_to(target.global_position)
-	
-	var angle = dir.angle()
-	angle =  rad_to_deg(angle)
-	
-	return getDirectionFromAngle(angle)
-
-func getDirectionFromVector(dir: Vector2) -> Direction:
-	var angle = dir.angle()
-	angle =  rad_to_deg(angle)
-	
-	return getDirectionFromAngle(angle)
-
-func getDirectionFromAngle(angle: float) -> Direction:
-	if angle > -45 and angle <= 45:
-		return Direction.RIGHT
-	elif angle > 135 or angle <= -135:
-		return Direction.LEFT
-	elif angle < -45 and angle >= -135:
-		return Direction.UP
-	else: 
-		return Direction.DOWN
-
 """
 Animations
 """

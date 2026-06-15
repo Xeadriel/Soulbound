@@ -1,4 +1,18 @@
-class_name Boss1 extends Enemy
+class_name MiniBossDeathHighPriest extends Enemy
+
+@onready var shieldSprite = $ShieldSprite
+
+@export var currentShield: float:
+	set(newShield):
+		currentShield = newShield
+		if currentShield <= 0:
+			shieldSprite.visible = false
+		else:
+			shieldSprite.visible = true
+			
+func _onready():
+	shieldSprite.play()
+	currentShield = 100
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -9,34 +23,24 @@ func _physics_process(_delta: float) -> void:
 
 func takeDamage(dmg: int) -> void:
 	currentHp -= dmg
-
-func getDirectionToPlayer() -> Direction:
-	var dir = global_position.direction_to(target.global_position)
-	var angle = dir.angle()
-	angle =  rad_to_deg(angle)
-	return getDirectionFromAngle(angle)
-
-func getDirectionFromVector(dir: Vector2) -> Direction:
-	var angle = dir.angle()
-	angle =  rad_to_deg(angle)
-	return getDirectionFromAngle(angle)
-
-func getDirectionFromAngle(angle: float) -> Direction:
-	if angle > -45 and angle <= 45:
-		return Direction.RIGHT
-	elif angle > 135 or angle <= -135:
-		return Direction.LEFT
-	elif angle < -45 and angle >= -135:
-		return Direction.UP
-	else: 
-		return Direction.DOWN
-
+	
 """
 Animations
 """
 
 func animationFinished():
 	animationFinishedSignal.emit(animatedSprite)
+	
+func sacrificeGolin():
+	match direction: 
+		Direction.UP:
+			animatedSprite.play("sacrificeBack")
+		Direction.DOWN:
+			animatedSprite.play("sacrificeFront")	
+		Direction.LEFT:
+			animatedSprite.play("sacrificeLeft")
+		Direction.RIGHT:
+			animatedSprite.play("sacrificeRight")
 
 func idle():
 	match direction:
@@ -87,3 +91,31 @@ func hitSomething(body: Node2D) -> void:
 	if body is Player:
 		var player : Player = body
 		player.takeDamage(DAMAGE)
+
+
+func swipeHit(body: Node2D) -> void:
+	if(body is Player):
+		var player: Player = body
+		player.takeDamage(DAMAGE)
+		
+func channelSacrificeGoblin() -> void:
+	match direction:
+		Direction.UP:
+			animatedSprite.play("channelBack")
+		Direction.DOWN:
+			animatedSprite.play("channelFront")
+		Direction.LEFT:
+			animatedSprite.play("channelLeft")
+		Direction.RIGHT:
+			animatedSprite.play("channelRight")
+
+func CastSacrificeGoblin() -> void:
+	match direction:
+		Direction.UP:
+			animatedSprite.play("castBack")
+		Direction.DOWN:
+			animatedSprite.play("castFront")
+		Direction.LEFT:
+			animatedSprite.play("castLeft")
+		Direction.RIGHT:
+			animatedSprite.play("castRight")
