@@ -10,7 +10,7 @@ func handleInput() -> void:
 
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
-	entity.target = getClosestPlayer()
+	entity.target = entity.getClosestPlayer()
 	var distance = entity.global_position.distance_to(entity.target.global_position)
 	if  entity.aggroRange < distance:
 		finished.emit(IDLE)

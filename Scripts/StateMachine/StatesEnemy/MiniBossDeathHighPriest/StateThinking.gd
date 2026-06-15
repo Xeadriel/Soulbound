@@ -1,21 +1,21 @@
 extends StateNamesMiniBossDeathHighPriest
 
-var weights: Dictionary[String, float]
+var weights: Dictionary[String, int]
 var meleeRangeThreshold: float = 200.0
 var tooCloseThreshold: float = 100.0
 var farEnoughThreshold: float = 300.0
 
 func _ready() -> void:
-	weights[IDLE] = 0
-	weights[STRAFE] = 0
-	weights[TELEGRAPH_SWIPE] = 0
-	weights[STUNNED] = 0
-	weights[SACRIFICE] = 0
-	weights[TELEGRAPH_DAGGER_EXPLOSION] = 0
-	weights[TELEGRAPH_DAGGER_CONE] = 0
-	weights[TELEGRAPH_DAGGER_CIRCLING] = 0
-	weights[TELEPORT] = 0
-	weights[CAST_SHIELD] = 0
+	weights[IDLE] = 5
+	weights[STRAFE] = 5
+	weights[TELEGRAPH_SWIPE] = 5
+	weights[STUNNED] = 5
+	weights[SACRIFICE] = 5
+	weights[TELEGRAPH_DAGGER_EXPLOSION] = 5
+	weights[TELEGRAPH_DAGGER_CONE] = 5
+	weights[TELEGRAPH_DAGGER_CIRCLING] = 5
+	weights[TELEPORT] = 5
+	weights[CAST_SHIELD] = 5
 
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:

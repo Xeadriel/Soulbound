@@ -1,6 +1,6 @@
 extends StateNamesGoblinMelee
 
-@export var nextState = RUNCIRCLE
+@export var nextState = IDLE
 
 var canAtk: bool = true
 var elapsedTime: float
@@ -15,6 +15,7 @@ enum Direction {
 func _ready() -> void:
 	super()
 	entity.animationFinishedSignal.connect(animationFinished)
+	
 func process(_delta: float) -> void:
 	pass
 	
@@ -22,7 +23,7 @@ func physicsProcess(_delta: float) -> void:
 	pass
 
 func enter(_pssssssrevious_state_path: String, _data := {}) -> void:
-	entity.target = getClosestPlayer()
+	entity.target = entity.getClosestPlayer()
 	entity.velocity = Vector2.ZERO
 	entity.attack()
 

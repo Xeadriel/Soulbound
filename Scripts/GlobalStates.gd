@@ -12,4 +12,3 @@ var projectileNode: Node
 func _ready() -> void:
 	for item in GlobalConstants.ItemIndices:
 		inventory[GlobalConstants.ItemIndices[item]] = 0
-

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://cy4vn64vtg0f7"]
+[gd_scene load_steps=45 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_ewn0l"]
 [ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/UserInterface/AutoCamera.tscn" id="2_8p3qi"]
@@ -18,9 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://gmsqxr0sxmb6" path="res://Scenes/World/WorldObjects/Door.tscn" id="12_8p3qi"]
 [ext_resource type="PackedScene" uid="uid://dqfevetwhseag" path="res://Scenes/World/WorldObjects/EnemyCounter.tscn" id="12_g3l2s"]
 [ext_resource type="PackedScene" uid="uid://cel6itjonug3b" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzle.tscn" id="13_2n2dr"]
-[ext_resource type="PackedScene" uid="uid://jnyddp6cmv5f" path="res://Scenes/Enemies/MiniBossDeathHighPriest.tscn" id="17_uhk1o"]
 [ext_resource type="PackedScene" uid="uid://dm3pm4k0erp0v" path="res://Scenes/World/WorldObjects/Chest.tscn" id="16_pwrpc"]
-[ext_resource type="PackedScene" uid="uid://day27nflhuxcp" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/PuzzleTerminal.tscn" id="16_uhk1o"]
+[ext_resource type="PackedScene" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/PuzzleTerminal.tscn" id="16_uhk1o"]
+[ext_resource type="PackedScene" uid="uid://jnyddp6cmv5f" path="res://Scenes/Enemies/MiniBossDeathHighPriest.tscn" id="17_uhk1o"]
 [ext_resource type="Script" uid="uid://dy1c0bwsa7fng" path="res://Scripts/World/WorldObjects/Properties/PropertyCollidable.gd" id="18_pwrpc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
@@ -879,22 +879,9 @@ visible = false
 position = Vector2(1, 4)
 shape = SubResource("RectangleShape2D_vgay6")
 
-
 [node name="Projectiles" type="Node" parent="2DObjects" groups=["ProjectileNode"]]
 
-[node name="Players" type="Node" parent="2DObjects"]
-
-[node name="Player" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("9_0r1y5")]
-z_index = 5
-position = Vector2(-600, 2975)
-ItemQuickSlots = NodePath("../../AutoCamera/ItemQuickSelect")
-whipAttackSpawner = ExtResource("10_uhk1o")
-
-[node name="Player2" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("11_pwrpc")]
-z_index = 5
-position = Vector2(-743, 3221)
-ItemQuickSlots = NodePath("../../AutoCamera/ItemQuickSelect2")
-whipAttackSpawner = ExtResource("10_uhk1o")
+[node name="Players2" type="Node" parent="2DObjects"]
 
 [connection signal="body_entered" from="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" method="_on_body_exited"]

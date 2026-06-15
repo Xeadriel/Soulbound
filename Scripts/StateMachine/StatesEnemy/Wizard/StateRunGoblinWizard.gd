@@ -15,10 +15,9 @@ func handleInput() -> void:
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
 	runDirCooldown  -= _delta
-	entity.target = getClosestPlayer()
+	entity.target = entity.getClosestPlayer()
 	var distance = entity.global_position.distance_to(entity.target.global_position)
 
-	
 	# not aggroed
 	if  entity.aggroRange < distance:
 		fleeDirection = Vector2.ZERO
@@ -35,7 +34,7 @@ func process(_delta: float) -> void:
 	elif runDirCooldown <= 0.0 && distance <= entity.panicRunThresholdDistance:
 		var r = int(randf() < entity.runChance)
 		if r == 1:
-			for p in players:
+			for p in entity.players:
 				var distanceToPlayer = entity.global_position.distance_to(p.global_position)
 				if distanceToPlayer <= entity.panicRunThresholdDistance:
 					var directionToPlayer = entity.global_position.direction_to(p.global_position)

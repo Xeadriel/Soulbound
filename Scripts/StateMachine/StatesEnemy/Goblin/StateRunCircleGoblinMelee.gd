@@ -29,7 +29,7 @@ func handleInput() -> void:
 
 ## Called by the state machine on the engine's main loop tick.
 func process(delta: float) -> void:
-	entity.target = getClosestPlayer()
+	entity.target = entity.getClosestPlayer()
 	var distance = entity.global_position.distance_to(entity.target.global_position)
 	var inRangeThresh: bool = entity.atkRange + distanceThreshold >= distance
 	
