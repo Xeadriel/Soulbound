@@ -30,4 +30,4 @@ func animationFinished(animatedSprite: AnimatedSprite2D) -> void:
 	if animatedSprite.animation not in ["attackFront", "attackBack", "attackLeft", "attackRight"]:
 		return
 	
-	finished.emit(RUN)
+	finished.emit(THINKING)

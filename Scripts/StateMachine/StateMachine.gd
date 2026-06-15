@@ -5,17 +5,14 @@ class_name StateMachine extends Node
 func _ready() -> void:
 	for state_node: State in find_children("*", "State"):
 		state_node.finished.connect(_transition_to_next_state)
-
 	await owner.ready
 	currentState.enter("StateIdle")
 
 func _process(delta: float) -> void:
 	currentState.process(delta)
 
-
 func _physics_process(delta: float) -> void:
 	currentState.physicsProcess(delta)
-
 
 func _transition_to_next_state(targetStatePath: String, data: Dictionary = {}) -> void:
 	if not has_node(targetStatePath):

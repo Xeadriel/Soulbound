@@ -1,7 +1,5 @@
 extends StateNamesMiniBossDeathHighPriest
 
-@export var nextState = RUNCIRCLE
-
 var canAtk: bool = true
 var elapsedTime: float
 
@@ -15,6 +13,7 @@ enum Direction {
 func _ready() -> void:
 	super()
 	entity.animationFinishedSignal.connect(animationFinished)
+	
 func process(_delta: float) -> void:
 	pass
 	
@@ -22,7 +21,9 @@ func physicsProcess(_delta: float) -> void:
 	pass
 
 func enter(_pssssssrevious_state_path: String, _data := {}) -> void:
-	pass
+	entity.target = entity.getClosestPlayer()
+	entity.velocity = Vector2.ZERO
+	entity.attack()
 
 func exit() -> void:
 	entity.stopAttack()
@@ -30,5 +31,4 @@ func exit() -> void:
 func animationFinished(animatedSprite: AnimatedSprite2D) -> void:
 	if animatedSprite.animation not in ["attackFront", "attackBack", "attackLeft", "attackRight"]:
 		return
-	
-	finished.emit(nextState)
+	finished.emit(THINKING)
