@@ -77,6 +77,7 @@ signal itemReceived(item : GlobalConstants.ItemIndices, amount : int)
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	itemReceived.connect(onItemReceived)
 
 func playerDied(playerNumber):
 	pass
@@ -105,3 +106,6 @@ func isPlayerInputPressed(input : String):
 	return playerInputs[input]
 
 # ----- SIGNALBUS FUNCTIONS ----- #
+
+func onItemReceived(item : GlobalConstants.ItemIndices, amount : int):
+	GlobalStates.inventory[item] = GlobalStates.inventory[item] + amount

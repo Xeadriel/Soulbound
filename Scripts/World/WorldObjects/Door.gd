@@ -12,7 +12,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func onInteract() -> void:
+func onInteract(_playerNumber) -> void:
 	var keyAvailable = false
 	if !unlocked && GlobalStates.inventory.get(key, 0) > 0:
 		keyAvailable = true

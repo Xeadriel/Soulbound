@@ -29,6 +29,11 @@ var blockTimeStamp = 0
 
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
+# this is set by an object when getting close enough to it's interact range
+# null means there is none right now
+# the state machine checks this when the interact button is pressed
+var interactableObject = null
+
 func _ready() -> void:
 	assert(ItemQuickSlots != null, "ItemQuickSlots should not be null")
 	assert(whipAttackSpawner != null, "WhipAttackSpawner should not be null" )
@@ -157,21 +162,13 @@ func stopDash() -> void:
 			animatedSprite.play("idleRight")
 
 func whipAttack(attackDelay):
-	#match direction:
-		#Direction.UP:
-			#animatedSprite.play("attackBack")
-		#Direction.DOWN:
-			#animatedSprite.play("attackFront")
-		#Direction.LEFT:
-			#animatedSprite.play("attackLeft")
-		#Direction.RIGHT:
-			#animatedSprite.play("attackRight")
 
 	var whip = whipAttackSpawner.instantiate()
 	whip.global_position = spawnLocationWhipAttack.global_position
 	whip.rotation = attackPivotPoint.rotation
 	whip.goal = goalWhipAttackGoal.global_position
 	whip.attackDelay = attackDelay
+	whip.player = self
 	
 	get_parent().add_child(whip)
 
@@ -185,3 +182,6 @@ func stopWhipAttack():
 				animatedSprite.play("idleLeft")
 			Direction.RIGHT:
 				animatedSprite.play("idleRight")
+
+func setInteractable(object):
+	interactableObject = object

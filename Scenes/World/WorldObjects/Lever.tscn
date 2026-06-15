@@ -29,7 +29,7 @@ size = Vector2(125, 113)
 radius = 42.0119
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qa5va"]
-radius = 57.0701
+radius = 89.0056
 
 [node name="Lever" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_5301d")
@@ -64,6 +64,5 @@ shape = SubResource("CircleShape2D_qa5va")
 
 [connection signal="body_entered" from="PropertyInteractable" to="PropertyInteractable" method="onBodyEntered"]
 [connection signal="body_exited" from="PropertyInteractable" to="PropertyInteractable" method="onBodyExited"]
-[connection signal="interacted" from="PropertyInteractable" to="." method="leverPulled"]
 [connection signal="area_entered" from="PropertyWhippable" to="PropertyWhippable" method="onAreaEntered"]
-[connection signal="gotWhipped" from="PropertyWhippable" to="." method="leverPulled"]
+[connection signal="gotWhipped" from="PropertyWhippable" to="." method="onInteract"]

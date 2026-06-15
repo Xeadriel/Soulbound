@@ -7,14 +7,13 @@ func process(_delta: float) -> void:
 
 func physicsProcess(_delta: float) -> void:
 	if EventHandler.isPlayerInputJustPressed(HIT):
-		finished.emit("StateAttack")
+		finished.emit(STATEATTACK)
 	elif EventHandler.isPlayerInputJustPressed(HEAVY_HIT):
-		if player.name == "Player": finished.emit("StateHeavyAttack")
-		else: finished.emit("StateChargeUpAttack")
+		finished.emit(STATEHEAVYATTACK)
 	elif EventHandler.isPlayerInputJustPressed(BLOCK):
-		finished.emit("StateBlock")
+		finished.emit(STATEBLOCK)
 	elif EventHandler.isPlayerInputJustPressed(DASH):
-		finished.emit("StateDash")
+		finished.emit(STATEDASH)
 	elif EventHandler.isPlayerInputJustPressed(QUICKSLOTBOT):
 		checkQuickSlotAndSwitchState(QUICKSLOTBOT)
 	elif EventHandler.isPlayerInputJustPressed(QUICKSLOTTOP):
@@ -23,13 +22,21 @@ func physicsProcess(_delta: float) -> void:
 		checkQuickSlotAndSwitchState(QUICKSLOTLEFT)
 	elif EventHandler.isPlayerInputJustPressed(QUICKSLOTRIGHT):
 		checkQuickSlotAndSwitchState(QUICKSLOTRIGHT)
+	elif EventHandler.isPlayerInputJustPressed(INTERACT):
+		if player.interactableObject == null:
+			pass
+		elif player.interactableObject is PuzzleTerminal:
+				player.interactableObject.onInteract(0 if player is Player1 else 1)
+				finished.emit(STATEINTERACTING)
+		else:
+			player.interactableObject.onInteract(0 if player is Player1 else 1)
 	elif (
 		EventHandler.isPlayerInputPressed(LEFT) or
 		EventHandler.isPlayerInputPressed(RIGHT) or
 		EventHandler.isPlayerInputPressed(UP) or
 		EventHandler.isPlayerInputPressed(DOWN)
 		):
-		finished.emit("StateRun")
+		finished.emit(STATERUN)
 	else:
 		player.velocity = player.velocity.move_toward(Vector2.ZERO, SLOWDOWNSPEED)
 
@@ -61,6 +68,6 @@ func checkQuickSlotAndSwitchState(quickSlotInput : String):
 		GlobalConstants.ItemIndices.NOTHING:
 			return
 		GlobalConstants.ItemIndices.WHIP:
-			finished.emit("StateWhipAttack")
+			finished.emit(STATEWHIPATTACK)
 		GlobalConstants.ItemIndices.NOTHING:
 			return

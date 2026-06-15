@@ -7,7 +7,7 @@ signal leverFlipped(state : bool)
 func _ready() -> void:
 	pass 
 
-func leverPulled() -> void:
+func onInteract(_playerNumber) -> void:
 	leverState = not leverState
 	match leverState:
 		true:
