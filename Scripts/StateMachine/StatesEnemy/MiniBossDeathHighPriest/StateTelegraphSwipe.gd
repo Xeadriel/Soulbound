@@ -10,7 +10,8 @@ func process(_delta: float) -> void:
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	print("telegraphing swipe")
-
+	finished.emit(THINKING)
+	
 func exit() -> void:
 	pass
 

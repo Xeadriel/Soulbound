@@ -10,6 +10,7 @@ func process(_delta: float) -> void:
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	print("telegraphing dagger explosion")
+	finished.emit(THINKING)
 
 func exit() -> void:
 	pass

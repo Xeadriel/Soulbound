@@ -7,7 +7,8 @@ func process(_delta: float) -> void:
 	pass
 
 func enter(_previous_state_path: String, _data := {}) -> void:
-	pass
+	print("telegraphing circling dagger")
+	finished.emit(THINKING)
 
 func exit() -> void:
 	pass
