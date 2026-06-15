@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="2_lcgba"]
 [ext_resource type="PackedScene" uid="uid://dehht20jmbr6h" path="res://Scenes/Enemies/Fireball.tscn" id="2_n0y0a"]
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="3_n0y0a"]
-[ext_resource type="Script" uid="uid://blr2lvis0gtkh" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateIdleGoblinWizard.gd" id="5_abp8v"]
+[ext_resource type="Script" uid="uid://blr2lvis0gtkh" path="res://Scripts/StateMachine/StatesEnemy/StateIdle.gd" id="5_abp8v"]
 [ext_resource type="Script" uid="uid://dxv5sn1aoc86a" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateRunGoblinWizard.gd" id="5_k0dhe"]
-[ext_resource type="Script" uid="uid://b27wv4ktxk24d" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateAtkGoblinWizard.gd" id="6_xlfaq"]
-[ext_resource type="Script" uid="uid://bf2js1oj25nid" path="res://Scripts/StateMachine/StatesEnemy/Goblin/StateTelegraphGoblinMelee.gd" id="8_abp8v"]
+[ext_resource type="Script" uid="uid://cmh0dmwy8nmdk" path="res://Scripts/StateMachine/StatesEnemy/StateAtk.gd" id="7_lcgba"]
+[ext_resource type="Script" uid="uid://bf2js1oj25nid" path="res://Scripts/StateMachine/StatesEnemy/StateTelegraph.gd" id="8_abp8v"]
 [ext_resource type="Script" uid="uid://dtva533g5uawt" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateStunnedGoblinWizard.gd" id="9_lcgba"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
@@ -850,6 +850,7 @@ currentState = NodePath("StateIdle")
 
 [node name="StateIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("5_abp8v")
+slowDownSpeed = null
 entity = NodePath("../..")
 
 [node name="StateRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
@@ -858,7 +859,8 @@ SPEED = 100
 entity = NodePath("../..")
 
 [node name="StateAtk" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = ExtResource("6_xlfaq")
+script = ExtResource("7_lcgba")
+nextState = "StateRun"
 entity = NodePath("../..")
 
 [node name="StateTelegraph" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
