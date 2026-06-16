@@ -709,6 +709,11 @@ position = Vector2(73, -289)
 [node name="MiniBossDeathHighPriest" parent="2DObjects/Rooms/MiniBossRoom" instance=ExtResource("17_uhk1o")]
 position = Vector2(-688, -248)
 
+[node name="Wizard4" parent="2DObjects/Rooms/MiniBossRoom" instance=ExtResource("8_6m3rn")]
+position = Vector2(-239, -239)
+atkRange = 500.0
+aggroRange = 800.0
+
 [node name="WhipPuzzleRoom" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(-616, 3109)
 script = ExtResource("7_6m3rn")

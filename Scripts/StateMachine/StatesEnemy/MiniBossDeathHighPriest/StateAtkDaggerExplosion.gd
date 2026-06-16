@@ -1,4 +1,4 @@
-extends StateNamesMiniBossDeathHighPriest
+extends StateEnemy
 
 var canAtk: bool = true
 var elapsedTime: float
@@ -21,6 +21,7 @@ func physicsProcess(_delta: float) -> void:
 	pass
 
 func enter(_pssssssrevious_state_path: String, _data := {}) -> void:
+	print("dagger explosion")
 	entity.target = entity.getClosestPlayer()
 	entity.velocity = Vector2.ZERO
 	entity.daggerExplosion()

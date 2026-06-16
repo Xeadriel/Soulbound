@@ -1,4 +1,4 @@
-extends StateNamesMiniBossDeathHighPriest
+extends StateEnemy
 
 var candidates = []
 var chosenSacrifice: Enemy

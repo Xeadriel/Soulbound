@@ -1,4 +1,4 @@
-extends StateNamesMiniBossDeathHighPriest
+extends StateEnemy
 
 var weights: Dictionary[String, int]
 var meleeRangeThreshold: float = 200.0

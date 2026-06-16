@@ -856,7 +856,6 @@ currentState = NodePath("StateIdle")
 
 [node name="StateIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("4_adqnq")
-slowDownSpeed = null
 entity = NodePath("../..")
 
 [node name="StateRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]

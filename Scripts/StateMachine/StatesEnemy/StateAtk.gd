@@ -1,4 +1,4 @@
-extends StateNamesGoblinMelee
+extends StateEnemy
 
 @export var nextState = IDLE
 

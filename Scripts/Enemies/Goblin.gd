@@ -5,7 +5,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
-	
+
 func takeDamage(dmg: int) -> void:
 	currentHp -= dmg
 
@@ -18,25 +18,25 @@ func animationFinished():
 
 func idle():
 	match direction:
-			Direction.UP:
-				animatedSprite.play("idleBack")
-			Direction.DOWN:
-				animatedSprite.play("idleFront")	
-			Direction.LEFT:
-				animatedSprite.play("idleLeft")
-			Direction.RIGHT:
-				animatedSprite.play("idleRight")
+		Direction.UP:
+			animatedSprite.play("idleBack")
+		Direction.DOWN:
+			animatedSprite.play("idleFront")
+		Direction.LEFT:
+			animatedSprite.play("idleLeft")
+		Direction.RIGHT:
+			animatedSprite.play("idleRight")
 
 func run():
 	match direction:
-			Direction.UP:
-				animatedSprite.play("runBack")
-			Direction.DOWN:
-				animatedSprite.play("runFront")	
-			Direction.LEFT:
-				animatedSprite.play("runLeft")
-			Direction.RIGHT:
-				animatedSprite.play("runRight")
+		Direction.UP:
+			animatedSprite.play("runBack")
+		Direction.DOWN:
+			animatedSprite.play("runFront")
+		Direction.LEFT:
+			animatedSprite.play("runLeft")
+		Direction.RIGHT:
+			animatedSprite.play("runRight")
 
 func telegraphAttack() -> void:
 	match direction:

@@ -1,5 +1,25 @@
 class_name StateEnemy extends State
 
+const IDLE = "StateIdle"
+const RUN = "StateRun"
+const ATK = "StateAtk"
+const RUNCIRCLE = "StateRunCircle"
+const TELEGRAPH = "StateTelegraph"
+const STUNNED = "StateTelegraph"
+const STRAFE = "StateStrafe"
+const SWIPE = "StateAtkSwipe"
+const TELEGRAPH_SWIPE = "StateTelegraphSwipe"
+const THINKING = "StateThinking"
+const SACRIFICE = "StateSacrifice"
+const DAGGER_CONE = "StateDaggerCone"
+const TELEGRAPH_DAGGER_CONE = "StateTelegraphDaggerCone"
+const DAGGER_EXPLOSION = "StateDaggerExplosion"
+const TELEGRAPH_DAGGER_EXPLOSION = "StateTelegraphDaggerExplosion"
+const DAGGER_CIRCLING = "StateDaggerCircling"
+const TELEGRAPH_DAGGER_CIRCLING = "StateTelegraphDaggerCircling"
+const TELEPORT = "StateTeleport"
+const CAST_SHIELD = "StateCastShield"
+
 @export var entity: Enemy = null
 
 enum inRangeBehavior {ATK, CIRCLE}

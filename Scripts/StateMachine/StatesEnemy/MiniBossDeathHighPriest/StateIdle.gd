@@ -1,4 +1,4 @@
-extends StateNamesMiniBossDeathHighPriest
+extends StateEnemy
 
 var idleDuration: float = 2.0
 
