@@ -23,12 +23,12 @@ func physicsProcess(_delta: float) -> void:
 func enter(_pssssssrevious_state_path: String, _data := {}) -> void:
 	entity.target = entity.getClosestPlayer()
 	entity.velocity = Vector2.ZERO
-	entity.attack()
+	entity.swipe()
 
 func exit() -> void:
 	entity.stopAttack()
 
 func animationFinished(animatedSprite: AnimatedSprite2D) -> void:
-	if animatedSprite.animation not in ["attackFront", "attackBack", "attackLeft", "attackRight"]:
+	if animatedSprite.animation not in ["swipeFront", "swipeBack", "swipeLeft", "swipeRight"]:
 		return
 	finished.emit(THINKING)

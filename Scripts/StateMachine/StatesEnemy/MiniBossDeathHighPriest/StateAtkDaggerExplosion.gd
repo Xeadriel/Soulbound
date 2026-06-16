@@ -13,20 +13,28 @@ enum Direction {
 func _ready() -> void:
 	super()
 	entity.animationFinishedSignal.connect(animationFinished)
+	
 func process(_delta: float) -> void:
 	pass
 	
 func physicsProcess(_delta: float) -> void:
 	pass
 
-func enter(_previous_state_path: String, _data := {}) -> void:
-	print("dagger explosion")
+func enter(_pssssssrevious_state_path: String, _data := {}) -> void:
+	entity.target = entity.getClosestPlayer()
+	entity.velocity = Vector2.ZERO
+	entity.daggerExplosion()
 
 func exit() -> void:
 	pass
 
 func animationFinished(animatedSprite: AnimatedSprite2D) -> void:
-	if animatedSprite.animation not in ["attackFront", "attackBack", "attackLeft", "attackRight"]:
+	if animatedSprite.animation not in [
+		"daggerExplosionFront", 
+		"daggerExplosionBack", 
+		"daggerExplosionLeft", 
+		"daggerExplosionRight"
+	]:
 		return
 	
 	finished.emit(THINKING)

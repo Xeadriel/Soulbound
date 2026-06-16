@@ -20,14 +20,21 @@ func process(_delta: float) -> void:
 func physicsProcess(_delta: float) -> void:
 	pass
 
-func enter(_previous_state_path: String, _data := {}) -> void:
-	print("dagger cone")
+func enter(_pssssssrevious_state_path: String, _data := {}) -> void:
+	entity.target = entity.getClosestPlayer()
+	entity.velocity = Vector2.ZERO
+	entity.daggerCone()
 
 func exit() -> void:
 	pass
 
 func animationFinished(animatedSprite: AnimatedSprite2D) -> void:
-	if animatedSprite.animation not in ["attackFront", "attackBack", "attackLeft", "attackRight"]:
+	if animatedSprite.animation not in [
+	"daggerConeFront", 
+	"daggerConeBack", 
+	"daggerConeRight", 
+	"daggerConeLeft"
+	]:
 		return
 	
 	finished.emit(THINKING)
