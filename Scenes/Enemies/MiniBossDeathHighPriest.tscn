@@ -1,6 +1,6 @@
-[gd_scene load_steps=150 format=3 uid="uid://jnyddp6cmv5f"]
+[gd_scene load_steps=150 format=3 uid="uid://k5le5iauuik8"]
 
-[ext_resource type="Script" uid="uid://bcn44g4gb3bcc" path="res://Scripts/Enemies/MiniBossDeathHighPriest.gd" id="1_3l0ll"]
+[ext_resource type="Script" path="res://Scripts/Enemies/MiniBossDeathHighPriest.gd" id="1_3l0ll"]
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="2_u4yqb"]
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="3_3jfg0"]
 [ext_resource type="Texture2D" uid="uid://bql0yr1v0lyt8" path="res://Assets/spritesheetShield.png" id="3_lppw1"]
@@ -1176,9 +1176,8 @@ shape = SubResource("RectangleShape2D_4myx3")
 script = ExtResource("3_3jfg0")
 currentState = NodePath("StateThinking")
 
-[node name="StateIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+[node name="StateIdle" type="Node" parent="StateMachine"]
 script = ExtResource("4_eoms6")
-entity = NodePath("../..")
 
 [node name="StateStrafe" type="Node" parent="StateMachine" node_paths=PackedStringArray("obstacleDetection", "entity")]
 script = ExtResource("5_hy7xe")
