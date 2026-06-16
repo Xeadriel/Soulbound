@@ -9,7 +9,8 @@ enum ItemIndices {
 			 # actually an item thats tracked with an achievement 
 	WHIP,
 	POTION,
-	SMALL_KEY
+	SMALL_KEY,
+	PIECES_OF_EIGHT
 	# insert new items here
 }
 

@@ -10,7 +10,7 @@ func process(delta: float) -> void:
 	timePassed += delta
 	entity.velocity = Vector2.ZERO
 	if timePassed >= stunDurationSecs:
-		finished.emit("StateIdle")
+		finished.emit(IDLE)
 
 func enter(_previous_state_path: String, data := {}) -> void:
 	timePassed = 0

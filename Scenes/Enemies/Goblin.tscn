@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dbhfk6b273blh" path="res://Scripts/Enemies/Goblin.gd" id="1_adqnq"]
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="3_g722j"]
-[ext_resource type="Script" uid="uid://blr2lvis0gtkh" path="res://Scripts/StateMachine/StatesEnemy/StateIdle.gd" id="4_adqnq"]
-[ext_resource type="Script" uid="uid://cblg18dtcsly8" path="res://Scripts/StateMachine/StatesEnemy/Goblin/StateRunGoblinMelee.gd" id="5_6trl6"]
-[ext_resource type="Script" uid="uid://cmh0dmwy8nmdk" path="res://Scripts/StateMachine/StatesEnemy/StateAtk.gd" id="6_cbm62"]
-[ext_resource type="Script" uid="uid://dpmmdpv17053j" path="res://Scripts/StateMachine/StatesEnemy/Goblin/StateRunCircleGoblinMelee.gd" id="7_yhhi5"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/StatesEnemy/StateIdleEnemy.gd" id="4_adqnq"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/StatesEnemy/Goblin/StateRunGoblin.gd" id="5_6trl6"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/StatesEnemy/Goblin/StateAtkGoblin.gd" id="6_cbm62"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/StatesEnemy/Goblin/StateRunCircle.gd" id="7_yhhi5"]
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="8_0td7v"]
 [ext_resource type="Script" uid="uid://bf2js1oj25nid" path="res://Scripts/StateMachine/StatesEnemy/StateTelegraph.gd" id="8_f0wnp"]
-[ext_resource type="Script" uid="uid://dtva533g5uawt" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateStunnedGoblinWizard.gd" id="9_6trl6"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/StatesEnemy/StateStunned.gd" id="9_6trl6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
 atlas = ExtResource("8_0td7v")
@@ -842,11 +842,11 @@ autoplay = "idleFront"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0td7v")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="RunCircleObstacleDetection" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RunCircleObstacleDetection"]
 position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_4myx3")
 
@@ -865,12 +865,11 @@ entity = NodePath("../..")
 
 [node name="StateAtk" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("6_cbm62")
-nextState = "StateRunCircle"
 entity = NodePath("../..")
 
 [node name="StateRunCircle" type="Node" parent="StateMachine" node_paths=PackedStringArray("obstacleDetection", "entity")]
 script = ExtResource("7_yhhi5")
-obstacleDetection = NodePath("../../Area2D")
+obstacleDetection = NodePath("../../RunCircleObstacleDetection")
 entity = NodePath("../..")
 
 [node name="StateTelegraph" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
