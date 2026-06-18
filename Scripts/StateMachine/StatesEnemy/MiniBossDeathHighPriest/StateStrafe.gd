@@ -2,7 +2,6 @@
 ## Extend this class and override its methods to implement a state.
 extends StateEnemy
 
-@export var SPEED : float = 100.0
 @export var minDuration4DirChange: float = 1
 @export var maxDuration4DirChange: float = 5
 
@@ -44,18 +43,18 @@ func process(delta: float) -> void:
 	# if enemy is too far away
 	if distance > entity.atkRange:
 		entity.velocity = entity.global_position.direction_to(
-			entity.target.global_position).normalized() * SPEED
+			entity.target.global_position).normalized() * entity.SPEED
 		entity.run()
 	if entity.target && inRangeThresh && timer4DirChange > 0:
 		# if enemy is too close
 		if distance < entity.atkRange - distanceThreshold:
 				entity.velocity = entity.global_position.direction_to(
-					entity.target.global_position).normalized() * SPEED * -1
+					entity.target.global_position).normalized() * entity.SPEED * -1
 		else:
 			var diffVector = entity.global_position - entity.target.global_position
 			var tangent = Vector2(-diffVector.y * dirChanger, 
 				diffVector.x * dirChanger).normalized()
-			entity.velocity = tangent * SPEED
+			entity.velocity = tangent * entity.SPEED
 		
 		entity.direction = entity.getDirectionToPlayer()
 		entity.run()

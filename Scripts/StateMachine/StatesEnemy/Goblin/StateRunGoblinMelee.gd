@@ -2,8 +2,6 @@
 ## Extend this class and override its methods to implement a state.
 extends StateEnemy
 
-@export var SPEED : int
-
 ## Called by the state machine when receiving unhandled input events.
 func handleInput() -> void:
 	pass
@@ -16,7 +14,7 @@ func process(_delta: float) -> void:
 		finished.emit(IDLE)
 	elif entity.atkRange <= distance:
 		var direction = entity.global_position.direction_to(entity.target.global_position)
-		entity.velocity = direction.normalized() * SPEED
+		entity.velocity = direction.normalized() * entity.SPEED
 		entity.direction = entity.getDirectionFromVector(direction)
 		entity.run()
 	else:

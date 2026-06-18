@@ -10,6 +10,8 @@ class_name MiniBossDeathHighPriest extends Enemy
 		else:
 			shieldSprite.visible = true
 			
+@export var SPEED := 100
+
 func _onready():
 	shieldSprite.play()
 	currentShield = 100
