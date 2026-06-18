@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cel6itjonug3b" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzle.tscn" id="13_2n2dr"]
 [ext_resource type="PackedScene" uid="uid://dm3pm4k0erp0v" path="res://Scenes/World/WorldObjects/Chest.tscn" id="16_pwrpc"]
 [ext_resource type="PackedScene" uid="uid://day27nflhuxcp" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/PuzzleTerminal.tscn" id="16_uhk1o"]
-[ext_resource type="PackedScene" uid="uid://k5le5iauuik8" path="res://Scenes/Enemies/MiniBossDeathHighPriest.tscn" id="17_uhk1o"]
+[ext_resource type="PackedScene" uid="uid://jnyddp6cmv5f" path="res://Scenes/Enemies/MiniBossDeathHighPriest.tscn" id="17_uhk1o"]
 [ext_resource type="Script" uid="uid://dy1c0bwsa7fng" path="res://Scripts/World/WorldObjects/Properties/PropertyCollidable.gd" id="18_pwrpc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
@@ -753,7 +753,7 @@ position = Vector2(73, -289)
 position = Vector2(-688, -248)
 
 [node name="Wizard4" parent="2DObjects/Rooms/MiniBossRoom" instance=ExtResource("8_6m3rn")]
-position = Vector2(-239, -239)
+position = Vector2(-242, -239)
 atkRange = 500.0
 aggroRange = 800.0
 
@@ -923,7 +923,7 @@ animation = &"closed"
 containingItem = 3
 amount = 1
 
-[node name="Projectiles" type="Node" parent="2DObjects"]
+[node name="Projectiles" type="Node" parent="2DObjects" groups=["ProjectileNode"]]
 
 [connection signal="body_entered" from="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" method="_on_body_exited"]
