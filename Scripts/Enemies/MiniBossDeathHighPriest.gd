@@ -2,6 +2,9 @@ class_name MiniBossDeathHighPriest extends Enemy
 
 @onready var shieldSprite = $ShieldSprite
 
+@onready var colDetector: CollisionShape2D = $CollisionShape2D
+
+@export var teleportRange := 200
 @export var currentShield: float:
 	set(newShield):
 		currentShield = newShield
@@ -146,12 +149,20 @@ func telegraphSwipe() -> void:
 func swipe() -> void:
 	match direction:
 		Direction.UP:
+			attackUp.process_mode = PROCESS_MODE_INHERIT
+			attackUp.visible = true
 			animatedSprite.play("swipeBack")
 		Direction.DOWN:
+			attackUp.process_mode = PROCESS_MODE_INHERIT
+			attackUp.visible = true
 			animatedSprite.play("swipeFront")
 		Direction.LEFT:
+			attackUp.process_mode = PROCESS_MODE_INHERIT
+			attackUp.visible = true
 			animatedSprite.play("swipeLeft")
 		Direction.RIGHT:
+			attackUp.process_mode = PROCESS_MODE_INHERIT
+			attackUp.visible = true
 			animatedSprite.play("swipeRight")
 
 # signal when area2D collides with something
@@ -197,3 +208,40 @@ func stopAttack() -> void:
 	attackDown.process_mode = PROCESS_MODE_DISABLED
 	attackLeft.process_mode = PROCESS_MODE_DISABLED
 	attackRight.process_mode = PROCESS_MODE_DISABLED
+	
+func teleport() -> void:
+	match direction:
+		Direction.UP:
+			animatedSprite.play("teleportBack")
+		Direction.DOWN:
+			animatedSprite.play("teleportFront")
+		Direction.LEFT:
+			animatedSprite.play("teleportLeft")
+		Direction.RIGHT:
+			animatedSprite.play("teleportRight")
+			
+func is_valid_position(pos: Vector2) -> bool:
+	var space_state = get_world_2d().direct_space_state
+	var shape = colDetector.shape.duplicate()
+
+	var params = PhysicsShapeQueryParameters2D.new()
+	params.shape = shape
+	params.transform = Transform2D(0, pos)
+	params.collide_with_areas = false
+	params.collide_with_bodies = true
+
+	var result = space_state.intersect_shape(params)
+
+	return result.is_empty()
+	
+func getTeleportPos() -> Vector2:
+	var colliding = true
+	var targetPos = Vector2.ZERO
+	while(colliding):
+		var angle := randf() * TAU
+		var radius := randf() * teleportRange
+		targetPos = global_position + Vector2(cos(angle), sin(angle)) * radius
+		colDetector.global_position = targetPos
+		if is_valid_position(targetPos):
+			colliding = false
+	return targetPos

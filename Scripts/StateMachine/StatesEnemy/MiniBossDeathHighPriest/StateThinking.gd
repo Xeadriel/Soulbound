@@ -65,8 +65,9 @@ func decideNextState() -> void:
 	for w in weights.values():
 		totalWeight += w
 	var r = randi() % totalWeight
+	var accumul = 0
 	for k in weights:
-		var w = weights[k]
-		if r < w :
+		accumul += weights[k]
+		if r < accumul :
 			finished.emit(k)
 			return

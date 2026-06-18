@@ -3,7 +3,8 @@ extends StateEnemy
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	super()
+	entity.animationFinishedSignal.connect(animationFinished)
 
 func process(_delta: float) -> void:
 	pass
@@ -22,6 +23,6 @@ func exit() -> void:
 
 # if telegraph is done, switch to attack
 func animationFinished(animatedSprite: AnimatedSprite2D):
-	if "telegraphDaggerCone" not in animatedSprite.animation:
+	if "telegraphSwipe" not in animatedSprite.animation:
 		return
 	finished.emit(SWIPE)

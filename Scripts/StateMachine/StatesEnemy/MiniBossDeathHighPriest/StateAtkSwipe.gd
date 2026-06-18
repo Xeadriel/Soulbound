@@ -32,4 +32,5 @@ func exit() -> void:
 func animationFinished(animatedSprite: AnimatedSprite2D) -> void:
 	if animatedSprite.animation not in ["swipeFront", "swipeBack", "swipeLeft", "swipeRight"]:
 		return
+	print("finish swiping!")
 	finished.emit(THINKING)

@@ -24,6 +24,8 @@ func exit() -> void:
 
 # if telegraph is done, switch to attack
 func animationFinished(animatedSprite: AnimatedSprite2D):
+	
 	if "telegraphDaggerCone" not in animatedSprite.animation:
 		return
+
 	finished.emit(DAGGER_CONE)

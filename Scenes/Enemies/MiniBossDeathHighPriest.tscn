@@ -1,4 +1,4 @@
-[gd_scene load_steps=270 format=3 uid="uid://jnyddp6cmv5f"]
+[gd_scene load_steps=251 format=3 uid="uid://jnyddp6cmv5f"]
 
 [ext_resource type="Script" uid="uid://bcn44g4gb3bcc" path="res://Scripts/Enemies/MiniBossDeathHighPriest.gd" id="1_3l0ll"]
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="2_u4yqb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://ctap3ttkvlrey" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateIdle.gd" id="4_eoms6"]
 [ext_resource type="Script" uid="uid://cjdagsts0n8yh" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateStrafe.gd" id="5_hy7xe"]
 [ext_resource type="Script" uid="uid://chxki3s4o7101" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateStunned.gd" id="6_5yec7"]
+[ext_resource type="Script" uid="uid://bnk5kbmdqbrvp" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTeleport.gd" id="6_x02iw"]
 [ext_resource type="Script" uid="uid://b6j1dce8bo67a" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTelegraphSwipe.gd" id="7_lppw1"]
 [ext_resource type="Script" uid="uid://dyrtdad8yh5ff" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateAtkSwipe.gd" id="8_x02iw"]
 [ext_resource type="Script" uid="uid://d1vhc0thbyqo8" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTelegraphDaggerCone.gd" id="9_rfjik"]
@@ -17,86 +18,6 @@
 [ext_resource type="Script" uid="uid://u6eavhyo0s3c" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateThinking.gd" id="12_u4yqb"]
 [ext_resource type="Script" uid="uid://ctkwamixhth4e" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateSacrifice.gd" id="13_3jfg0"]
 [ext_resource type="Script" uid="uid://dxhb5pptc3ovt" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateAtkCirclingDaggers.gd" id="14_x02iw"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_utwlt"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(10, 1570, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kih0c"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(109, 1570, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lyrkg"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(208, 1570, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c43xd"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(307, 1570, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_avx33"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(406, 1570, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rxg2u"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(10, 1450, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xixlo"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(109, 1450, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bfbt0"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(208, 1450, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wosd6"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(307, 1450, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hkrn1"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(406, 1450, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wpo1r"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(10, 1690, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pqity"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(109, 1690, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_opqna"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(208, 1690, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_00okb"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(307, 1690, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6hr71"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(406, 1690, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y6y60"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(10, 1810, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vmcrb"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(109, 1810, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_teras"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(208, 1810, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8p516"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(307, 1810, 89, 110)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fvoow"]
-atlas = ExtResource("2_u4yqb")
-region = Rect2(406, 1810, 89, 110)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nd2nr"]
 atlas = ExtResource("2_u4yqb")
@@ -982,86 +903,6 @@ region = Rect2(406, 2290, 89, 110)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_utwlt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kih0c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lyrkg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c43xd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_avx33")
-}],
-"loop": false,
-"name": &"blockBack",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rxg2u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xixlo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bfbt0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wosd6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hkrn1")
-}],
-"loop": false,
-"name": &"blockFront",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wpo1r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pqity")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_opqna")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_00okb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6hr71")
-}],
-"loop": false,
-"name": &"blockLeft",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y6y60")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vmcrb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_teras")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8p516")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fvoow")
-}],
-"loop": false,
-"name": &"blockRight",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_nd2nr")
 }, {
 "duration": 1.0,
@@ -1636,7 +1477,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jg3tu")
 }],
-"loop": true,
+"loop": false,
 "name": &"telegraphDaggerCirclingBack",
 "speed": 5.0
 }, {
@@ -1656,7 +1497,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lj4h7")
 }],
-"loop": true,
+"loop": false,
 "name": &"telegraphDaggerCirclingFront",
 "speed": 5.0
 }, {
@@ -1676,7 +1517,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b3aax")
 }],
-"loop": true,
+"loop": false,
 "name": &"telegraphDaggerCirclingLeft",
 "speed": 5.0
 }, {
@@ -1696,7 +1537,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b6hjq")
 }],
-"loop": true,
+"loop": false,
 "name": &"telegraphDaggerCirclingRight",
 "speed": 5.0
 }, {
@@ -1716,7 +1557,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r0run")
 }],
-"loop": true,
+"loop": false,
 "name": &"telegraphDaggerConeBack",
 "speed": 5.0
 }, {
@@ -1736,7 +1577,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2rsmj")
 }],
-"loop": true,
+"loop": false,
 "name": &"telegraphDaggerConeFront",
 "speed": 5.0
 }, {
@@ -1756,7 +1597,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_utcef")
 }],
-"loop": true,
+"loop": false,
 "name": &"telegraphDaggerConeLeft",
 "speed": 5.0
 }, {
@@ -1776,7 +1617,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_865n5")
 }],
-"loop": true,
+"loop": false,
 "name": &"telegraphDaggerConeRight",
 "speed": 5.0
 }, {
@@ -1796,7 +1637,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bb7kc")
 }],
-"loop": true,
+"loop": false,
 "name": &"telegraphDaggerExplosionBack",
 "speed": 5.0
 }, {
@@ -1816,7 +1657,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gjahc")
 }],
-"loop": true,
+"loop": false,
 "name": &"telegraphDaggerExplosionFront",
 "speed": 5.0
 }, {
@@ -1836,7 +1677,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_olly6")
 }],
-"loop": true,
+"loop": false,
 "name": &"telegraphDaggerExplosionLeft",
 "speed": 5.0
 }, {
@@ -1856,7 +1697,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_orc6c")
 }],
-"loop": true,
+"loop": false,
 "name": &"telegraphDaggerExplosionRight",
 "speed": 5.0
 }, {
@@ -1939,6 +1780,26 @@ animations = [{
 "loop": false,
 "name": &"telegraphSwipeRight",
 "speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"teleportBack",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"teleportFront",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"teleportLeft",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"teleportRight",
+"speed": 5.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7n8yg"]
@@ -2009,7 +1870,7 @@ aggroRange = 1000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lc4gu")
-animation = &"daggerExplosionBack"
+animation = &"teleportLeft"
 autoplay = "idleFront"
 
 [node name="ShieldSprite" type="AnimatedSprite2D" parent="."]
@@ -2019,11 +1880,11 @@ sprite_frames = SubResource("SpriteFrames_ld2h4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0td7v")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="MovingCollissionDetection" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovingCollissionDetection"]
 position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_4myx3")
 
@@ -2035,9 +1896,13 @@ currentState = NodePath("StateThinking")
 script = ExtResource("4_eoms6")
 entity = NodePath("../..")
 
+[node name="StateTeleport" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+script = ExtResource("6_x02iw")
+entity = NodePath("../..")
+
 [node name="StateStrafe" type="Node" parent="StateMachine" node_paths=PackedStringArray("obstacleDetection", "entity")]
 script = ExtResource("5_hy7xe")
-obstacleDetection = NodePath("../../Area2D")
+obstacleDetection = NodePath("../../MovingCollissionDetection")
 entity = NodePath("../..")
 
 [node name="StateStunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
@@ -2064,23 +1929,23 @@ entity = NodePath("../..")
 script = ExtResource("10_tg00k")
 entity = NodePath("../..")
 
-[node name="StateTelegraphCirclingDaggers" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+[node name="StateTelegraphDaggerCircling" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("11_gyvv3")
 entity = NodePath("../..")
 
-[node name="StateAtkSwipe" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+[node name="StateSwipe" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("8_x02iw")
 entity = NodePath("../..")
 
-[node name="StateAtkDaggerCone" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+[node name="StateDaggerCone" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("10_5yec7")
 entity = NodePath("../..")
 
-[node name="StateAtkDaggerExplosion" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+[node name="StateDaggerExplosion" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("12_lppw1")
 entity = NodePath("../..")
 
-[node name="StateAtkCirclingDaggers" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+[node name="StateDaggerCircling" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("14_x02iw")
 entity = NodePath("../..")
 
