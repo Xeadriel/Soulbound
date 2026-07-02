@@ -1,4 +1,5 @@
 class_name State extends Node
+#base class for all states, meant to be treated as an interface
 
 ## Emitted when the state finishes and wants to transition to another state.
 @warning_ignore("unused_signal")

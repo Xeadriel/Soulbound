@@ -4,11 +4,12 @@ class_name Enemy extends CharacterBody2D
 @export var atkRange := 100.0
 @export var aggroRange:= 500.0
 @export var telegraphTime := 1.0
+@export var atkTime := 1.0
 
 var players
 var target: Player
 
-@onready var stateMachine = $StateMachine
+@onready var stateMachine : StateMachine = $StateMachine
 
 enum Direction {
 	UP,
@@ -21,7 +22,7 @@ var direction = Direction.DOWN
 @onready var attackUp : Area2D = $AttackUp
 @onready var attackDown : Area2D = $AttackDown
 @onready var attackLeft : Area2D = $AttackLeft
-@onready var attackRight : Area2D= $AttackRight
+@onready var attackRight : Area2D = $AttackRight
 
 @export var DAMAGE = 1
 @export var currentHp: int:
@@ -106,8 +107,7 @@ func idle():
 		Direction.RIGHT:
 			animatedSprite.play("idleRight")
 			
-
-
+			
 func stunned():
 	match direction:
 		Direction.UP:
@@ -129,6 +129,9 @@ func run():
 			animatedSprite.play("runLeft")
 		Direction.RIGHT:
 			animatedSprite.play("runRight")
+
+func stopAttack() -> void:
+	pass
 
 func telegraphAttack() -> void:
 	match direction:

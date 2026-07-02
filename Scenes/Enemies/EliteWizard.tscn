@@ -1,13 +1,14 @@
-[gd_scene load_steps=111 format=3 uid="uid://cuxujo6x2vj3e"]
+[gd_scene load_steps=113 format=3 uid="uid://cuxujo6x2vj3e"]
 
 [ext_resource type="Script" uid="uid://1gwroofxr02d" path="res://Scripts/Enemies/EliteWizard.gd" id="1_3ty7g"]
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="2_0bbbb"]
+[ext_resource type="PackedScene" uid="uid://dehht20jmbr6h" path="res://Scenes/Enemies/Fireball.tscn" id="2_3ty7g"]
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="3_12gck"]
-[ext_resource type="Script" path="res://Scripts/StateMachine/StatesEnemy/StateIdleEnemy.gd" id="4_2u3gb"]
+[ext_resource type="Script" uid="uid://blr2lvis0gtkh" path="res://Scripts/StateMachine/StatesEnemy/StateIdle.gd" id="4_2u3gb"]
 [ext_resource type="Script" uid="uid://dxv5sn1aoc86a" path="res://Scripts/StateMachine/StatesEnemy/Elite Wizard/StateRunEliteWizard.gd" id="6_2u3gb"]
-[ext_resource type="Script" path="res://Scripts/StateMachine/StatesEnemy/Wizard/StateAtkWizard.gd" id="7_cfgtw"]
+[ext_resource type="Script" uid="uid://cmh0dmwy8nmdk" path="res://Scripts/StateMachine/StatesEnemy/StateAtk.gd" id="7_cfgtw"]
 [ext_resource type="Script" uid="uid://bf2js1oj25nid" path="res://Scripts/StateMachine/StatesEnemy/StateTelegraph.gd" id="8_6ahxr"]
-[ext_resource type="Script" path="res://Scripts/StateMachine/StatesEnemy/StateStunned.gd" id="9_8slsf"]
+[ext_resource type="Script" uid="uid://dk2l6ks0icnu4" path="res://Scripts/StateMachine/StatesEnemy/StateTaunt.gd" id="9_ssyqf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
 atlas = ExtResource("2_0bbbb")
@@ -816,11 +817,43 @@ animations = [{
 radius = 44.0
 height = 108.0
 
+[sub_resource type="GDScript" id="GDScript_briou"]
+script/source = "extends StateEnemy
+
+var stunDurationSecs = 1.0
+var timePassed = 0
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	super()
+
+func process(delta: float) -> void:
+	timePassed += delta
+	entity.velocity = Vector2.ZERO
+	if timePassed >= stunDurationSecs:
+		finished.emit(\"StateIdle\")
+
+func enter(_previous_state_path: String, data := {}) -> void:
+	timePassed = 0
+	stunDurationSecs = 1.0
+	if data.has(\"duration\"):
+		stunDurationSecs = data[\"duration\"]
+	
+	entity.velocity = Vector2.ZERO
+	entity.idle() # change later
+	entity.stunned()
+
+func exit() -> void:
+	timePassed = 0
+"
+
 [node name="EliteWizard" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 11
 motion_mode = 1
 script = ExtResource("1_3ty7g")
+fireballScene = ExtResource("2_3ty7g")
+atkRange = 800.0
+aggroRange = 800.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lc4gu")
@@ -852,9 +885,11 @@ script = ExtResource("8_6ahxr")
 entity = NodePath("../..")
 
 [node name="StateStunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = ExtResource("9_8slsf")
+script = SubResource("GDScript_briou")
 entity = NodePath("../..")
 
-[node name="StateTeleport" type="Node" parent="StateMachine"]
+[node name="StateTaunt" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
+script = ExtResource("9_ssyqf")
+entity = NodePath("../..")
 
 [node name="AtkSpawnPoint" type="Node2D" parent="."]

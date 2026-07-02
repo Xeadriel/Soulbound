@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://cy4vn64vtg0f7"]
+[gd_scene load_steps=48 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_ewn0l"]
 [ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/UserInterface/AutoCamera.tscn" id="2_8p3qi"]
@@ -20,8 +20,9 @@
 [ext_resource type="PackedScene" uid="uid://cel6itjonug3b" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzle.tscn" id="13_2n2dr"]
 [ext_resource type="PackedScene" uid="uid://dm3pm4k0erp0v" path="res://Scenes/World/WorldObjects/Chest.tscn" id="16_pwrpc"]
 [ext_resource type="PackedScene" uid="uid://day27nflhuxcp" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/PuzzleTerminal.tscn" id="16_uhk1o"]
-[ext_resource type="PackedScene" uid="uid://jnyddp6cmv5f" path="res://Scenes/Enemies/MiniBossDeathHighPriest.tscn" id="17_uhk1o"]
+[ext_resource type="PackedScene" uid="uid://k5le5iauuik8" path="res://Scenes/Enemies/MiniBossDeathHighPriest.tscn" id="17_uhk1o"]
 [ext_resource type="Script" uid="uid://dy1c0bwsa7fng" path="res://Scripts/World/WorldObjects/Properties/PropertyCollidable.gd" id="18_pwrpc"]
+[ext_resource type="PackedScene" uid="uid://cuxujo6x2vj3e" path="res://Scenes/Enemies/EliteWizard.tscn" id="23_vgay6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
 texture = ExtResource("1_ewn0l")
@@ -206,13 +207,13 @@ tile_set = SubResource("TileSet_hj7eh")
 
 [node name="Player" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("9_0r1y5")]
 z_index = 5
-position = Vector2(-2167, 3966)
+position = Vector2(4106, 3287)
 ItemQuickSlots = NodePath("../../AutoCamera/ItemQuickSelect")
 whipAttackSpawner = ExtResource("10_uhk1o")
 
 [node name="Player2" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("11_pwrpc")]
 z_index = 5
-position = Vector2(-1930, 3955)
+position = Vector2(4095, 3065)
 ItemQuickSlots = NodePath("../../AutoCamera/ItemQuickSelect2")
 whipAttackSpawner = ExtResource("10_uhk1o")
 
@@ -463,6 +464,11 @@ shape = SubResource("RectangleShape2D_lnjar")
 position = Vector2(1044, 1997)
 script = ExtResource("18_pwrpc")
 
+[node name="Sprite2D" type="Sprite2D" parent="2DObjects/Rooms/MainHallway/MainHallBlocker"]
+position = Vector2(349, -141.5)
+scale = Vector2(8.42593, 2.11538)
+texture = ExtResource("3_5yy2f")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/MainHallway/MainHallBlocker"]
 shape = SubResource("CircleShape2D_0kwpc")
 
@@ -509,7 +515,6 @@ script = ExtResource("7_6m3rn")
 
 [node name="MoneyChest" parent="2DObjects/Rooms/Barracks" instance=ExtResource("16_pwrpc")]
 position = Vector2(-1335, 37)
-animation = &"closed"
 containingItem = 4
 amount = 4
 
@@ -578,7 +583,6 @@ script = ExtResource("7_6m3rn")
 
 [node name="KeyChest" parent="2DObjects/Rooms/PuzzleRoomReward" instance=ExtResource("16_pwrpc")]
 position = Vector2(-112, -504)
-animation = &"closed"
 containingItem = 3
 amount = 1
 
@@ -643,7 +647,6 @@ script = ExtResource("7_6m3rn")
 
 [node name="MoneyChest" parent="2DObjects/Rooms/FoodRoom" instance=ExtResource("16_pwrpc")]
 position = Vector2(7, -209)
-animation = &"closed"
 containingItem = 4
 amount = 4
 
@@ -711,17 +714,18 @@ shape = SubResource("RectangleShape2D_km6ku")
 
 [node name="HiddenChest" parent="2DObjects/Rooms/MiniBossHallway" instance=ExtResource("16_pwrpc")]
 position = Vector2(813, 359)
-animation = &"closed"
 amount = 1
 
 [node name="MiniBossRoom" type="Node2D" parent="2DObjects/Rooms"]
 position = Vector2(-1538, 4533)
 script = ExtResource("7_6m3rn")
 
-[node name="ChestPlaceholder3" type="Sprite2D" parent="2DObjects/Rooms/MiniBossRoom"]
-position = Vector2(8.99997, 8)
-scale = Vector2(1.69907, 2.23077)
-texture = ExtResource("3_5yy2f")
+[node name="WhipChest" parent="2DObjects/Rooms/MiniBossRoom" instance=ExtResource("16_pwrpc")]
+process_mode = 4
+visible = false
+position = Vector2(-28, -583.5)
+scale = Vector2(1.74074, 1.78205)
+containingItem = 1
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/MiniBossRoom"]
 collision_layer = 0
@@ -918,10 +922,66 @@ position = Vector2(198, 1.5)
 shape = SubResource("RectangleShape2D_vgay6")
 
 [node name="KeyChest" parent="2DObjects/Rooms/RuinedDormitoryBig" instance=ExtResource("16_pwrpc")]
+process_mode = 4
+visible = false
 position = Vector2(370, -389)
-animation = &"closed"
 containingItem = 3
 amount = 1
+
+[node name="EliteWizard" parent="2DObjects/Rooms/RuinedDormitoryBig" node_paths=PackedStringArray("teleportLocationsRoot") instance=ExtResource("23_vgay6")]
+position = Vector2(535, 18)
+teleportLocationsRoot = NodePath("../EliteWizardTeleportLocations")
+
+[node name="EliteWizardTeleportLocations" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig"]
+
+[node name="Node2D" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(312, 0)
+
+[node name="Node2D11" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(-184, -216)
+
+[node name="Node2D13" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(304, -192)
+
+[node name="Node2D12" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(-160, 0)
+
+[node name="Node2D8" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(-200, 216)
+
+[node name="Node2D10" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(632, 128)
+
+[node name="Node2D9" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(552, -176)
+
+[node name="Node2D2" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(16, 176)
+
+[node name="Node2D3" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(0, -224)
+
+[node name="Node2D4" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(200, -312)
+
+[node name="Node2D5" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(520, -319)
+
+[node name="Node2D6" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(352, 304)
+
+[node name="Node2D14" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(168, 248)
+
+[node name="Node2D7" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(536, 257)
+
+[node name="Node2D15" type="Node2D" parent="2DObjects/Rooms/RuinedDormitoryBig/EliteWizardTeleportLocations"]
+position = Vector2(392, 129)
+
+[node name="EnemiesCounter" parent="2DObjects/Rooms/RuinedDormitoryBig" instance=ExtResource("12_g3l2s")]
+position = Vector2(216, 0)
+enemiesLeft = 1
 
 [node name="Projectiles" type="Node" parent="2DObjects" groups=["ProjectileNode"]]
 
@@ -987,3 +1047,5 @@ amount = 1
 [connection signal="body_entered" from="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer" method="_on_body_exited"]
 [connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBig" method="updateRoomStatus"]
+[connection signal="died" from="2DObjects/Rooms/RuinedDormitoryBig/EliteWizard" to="2DObjects/Rooms/RuinedDormitoryBig/EnemiesCounter" method="onEnemyDied"]
+[connection signal="enemiesCleared" from="2DObjects/Rooms/RuinedDormitoryBig/EnemiesCounter" to="2DObjects/Rooms/RuinedDormitoryBig/KeyChest" method="appear"]

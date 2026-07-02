@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://dpmmdpv17053j" path="res://Scripts/StateMachine/StatesEnemy/Goblin/StateRunCircleGoblinMelee.gd" id="7_yhhi5"]
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="8_0td7v"]
 [ext_resource type="Script" uid="uid://bf2js1oj25nid" path="res://Scripts/StateMachine/StatesEnemy/StateTelegraph.gd" id="8_f0wnp"]
-[ext_resource type="Script" uid="uid://bsnvrj26xn6db" path="res://Scripts/StateMachine/StatesEnemy/Goblin/StateStunnedGoblinMelee.gd" id="9_6trl6"]
+[ext_resource type="Script" uid="uid://bsnvrj26xn6db" path="res://Scripts/StateMachine/StatesEnemy/StateStunned.gd" id="9_6trl6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
 atlas = ExtResource("8_0td7v")

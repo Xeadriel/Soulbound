@@ -22,7 +22,8 @@ func process(_delta: float) -> void:
 func physicsProcess(_delta: float) -> void:
 	pass
 
-func enter(_pssssssrevious_state_path: String, _data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
+	entity.animatedSprite.speed_scale = entity.atkTime
 	entity.target = entity.getClosestPlayer()
 	entity.velocity = Vector2.ZERO
 	entity.attack()

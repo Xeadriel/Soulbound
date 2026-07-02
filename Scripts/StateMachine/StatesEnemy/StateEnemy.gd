@@ -6,6 +6,8 @@ const ATK = "StateAtk"
 const RUNCIRCLE = "StateRunCircle"
 const TELEGRAPH = "StateTelegraph"
 const STUNNED = "StateStunned"
+const TAUNT = "StateTaunt"
+
 const STRAFE = "StateStrafe"
 const SWIPE = "StateAtkSwipe"
 const TELEGRAPH_SWIPE = "StateTelegraphSwipe"
@@ -28,6 +30,3 @@ enum inRangeBehavior {ATK, CIRCLE}
 func _ready() -> void:
 	assert(entity != null, "Entity should not be null")
 	assert(owner is Enemy, "StateEnemy Class belongs only to Enemy class!")
-
-func enter(_previous_state_path: String, _data := {}):
-	pass

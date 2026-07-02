@@ -1,4 +1,4 @@
-[gd_scene load_steps=270 format=3 uid="uid://jnyddp6cmv5f"]
+[gd_scene load_steps=270 format=3 uid="uid://k5le5iauuik8"]
 
 [ext_resource type="Script" uid="uid://bcn44g4gb3bcc" path="res://Scripts/Enemies/MiniBossDeathHighPriest.gd" id="1_3l0ll"]
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="2_u4yqb"]
