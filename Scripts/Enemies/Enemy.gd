@@ -5,6 +5,7 @@ class_name Enemy extends CharacterBody2D
 @export var aggroRange:= 500.0
 @export var telegraphTime := 1.0
 
+
 var players
 var target: Player
 

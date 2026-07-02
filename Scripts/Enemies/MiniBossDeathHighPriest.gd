@@ -1,10 +1,10 @@
 class_name MiniBossDeathHighPriest extends Enemy
 
 @onready var shieldSprite = $ShieldSprite
-
 @onready var colDetector: CollisionShape2D = $CollisionShape2D
+@onready var telColDetector: Area2D = $TeleportCollissionDetection
 
-@export var teleportRange := 200
+@export var teleportRange := 500
 @export var currentShield: float:
 	set(newShield):
 		currentShield = newShield
@@ -198,7 +198,7 @@ func CastSacrificeGoblin() -> void:
 			animatedSprite.play("castLeft")
 		Direction.RIGHT:
 			animatedSprite.play("castRight")
-			
+
 func stopAttack() -> void:
 	attackUp.visible = false
 	attackDown.visible = false
@@ -209,7 +209,7 @@ func stopAttack() -> void:
 	attackLeft.process_mode = PROCESS_MODE_DISABLED
 	attackRight.process_mode = PROCESS_MODE_DISABLED
 	
-func teleport() -> void:
+func teleportAnimation() -> void:
 	match direction:
 		Direction.UP:
 			animatedSprite.play("teleportBack")
@@ -221,20 +221,18 @@ func teleport() -> void:
 			animatedSprite.play("teleportRight")
 			
 func is_valid_position(pos: Vector2) -> bool:
-	var space_state = get_world_2d().direct_space_state
-	var shape = colDetector.shape.duplicate()
-
-	var params = PhysicsShapeQueryParameters2D.new()
-	params.shape = shape
-	params.transform = Transform2D(0, pos)
+	var spaceState = get_world_2d().direct_space_state
+	var params  = PhysicsShapeQueryParameters2D.new()
+	params.shape = colDetector.shape
+	colDetector.global_position = pos
+	params.transform = colDetector.transform
 	params.collide_with_areas = false
 	params.collide_with_bodies = true
-
-	var result = space_state.intersect_shape(params)
-
+	params.exclude = [self.get_rid()]
+	var result = spaceState.intersect_shape(params)
 	return result.is_empty()
 	
-func getTeleportPos() -> Vector2:
+func teleport() -> void:
 	var colliding = true
 	var targetPos = Vector2.ZERO
 	while(colliding):
@@ -244,4 +242,7 @@ func getTeleportPos() -> Vector2:
 		colDetector.global_position = targetPos
 		if is_valid_position(targetPos):
 			colliding = false
-	return targetPos
+	print("curr pos: ", global_position)
+	print("target pos: ", targetPos)
+	global_position = targetPos
+	

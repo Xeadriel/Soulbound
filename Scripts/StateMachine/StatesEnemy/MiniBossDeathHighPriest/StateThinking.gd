@@ -9,7 +9,6 @@ func _ready() -> void:
 	weights[IDLE] = 5
 	weights[STRAFE] = 5
 	weights[TELEGRAPH_SWIPE] = 5
-	weights[STUNNED] = 5
 	weights[SACRIFICE] = 5
 	weights[TELEGRAPH_DAGGER_EXPLOSION] = 5
 	weights[TELEGRAPH_DAGGER_CONE] = 5
@@ -22,6 +21,8 @@ func process(_delta: float) -> void:
 	var closesPlayer: Player = entity.getClosestPlayer()
 	var entityPos = entity.global_position
 	var distance = entityPos.distance_to(closesPlayer.global_position)
+	weights[TELEPORT] += 50
+	
 	# player in melee range
 	if(distance < meleeRangeThreshold):
 		weights[TELEGRAPH_SWIPE] += 5
