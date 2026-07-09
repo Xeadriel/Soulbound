@@ -36,7 +36,7 @@ Animations
 func animationFinished():
 	animationFinishedSignal.emit(animatedSprite)
 	
-func sacrificeGolin():
+func sacrificeAnimation():
 	match direction: 
 		Direction.UP:
 			animatedSprite.play("sacrificeBack")
@@ -177,27 +177,6 @@ func swipeHit(body: Node2D) -> void:
 		var player: Player = body
 		player.takeDamage(DAMAGE)
 		
-func channelSacrificeGoblin() -> void:
-	match direction:
-		Direction.UP:
-			animatedSprite.play("channelBack")
-		Direction.DOWN:
-			animatedSprite.play("channelFront")
-		Direction.LEFT:
-			animatedSprite.play("channelLeft")
-		Direction.RIGHT:
-			animatedSprite.play("channelRight")
-
-func CastSacrificeGoblin() -> void:
-	match direction:
-		Direction.UP:
-			animatedSprite.play("castBack")
-		Direction.DOWN:
-			animatedSprite.play("castFront")
-		Direction.LEFT:
-			animatedSprite.play("castLeft")
-		Direction.RIGHT:
-			animatedSprite.play("castRight")
 
 func stopAttack() -> void:
 	attackUp.visible = false

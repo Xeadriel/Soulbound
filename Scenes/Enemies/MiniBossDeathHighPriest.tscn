@@ -2177,6 +2177,7 @@ autoplay = "idleFront"
 [node name="ShieldSprite" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_ld2h4")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0td7v")

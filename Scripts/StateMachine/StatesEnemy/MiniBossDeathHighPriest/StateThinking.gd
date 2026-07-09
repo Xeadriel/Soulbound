@@ -34,7 +34,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	var entityPos = entity.global_position
 	var distance = entityPos.distance_to(closesPlayer.global_position)
 	
-	weights[CAST_SHIELD] += 500
+	weights[SACRIFICE] += 500
 	
 	# player in melee range
 	if(distance < meleeRangeThreshold):
