@@ -37,5 +37,6 @@ func animationFinished(animatedSprite: AnimatedSprite2D):
 	if "sacrifice" not in animatedSprite.animation:
 		return
 	chosenSacrifice.takeDamage(9999)
+	entity.charged = true
 	print("poof ", chosenSacrifice, " is Sacrificed!")
 	finished.emit(THINKING)
