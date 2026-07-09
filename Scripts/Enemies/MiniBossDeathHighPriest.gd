@@ -224,8 +224,9 @@ func is_valid_position(pos: Vector2) -> bool:
 	var spaceState = get_world_2d().direct_space_state
 	var params  = PhysicsShapeQueryParameters2D.new()
 	params.shape = colDetector.shape
-	colDetector.global_position = pos
-	params.transform = colDetector.transform
+	var transform = colDetector.global_transform 
+	transform.origin = pos 
+	params.transform = transform
 	params.collide_with_areas = false
 	params.collide_with_bodies = true
 	params.exclude = [self.get_rid()]
@@ -242,7 +243,19 @@ func teleport() -> void:
 		colDetector.global_position = targetPos
 		if is_valid_position(targetPos):
 			colliding = false
-	print("curr pos: ", global_position)
-	print("target pos: ", targetPos)
 	global_position = targetPos
 	
+func castShieldAnimation() -> void:
+	match direction:
+		Direction.UP:
+			animatedSprite.play("castShieldBack")
+		Direction.DOWN:
+			animatedSprite.play("castShieldFront")
+		Direction.LEFT:
+			animatedSprite.play("castShieldLeft")
+		Direction.RIGHT:
+			animatedSprite.play("castShieldRight")
+
+func castShield() -> void:
+	currentShield = 100
+	shieldSprite.visible = true

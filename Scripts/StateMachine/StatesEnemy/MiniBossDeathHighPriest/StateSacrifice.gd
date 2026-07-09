@@ -6,12 +6,7 @@ var channelTime: float = 3.0
 
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
-	channelTime -= _delta
-	if(channelTime <= 0):
-		entity.castSacrificeGoblin()
-		chosenSacrifice.takeDamage(9999)
-		print("poof ", chosenSacrifice, " is Sacrificed!")
-		finished.emit(THINKING)
+	pass
 
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:
@@ -25,9 +20,19 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 		if(child is Wizard || child is Goblin):
 			candidates.append(child)
 	chosenSacrifice = candidates.pick_random()
-	
+	entity.animatedSprite.speed_scale = entity.telegraphTime
+	entity.velocity = Vector2.ZERO
+	entity.teleportAnimation()
 
 ## Called by the state machine before changing the active state. Use this function
 ## to clean up the state.
 func exit() -> void:
-	pass
+	entity.animatedSprite.speed_scale = 1
+
+func animationFinished():
+	if "sacrifice" not in entity.animatedSprite.animation:
+		return
+	entity.castSacrificeGoblin()
+	chosenSacrifice.takeDamage(9999)
+	print("poof ", chosenSacrifice, " is Sacrificed!")
+	finished.emit(THINKING)

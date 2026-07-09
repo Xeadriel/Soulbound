@@ -18,10 +18,23 @@ func _ready() -> void:
 
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
+	pass
+	
+## Called by the state machine on the engine's physics update tick.
+func physicsProcess(_delta: float) -> void:
+	pass
+
+## Called by the state machine upon changing the active state. The `data` parameter
+## is a dictionary with arbitrary data the state can use to initialize itself.
+func enter(_previous_state_path: String, _data := {}) -> void:
+	
+	await get_tree().create_timer(randf_range(2.0, 4.0)).timeout
+	
 	var closesPlayer: Player = entity.getClosestPlayer()
 	var entityPos = entity.global_position
 	var distance = entityPos.distance_to(closesPlayer.global_position)
-	weights[TELEPORT] += 50
+	
+	weights[CAST_SHIELD] += 500
 	
 	# player in melee range
 	if(distance < meleeRangeThreshold):
@@ -29,7 +42,7 @@ func process(_delta: float) -> void:
 	# player is too close
 	if(distance < tooCloseThreshold):
 		weights[TELEGRAPH_SWIPE] += 5
-		if(false): # todo: has shield
+		if(entity.currentShield <= 0):
 			weights[TELEGRAPH_DAGGER_CONE] += 5
 		weights[TELEGRAPH_DAGGER_EXPLOSION] -= 10
 		weights[TELEGRAPH_DAGGER_CIRCLING] -= 10
@@ -46,15 +59,6 @@ func process(_delta: float) -> void:
 	if(distance > meleeRangeThreshold):
 		weights[TELEGRAPH_SWIPE] = 0
 	decideNextState()
-	
-## Called by the state machine on the engine's physics update tick.
-func physicsProcess(_delta: float) -> void:
-	pass
-
-## Called by the state machine upon changing the active state. The `data` parameter
-## is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(_previous_state_path: String, _data := {}) -> void:
-	pass
 
 ## Called by the state machine before changing the active state. Use this function
 ## to clean up the state.
