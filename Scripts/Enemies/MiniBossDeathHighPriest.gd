@@ -29,7 +29,11 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func takeDamage(dmg: int) -> void:
-	currentHp -= dmg
+	var shieldDmg = min(currentShield, dmg)
+	currentShield -= shieldDmg
+	dmg -= shieldDmg
+	if dmg > 0:
+		currentHp -= dmg
 	
 """
 Animations
