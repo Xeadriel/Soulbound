@@ -3,6 +3,7 @@ extends StateEnemy
 var candidates = []
 var chosenSacrifice: Enemy
 var channelTime: float = 3.0
+var nextState: String
 
 func _ready() -> void:
 	super()
@@ -19,6 +20,7 @@ func physicsProcess(_delta: float) -> void:
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(_previous_state_path: String, _data := {}) -> void:
+	nextState = _data.get("nextState")
 	print("sacrificing")
 	for child in entity.get_parent().get_children():
 		if(child is Wizard || child is Goblin):
@@ -37,6 +39,5 @@ func animationFinished(animatedSprite: AnimatedSprite2D):
 	if "sacrifice" not in animatedSprite.animation:
 		return
 	chosenSacrifice.takeDamage(9999)
-	entity.charged = true
 	print("poof ", chosenSacrifice, " is Sacrificed!")
-	finished.emit(THINKING)
+	finished.emit(nextState)

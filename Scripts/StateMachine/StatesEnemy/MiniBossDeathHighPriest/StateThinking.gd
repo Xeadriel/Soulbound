@@ -4,12 +4,16 @@ var weights: Dictionary[String, int]
 var meleeRangeThreshold: float = 200.0
 var tooCloseThreshold: float = 100.0
 var farEnoughThreshold: float = 300.0
+var actionsRequireSacrifice := [
+	TELEGRAPH_DAGGER_CIRCLING, 
+	TELEGRAPH_DAGGER_EXPLOSION, 
+	CAST_SHIELD
+	]
 
 func _ready() -> void:
 	weights[IDLE] = 5
 	weights[STRAFE] = 5
 	weights[TELEGRAPH_SWIPE] = 5
-	weights[SACRIFICE] = 5
 	weights[TELEGRAPH_DAGGER_EXPLOSION] = 5
 	weights[TELEGRAPH_DAGGER_CONE] = 5
 	weights[TELEGRAPH_DAGGER_CIRCLING] = 5
@@ -19,7 +23,7 @@ func _ready() -> void:
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
 	pass
-	
+
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:
 	pass
@@ -30,11 +34,11 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	
 	await get_tree().create_timer(randf_range(2.0, 4.0)).timeout
 	
-	var closesPlayer: Player = entity.getClosestPlayer()
+	var closestPlayer: Player = entity.getClosestPlayer()
 	var entityPos = entity.global_position
-	var distance = entityPos.distance_to(closesPlayer.global_position)
+	var distance = entityPos.distance_to(closestPlayer.global_position)
 	
-	weights[SACRIFICE] += 500
+	weights[TELEGRAPH_DAGGER_CIRCLING] += 500
 	
 	# player in melee range
 	if(distance < meleeRangeThreshold):
@@ -74,5 +78,8 @@ func decideNextState() -> void:
 	for k in weights:
 		accumul += weights[k]
 		if r < accumul :
-			finished.emit(k)
+			if(actionsRequireSacrifice.has(k)):
+				finished.emit(SACRIFICE, {"nextState": k})
+			else:
+				finished.emit(k)
 			return

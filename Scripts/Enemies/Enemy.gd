@@ -106,8 +106,6 @@ func idle():
 			animatedSprite.play("idleLeft")
 		Direction.RIGHT:
 			animatedSprite.play("idleRight")
-			
-
 
 func stunned():
 	match direction:

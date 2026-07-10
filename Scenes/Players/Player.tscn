@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://31yxv8rxpcxp" path="res://Scripts/StateMachine/StatesPlayer/StateBlock.gd" id="8_bhhdu"]
 [ext_resource type="Script" uid="uid://blutkobl052ip" path="res://Scripts/StateMachine/StatesPlayer/StateDash.gd" id="9_sw0h5"]
 [ext_resource type="Script" uid="uid://bkallxg37dshg" path="res://Scripts/StateMachine/StatesPlayer/StateWhipAttack.gd" id="10_80whf"]
-[ext_resource type="Script" uid="uid://clx54oeam5rvs" path="res://Scripts/StateMachine/StatesPlayer/StateInteracting.gd" id="11_jarcg"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/StatesPlayer/StateInteracting.gd" id="11_jarcg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
 atlas = ExtResource("2_52ee3")

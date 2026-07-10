@@ -4,22 +4,22 @@ class_name MiniBossDeathHighPriest extends Enemy
 @onready var colDetector: CollisionShape2D = $CollisionShape2D
 @onready var telColDetector: Area2D = $TeleportCollissionDetection
 
+@export var daggerScene: PackedScene
 @export var teleportRange := 500
 @export var currentShield: float:
 	set(newShield):
 		currentShield = newShield
-		if currentShield <= 0:
-			shieldSprite.visible = false
-		else:
-			shieldSprite.visible = true
-			
+		if currentShield :
+			shieldSprite.visible = currentShield > 0
+
 @export var SPEED := 100
 
-var charged: bool = false
+var projectileNode: Node
 
-func _onready():
+func _ready():
+	super._ready()
 	shieldSprite.play()
-	currentShield = 100
+	projectileNode = get_tree().get_first_node_in_group("ProjectileNode")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -85,6 +85,15 @@ func telegraphDaggerCircling() -> void:
 			animatedSprite.play("telegraphDaggerCirclingLeft")
 		Direction.RIGHT:
 			animatedSprite.play("telegraphDaggerCirclingRight")
+			
+func spawnDaggerCircle() -> void:
+	for i in 3:
+		var dagger = daggerScene.instantiate()
+		dagger.global_position = global_position
+		projectileNode.add_child(dagger)
+		dagger.center = self
+		dagger.angle = deg_to_rad(i * 120)
+		await get_tree().create_timer(1.0).timeout
 
 func daggerCircling() -> void:
 	match direction:
