@@ -20,11 +20,12 @@ func process(_delta: float) -> void:
 func physicsProcess(_delta: float) -> void:
 	pass
 
-func enter(_pssssssrevious_state_path: String, _data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	print("dagger circling")
 	entity.target = entity.getClosestPlayer()
 	entity.velocity = Vector2.ZERO
-	entity.daggerCircling()
+	entity.daggerCirclingAnimation()
+	entity.daggerCirclingExecute()
 
 func exit() -> void:
 	pass

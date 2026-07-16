@@ -16,7 +16,7 @@ func physicsProcess(_delta: float) -> void:
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(_previous_state_path: String, _data := {}) -> void:
 	print("casting shield")
-	entity.animatedSprite.speed_scale = entity.telegraphTime
+	entity.animatedSprite.speed_scale = 1 / entity.telegraphTime
 	entity.castShieldAnimation()
 
 ## Called by the state machine before changing the active state. Use this function

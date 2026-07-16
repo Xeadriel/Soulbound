@@ -1,6 +1,5 @@
 extends StateEnemy
 
-var candidates = []
 var chosenSacrifice: Enemy
 var channelTime: float = 3.0
 var nextState: String
@@ -20,13 +19,17 @@ func physicsProcess(_delta: float) -> void:
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(_previous_state_path: String, _data := {}) -> void:
+	var candidates = []
 	nextState = _data.get("nextState")
-	print("sacrificing")
+	print("sacrificing -> ", nextState)
 	for child in entity.get_parent().get_children():
 		if(child is Wizard || child is Goblin):
 			candidates.append(child)
+	if(candidates.is_empty()):
+		finished.emit(THINKING)
+		return
 	chosenSacrifice = candidates.pick_random()
-	entity.animatedSprite.speed_scale = entity.telegraphTime
+	entity.animatedSprite.speed_scale = 1 / entity.telegraphTime
 	entity.velocity = Vector2.ZERO
 	entity.sacrificeAnimation()
 
@@ -40,4 +43,5 @@ func animationFinished(animatedSprite: AnimatedSprite2D):
 		return
 	chosenSacrifice.takeDamage(9999)
 	print("poof ", chosenSacrifice, " is Sacrificed!")
+	await get_tree().create_timer(2.0).timeout
 	finished.emit(nextState)

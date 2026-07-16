@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://buwms73pcarwm"]
 
-[ext_resource type="Texture2D" uid="uid://bttgw5ka8jbj8" path="res://Assets/dagger.png" id="1_73wng"]
-[ext_resource type="Script" uid="uid://bfmgm4qbtli5e" path="res://Scripts/Enemies/dagger.gd" id="1_aosk0"]
+[ext_resource type="Script" uid="uid://bfmgm4qbtli5e" path="res://Scripts/Enemies/DaggerCircling.gd" id="1_2ra44"]
+[ext_resource type="Texture2D" uid="uid://bdbgnncuxfewp" path="res://Assets/dagger.png" id="2_cq81h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aosk0"]
-atlas = ExtResource("1_73wng")
+atlas = ExtResource("2_cq81h")
 region = Rect2(0, 0, 1024, 1024)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uw7d1"]
@@ -20,21 +20,23 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_73wng"]
 radius = 9.29119
-height = 42.4608
+height = 96.0
 
-[node name="Dagger" type="Area2D"]
+[node name="DaggerCircling" type="Area2D"]
+scale = Vector2(0.5, 0.5)
 collision_layer = 0
 collision_mask = 9
-script = ExtResource("1_aosk0")
+script = ExtResource("1_2ra44")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-4.49999, -4.50001)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_uw7d1")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-20, 15)
-rotation = 0.837758
-scale = Vector2(1.6, 1.6)
+position = Vector2(0, -2)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_73wng")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

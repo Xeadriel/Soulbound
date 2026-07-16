@@ -15,6 +15,7 @@ class_name MiniBossDeathHighPriest extends Enemy
 @export var SPEED := 100
 
 var projectileNode: Node
+var daggerList := []
 
 func _ready():
 	super._ready()
@@ -87,15 +88,15 @@ func telegraphDaggerCircling() -> void:
 			animatedSprite.play("telegraphDaggerCirclingRight")
 			
 func spawnDaggerCircle() -> void:
-	for i in 3:
+	for i in 1:
 		var dagger = daggerScene.instantiate()
-		dagger.global_position = global_position
-		projectileNode.add_child(dagger)
 		dagger.center = self
-		dagger.angle = deg_to_rad(i * 120)
+		dagger.angle = TAU * i / 3
+		projectileNode.add_child(dagger)
+		daggerList.append(dagger)
 		await get_tree().create_timer(1.0).timeout
 
-func daggerCircling() -> void:
+func daggerCirclingAnimation() -> void:
 	match direction:
 		Direction.UP:
 			animatedSprite.play("daggerCirclingBack")
@@ -105,6 +106,10 @@ func daggerCircling() -> void:
 			animatedSprite.play("daggerCirclingLeft")
 		Direction.RIGHT:
 			animatedSprite.play("daggerCirclingRight")
+			
+func daggerCirclingExecute() -> void:
+	for d in daggerList:
+		d.stopOrbiting()
 
 func telegraphDaggerCone() -> void:
 	match direction:
@@ -186,12 +191,11 @@ func hitSomething(body: Node2D) -> void:
 		var player : Player = body
 		player.takeDamage(DAMAGE)
 
-
 func swipeHit(body: Node2D) -> void:
 	if(body is Player):
 		var player: Player = body
 		player.takeDamage(DAMAGE)
-		
+
 
 func stopAttack() -> void:
 	attackUp.visible = false

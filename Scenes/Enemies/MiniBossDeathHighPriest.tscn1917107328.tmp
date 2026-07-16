@@ -2173,7 +2173,7 @@ aggroRange = 1000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lc4gu")
-animation = &"daggerCirclingFront"
+animation = &"castShieldRight"
 autoplay = "idleFront"
 
 [node name="ShieldSprite" type="AnimatedSprite2D" parent="."]
