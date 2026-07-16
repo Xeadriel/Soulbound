@@ -8,7 +8,7 @@ class_name DaggerCircling extends Area2D
 
 var center: Node2D
 var angle := 0.0
-
+var angle_offset := 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

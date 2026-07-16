@@ -88,13 +88,19 @@ func telegraphDaggerCircling() -> void:
 			animatedSprite.play("telegraphDaggerCirclingRight")
 			
 func spawnDaggerCircle() -> void:
-	for i in 1:
+	var daggerCount := 5
+	var previous :DaggerCircling = null
+	var spacing := TAU / daggerCount
+	for i in daggerCount:
+		if previous != null:
+			var targetAngle = previous.angle + spacing
+			while previous.angle < targetAngle:
+				await get_tree().physics_frame
 		var dagger = daggerScene.instantiate()
-		dagger.center = self
-		dagger.angle = TAU * i / 3
+		dagger.center = target
 		projectileNode.add_child(dagger)
 		daggerList.append(dagger)
-		await get_tree().create_timer(1.0).timeout
+		previous = dagger
 
 func daggerCirclingAnimation() -> void:
 	match direction:
