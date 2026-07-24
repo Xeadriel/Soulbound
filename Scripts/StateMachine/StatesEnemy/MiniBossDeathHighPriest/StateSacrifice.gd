@@ -3,6 +3,7 @@ extends StateEnemy
 var chosenSacrifice: Enemy
 var channelTime: float = 3.0
 var nextState: String
+var sacrificePos: Vector2
 
 func _ready() -> void:
 	super()
@@ -29,6 +30,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 		finished.emit(THINKING)
 		return
 	chosenSacrifice = candidates.pick_random()
+	sacrificePos = chosenSacrifice.global_position
 	entity.animatedSprite.speed_scale = 1 / entity.telegraphTime
 	entity.velocity = Vector2.ZERO
 	entity.sacrificeAnimation()
@@ -44,4 +46,6 @@ func animationFinished(animatedSprite: AnimatedSprite2D):
 	chosenSacrifice.takeDamage(9999)
 	print("poof ", chosenSacrifice, " is Sacrificed!")
 	await get_tree().create_timer(2.0).timeout
-	finished.emit(nextState)
+	finished.emit(nextState, {
+		"sacrificePos": sacrificePos
+	})

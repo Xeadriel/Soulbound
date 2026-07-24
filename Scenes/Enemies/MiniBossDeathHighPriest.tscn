@@ -1,9 +1,10 @@
-[gd_scene load_steps=293 format=3 uid="uid://jnyddp6cmv5f"]
+[gd_scene load_steps=294 format=3 uid="uid://jnyddp6cmv5f"]
 
 [ext_resource type="Script" uid="uid://bcn44g4gb3bcc" path="res://Scripts/Enemies/MiniBossDeathHighPriest.gd" id="1_3l0ll"]
 [ext_resource type="PackedScene" uid="uid://buwms73pcarwm" path="res://Scenes/Enemies/DaggerCircling.tscn" id="2_tg00k"]
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="2_u4yqb"]
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="3_3jfg0"]
+[ext_resource type="PackedScene" uid="uid://dwsxioxj6xx5c" path="res://Scenes/Enemies/DaggerCone.tscn" id="3_gyvv3"]
 [ext_resource type="Texture2D" uid="uid://bql0yr1v0lyt8" path="res://Assets/spritesheetShield.png" id="3_lppw1"]
 [ext_resource type="Script" uid="uid://ctap3ttkvlrey" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateIdle.gd" id="4_eoms6"]
 [ext_resource type="Script" uid="uid://cjdagsts0n8yh" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateStrafe.gd" id="5_hy7xe"]
@@ -2166,7 +2167,8 @@ collision_layer = 2
 collision_mask = 11
 motion_mode = 1
 script = ExtResource("1_3l0ll")
-daggerScene = ExtResource("2_tg00k")
+daggerCircleScene = ExtResource("2_tg00k")
+daggerConeScene = ExtResource("3_gyvv3")
 maxHp = 10
 atkRange = 200.0
 aggroRange = 1000.0

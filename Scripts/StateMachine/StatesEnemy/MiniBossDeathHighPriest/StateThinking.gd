@@ -38,7 +38,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	var entityPos = entity.global_position
 	var distance = entityPos.distance_to(closestPlayer.global_position)
 	
-	weights[TELEGRAPH_DAGGER_CIRCLING] += 500
+	weights[TELEGRAPH_DAGGER_EXPLOSION] += 500
 	
 	# player in melee range
 	if(distance < meleeRangeThreshold):

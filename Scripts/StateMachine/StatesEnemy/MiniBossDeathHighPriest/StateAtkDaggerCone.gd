@@ -24,7 +24,8 @@ func enter(_pssssssrevious_state_path: String, _data := {}) -> void:
 	print("daggerCone")
 	entity.target = entity.getClosestPlayer()
 	entity.velocity = Vector2.ZERO
-	entity.daggerCone()
+	entity.daggerConeAnimation()
+	entity.daggerConeAtk()
 
 func exit() -> void:
 	pass

@@ -25,7 +25,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	entity.target = entity.getClosestPlayer()
 	entity.velocity = Vector2.ZERO
 	entity.daggerCirclingAnimation()
-	entity.daggerCirclingExecute()
+	entity.daggerCirclingAtk()
 
 func exit() -> void:
 	pass
