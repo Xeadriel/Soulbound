@@ -16,9 +16,6 @@ func takeDamage(dmg: int) -> void:
 Animations
 """
 
-func animationFinished():
-	animationFinishedSignal.emit(animatedSprite)
-
 func idle():
 	match direction:
 		Direction.UP:

@@ -25,7 +25,7 @@ var direction = Direction.DOWN
 @onready var attackRight : Area2D= $AttackRight
 
 @export var DAMAGE = 1
-@export var currentHp: int:
+var currentHp: int:
 	set(newHP):
 		currentHp = newHP
 		if currentHp < 1:
@@ -94,7 +94,7 @@ Animations
 """
 
 func animationFinished():
-	animationFinishedSignal.emit(animatedSprite)
+	animationFinishedSignal.emit(animatedSprite.animation)
 
 func idle():
 	match direction:

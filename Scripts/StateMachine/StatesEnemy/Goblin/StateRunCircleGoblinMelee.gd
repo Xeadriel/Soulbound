@@ -40,7 +40,7 @@ func process(delta: float) -> void:
 	var potentialObstacles = obstacleDetection.get_overlapping_bodies()
 	if not potentialObstacles.is_empty() and timer4Obstacle <= 0:
 		for o in potentialObstacles:
-			if not o == entity and o is not Player:
+			if not o == entity:
 				dirChanger = -dirChanger
 				timer4Obstacle = duration4Obstacle
 				break
