@@ -724,7 +724,7 @@ scale = Vector2(1.69907, 2.23077)
 texture = ExtResource("3_5yy2f")
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/MiniBossRoom"]
-collision_layer = 0
+collision_layer = 32
 script = ExtResource("10_p0qse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer"]
@@ -749,8 +749,9 @@ enemiesLeft = 1
 [node name="Goblin" parent="2DObjects/Rooms/MiniBossRoom" instance=ExtResource("7_2n2dr")]
 position = Vector2(73, -289)
 
-[node name="MiniBossDeathHighPriest" parent="2DObjects/Rooms/MiniBossRoom" instance=ExtResource("17_uhk1o")]
+[node name="MiniBossDeathHighPriest" parent="2DObjects/Rooms/MiniBossRoom" node_paths=PackedStringArray("bosArea") instance=ExtResource("17_uhk1o")]
 position = Vector2(-688, -248)
+bosArea = NodePath("../PropertyDetectingPlayer")
 
 [node name="Wizard4" parent="2DObjects/Rooms/MiniBossRoom" instance=ExtResource("8_6m3rn")]
 position = Vector2(-242, -239)
