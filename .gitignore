@@ -10,3 +10,9 @@
 .mono/
 data_*/
 mono_crash.*.json
+
+# temporary files of godot scenes
+*.tmp
+
+# visual studio
+*.vs
