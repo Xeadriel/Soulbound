@@ -6,6 +6,7 @@ class_name Enemy extends CharacterBody2D
 @export var telegraphTime := 1.0
 @export var atkTime := 1.0
 
+
 var players
 var target: Player
 
@@ -25,7 +26,7 @@ var direction = Direction.DOWN
 @onready var attackRight : Area2D = $AttackRight
 
 @export var DAMAGE = 1
-@export var currentHp: int:
+var currentHp: int:
 	set(newHP):
 		currentHp = newHP
 		if currentHp < 1:
@@ -94,7 +95,7 @@ Animations
 """
 
 func animationFinished():
-	animationFinishedSignal.emit(animatedSprite)
+	animationFinishedSignal.emit(animatedSprite.animation)
 
 func idle():
 	match direction:
@@ -106,8 +107,7 @@ func idle():
 			animatedSprite.play("idleLeft")
 		Direction.RIGHT:
 			animatedSprite.play("idleRight")
-			
-			
+
 func stunned():
 	match direction:
 		Direction.UP:

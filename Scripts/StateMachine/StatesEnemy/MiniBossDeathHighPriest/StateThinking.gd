@@ -4,13 +4,16 @@ var weights: Dictionary[String, int]
 var meleeRangeThreshold: float = 200.0
 var tooCloseThreshold: float = 100.0
 var farEnoughThreshold: float = 300.0
+var actionsRequireSacrifice := [
+	TELEGRAPH_DAGGER_CIRCLING, 
+	TELEGRAPH_DAGGER_EXPLOSION, 
+	CAST_SHIELD
+	]
 
 func _ready() -> void:
 	weights[IDLE] = 5
 	weights[STRAFE] = 5
 	weights[TELEGRAPH_SWIPE] = 5
-	weights[STUNNED] = 5
-	weights[SACRIFICE] = 5
 	weights[TELEGRAPH_DAGGER_EXPLOSION] = 5
 	weights[TELEGRAPH_DAGGER_CONE] = 5
 	weights[TELEGRAPH_DAGGER_CIRCLING] = 5
@@ -19,16 +22,32 @@ func _ready() -> void:
 
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
-	var closesPlayer: Player = entity.getClosestPlayer()
+	pass
+
+## Called by the state machine on the engine's physics update tick.
+func physicsProcess(_delta: float) -> void:
+	pass
+
+## Called by the state machine upon changing the active state. The `data` parameter
+## is a dictionary with arbitrary data the state can use to initialize itself.
+func enter(_previous_state_path: String, _data := {}) -> void:
+	#buffer time between each action
+	await get_tree().create_timer(randf_range(0.5, 1.5)).timeout 
+	var closestPlayer: Player = entity.getClosestPlayer()
 	var entityPos = entity.global_position
-	var distance = entityPos.distance_to(closesPlayer.global_position)
+	var distance = entityPos.distance_to(closestPlayer.global_position)
+	
+	# player is outside of the room
+	if(entity.playerOutside):
+		finished.emit(IDLE)
+	
 	# player in melee range
 	if(distance < meleeRangeThreshold):
 		weights[TELEGRAPH_SWIPE] += 5
 	# player is too close
 	if(distance < tooCloseThreshold):
 		weights[TELEGRAPH_SWIPE] += 5
-		if(false): # todo: has shield
+		if(entity.currentShield <= 0):
 			weights[TELEGRAPH_DAGGER_CONE] += 5
 		weights[TELEGRAPH_DAGGER_EXPLOSION] -= 10
 		weights[TELEGRAPH_DAGGER_CIRCLING] -= 10
@@ -45,15 +64,6 @@ func process(_delta: float) -> void:
 	if(distance > meleeRangeThreshold):
 		weights[TELEGRAPH_SWIPE] = 0
 	decideNextState()
-	
-## Called by the state machine on the engine's physics update tick.
-func physicsProcess(_delta: float) -> void:
-	pass
-
-## Called by the state machine upon changing the active state. The `data` parameter
-## is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(_previous_state_path: String, _data := {}) -> void:
-	pass
 
 ## Called by the state machine before changing the active state. Use this function
 ## to clean up the state.
@@ -65,8 +75,12 @@ func decideNextState() -> void:
 	for w in weights.values():
 		totalWeight += w
 	var r = randi() % totalWeight
+	var accumul = 0
 	for k in weights:
-		var w = weights[k]
-		if r < w :
-			finished.emit(k)
+		accumul += weights[k]
+		if r < accumul :
+			if(actionsRequireSacrifice.has(k)):
+				finished.emit(SACRIFICE, {"nextState": k})
+			else:
+				finished.emit(k)
 			return

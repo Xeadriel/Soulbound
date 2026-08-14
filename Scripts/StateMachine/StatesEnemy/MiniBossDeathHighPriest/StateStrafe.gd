@@ -15,6 +15,8 @@ extends StateEnemy
 
 @export var obstacleDetection: Area2D
 
+var runDuration : float
+
 var dirChanger: int = [-1, 1][randi() % 2]
 var timer4DirChange: float = 5.0
 var timer4Obstacle: float = 0.0
@@ -25,6 +27,10 @@ func handleInput() -> void:
 
 ## Called by the state machine on the engine's main loop tick.
 func process(delta: float) -> void:
+	if(runDuration <= 0):
+		finished.emit(THINKING)
+		return
+	runDuration -= delta
 	entity.target = entity.getClosestPlayer()
 	var distance = entity.global_position.distance_to(entity.target.global_position)
 	var inRangeThresh: bool = entity.atkRange + distanceThreshold >= distance
@@ -69,7 +75,7 @@ func physicsProcess(_delta: float) -> void:
 	pass
 
 func enter(_previous_state_path: String, _data := {}) -> void:
-	pass
+	runDuration = randf_range(1.0, 2.0)
 
 func exit() -> void:
 	pass

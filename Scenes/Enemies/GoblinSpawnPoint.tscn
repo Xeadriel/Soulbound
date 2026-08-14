@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://csc3mitg5gwx"]
+
+[ext_resource type="Script" uid="uid://d0mv7nb2f5otc" path="res://Scripts/Enemies/GoblinSpawnPoint.gd" id="1_mrlmp"]
+
+[node name="GoblinSpawnPoint" type="Node2D"]
+script = ExtResource("1_mrlmp")
+
+[node name="Timer" type="Timer" parent="."]

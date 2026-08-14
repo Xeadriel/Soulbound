@@ -47,9 +47,6 @@ func getDirectionFromAngle(angle: float) -> Direction:
 Animations
 """
 
-func animationFinished():
-	animationFinishedSignal.emit(animatedSprite)
-
 func idle():
 	match direction:
 			Direction.UP:

@@ -1,15 +1,5 @@
 extends StateEnemy
 
-var canAtk: bool = true
-var elapsedTime: float
-
-enum Direction {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT
-}
-
 func _ready() -> void:
 	super()
 	entity.animationFinishedSignal.connect(animationFinished)
@@ -20,22 +10,22 @@ func process(_delta: float) -> void:
 func physicsProcess(_delta: float) -> void:
 	pass
 
-func enter(_pssssssrevious_state_path: String, _data := {}) -> void:
-	print("daggerCone")
+func enter(_previous_state_path: String, _data := {}) -> void:
+	entity.animatedSprite.speed_scale = 0.1 # needs to be reset to 1 in exit
 	entity.target = entity.getClosestPlayer()
 	entity.velocity = Vector2.ZERO
-	entity.daggerCone()
+	entity.daggerConeAnimation()
+	entity.daggerConeAtk()
 
 func exit() -> void:
-	pass
+	entity.animatedSprite.speed_scale = 1.0
 
-func animationFinished(animatedSprite: AnimatedSprite2D) -> void:
-	if animatedSprite.animation not in [
+func animationFinished(animationName: String) -> void:
+	if animationName not in [
 	"daggerConeFront", 
 	"daggerConeBack", 
 	"daggerConeRight", 
 	"daggerConeLeft"
 	]:
 		return
-	
 	finished.emit(THINKING)

@@ -9,7 +9,7 @@ const STUNNED = "StateStunned"
 const TAUNT = "StateTaunt"
 
 const STRAFE = "StateStrafe"
-const SWIPE = "StateAtkSwipe"
+const SWIPE = "StateSwipe"
 const TELEGRAPH_SWIPE = "StateTelegraphSwipe"
 const THINKING = "StateThinking"
 const SACRIFICE = "StateSacrifice"
