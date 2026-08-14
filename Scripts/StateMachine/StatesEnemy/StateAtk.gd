@@ -2,27 +2,17 @@ extends StateEnemy
 
 @export var nextState = IDLE
 
-var canAtk: bool = true
-var elapsedTime: float
-
-enum Direction {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT
-}
-
 func _ready() -> void:
 	super()
 	entity.animationFinishedSignal.connect(animationFinished)
 	
 func process(_delta: float) -> void:
 	pass
-	
+
 func physicsProcess(_delta: float) -> void:
 	pass
 
-func enter(_pssssssrevious_state_path: String, _data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	entity.target = entity.getClosestPlayer()
 	entity.velocity = Vector2.ZERO
 	entity.attack()
@@ -30,8 +20,7 @@ func enter(_pssssssrevious_state_path: String, _data := {}) -> void:
 func exit() -> void:
 	entity.stopAttack()
 
-func animationFinished(animatedSprite: AnimatedSprite2D) -> void:
-	if animatedSprite.animation not in ["attackFront", "attackBack", "attackLeft", "attackRight"]:
+func animationFinished(animationName: String) -> void:
+	if animationName not in ["attackFront", "attackBack", "attackLeft", "attackRight"]:
 		return
-	
 	finished.emit(nextState)

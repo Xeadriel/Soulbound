@@ -21,7 +21,7 @@ func exit() -> void:
 	entity.animatedSprite.speed_scale = 1
 
 # if telegraph is done, switch to attack
-func animationFinished(animatedSprite: AnimatedSprite2D):
-	if "telegraph" not in animatedSprite.animation:
+func animationFinished(animationName: String):
+	if "telegraph" not in animationName:
 		return
 	finished.emit(ATK)
