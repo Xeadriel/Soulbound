@@ -13,20 +13,16 @@ enum enemyTypes {
 
 var enemyToSpawn : enemyTypes = enemyTypes.RANDOM
 
-@export var spawnInterval := 2.0
+@export var spawnInterval := 5.0
 
 @onready var timer :Timer = $Timer
-
-var active := false
 
 func _ready() -> void:
 	timer.wait_time = spawnInterval
 	timer.timeout.connect(_on_timer_timeout)
+	activate()
 	
 func activate() -> void:
-	if active:
-		return
-	active = true
 	timer.start()
 	
 func _on_timer_timeout() -> void:
@@ -37,12 +33,11 @@ func _on_timer_timeout() -> void:
 		path = enemies[enemyToSpawn]
 	var scene = load(path)
 	spawnEnemy(scene)
-	
+	 
 func deactivate() -> void:
-	active = false
 	timer.stop()
 	
 func spawnEnemy(scene: PackedScene):
 	var enemy = scene.instantiate()
-	enemy.global_position = global_position
 	get_parent().add_child(enemy)
+	enemy.global_position = global_position
