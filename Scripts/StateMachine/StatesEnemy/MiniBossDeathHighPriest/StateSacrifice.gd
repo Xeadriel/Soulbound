@@ -22,7 +22,6 @@ func physicsProcess(_delta: float) -> void:
 func enter(_previous_state_path: String, _data := {}) -> void:
 	var candidates = []
 	nextState = _data.get("nextState")
-	print("sacrificing -> ", nextState)
 	for child in entity.get_parent().get_children():
 		if(child is Wizard || child is Goblin):
 			candidates.append(child)
@@ -30,6 +29,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 		finished.emit(THINKING)
 		return
 	chosenSacrifice = candidates.pick_random()
+	candidates.erase(chosenSacrifice)
 	sacrificePos = chosenSacrifice.global_position
 	entity.animatedSprite.speed_scale = 1 / entity.telegraphTime
 	entity.velocity = Vector2.ZERO
@@ -40,11 +40,10 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 func exit() -> void:
 	entity.animatedSprite.speed_scale = 1
 
-func animationFinished(animatedSprite: AnimatedSprite2D):
-	if "sacrifice" not in animatedSprite.animation:
+func animationFinished(animationName: String):
+	if "sacrifice" not in animationName:
 		return
 	chosenSacrifice.takeDamage(9999)
-	print("poof ", chosenSacrifice, " is Sacrificed!")
 	await get_tree().create_timer(2.0).timeout
 	finished.emit(nextState, {
 		"sacrificePos": sacrificePos

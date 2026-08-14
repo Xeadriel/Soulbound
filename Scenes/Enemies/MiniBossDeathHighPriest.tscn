@@ -1160,7 +1160,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kvc1d")
 }],
-"loop": true,
+"loop": false,
 "name": &"daggerCirclingBack",
 "speed": 5.0
 }, {
@@ -1180,7 +1180,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c13ap")
 }],
-"loop": true,
+"loop": false,
 "name": &"daggerCirclingFront",
 "speed": 5.0
 }, {
@@ -1200,7 +1200,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pnwga")
 }],
-"loop": true,
+"loop": false,
 "name": &"daggerCirclingLeft",
 "speed": 5.0
 }, {
@@ -1220,7 +1220,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s0jam")
 }],
-"loop": true,
+"loop": false,
 "name": &"daggerCirclingRight",
 "speed": 5.0
 }, {
@@ -1240,7 +1240,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8ffqw")
 }],
-"loop": true,
+"loop": false,
 "name": &"daggerConeBack",
 "speed": 5.0
 }, {
@@ -1260,7 +1260,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pjbjp")
 }],
-"loop": true,
+"loop": false,
 "name": &"daggerConeFront",
 "speed": 5.0
 }, {
@@ -1280,7 +1280,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7w1hw")
 }],
-"loop": true,
+"loop": false,
 "name": &"daggerConeLeft",
 "speed": 5.0
 }, {
@@ -1300,7 +1300,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j1gln")
 }],
-"loop": true,
+"loop": false,
 "name": &"daggerConeRight",
 "speed": 5.0
 }, {
@@ -1320,7 +1320,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ahonw")
 }],
-"loop": true,
+"loop": false,
 "name": &"daggerExplosionBack",
 "speed": 5.0
 }, {
@@ -1340,7 +1340,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r35l5")
 }],
-"loop": true,
+"loop": false,
 "name": &"daggerExplosionFront",
 "speed": 5.0
 }, {
@@ -1360,7 +1360,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fujeo")
 }],
-"loop": true,
+"loop": false,
 "name": &"daggerExplosionLeft",
 "speed": 5.0
 }, {
@@ -1380,7 +1380,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w3iu1")
 }],
-"loop": true,
+"loop": false,
 "name": &"daggerExplosionRight",
 "speed": 5.0
 }, {
@@ -2169,13 +2169,10 @@ motion_mode = 1
 script = ExtResource("1_3l0ll")
 daggerCircleScene = ExtResource("2_tg00k")
 daggerConeScene = ExtResource("3_gyvv3")
-maxHp = 10
-atkRange = 200.0
-aggroRange = 1000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lc4gu")
-animation = &"daggerCirclingFront"
+animation = &"swipeLeft"
 autoplay = "idleFront"
 
 [node name="ShieldSprite" type="AnimatedSprite2D" parent="."]
@@ -2216,6 +2213,12 @@ entity = NodePath("../..")
 
 [node name="StateStrafe" type="Node" parent="StateMachine" node_paths=PackedStringArray("obstacleDetection", "entity")]
 script = ExtResource("5_hy7xe")
+minDuration4DirChange = null
+maxDuration4DirChange = null
+minDuration4Telegraph = null
+maxDuration4Telegraph = null
+duration4Obstacle = null
+distanceThreshold = null
 obstacleDetection = NodePath("../../MovingCollissionDetection")
 entity = NodePath("../..")
 
@@ -2272,6 +2275,8 @@ process_mode = 4
 visible = false
 position = Vector2(0, -79)
 rotation = 1.5708
+collision_layer = 0
+collision_mask = 3
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackUp"]
@@ -2287,6 +2292,8 @@ process_mode = 4
 visible = false
 position = Vector2(0, 79)
 rotation = 1.5708
+collision_layer = 0
+collision_mask = 3
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackDown"]
@@ -2301,6 +2308,8 @@ texture = SubResource("CanvasTexture_u4yqb")
 process_mode = 4
 visible = false
 position = Vector2(69, 0)
+collision_layer = 0
+collision_mask = 3
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackRight"]
@@ -2315,6 +2324,8 @@ texture = SubResource("CanvasTexture_3jfg0")
 process_mode = 4
 visible = false
 position = Vector2(-70, 0)
+collision_layer = 0
+collision_mask = 3
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackLeft"]
@@ -2325,7 +2336,7 @@ position = Vector2(0.500015, 0.500004)
 scale = Vector2(47, 107)
 texture = SubResource("CanvasTexture_3jfg0")
 
-[connection signal="body_entered" from="AttackUp" to="." method="swipeHit"]
-[connection signal="body_entered" from="AttackDown" to="." method="swipeHit"]
-[connection signal="body_exited" from="AttackRight" to="." method="swipeHit"]
-[connection signal="body_entered" from="AttackLeft" to="." method="swipeHit"]
+[connection signal="body_entered" from="AttackUp" to="." method="hitSomething"]
+[connection signal="body_entered" from="AttackDown" to="." method="hitSomething"]
+[connection signal="body_entered" from="AttackRight" to="." method="hitSomething"]
+[connection signal="body_entered" from="AttackLeft" to="." method="hitSomething"]

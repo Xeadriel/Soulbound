@@ -6,7 +6,8 @@ class_name MiniBossDeathHighPriest extends Enemy
 
 @export var daggerCircleScene: PackedScene
 @export var daggerConeScene: PackedScene
-@export var teleportRange := 500
+@export var bosArea: Area2D
+@export var teleportRange := 300
 @export var currentShield: float:
 	set(newShield):
 		currentShield = newShield
@@ -23,7 +24,6 @@ func _ready():
 	shieldSprite.play()
 	projectileNode = get_tree().get_first_node_in_group("ProjectileNode")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
@@ -40,9 +40,6 @@ func takeDamage(dmg: int) -> void:
 """
 Animations
 """
-
-func animationFinished():
-	animationFinishedSignal.emit(animatedSprite)
 	
 func sacrificeAnimation():
 	match direction: 
@@ -117,7 +114,9 @@ func daggerCirclingAnimation() -> void:
 			
 func daggerCirclingAtk() -> void:
 	for d in daggerList:
-		d.stopOrbiting()
+		if d != null:
+			d.stopOrbiting()
+	daggerList = []
 
 func telegraphDaggerCone() -> void:
 	match direction:
@@ -207,36 +206,29 @@ func telegraphSwipe() -> void:
 		Direction.RIGHT:
 			animatedSprite.play("telegraphSwipeRight")
 
-func swipe() -> void:
+func swipeAtk() -> void:
 	match direction:
 		Direction.UP:
 			attackUp.process_mode = PROCESS_MODE_INHERIT
 			attackUp.visible = true
 			animatedSprite.play("swipeBack")
 		Direction.DOWN:
-			attackUp.process_mode = PROCESS_MODE_INHERIT
-			attackUp.visible = true
+			attackDown.process_mode = PROCESS_MODE_INHERIT
+			attackDown.visible = true
 			animatedSprite.play("swipeFront")
 		Direction.LEFT:
-			attackUp.process_mode = PROCESS_MODE_INHERIT
-			attackUp.visible = true
+			attackLeft.process_mode = PROCESS_MODE_INHERIT
+			attackLeft.visible = true
 			animatedSprite.play("swipeLeft")
 		Direction.RIGHT:
-			attackUp.process_mode = PROCESS_MODE_INHERIT
-			attackUp.visible = true
+			attackRight.process_mode = PROCESS_MODE_INHERIT
+			attackRight.visible = true
 			animatedSprite.play("swipeRight")
 
-# signal when area2D collides with something
 func hitSomething(body: Node2D) -> void:
 	if body is Player:
 		var player : Player = body
 		player.takeDamage(DAMAGE)
-
-func swipeHit(body: Node2D) -> void:
-	if(body is Player):
-		var player: Player = body
-		player.takeDamage(DAMAGE)
-
 
 func stopAttack() -> void:
 	attackUp.visible = false
@@ -260,16 +252,31 @@ func teleportAnimation() -> void:
 			animatedSprite.play("teleportRight")
 			
 func isValidTeleportPos(pos: Vector2) -> bool:
-	var spaceState = get_world_2d().direct_space_state
+	var bodyFree = checkBodyColission(pos)
+	var isInsideRoom = checkInsideRoom(pos)
+	return bodyFree && isInsideRoom
+	
+func checkInsideRoom(pos: Vector2) -> bool:
 	var params  = PhysicsShapeQueryParameters2D.new()
 	params.shape = colDetector.shape
-	var transform = colDetector.global_transform 
-	transform.origin = pos 
-	params.transform = transform
+	params.transform = Transform2D(0.0, pos)
+	params.collide_with_areas = true
+	params.collide_with_bodies = false
+	params.exclude = [self.get_rid()]
+	var result = get_world_2d().direct_space_state.intersect_shape(params)
+	for colission in result:
+		if colission.collider == bosArea:
+			return true
+	return false
+
+func checkBodyColission(pos: Vector2) -> bool:
+	var params  = PhysicsShapeQueryParameters2D.new()
+	params.shape = colDetector.shape
+	params.transform = Transform2D(0.0, pos)
 	params.collide_with_areas = false
 	params.collide_with_bodies = true
 	params.exclude = [self.get_rid()]
-	var result = spaceState.intersect_shape(params)
+	var result = get_world_2d().direct_space_state.intersect_shape(params)
 	return result.is_empty()
 	
 func teleport() -> void:
@@ -277,9 +284,8 @@ func teleport() -> void:
 	var targetPos = Vector2.ZERO
 	while(colliding):
 		var angle := randf() * TAU
-		var radius := randf() * teleportRange
-		targetPos = global_position + Vector2(cos(angle), sin(angle)) * radius
-		colDetector.global_position = targetPos
+		var radius := randf() * 100 + teleportRange
+		targetPos = global_position + Vector2.RIGHT.rotated(angle) * radius
 		if isValidTeleportPos(targetPos):
 			colliding = false
 	global_position = targetPos
@@ -296,5 +302,5 @@ func castShieldAnimation() -> void:
 			animatedSprite.play("castShieldRight")
 
 func castShield() -> void:
-	currentShield = 100
+	currentShield = 5
 	shieldSprite.visible = true

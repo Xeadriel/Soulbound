@@ -31,14 +31,11 @@ func physicsProcess(_delta: float) -> void:
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(_previous_state_path: String, _data := {}) -> void:
-	
-	await get_tree().create_timer(randf_range(2.0, 4.0)).timeout
-	
+	#buffer time between each action
+	await get_tree().create_timer(randf_range(0.5, 1.5)).timeout 
 	var closestPlayer: Player = entity.getClosestPlayer()
 	var entityPos = entity.global_position
 	var distance = entityPos.distance_to(closestPlayer.global_position)
-	
-	weights[TELEGRAPH_DAGGER_EXPLOSION] += 500
 	
 	# player in melee range
 	if(distance < meleeRangeThreshold):

@@ -15,7 +15,6 @@ func physicsProcess(_delta: float) -> void:
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(_previous_state_path: String, _data := {}) -> void:
-	print("casting shield")
 	entity.animatedSprite.speed_scale = 1 / entity.telegraphTime
 	entity.castShieldAnimation()
 
@@ -24,8 +23,8 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 func exit() -> void:
 	entity.animatedSprite.speed_scale = 1
 	
-func animationFinished(animatedSprite: AnimatedSprite2D):
-	if "castShield" not in animatedSprite.animation:
+func animationFinished(animationName: String):
+	if "castShield" not in animationName:
 		return
 	entity.castShield()
 	finished.emit(THINKING)

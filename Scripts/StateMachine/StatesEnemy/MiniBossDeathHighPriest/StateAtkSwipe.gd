@@ -1,15 +1,5 @@
 extends StateEnemy
 
-var canAtk: bool = true
-var elapsedTime: float
-
-enum Direction {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT
-}
-
 func _ready() -> void:
 	super()
 	entity.animationFinishedSignal.connect(animationFinished)
@@ -20,17 +10,17 @@ func process(_delta: float) -> void:
 func physicsProcess(_delta: float) -> void:
 	pass
 
-func enter(_pssssssrevious_state_path: String, _data := {}) -> void:
-	print("swipe")
+func enter(_previous_state_path: String, _data := {}) -> void:
+	entity.animatedSprite.speed_scale = 0.1  #needs to be reset to 1 in exit
 	entity.target = entity.getClosestPlayer()
 	entity.velocity = Vector2.ZERO
-	entity.swipe()
+	entity.swipeAtk()
+	
 
 func exit() -> void:
 	entity.stopAttack()
+	entity.animatedSprite.speed_scale = 1.0
 
-func animationFinished(animatedSprite: AnimatedSprite2D) -> void:
-	if animatedSprite.animation not in ["swipeFront", "swipeBack", "swipeLeft", "swipeRight"]:
-		return
-	print("finish swiping!")
-	finished.emit(THINKING)
+func animationFinished(animationName: String) -> void:
+	if animationName in ["swipeFront", "swipeBack", "swipeLeft", "swipeRight"]:
+		finished.emit(THINKING)

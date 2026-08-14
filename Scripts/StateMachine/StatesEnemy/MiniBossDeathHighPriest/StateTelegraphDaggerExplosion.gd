@@ -10,7 +10,6 @@ func process(_delta: float) -> void:
 	pass
 
 func enter(_previous_state_path: String, _data := {}) -> void:
-	print("telegraphing daggerExplosion")
 	sacrificePos = _data["sacrificePos"]
 	entity.telegraphTime = 3.0
 	#because the animations are set to 5 FPS speed scale can be used to decide the duration of the animation
@@ -24,7 +23,7 @@ func exit() -> void:
 	entity.animatedSprite.speed_scale = 1
 
 # if telegraph is done, switch to attack
-func animationFinished(animatedSprite: AnimatedSprite2D):
-	if "telegraphDaggerExplosion" not in animatedSprite.animation:
+func animationFinished(animationName: String):
+	if "telegraphDaggerExplosion" not in animationName:
 		return
 	finished.emit(DAGGER_EXPLOSION, {"sacrificePos": sacrificePos})

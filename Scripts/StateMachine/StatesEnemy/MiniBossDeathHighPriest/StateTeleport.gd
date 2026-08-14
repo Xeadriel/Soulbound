@@ -15,7 +15,6 @@ func physicsProcess(_delta: float) -> void:
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(_previous_state_path: String, _data := {}) -> void:
-	print("teleporting")
 	#because the animations are set to 5 Frame scale can be used to decide the duration of the animation
 	entity.animatedSprite.speed_scale = 1 / entity.telegraphTime # needs to be reset to 1 in exit
 	entity.velocity = Vector2.ZERO
@@ -26,8 +25,8 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 func exit() -> void:
 	entity.animatedSprite.speed_scale = 1
 	
-func animationFinished(animatedSprite: AnimatedSprite2D):
-	if "teleport" not in animatedSprite.animation:
+func animationFinished(animatedSprite: String):
+	if "teleport" not in animatedSprite || entity.animatedSprite.is_playing() == true:
 		return
 	entity.teleport()
 	finished.emit(THINKING)
