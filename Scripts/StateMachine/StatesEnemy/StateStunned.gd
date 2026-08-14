@@ -1,6 +1,6 @@
 extends StateEnemy
 
-var stunDurationSecs = 1.0
+@export var stunDurationSecs = 1.0
 var timePassed = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,7 +10,7 @@ func process(delta: float) -> void:
 	timePassed += delta
 	entity.velocity = Vector2.ZERO
 	if timePassed >= stunDurationSecs:
-		finished.emit("StateIdle")
+		finished.emit(IDLE)
 
 func enter(_previous_state_path: String, data := {}) -> void:
 	timePassed = 0

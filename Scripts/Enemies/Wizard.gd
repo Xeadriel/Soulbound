@@ -7,11 +7,7 @@ class_name Wizard extends Enemy
 @export var runChance := 0.7
 @export var SPEED := 100
 
-var projectileNode: Node
-
-func _ready() -> void:
-	super._ready()
-	projectileNode = get_tree().get_first_node_in_group("ProjectileNode")
+@onready var projectileNode: Node = get_tree().get_first_node_in_group("ProjectileNode")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

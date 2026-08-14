@@ -3,9 +3,19 @@ class_name EliteWizard extends Enemy
 @onready var atkSpawnPoint: Node2D = $AtkSpawnPoint
 
 @export var fireballScene : PackedScene = null
+@onready var projectileNode: Node = get_tree().get_first_node_in_group("ProjectileNode")
+
 @export var panicRunThresholdDistance := 300
 @export var runChance := 1
 
+@export var teleportLocationsRoot : Node2D
+@onready var teleportLocations : Array = teleportLocationsRoot.get_children()
+
+func _ready() -> void:
+	super._ready()
+	assert(not teleportLocationsRoot == null, "Need a root Node2D that contains Node2Ds that provide
+													all possible teleport locations to the wizard")
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
@@ -18,8 +28,13 @@ func takeDamage(dmg: int) -> void:
 	var state = stateMachine.currentState
 	if state.name == state.STUNNED:
 		currentHp -= dmg
+		atkTime += 0.2
+		telegraphTime += 0.2
+		teleport()
 	else:
-		state.finished.emit(state.TELEPORT)
+		teleport()
+		var currentState : StateEnemy = stateMachine.currentState
+		currentState.finished.emit(currentState.TAUNT)
 
 func getDirectionToPlayer() -> Direction:
 	var dir = global_position.direction_to(target.global_position)
@@ -74,6 +89,13 @@ func run():
 			Direction.RIGHT:
 				animatedSprite.play("runRight")
 
+func teleport():
+	var randomIndex = randi() % len(teleportLocations)
+	while global_position == teleportLocations[randomIndex].global_position:
+		randomIndex = randi() % len(teleportLocations)
+	
+	global_position = teleportLocations[randomIndex].global_position
+
 func telegraphAttack() -> void:
 	match direction:
 		Direction.UP:
@@ -91,7 +113,7 @@ func attack() -> void:
 	atkSpawnPoint.global_position = global_position + atkDirection * 100
 	fireball.global_position = atkSpawnPoint.global_position
 	fireball.direction = fireball.global_position.direction_to(target.global_position)
-	GlobalStates.projectileNode.add_child(fireball)
+	projectileNode.add_child(fireball)
 	
 	match direction:
 		Direction.UP:
