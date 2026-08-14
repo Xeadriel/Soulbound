@@ -190,14 +190,14 @@ y_sort_enabled = true
 [node name="Player" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("9_0r1y5")]
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(1249, -330)
+position = Vector2(1190, -473)
 ItemQuickSlots = NodePath("../../AutoCamera/ItemQuickSelect")
 whipAttackSpawner = ExtResource("10_uhk1o")
 
 [node name="Player2" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("11_pwrpc")]
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(1454, -315)
+position = Vector2(1395, -458)
 ItemQuickSlots = NodePath("../../AutoCamera/ItemQuickSelect2")
 whipAttackSpawner = ExtResource("10_uhk1o")
 

@@ -847,6 +847,7 @@ collision_layer = 0
 collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RunCircleObstacleDetection"]
+visible = false
 position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_4myx3")
 
