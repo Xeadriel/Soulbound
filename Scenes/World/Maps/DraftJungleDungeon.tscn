@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cel6itjonug3b" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzle.tscn" id="13_2n2dr"]
 [ext_resource type="PackedScene" uid="uid://dm3pm4k0erp0v" path="res://Scenes/World/WorldObjects/Chest.tscn" id="16_pwrpc"]
 [ext_resource type="PackedScene" uid="uid://day27nflhuxcp" path="res://Scenes/World/WorldObjects/SlippyBoxPushPuzzle/PuzzleTerminal.tscn" id="16_uhk1o"]
-[ext_resource type="PackedScene" uid="uid://k5le5iauuik8" path="res://Scenes/Enemies/MiniBossDeathHighPriest.tscn" id="17_uhk1o"]
+[ext_resource type="PackedScene" uid="uid://jnyddp6cmv5f" path="res://Scenes/Enemies/MiniBossDeathHighPriest.tscn" id="17_uhk1o"]
 [ext_resource type="Script" uid="uid://dy1c0bwsa7fng" path="res://Scripts/World/WorldObjects/Properties/PropertyCollidable.gd" id="18_pwrpc"]
 [ext_resource type="PackedScene" uid="uid://cuxujo6x2vj3e" path="res://Scenes/Enemies/EliteWizard.tscn" id="23_vgay6"]
 
@@ -1024,6 +1024,7 @@ enemiesLeft = 1
 [connection signal="body_entered" from="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" method="_on_body_exited"]
 [connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/MiniBossRoom" method="updateRoomStatus"]
+[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/MiniBossRoom/MiniBossDeathHighPriest" method="_on_property_detecting_player_both_players_are_now_in"]
 [connection signal="enemiesCleared" from="2DObjects/Rooms/MiniBossRoom/EnemiesCounter" to="2DObjects/Rooms/MiniBossRoom/DoorTrigger2" method="onTriggered"]
 [connection signal="died" from="2DObjects/Rooms/MiniBossRoom/Goblin" to="2DObjects/Rooms/MiniBossRoom/EnemiesCounter" method="onEnemyDied"]
 [connection signal="body_entered" from="2DObjects/Rooms/WhipPuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/WhipPuzzleRoom/PropertyDetectingPlayer" method="_on_body_entered"]
