@@ -2,7 +2,7 @@ class_name DaggerCircling extends Area2D
 
 @export var radius = 300
 @export var angularSpeed = 3
-@export var dmgValue = 2
+@export var dmgValue := 2.0
 
 @onready var isOrbiting := true
 @onready var sprite := $AnimatedSprite2D

@@ -11,8 +11,7 @@ class_name MiniBossDeathHighPriest extends Enemy
 @export var currentShield: float:
 	set(newShield):
 		currentShield = newShield
-		if currentShield :
-			shieldSprite.visible = currentShield > 0
+		shieldSprite.visible = currentShield > 0
 
 @export var SPEED := 100
 

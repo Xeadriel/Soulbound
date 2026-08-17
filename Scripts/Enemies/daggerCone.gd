@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var dmgValue = 0.5
+@export var dmgValue := 1.0
 
 var direction: Vector2
 var speed := 500.0
