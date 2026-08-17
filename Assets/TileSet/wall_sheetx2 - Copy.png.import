@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bao6e6slw0mpr"
-path="res://.godot/imported/wall_sheetx2.png-968b22ab6a899d8d8d5c12a360f8a3a8.ctex"
+uid="uid://brrwyn351bu51"
+path="res://.godot/imported/wall_sheetx2 - Copy.png-3a4ce2065c5a96a2fe1697ea8cff5275.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TileSet/wall_sheetx2.png"
-dest_files=["res://.godot/imported/wall_sheetx2.png-968b22ab6a899d8d8d5c12a360f8a3a8.ctex"]
+source_file="res://Assets/TileSet/wall_sheetx2 - Copy.png"
+dest_files=["res://.godot/imported/wall_sheetx2 - Copy.png-3a4ce2065c5a96a2fe1697ea8cff5275.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bao6e6slw0mpr"
-path="res://.godot/imported/wall_sheetx2.png-968b22ab6a899d8d8d5c12a360f8a3a8.ctex"
+uid="uid://cpkvkoxv7ih7u"
+path="res://.godot/imported/stoneDoor.png-593495a39b026c36bcf5e717cf0e56a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TileSet/wall_sheetx2.png"
-dest_files=["res://.godot/imported/wall_sheetx2.png-968b22ab6a899d8d8d5c12a360f8a3a8.ctex"]
+source_file="res://Assets/TileSet/stoneDoor.png"
+dest_files=["res://.godot/imported/stoneDoor.png-593495a39b026c36bcf5e717cf0e56a5.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false

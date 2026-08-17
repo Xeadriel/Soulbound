@@ -1,4 +1,4 @@
-[gd_scene load_steps=294 format=3 uid="uid://jnyddp6cmv5f"]
+[gd_scene load_steps=294 format=3 uid="uid://k5le5iauuik8"]
 
 [ext_resource type="Script" uid="uid://bcn44g4gb3bcc" path="res://Scripts/Enemies/MiniBossDeathHighPriest.gd" id="1_3l0ll"]
 [ext_resource type="PackedScene" uid="uid://buwms73pcarwm" path="res://Scenes/Enemies/DaggerCircling.tscn" id="2_tg00k"]
@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://ctap3ttkvlrey" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateIdle.gd" id="4_eoms6"]
 [ext_resource type="Script" uid="uid://cjdagsts0n8yh" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateStrafe.gd" id="5_hy7xe"]
 [ext_resource type="Script" uid="uid://chxki3s4o7101" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateStunned.gd" id="6_5yec7"]
-[ext_resource type="Script" uid="uid://bnk5kbmdqbrvp" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTeleport.gd" id="6_x02iw"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTeleport.gd" id="6_x02iw"]
 [ext_resource type="Script" uid="uid://b6j1dce8bo67a" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTelegraphSwipe.gd" id="7_lppw1"]
 [ext_resource type="Script" uid="uid://dyrtdad8yh5ff" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateAtkSwipe.gd" id="8_x02iw"]
 [ext_resource type="Script" uid="uid://d1vhc0thbyqo8" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTelegraphDaggerCone.gd" id="9_rfjik"]
@@ -20,7 +20,7 @@
 [ext_resource type="Script" uid="uid://u6eavhyo0s3c" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateThinking.gd" id="12_u4yqb"]
 [ext_resource type="Script" uid="uid://ctkwamixhth4e" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateSacrifice.gd" id="13_3jfg0"]
 [ext_resource type="Script" uid="uid://dxhb5pptc3ovt" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateAtkCirclingDaggers.gd" id="14_x02iw"]
-[ext_resource type="Script" uid="uid://djbwh7msglodh" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateCastShield.gd" id="19_rfjik"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateCastShield.gd" id="19_rfjik"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ui87"]
 atlas = ExtResource("2_u4yqb")

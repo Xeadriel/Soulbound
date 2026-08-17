@@ -832,7 +832,7 @@ collision_layer = 2
 collision_mask = 11
 motion_mode = 1
 script = ExtResource("1_adqnq")
-atkRange = 200.0
+atkRange = 125.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lc4gu")
@@ -847,6 +847,7 @@ collision_layer = 0
 collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RunCircleObstacleDetection"]
+visible = false
 position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_4myx3")
 

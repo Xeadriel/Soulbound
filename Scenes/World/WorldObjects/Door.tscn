@@ -1,24 +1,31 @@
-[gd_scene load_steps=10 format=3 uid="uid://gmsqxr0sxmb6"]
+[gd_scene load_steps=12 format=3 uid="uid://gmsqxr0sxmb6"]
 
 [ext_resource type="Script" uid="uid://dmv8e7eseese5" path="res://Scripts/World/WorldObjects/Door.gd" id="1_dxfhr"]
-[ext_resource type="PackedScene" uid="uid://cyck0cne5uii3" path="res://Scenes/World/WorldObjects/Properties/PropertyInteractable.tscn" id="2_t03iu"]
-[ext_resource type="Texture2D" uid="uid://bul1ubwp7vunr" path="res://Assets/UI Pack OS/scrollbar_grey.png" id="4_t03iu"]
+[ext_resource type="Texture2D" uid="uid://c54g3of8gc5g1" path="res://Assets/TileSet/door.png" id="2_qpyks"]
+[ext_resource type="Script" uid="uid://cro3bhfcbtv0j" path="res://Scripts/World/WorldObjects/Properties/PropertyInteractable.gd" id="3_t03iu"]
 [ext_resource type="Script" uid="uid://dy1c0bwsa7fng" path="res://Scripts/World/WorldObjects/Properties/PropertyCollidable.gd" id="5_qpyks"]
-[ext_resource type="Texture2D" uid="uid://bpfqlg0ic61rb" path="res://Assets/UI Pack OS/scrollbar_future_transparent.png" id="5_s3h2b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t03iu"]
+atlas = ExtResource("2_qpyks")
+region = Rect2(0, 0, 128, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3h2b"]
+atlas = ExtResource("2_qpyks")
+region = Rect2(0, 192, 128, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpyks"]
-atlas = ExtResource("4_t03iu")
-region = Rect2(0, 0, 32, 128)
+atlas = ExtResource("2_qpyks")
+region = Rect2(0, 384, 128, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vpyv"]
-atlas = ExtResource("5_s3h2b")
-region = Rect2(0, 0, 32, 128)
+atlas = ExtResource("2_qpyks")
+region = Rect2(0, 576, 128, 192)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wj75x"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qpyks")
+"texture": SubResource("AtlasTexture_t03iu")
 }],
 "loop": false,
 "name": &"Close",
@@ -26,42 +33,61 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_t03iu")
+"texture": SubResource("AtlasTexture_s3h2b")
 }],
 "loop": false,
-"name": &"Closed",
+"name": &"Open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpyks")
+}],
+"loop": true,
+"name": &"VerticalClose",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4vpyv")
 }],
-"loop": false,
-"name": &"Open",
+"loop": true,
+"name": &"VerticalOpen",
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpyks"]
+size = Vector2(128, 128)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s3h2b"]
-size = Vector2(4.8, 26.2)
+size = Vector2(128, 12)
 
 [node name="Door" type="AnimatedSprite2D"]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_wj75x")
-animation = &"Closed"
+animation = &"Close"
 script = ExtResource("1_dxfhr")
 
-[node name="PropertyInteractable" parent="." instance=ExtResource("2_t03iu")]
-scale = Vector2(6, 6)
+[node name="PropertyInteractable" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, 32)
+script = ExtResource("3_t03iu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyInteractable"]
+shape = SubResource("RectangleShape2D_qpyks")
 
 [node name="PropertyCollidable" type="Area2D" parent="."]
-scale = Vector2(5, 5)
+visible = false
+position = Vector2(0, 32)
 script = ExtResource("5_qpyks")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyCollidable"]
-position = Vector2(0.200001, -0.499999)
 shape = SubResource("RectangleShape2D_s3h2b")
 
 [node name="CollisionStaticBody" type="StaticBody2D" parent="PropertyCollidable"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyCollidable/CollisionStaticBody"]
-position = Vector2(0.200001, -0.499999)
 shape = SubResource("RectangleShape2D_s3h2b")
+
+[connection signal="body_entered" from="PropertyInteractable" to="PropertyInteractable" method="onBodyEntered"]
+[connection signal="body_exited" from="PropertyInteractable" to="PropertyInteractable" method="onBodyExited"]
