@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://rafcdskaova5"]
+[gd_scene load_steps=100 format=3 uid="uid://rafcdskaova5"]
 
 [ext_resource type="Script" uid="uid://0jorh7okrj40" path="res://Scripts/Players/Player1.gd" id="1_rpqav"]
 [ext_resource type="Texture2D" uid="uid://b481yv1fwibf7" path="res://Assets/PlayerSpriteSheet.png" id="2_52ee3"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="3_5ixxa"]
 [ext_resource type="Script" uid="uid://d3jfdm06r0mnu" path="res://Scripts/StateMachine/StatesPlayer/StateAttack.gd" id="6_nn08x"]
 [ext_resource type="Script" uid="uid://c3u2oumh8xcms" path="res://Scripts/StateMachine/StatesPlayer/StateHeavyAttack.gd" id="7_u0nk7"]
-[ext_resource type="Script" uid="uid://31yxv8rxpcxp" path="res://Scripts/StateMachine/StatesPlayer/StateBlock.gd" id="8_bhhdu"]
 [ext_resource type="Script" uid="uid://blutkobl052ip" path="res://Scripts/StateMachine/StatesPlayer/StateDash.gd" id="9_sw0h5"]
 [ext_resource type="Script" uid="uid://bkallxg37dshg" path="res://Scripts/StateMachine/StatesPlayer/StateWhipAttack.gd" id="10_80whf"]
 [ext_resource type="Script" uid="uid://clx54oeam5rvs" path="res://Scripts/StateMachine/StatesPlayer/StateInteracting.gd" id="11_jarcg"]
@@ -1086,7 +1085,7 @@ script = ExtResource("1_rpqav")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kyqiw")
-animation = &"attackHeavyRight2"
+animation = &"blockBack"
 autoplay = "idleFront"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -1114,11 +1113,6 @@ player = NodePath("../..")
 [node name="StateHeavyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("7_u0nk7")
 ATTACK_WINDUP_DELAY = 0.4
-player = NodePath("../..")
-
-[node name="StateBlock" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("8_bhhdu")
-BLOCK_DELAY = 1.0
 player = NodePath("../..")
 
 [node name="StateDash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]

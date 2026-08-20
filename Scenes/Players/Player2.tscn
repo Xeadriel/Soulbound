@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://ceausjasnh7kj"]
+[gd_scene load_steps=94 format=3 uid="uid://ceausjasnh7kj"]
 
 [ext_resource type="Script" uid="uid://cc45sc7rs3o0b" path="res://Scripts/Players/Player2.gd" id="1_gv048"]
 [ext_resource type="Texture2D" uid="uid://b481yv1fwibf7" path="res://Assets/PlayerSpriteSheet.png" id="2_7m8ro"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://bpbji6r7vd3fq" path="res://Scripts/StateMachine/StatesPlayer/StateIdle.gd" id="4_sqc4o"]
 [ext_resource type="Script" uid="uid://cto556i7c71ca" path="res://Scripts/StateMachine/StatesPlayer/StateRun.gd" id="5_nfgwa"]
 [ext_resource type="Script" uid="uid://d3jfdm06r0mnu" path="res://Scripts/StateMachine/StatesPlayer/StateAttack.gd" id="6_oixfn"]
-[ext_resource type="Script" uid="uid://31yxv8rxpcxp" path="res://Scripts/StateMachine/StatesPlayer/StateBlock.gd" id="7_yp5jh"]
 [ext_resource type="Script" uid="uid://dhfuuek8vxv6m" path="res://Scripts/StateMachine/StatesPlayer/StateChargeUpAttack.gd" id="8_bfxnb"]
 [ext_resource type="Script" uid="uid://blutkobl052ip" path="res://Scripts/StateMachine/StatesPlayer/StateDash.gd" id="10_wkfp8"]
 [ext_resource type="Script" uid="uid://bkallxg37dshg" path="res://Scripts/StateMachine/StatesPlayer/StateWhipAttack.gd" id="11_xrcod"]
@@ -1095,11 +1094,6 @@ player = NodePath("../..")
 
 [node name="StateHeavyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("8_bfxnb")
-player = NodePath("../..")
-
-[node name="StateBlock" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("7_yp5jh")
-BLOCK_DELAY = 1.0
 player = NodePath("../..")
 
 [node name="StateDash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]

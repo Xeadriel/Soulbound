@@ -9,19 +9,23 @@ func process(_delta: float) -> void:
 	pass
 
 func physicsProcess(_delta: float) -> void:
+	player.isBlocking = EventHandler.isPlayerInputPressed(BLOCK)
+
 	var direction :=  Vector2(Input.get_axis(LEFT, RIGHT), Input.get_axis(UP, DOWN))
 	if direction:
 		player.velocity = direction.normalized() * SPEED
 		setPlayerDirection(direction)
 		setAttackRotationFromDirection(direction)
+		if(player.isBlocking):
+			player.blockRunAnimation()
+		else:
+			player.runAnimation()
 	else:
 		finished.emit(STATEIDLE)
 	if EventHandler.isPlayerInputJustPressed(HIT):
 		finished.emit(STATEATTACK)
 	elif EventHandler.isPlayerInputJustPressed(HEAVY_HIT):
 		finished.emit(STATEHEAVYATTACK)
-	elif EventHandler.isPlayerInputJustPressed(BLOCK):
-		finished.emit(STATEBLOCK)
 	elif EventHandler.isPlayerInputJustPressed(DASH):
 		finished.emit(STATEDASH)
 	elif EventHandler.isPlayerInputJustPressed(QUICKSLOTBOT):

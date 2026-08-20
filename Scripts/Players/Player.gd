@@ -24,44 +24,18 @@ var direction = Direction.DOWN
 @onready var spawnLocationWhipAttack = $AttackPivotPoint/WhipAttack/Start 
 @onready var goalWhipAttackGoal = $AttackPivotPoint/WhipAttack/Goal
 
-var blockTimeStamp = 0
-@export var blockDelay = 500
-
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
 # this is set by an object when getting close enough to it's interact range
 # null means there is none right now
 # the state machine checks this when the interact button is pressed
 var interactableObject = null
+var isBlocking :bool = false
 
 func _ready() -> void:
 	assert(ItemQuickSlots != null, "ItemQuickSlots should not be null")
 	assert(whipAttackSpawner != null, "WhipAttackSpawner should not be null" )
 	playerDeath.connect(EventHandler.playerDied)
-
-func _process(_delta) -> void:
-	if "block" in animatedSprite.animation or "attack" in animatedSprite.animation:
-		return
-	if velocity.x != 0 or velocity.y != 0:
-		match direction:
-			Direction.UP:
-				animatedSprite.play("runBack")
-			Direction.DOWN:
-				animatedSprite.play("runFront")	
-			Direction.LEFT:
-				animatedSprite.play("runLeft")
-			Direction.RIGHT:
-				animatedSprite.play("runRight")
-	else:
-		match direction:
-			Direction.UP:
-				animatedSprite.play("idleBack")
-			Direction.DOWN:
-				animatedSprite.play("idleFront")	
-			Direction.LEFT:
-				animatedSprite.play("idleLeft")
-			Direction.RIGHT:
-				animatedSprite.play("idleRight")
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -74,9 +48,6 @@ func canQuickSlotItemBeUsed(index : GlobalConstants.QuickSlotIndices):
 	return ItemQuickSlots.quickSlots[index].itemAmount >= 1
 
 func takeDamage(dmg):
-	if stateMachine.currentState.name == "StateBlock" and blockTimeStamp + blockDelay >= Time.get_ticks_msec():
-		# spawn some block particle and make sound
-		return
 	hp -= dmg
 	hp = clamp(hp - 1, 0, self.maxHp)
 	if hp <= 0:
@@ -100,21 +71,8 @@ func attack(combo : int) -> void:
 		Direction.RIGHT:
 			animatedSprite.play("attackRight" + suffix)
 
-func stopAttack() -> void:
-	match direction:
-		Direction.UP:
-			animatedSprite.play("idleBack")
-		Direction.DOWN:
-			animatedSprite.play("idleFront")	
-		Direction.LEFT:
-			animatedSprite.play("idleLeft")
-		Direction.RIGHT:
-			animatedSprite.play("idleRight")
-
 # blocks in facing direction
-func block() -> void:
-	blockTimeStamp = Time.get_ticks_msec()
-	# add animation
+func blockIdleAnimation() -> void:
 	match direction:
 		Direction.UP:
 			animatedSprite.play("blockBack")
@@ -124,18 +82,17 @@ func block() -> void:
 			animatedSprite.play("blockLeft")
 		Direction.RIGHT:
 			animatedSprite.play("blockRight")
-
-func stopBlock() -> void:
-	blockTimeStamp = 0
+			
+func blockRunAnimation() -> void:
 	match direction:
 		Direction.UP:
-			animatedSprite.play("idleBack")
+			animatedSprite.play("blockBack")
 		Direction.DOWN:
-			animatedSprite.play("idleFront")	
+			animatedSprite.play("blockFront")
 		Direction.LEFT:
-			animatedSprite.play("idleLeft")
+			animatedSprite.play("blockLeft")
 		Direction.RIGHT:
-			animatedSprite.play("idleRight")
+			animatedSprite.play("blockRight")
 
 func dash() -> void:
 	collision_layer = collision_layer & 0b0 #become unhittable

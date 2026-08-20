@@ -12,8 +12,12 @@ func _ready() -> void:
 func _process(_delta) -> void:
 	if "block" in animatedSprite.animation or "attack" in animatedSprite.animation:
 		return
-	if velocity.x != 0 or velocity.y != 0:
-		match direction:
+
+func _physics_process(_delta: float) -> void:
+	move_and_slide()
+	
+func runAnimation():
+	match direction:
 			Direction.UP:
 				animatedSprite.play("runBack")
 			Direction.DOWN:
@@ -22,8 +26,9 @@ func _process(_delta) -> void:
 				animatedSprite.play("runLeft")
 			Direction.RIGHT:
 				animatedSprite.play("runRight")
-	else:
-		match direction:
+
+func idleAnimation():
+	match direction:
 			Direction.UP:
 				animatedSprite.play("idleBack")
 			Direction.DOWN:
@@ -32,9 +37,6 @@ func _process(_delta) -> void:
 				animatedSprite.play("idleLeft")
 			Direction.RIGHT:
 				animatedSprite.play("idleRight")
-
-func _physics_process(_delta: float) -> void:
-	move_and_slide()
 
 # attacks in facing direction
 # takes integer combo as parameter to specify which
@@ -50,8 +52,6 @@ func attack(combo : int) -> void:
 			animatedSprite.play("attackLeft" + suffix)
 		Direction.RIGHT:
 			animatedSprite.play("attackRight" + suffix)
-	
-	
 	lightAttacks[combo-1].visible = false
 	lightAttacks[combo-1].process_mode = PROCESS_MODE_DISABLED
 
@@ -62,16 +62,6 @@ func stopAttack() -> void:
 	for atk in lightAttacks:
 		atk.visible = false
 		atk.process_mode = PROCESS_MODE_DISABLED
-	
-	match direction:
-		Direction.UP:
-			animatedSprite.play("idleBack")
-		Direction.DOWN:
-			animatedSprite.play("idleFront")	
-		Direction.LEFT:
-			animatedSprite.play("idleLeft")
-		Direction.RIGHT:
-			animatedSprite.play("idleRight")
 
 # takes integer combo as parameter to specify which
 # animation in a potential attack combo to play
@@ -100,21 +90,9 @@ func stopAttackHeavy() -> void:
 	for atk in heavyAttacks:
 		atk.visible = false
 		atk.process_mode = PROCESS_MODE_DISABLED
-	
-	match direction:
-		Direction.UP:
-			animatedSprite.play("idleBack")
-		Direction.DOWN:
-			animatedSprite.play("idleFront")	
-		Direction.LEFT:
-			animatedSprite.play("idleLeft")
-		Direction.RIGHT:
-			animatedSprite.play("idleRight")
 
 # blocks in facing direction
-func block() -> void:
-	blockTimeStamp = Time.get_ticks_msec()
-	# add animation
+func blockIdleAnimation() -> void:
 	match direction:
 		Direction.UP:
 			animatedSprite.play("blockBack")
@@ -124,18 +102,17 @@ func block() -> void:
 			animatedSprite.play("blockLeft")
 		Direction.RIGHT:
 			animatedSprite.play("blockRight")
-
-func stopBlock() -> void:
-	blockTimeStamp = 0
+			
+func blockRunAnimation() -> void:
 	match direction:
 		Direction.UP:
-			animatedSprite.play("idleBack")
+			animatedSprite.play("blockBack")
 		Direction.DOWN:
-			animatedSprite.play("idleFront")	
+			animatedSprite.play("blockFront")
 		Direction.LEFT:
-			animatedSprite.play("idleLeft")
+			animatedSprite.play("blockLeft")
 		Direction.RIGHT:
-			animatedSprite.play("idleRight")
+			animatedSprite.play("blockRight")
 
 func setAttackRotationFromDirection(dir: Vector2) -> void:
 	assert(not dir == Vector2.ZERO, "Move direction should never be (0,0)")
