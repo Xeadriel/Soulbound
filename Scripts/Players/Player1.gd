@@ -9,33 +9,29 @@ class_name Player1 extends Player
 func _ready() -> void:
 	super._ready()
 
-func _process(_delta) -> void:
-	if "block" in animatedSprite.animation or "attack" in animatedSprite.animation:
-		return
-
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
 func runAnimation():
-	match direction:
-			Direction.UP:
-				animatedSprite.play("runBack")
-			Direction.DOWN:
-				animatedSprite.play("runFront")	
-			Direction.LEFT:
-				animatedSprite.play("runLeft")
-			Direction.RIGHT:
-				animatedSprite.play("runRight")
+	match facingDirection:
+		DIRECTION.UP:
+			animatedSprite.play("runBack")
+		DIRECTION.DOWN:
+			animatedSprite.play("runFront")	
+		DIRECTION.LEFT:
+			animatedSprite.play("runLeft")
+		DIRECTION.RIGHT:
+			animatedSprite.play("runRight")
 
 func idleAnimation():
-	match direction:
-			Direction.UP:
+	match facingDirection:
+			DIRECTION.UP:
 				animatedSprite.play("idleBack")
-			Direction.DOWN:
+			DIRECTION.DOWN:
 				animatedSprite.play("idleFront")	
-			Direction.LEFT:
+			DIRECTION.LEFT:
 				animatedSprite.play("idleLeft")
-			Direction.RIGHT:
+			DIRECTION.RIGHT:
 				animatedSprite.play("idleRight")
 
 # attacks in facing direction
@@ -43,14 +39,14 @@ func idleAnimation():
 # animation in a potential attack combo to play
 func attack(combo : int) -> void:
 	var suffix = "" if combo == 0 else str(combo)
-	match direction:
-		Direction.UP:
+	match facingDirection:
+		DIRECTION.UP:
 			animatedSprite.play("attackBack" + suffix)
-		Direction.DOWN:
+		DIRECTION.DOWN:
 			animatedSprite.play("attackFront" + suffix)
-		Direction.LEFT:
+		DIRECTION.LEFT:
 			animatedSprite.play("attackLeft" + suffix)
-		Direction.RIGHT:
+		DIRECTION.RIGHT:
 			animatedSprite.play("attackRight" + suffix)
 	lightAttacks[combo-1].visible = false
 	lightAttacks[combo-1].process_mode = PROCESS_MODE_DISABLED
@@ -68,14 +64,14 @@ func stopAttack() -> void:
 func attackHeavyWindup(combo : int) -> void:
 	var suffix = "" if combo == 0 else str(combo)
 	animatedSprite.stop()
-	match direction:
-		Direction.UP:
+	match facingDirection:
+		DIRECTION.UP:
 			animatedSprite.play("attackHeavyBack" + suffix)
-		Direction.DOWN:
+		DIRECTION.DOWN:
 			animatedSprite.play("attackHeavyFront" + suffix)
-		Direction.LEFT:
+		DIRECTION.LEFT:
 			animatedSprite.play("attackHeavyLeft" + suffix)
-		Direction.RIGHT:
+		DIRECTION.RIGHT:
 			animatedSprite.play("attackHeavyRight" + suffix)
 
 # attacks in facing direction, combo decides which hitbox is used
@@ -93,25 +89,25 @@ func stopAttackHeavy() -> void:
 
 # blocks in facing direction
 func blockIdleAnimation() -> void:
-	match direction:
-		Direction.UP:
+	match facingDirection:
+		DIRECTION.UP:
 			animatedSprite.play("blockBack")
-		Direction.DOWN:
+		DIRECTION.DOWN:
 			animatedSprite.play("blockFront")
-		Direction.LEFT:
+		DIRECTION.LEFT:
 			animatedSprite.play("blockLeft")
-		Direction.RIGHT:
+		DIRECTION.RIGHT:
 			animatedSprite.play("blockRight")
 			
 func blockRunAnimation() -> void:
-	match direction:
-		Direction.UP:
+	match facingDirection:
+		DIRECTION.UP:
 			animatedSprite.play("blockBack")
-		Direction.DOWN:
+		DIRECTION.DOWN:
 			animatedSprite.play("blockFront")
-		Direction.LEFT:
+		DIRECTION.LEFT:
 			animatedSprite.play("blockLeft")
-		Direction.RIGHT:
+		DIRECTION.RIGHT:
 			animatedSprite.play("blockRight")
 
 func setAttackRotationFromDirection(dir: Vector2) -> void:
@@ -121,15 +117,15 @@ func setAttackRotationFromDirection(dir: Vector2) -> void:
 
 func setPlayerDirection(dir : Vector2) -> void:
 	if dir.y < 0:
-		direction = Direction.UP
+		facingDirection = DIRECTION.UP
 	elif dir.y > 0:
-		direction = Direction.DOWN
+		facingDirection = DIRECTION.DOWN
 
 	# horizontal direction prioritized over vertical direction
 	if dir.x < 0:
-		direction = Direction.LEFT
+		facingDirection = DIRECTION.LEFT
 	elif dir.x > 0:
-		direction = Direction.RIGHT
+		facingDirection = DIRECTION.RIGHT
 
 # signal when one of the light attacks area2D collides with something
 func lightAttackHitSomething(body: Node2D) -> void:

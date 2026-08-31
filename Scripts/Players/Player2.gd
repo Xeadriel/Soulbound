@@ -19,25 +19,25 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func runAnimation():
-	match direction:
-			Direction.UP:
+	match facingDirection:
+			DIRECTION.UP:
 				animatedSprite.play("runBack")
-			Direction.DOWN:
+			DIRECTION.DOWN:
 				animatedSprite.play("runFront")	
-			Direction.LEFT:
+			DIRECTION.LEFT:
 				animatedSprite.play("runLeft")
-			Direction.RIGHT:
+			DIRECTION.RIGHT:
 				animatedSprite.play("runRight")
 
 func idleAnimation():
-	match direction:
-			Direction.UP:
+	match facingDirection:
+			DIRECTION.UP:
 				animatedSprite.play("idleBack")
-			Direction.DOWN:
+			DIRECTION.DOWN:
 				animatedSprite.play("idleFront")	
-			Direction.LEFT:
+			DIRECTION.LEFT:
 				animatedSprite.play("idleLeft")
-			Direction.RIGHT:
+			DIRECTION.RIGHT:
 				animatedSprite.play("idleRight")
 
 # attacks in facing direction
@@ -45,14 +45,14 @@ func idleAnimation():
 # animation in a potential attack combo to play
 func attack(combo : int) -> void:
 	var suffix = "" if combo == 0 else str(combo)
-	match direction:
-		Direction.UP:
+	match facingDirection:
+		DIRECTION.UP:
 			animatedSprite.play("attackBack" + suffix)
-		Direction.DOWN:
+		DIRECTION.DOWN:
 			animatedSprite.play("attackFront" + suffix)
-		Direction.LEFT:
+		DIRECTION.LEFT:
 			animatedSprite.play("attackLeft" + suffix)
-		Direction.RIGHT:
+		DIRECTION.RIGHT:
 			animatedSprite.play("attackRight" + suffix)
 
 	var magicShot = magicShotSpawner.instantiate()
@@ -64,28 +64,28 @@ func attack(combo : int) -> void:
 	projecttileNode.add_child(magicShot)
 
 func stopAttack() -> void:
-	match direction:
-		Direction.UP:
+	match facingDirection:
+		DIRECTION.UP:
 			animatedSprite.play("idleBack")
-		Direction.DOWN:
+		DIRECTION.DOWN:
 			animatedSprite.play("idleFront")	
-		Direction.LEFT:
+		DIRECTION.LEFT:
 			animatedSprite.play("idleLeft")
-		Direction.RIGHT:
+		DIRECTION.RIGHT:
 			animatedSprite.play("idleRight")
 
 # attacks in facing direction
 # takes integer combo as parameter to specify which
 # animation in a potential attack combo to play
 func chargeAttackHeavy(charge : int) -> void:
-	match direction:
-		Direction.UP:
+	match facingDirection:
+		DIRECTION.UP:
 			animatedSprite.play("attackHeavyBack")
-		Direction.DOWN:
+		DIRECTION.DOWN:
 			animatedSprite.play("attackHeavyFront")
-		Direction.LEFT:
+		DIRECTION.LEFT:
 			animatedSprite.play("attackHeavyLeft")
-		Direction.RIGHT:
+		DIRECTION.RIGHT:
 			animatedSprite.play("attackHeavyRight")
 	
 	match charge:
@@ -133,37 +133,37 @@ func releaseAttackHeavy():
 
 func stopAttackHeavy() -> void:
 	
-	match direction:
-		Direction.UP:
+	match facingDirection:
+		DIRECTION.UP:
 			animatedSprite.play("idleBack")
-		Direction.DOWN:
+		DIRECTION.DOWN:
 			animatedSprite.play("idleFront")	
-		Direction.LEFT:
+		DIRECTION.LEFT:
 			animatedSprite.play("idleLeft")
-		Direction.RIGHT:
+		DIRECTION.RIGHT:
 			animatedSprite.play("idleRight")
 
 # blocks in facing direction
 func blockIdleAnimation() -> void:
-	match direction:
-		Direction.UP:
+	match facingDirection:
+		DIRECTION.UP:
 			animatedSprite.play("blockBack")
-		Direction.DOWN:
+		DIRECTION.DOWN:
 			animatedSprite.play("blockFront")
-		Direction.LEFT:
+		DIRECTION.LEFT:
 			animatedSprite.play("blockLeft")
-		Direction.RIGHT:
+		DIRECTION.RIGHT:
 			animatedSprite.play("blockRight")
 			
 func blockRunAnimation() -> void:
-	match direction:
-		Direction.UP:
+	match facingDirection:
+		DIRECTION.UP:
 			animatedSprite.play("blockBack")
-		Direction.DOWN:
+		DIRECTION.DOWN:
 			animatedSprite.play("blockFront")
-		Direction.LEFT:
+		DIRECTION.LEFT:
 			animatedSprite.play("blockLeft")
-		Direction.RIGHT:
+		DIRECTION.RIGHT:
 			animatedSprite.play("blockRight")
 
 func setAttackRotationFromDirection(dir: Vector2) -> void:
@@ -175,12 +175,12 @@ func setAttackRotationFromDirection(dir: Vector2) -> void:
 
 func setPlayerDirection(dir : Vector2) -> void:
 	if dir.y < 0:
-		direction = Direction.UP
+		facingDirection = DIRECTION.UP
 	elif dir.y > 0:
-		direction = Direction.DOWN
+		facingDirection = DIRECTION.DOWN
 
 	# horizontal direction prioritized over vertical direction
 	if dir.x < 0:
-		direction = Direction.LEFT
+		facingDirection = DIRECTION.LEFT
 	elif dir.x > 0:
-		direction = Direction.RIGHT
+		facingDirection = DIRECTION.RIGHT

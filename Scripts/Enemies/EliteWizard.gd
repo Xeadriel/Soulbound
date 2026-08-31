@@ -129,4 +129,4 @@ func attack() -> void:
 func hitSomething(body: Node2D) -> void:
 	if body is Player:
 		var player : Player = body
-		player.takeDamage(DAMAGE)
+		player.takeDamage(DAMAGE, self)
