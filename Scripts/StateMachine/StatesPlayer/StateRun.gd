@@ -21,7 +21,8 @@ func physicsProcess(_delta: float) -> void:
 		else:
 			player.runAnimation()
 			player.velocity = direction.normalized() * SPEED
-		setPlayerDirection(direction)
+		if (!player.isBlocking):
+			setPlayerDirection(direction)
 		setAttackRotationFromDirection(direction)
 	else:
 		finished.emit(STATEIDLE)
