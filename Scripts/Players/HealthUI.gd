@@ -1,6 +1,8 @@
 extends Control
 
 @export var player: Player = null
+## Lay the hearts out from right to left (for the HUD on the right side of the screen).
+@export var mirrored : bool = false
 @onready var leftHeart = $HalfHeartLeft
 @onready var rightHeart = $HalfHeartRight
 
@@ -15,62 +17,33 @@ const IDLE = "idle"
 const TAKEDAMAGE = "takeDamage"
 const HEAL = "heal"
 
+## Horizontal distance between two hearts of the same half.
+const HEART_SPACING := 64 + 12
+
 func _ready() -> void:
 	if player == null:
 		queue_free()
-	
+
 	player.damaged.connect(playerTookDamage)
 	hp = player.hp
-	
+
 	hearts = []
-	
-	var leftCounter = 0
-	var rightCounter = 0
-	
-	if player.playerIndex == 0:
-		var nextIsLeft = true
-		for i in range(player.maxHp):
-			if nextIsLeft:
-				var newLeftHeart = leftHeart.duplicate()
-				newLeftHeart.position.x += (leftCounter) * (64 + 12)
-				hearts.append(newLeftHeart)
-				add_child(newLeftHeart)
-				newLeftHeart.visible = true
-				leftCounter += 1
-			else:
-				var newRightHeart = rightHeart.duplicate()
-				newRightHeart.position.x += (rightCounter) * (64 + 12)
-				hearts.append(newRightHeart)
-				add_child(newRightHeart)
-				newRightHeart.visible = true
-				rightCounter += 1
-			
-			nextIsLeft = not nextIsLeft
-	else:
-		var nextIsRight = true
-		
-		for i in range(player.maxHp):
-			if nextIsRight:
-				var newRightHeart = rightHeart.duplicate()
-				newRightHeart.position.x += rightCounter * -64 + rightCounter * -12
-				hearts.append(newRightHeart)
-				newRightHeart.visible = true
-				rightCounter += 1
-				add_child(newRightHeart)
-			else:
-				var newLeftHeart = leftHeart.duplicate()
-				newLeftHeart.position.x += leftCounter * -64 + leftCounter * -12
-				hearts.append(newLeftHeart)
-				newLeftHeart.visible = true
-				leftCounter += 1
-				add_child(newLeftHeart)
-			
-			nextIsRight = not nextIsRight
 
+	# hearts are made of alternating left and right halves; mirrored HUDs grow to the left
+	var direction := -1 if mirrored else 1
+	var halves : Array = [rightHeart, leftHeart] if mirrored else [leftHeart, rightHeart]
+	var halfCounts := [0, 0]
+	for i in range(player.maxHp):
+		var half := i % 2
+		var newHeart : AnimatedSprite2D = halves[half].duplicate()
+		newHeart.position.x += halfCounts[half] * HEART_SPACING * direction
+		hearts.append(newHeart)
+		add_child(newHeart)
+		newHeart.visible = true
+		halfCounts[half] += 1
 
-func playerTookDamage(dmgValue):	
+func playerTookDamage(dmgValue: int) -> void:
 	for i in range(dmgValue):
 		if hp == 0: return
 		hp = clamp(hp - 1, 0, player.maxHp)
 		hearts[hp].play(TAKEDAMAGE)
-	

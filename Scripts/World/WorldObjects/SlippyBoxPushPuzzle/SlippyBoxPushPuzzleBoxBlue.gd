@@ -1,51 +1,20 @@
 class_name SlippyBoxPushPuzzleBoxBlue extends CharacterBody2D
-
-const SPEED = 300.0
-
-var previousPos : Vector2
-var moving : bool = false
+## The box player 1 pushes. SlippyBoxPushPuzzle decides where it slides to.
 
 signal stoppedMoving
 signal startedMoving
 
-func _ready() -> void:
-	previousPos = position
+var moving : bool = false
 
-func _physics_process(delta: float) -> void:
-	move_and_slide()
-	var distance = previousPos.distance_to(position)
-	previousPos = position
-	
-	if distance <= 1 and moving:
-		velocity.x = 0
-		velocity.y = 0
-		
-		stoppedMoving.emit()
-		moving = false
+## Slides to [param target] (local position) at constant speed.
+func slideTo(target : Vector2, duration : float) -> void:
+	moving = true
+	startedMoving.emit()
+	var tween := create_tween()
+	tween.tween_property(self, "position", target, duration)
+	await tween.finished
+	moving = false
+	stoppedMoving.emit()
 
-func onPushedUp():
-	if velocity.x == 0 and velocity.y == 0:
-		velocity.y = -SPEED
-		moving = true
-		startedMoving.emit()
-
-func onPushedDown():
-	if velocity.x == 0 and velocity.y == 0:
-		velocity.y = SPEED
-		moving = true
-		startedMoving.emit()
-
-func onPushedLeft():
-	if velocity.x == 0 and velocity.y == 0:
-		velocity.x = -SPEED
-		moving = true
-		startedMoving.emit()
-
-func onPushedRight():
-	if velocity.x == 0 and velocity.y == 0:
-		velocity.x = SPEED
-		moving = true
-		startedMoving.emit()
-
-func solved():
+func solved() -> void:
 	set_physics_process(false)

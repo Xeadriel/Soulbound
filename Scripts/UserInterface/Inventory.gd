@@ -1,4 +1,4 @@
-extends Control
+class_name Inventory extends Control
 
 @export var columns = 7
 @export var rows = 3

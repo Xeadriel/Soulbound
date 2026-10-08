@@ -303,6 +303,7 @@ offset_top = -443.0
 offset_right = 752.0
 offset_bottom = -403.0
 player = NodePath("../../Players/Player2")
+mirrored = true
 
 [node name="GameUI" parent="2DObjects/AutoCamera" instance=ExtResource("5_g3l2s")]
 z_index = 99
