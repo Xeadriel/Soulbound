@@ -14,5 +14,7 @@ func onBodyEntered(body: Node2D) -> void:
 
 func onBodyExited(body: Node2D) -> void:
 	if body is Player:
-		body.setInteractable(null)
+		# only clear it if the player has not moved into another object's range meanwhile
+		if body.interactableObject == get_parent():
+			body.setInteractable(null)
 		playersCloseEnough[body.playerIndex] = false

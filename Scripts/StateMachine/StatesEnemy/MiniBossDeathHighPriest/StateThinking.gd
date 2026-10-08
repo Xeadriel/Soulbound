@@ -18,6 +18,9 @@ extends StateEnemy
 @export var farEnoughThreshold: float = 300.0
 
 var weights: Dictionary[String, int]
+## Counts how often the state was entered, so a decision delayed from an earlier
+## visit can tell it is outdated.
+var _visit := 0
 var actionsRequireSacrifice := [
 	TELEGRAPH_DAGGER_CIRCLING,
 	TELEGRAPH_DAGGER_EXPLOSION,
@@ -25,9 +28,11 @@ var actionsRequireSacrifice := [
 	]
 
 func enter(_previous_state_path: String, _data := {}) -> void:
+	_visit += 1
+	var visit := _visit
 	#buffer time between each action
 	await get_tree().create_timer(randf_range(0.5, 1.5)).timeout
-	if not isActive:
+	if not isActive or visit != _visit:
 		return
 	# every decision starts from the base weights and adjusts them for the current situation
 	weights = baseWeights.duplicate()
