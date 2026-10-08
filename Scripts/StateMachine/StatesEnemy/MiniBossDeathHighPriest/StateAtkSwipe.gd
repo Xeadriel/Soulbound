@@ -1,9 +1,5 @@
 extends StateEnemy
 
-func _ready() -> void:
-	super()
-	entity.animationFinishedSignal.connect(animationFinished)
-	
 func process(_delta: float) -> void:
 	pass
 	
@@ -21,6 +17,6 @@ func exit() -> void:
 	entity.stopAttack()
 	entity.animatedSprite.speed_scale = 1.0
 
-func animationFinished(animationName: String) -> void:
+func onAnimationFinished(animationName: String) -> void:
 	if animationName in ["swipeFront", "swipeBack", "swipeLeft", "swipeRight"]:
 		finished.emit(THINKING)

@@ -5,10 +5,6 @@ var channelTime: float = 3.0
 var nextState: String
 var sacrificePos: Vector2
 
-func _ready() -> void:
-	super()
-	entity.animationFinishedSignal.connect(animationFinished)
-	
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
 	pass
@@ -40,7 +36,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 func exit() -> void:
 	entity.animatedSprite.speed_scale = 1
 
-func animationFinished(animationName: String):
+func onAnimationFinished(animationName: String) -> void:
 	if "sacrifice" not in animationName:
 		return
 	if is_instance_valid(chosenSacrifice):

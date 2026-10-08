@@ -2,10 +2,6 @@ extends StateEnemy
 
 @export var nextState = IDLE
 
-func _ready() -> void:
-	super()
-	entity.animationFinishedSignal.connect(animationFinished)
-	
 func process(_delta: float) -> void:
 	pass
 
@@ -20,7 +16,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 func exit() -> void:
 	entity.stopAttack()
 
-func animationFinished(animationName: String) -> void:
+func onAnimationFinished(animationName: String) -> void:
 	if animationName not in ["attackFront", "attackBack", "attackLeft", "attackRight"]:
 		return
 	finished.emit(nextState)

@@ -15,13 +15,10 @@ var target: Player
 
 @export var DAMAGE = 1
 
-signal animationFinishedSignal
-
 func _ready() -> void:
 	# rooms are disabled by default, entering activates enemy
 	process_mode = PROCESS_MODE_INHERIT
 	hp = maxHp
-	animatedSprite.animation_finished.connect(animationFinished)
 	players = get_tree().get_nodes_in_group("Players")
 
 func _physics_process(delta: float) -> void:
@@ -38,7 +35,7 @@ func takeDamage(dmg: int) -> void:
 	hp -= dmg
 
 func hitByWhip():
-	stateMachine._transition_to_next_state("StateStunned", {"duration" : 1.0})
+	stateMachine.interrupt(StateEnemy.STUNNED, {"duration" : 1.0})
 
 func getDirectionToPlayer() -> Facing.Direction:
 	return Facing.fromVector(global_position.direction_to(target.global_position))
@@ -54,9 +51,6 @@ func getClosestPlayer() -> Player:
 	return closestPlayer
 
 # --- animations ---
-
-func animationFinished():
-	animationFinishedSignal.emit(animatedSprite.animation)
 
 func idle():
 	playDirectional("idle")

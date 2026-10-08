@@ -1,9 +1,5 @@
 extends StateEnemy
 
-func _ready() -> void:
-	super()
-	entity.animationFinishedSignal.connect(animationFinished)
-
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
 	pass
@@ -23,7 +19,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 func exit() -> void:
 	entity.animatedSprite.speed_scale = 1
 	
-func animationFinished(animationName: String):
+func onAnimationFinished(animationName: String) -> void:
 	if "castShield" not in animationName:
 		return
 	entity.castShield()

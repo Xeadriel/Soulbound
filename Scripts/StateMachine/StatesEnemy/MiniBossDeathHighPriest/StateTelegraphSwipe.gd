@@ -1,11 +1,6 @@
 extends StateEnemy
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	super()
-	entity.animationFinishedSignal.connect(animationFinished)
-
 func process(_delta: float) -> void:
 	pass
 
@@ -22,7 +17,7 @@ func exit() -> void:
 	entity.animatedSprite.speed_scale = 1
 
 # if telegraph is done, switch to attack
-func animationFinished(animationName: String):
+func onAnimationFinished(animationName: String) -> void:
 	if animationName not in [
 		"telegraphSwipeFront", 
 		"telegraphSwipeRight", 

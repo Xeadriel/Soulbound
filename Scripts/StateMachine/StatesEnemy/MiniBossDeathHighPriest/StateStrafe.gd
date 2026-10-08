@@ -1,5 +1,3 @@
-## Virtual base class for all states.
-## Extend this class and override its methods to implement a state.
 extends StateEnemy
 
 @export var minDuration4DirChange: float = 1
@@ -20,10 +18,6 @@ var runDuration : float
 var dirChanger: int = [-1, 1][randi() % 2]
 var timer4DirChange: float = 5.0
 var timer4Obstacle: float = 0.0
-
-## Called by the state machine when receiving unhandled input events.
-func handleInput() -> void:
-	pass
 
 ## Called by the state machine on the engine's main loop tick.
 func process(delta: float) -> void:

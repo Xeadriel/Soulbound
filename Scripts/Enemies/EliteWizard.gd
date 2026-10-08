@@ -25,13 +25,7 @@ func takeDamage(dmg: int) -> void:
 		teleport()
 	else:
 		teleport()
-		var currentState : StateEnemy = stateMachine.currentState
-		currentState.finished.emit(currentState.TAUNT)
-
-# --- animations ---
-
-func animationFinished():
-	animationFinishedSignal.emit(animatedSprite)
+		stateMachine.interrupt(StateEnemy.TAUNT)
 
 func teleport():
 	var randomIndex = randi() % len(teleportLocations)

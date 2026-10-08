@@ -1,5 +1,3 @@
-## Virtual base class for all states.
-## Extend this class and override its methods to implement a state.
 extends StateEnemy
 
 @export var SPEED : int
@@ -7,10 +5,6 @@ extends StateEnemy
 
 var runDirCooldown := 0.0
 var fleeDirection := Vector2.ZERO
-
-## Called by the state machine when receiving unhandled input events.
-func handleInput() -> void:
-	pass
 
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
