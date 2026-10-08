@@ -13,9 +13,13 @@ func physicsProcess(_delta: float) -> void:
 		InputBuffer.isHeld(input.up) or
 		InputBuffer.isHeld(input.down)
 		):
-		finished.emit(STATERUN)
+		transition(STATERUN)
 	else:
 		player.velocity = player.velocity.move_toward(Vector2.ZERO, SLOWDOWNSPEED)
+
+	# left the state: don't override the new state's animation
+	if not isActive:
+		return
 
 	if player.velocity == Vector2.ZERO:
 		if player.isBlocking:

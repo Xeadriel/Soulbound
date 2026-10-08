@@ -19,4 +19,4 @@ func exit() -> void:
 func onAnimationFinished(animationName: String) -> void:
 	if "telegraph" not in animationName:
 		return
-	finished.emit(ATK)
+	transition(ATK)

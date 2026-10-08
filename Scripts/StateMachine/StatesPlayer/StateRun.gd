@@ -20,6 +20,8 @@ func physicsProcess(_delta: float) -> void:
 			player.setPlayerDirection(direction)
 		player.setAttackRotationFromDirection(direction)
 	else:
-		finished.emit(STATEIDLE)
+		# an action pressed this frame stays buffered and is handled by StateIdle
+		transition(STATEIDLE)
+		return
 
 	handleActionInputs()

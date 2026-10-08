@@ -24,4 +24,4 @@ func onAnimationFinished(animationName: String) -> void:
 		"daggerExplosionRight"
 	]:
 		return
-	finished.emit(THINKING)
+	transition(THINKING)

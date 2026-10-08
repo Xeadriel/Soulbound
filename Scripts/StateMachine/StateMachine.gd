@@ -12,6 +12,7 @@ func _ready() -> void:
 	var character := owner as Character
 	if character != null:
 		character.animatedSprite.animation_finished.connect(_onAnimationFinished)
+	currentState.isActive = true
 	currentState.enter("StateIdle")
 
 func _process(delta: float) -> void:
@@ -34,6 +35,8 @@ func _transition_to_next_state(targetStatePath: String, data: Dictionary = {}) -
 		return
 
 	var previousStatePath := currentState.name
+	currentState.isActive = false
 	currentState.exit()
 	currentState = get_node(targetStatePath)
+	currentState.isActive = true
 	currentState.enter(previousStatePath, data)

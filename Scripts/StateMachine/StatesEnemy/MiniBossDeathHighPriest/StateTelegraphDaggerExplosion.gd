@@ -22,4 +22,4 @@ func exit() -> void:
 func onAnimationFinished(animationName: String) -> void:
 	if "telegraphDaggerExplosion" not in animationName:
 		return
-	finished.emit(DAGGER_EXPLOSION, {"sacrificePos": sacrificePos})
+	transition(DAGGER_EXPLOSION, {"sacrificePos": sacrificePos})

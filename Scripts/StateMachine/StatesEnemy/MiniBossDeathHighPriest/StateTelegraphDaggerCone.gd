@@ -21,4 +21,4 @@ func exit() -> void:
 func onAnimationFinished(animationName: String) -> void:
 	if "telegraphDaggerCone" not in animationName:
 		return
-	finished.emit(DAGGER_CONE)
+	transition(DAGGER_CONE)

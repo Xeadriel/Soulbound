@@ -19,4 +19,4 @@ func exit() -> void:
 func onAnimationFinished(animationName: String) -> void:
 	if animationName not in ["attackFront", "attackBack", "attackLeft", "attackRight"]:
 		return
-	finished.emit(nextState)
+	transition(nextState)

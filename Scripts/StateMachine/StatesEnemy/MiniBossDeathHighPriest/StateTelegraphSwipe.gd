@@ -25,4 +25,4 @@ func onAnimationFinished(animationName: String) -> void:
 		"telegraphSwipeBack"
 	]:
 		return
-	finished.emit(SWIPE)
+	transition(SWIPE)

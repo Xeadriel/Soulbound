@@ -8,7 +8,7 @@ func process(_delta: float) -> void:
 	
 	# not aggroed
 	if  entity.aggroRange < distance:
-		finished.emit(IDLE)
+		transition(IDLE)
 	# close distance to attack
 	elif entity.atkRange < distance:
 		var direction = entity.global_position.direction_to(entity.target.global_position)
@@ -17,7 +17,7 @@ func process(_delta: float) -> void:
 		entity.run()
 	# attacking when in range
 	elif entity.atkRange >= distance:
-		finished.emit(TELEGRAPH)
+		transition(TELEGRAPH)
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	pass

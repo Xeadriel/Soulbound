@@ -23,4 +23,4 @@ func onAnimationFinished(animationName: String) -> void:
 	if "castShield" not in animationName:
 		return
 	entity.castShield()
-	finished.emit(THINKING)
+	transition(THINKING)

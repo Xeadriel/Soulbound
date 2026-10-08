@@ -22,7 +22,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 		if(child is Wizard || child is Goblin):
 			candidates.append(child)
 	if(candidates.is_empty()):
-		finished.emit(THINKING)
+		transition(THINKING)
 		return
 	chosenSacrifice = candidates.pick_random()
 	candidates.erase(chosenSacrifice)
@@ -42,9 +42,9 @@ func onAnimationFinished(animationName: String) -> void:
 	if is_instance_valid(chosenSacrifice):
 		chosenSacrifice.takeDamage(9999)
 	else:
-		finished.emit(THINKING) # if sacrifice was killed before sacrifice cancel spellcast
+		transition(THINKING) # if sacrifice was killed before sacrifice cancel spellcast
 		return
 	await get_tree().create_timer(2.0).timeout
-	finished.emit(nextState, {
+	transition(nextState, {
 		"sacrificePos": sacrificePos
 	})

@@ -76,7 +76,7 @@ func decideNextState() -> void:
 		accumul += weights[k]
 		if r < accumul :
 			if(actionsRequireSacrifice.has(k)):
-				finished.emit(SACRIFICE, {"nextState": k})
+				transition(SACRIFICE, {"nextState": k})
 			else:
-				finished.emit(k)
+				transition(k)
 			return

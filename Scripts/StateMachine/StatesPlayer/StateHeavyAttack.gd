@@ -30,7 +30,7 @@ func process(delta: float) -> void:
 			player.stopAttackHeavy()
 			player.attackHeavyWindup(currentCombo)
 		else:
-			finished.emit(STATEIDLE)
+			transition(STATEIDLE)
 	# do stuff on timer then go to idle
 	if InputBuffer.consumePress(input.heavyHit):
 		attackAgain = true

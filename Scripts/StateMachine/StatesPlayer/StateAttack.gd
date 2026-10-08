@@ -27,7 +27,7 @@ func process(delta: float) -> void:
 			player.attack(currentCombo)
 			lastAttackTimeStamp = Time.get_ticks_msec()
 		else:
-			finished.emit(STATEIDLE)
+			transition(STATEIDLE)
 	
 	if InputBuffer.consumePress(input.hit):
 		attackAgain = true
@@ -37,7 +37,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	currentCombo = 0
 	attackAgain = false
 	if Time.get_ticks_msec() - lastAttackTimeStamp < COOLDOWN:
-		finished.emit(STATEIDLE)
+		transition(STATEIDLE)
 		return
 	
 	player.attack(currentCombo)

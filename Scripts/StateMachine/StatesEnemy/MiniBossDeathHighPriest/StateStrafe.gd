@@ -22,7 +22,7 @@ var timer4Obstacle: float = 0.0
 ## Called by the state machine on the engine's main loop tick.
 func process(delta: float) -> void:
 	if(runDuration <= 0):
-		finished.emit(THINKING)
+		transition(THINKING)
 		return
 	runDuration -= delta
 	entity.target = entity.getClosestPlayer()
@@ -62,7 +62,7 @@ func process(delta: float) -> void:
 		timer4DirChange = randf_range(minDuration4DirChange, maxDuration4DirChange)
 		dirChanger = -dirChanger
 	else:
-		finished.emit(THINKING)
+		transition(THINKING)
 
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:

@@ -2,8 +2,19 @@ class_name State extends Node
 ## Base class for all states. Override the methods you need.
 
 ## Emitted when the state finishes and wants to transition to another state.
+## Use transition() instead of emitting this directly.
 @warning_ignore("unused_signal")
 signal finished(_next_state_path: String, _data: Dictionary)
+
+## True while this is the state machine's current state. Set by the state machine.
+var isActive := false
+
+## Asks the state machine to switch to another state. Does nothing if this state is
+## no longer active, so a late timer or animation callback cannot switch the state
+## after something else already did.
+func transition(nextStatePath: String, data: Dictionary = {}) -> void:
+	if isActive:
+		finished.emit(nextStatePath, data)
 
 ## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:

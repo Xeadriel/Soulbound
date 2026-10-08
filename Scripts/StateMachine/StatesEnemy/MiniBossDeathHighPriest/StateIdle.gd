@@ -6,7 +6,7 @@ var idleDuration: float = 2.0
 func process(_delta: float) -> void:
 	idleDuration -= _delta
 	if(idleDuration <= 0):
-		finished.emit(THINKING)
+		transition(THINKING)
 
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:

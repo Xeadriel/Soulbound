@@ -5,14 +5,14 @@ func process(_delta: float) -> void:
 	entity.target = entity.getClosestPlayer()
 	var distance = entity.global_position.distance_to(entity.target.global_position)
 	if  entity.aggroRange < distance:
-		finished.emit(IDLE)
+		transition(IDLE)
 	elif entity.atkRange <= distance:
 		var direction = entity.global_position.direction_to(entity.target.global_position)
 		entity.velocity = direction.normalized() * entity.SPEED
 		entity.facing = Facing.fromVector(direction)
 		entity.run()
 	else:
-		finished.emit(RUNCIRCLE)
+		transition(RUNCIRCLE)
 
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:

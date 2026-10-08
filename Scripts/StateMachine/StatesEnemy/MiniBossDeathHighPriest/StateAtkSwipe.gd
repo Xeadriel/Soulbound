@@ -19,4 +19,4 @@ func exit() -> void:
 
 func onAnimationFinished(animationName: String) -> void:
 	if animationName in ["swipeFront", "swipeBack", "swipeLeft", "swipeRight"]:
-		finished.emit(THINKING)
+		transition(THINKING)

@@ -11,7 +11,7 @@ func process(delta: float) -> void:
 	dashTimer += delta
 	if dashTimer >= DASH_DELAY:
 		dashTimer = 0
-		finished.emit(STATEIDLE)
+		transition(STATEIDLE)
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	dashTimer = 0
@@ -22,7 +22,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 		lastDashTimeStamp = Time.get_ticks_msec()
 		player.dash()
 	else:
-		finished.emit(STATEIDLE)
+		transition(STATEIDLE)
 
 func exit() -> void:
 	dashTimer = 0

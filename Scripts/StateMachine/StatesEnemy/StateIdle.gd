@@ -6,7 +6,7 @@ func process(_delta: float) -> void:
 	entity.target = entity.getClosestPlayer()
 	var distance = entity.target.global_position.distance_to(entity.global_position)
 	if distance < entity.aggroRange:
-		finished.emit(RUN)
+		transition(RUN)
 	entity.velocity = entity.velocity.move_toward(Vector2.ZERO, slowDownSpeed)
 
 ## Called by the state machine on the engine's physics update tick.

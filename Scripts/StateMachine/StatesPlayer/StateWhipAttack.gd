@@ -14,13 +14,13 @@ func process(delta: float) -> void:
 	player.velocity = Vector2.ZERO
 	
 	if attackTimer >= ATTACK_DELAY:
-		finished.emit(STATEIDLE)
+		transition(STATEIDLE)
 		lastAttackTimeStamp = Time.get_ticks_msec()
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	attackTimer = 0
 	if Time.get_ticks_msec() - lastAttackTimeStamp < COOLDOWN:
-		finished.emit(STATEIDLE)
+		transition(STATEIDLE)
 		return
 	
 	player.whipAttack(ATTACK_DELAY)

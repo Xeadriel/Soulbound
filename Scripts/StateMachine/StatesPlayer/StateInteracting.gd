@@ -5,10 +5,10 @@ func physicsProcess(_delta: float) -> void:
 	if InputBuffer.consumePress(input.interact):
 		if object != null and object.locksPlayerWhileInteracting:
 			object.onInteract(player.playerIndex)
-		finished.emit(STATEIDLE)
+		transition(STATEIDLE)
 
 	if player.interactableObject == null:
-		finished.emit(STATEIDLE)
+		transition(STATEIDLE)
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	player.velocity = Vector2.ZERO

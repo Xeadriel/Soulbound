@@ -24,4 +24,4 @@ func onAnimationFinished(animationName: String) -> void:
 		"daggerCirclingRight"
 	]:
 		return
-	finished.emit(THINKING)
+	transition(THINKING)

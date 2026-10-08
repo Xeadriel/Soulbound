@@ -30,7 +30,7 @@ func process(delta: float) -> void:
 			attackTimer = 0
 			player.releaseAttackHeavy()
 		elif startedRelease and attackTimer >= ATTACK_RELEASE_DELAY:
-			finished.emit(STATEIDLE)
+			transition(STATEIDLE)
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	attackTimer = 0

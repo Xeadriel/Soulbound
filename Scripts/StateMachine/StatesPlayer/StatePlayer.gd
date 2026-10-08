@@ -37,11 +37,11 @@ func _ready() -> void:
 ## it did not lead to a transition, e.g. interact with nothing nearby).
 func handleActionInputs() -> bool:
 	if InputBuffer.consumePress(input.hit):
-		finished.emit(STATEATTACK)
+		transition(STATEATTACK)
 	elif InputBuffer.consumePress(input.heavyHit):
-		finished.emit(STATEHEAVYATTACK)
+		transition(STATEHEAVYATTACK)
 	elif InputBuffer.consumePress(input.dash):
-		finished.emit(STATEDASH)
+		transition(STATEDASH)
 	elif consumeQuickSlotPress():
 		pass
 	elif InputBuffer.consumePress(input.interact):
@@ -65,7 +65,7 @@ func tryUseQuickSlot(slot : GlobalConstants.QuickSlotIndices) -> void:
 	var id : GlobalConstants.ItemIndices = player.getQuickSlotItemID(slot)
 	match id:
 		GlobalConstants.ItemIndices.WHIP:
-			finished.emit(STATEWHIPATTACK)
+			transition(STATEWHIPATTACK)
 
 func tryInteract() -> void:
 	var object : WorldObject = player.interactableObject
@@ -73,7 +73,7 @@ func tryInteract() -> void:
 		return
 	object.onInteract(player.playerIndex)
 	if object.locksPlayerWhileInteracting:
-		finished.emit(STATEINTERACTING)
+		transition(STATEINTERACTING)
 
 ## Faces and aims the player in the held direction, if any. Used to allow changing
 ## direction between attacks.

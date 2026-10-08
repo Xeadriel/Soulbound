@@ -15,7 +15,7 @@ func process(_delta: float) -> void:
 	# not aggroed
 	if  entity.aggroRange < distance:
 		fleeDirection = Vector2.ZERO
-		finished.emit(IDLE)
+		transition(IDLE)
 		
 	# close distance to attack
 	elif entity.atkRange < distance:
@@ -38,7 +38,7 @@ func process(_delta: float) -> void:
 					runDirCooldown = 1.5
 		elif r == 0:
 			fleeDirection = Vector2.ZERO
-			finished.emit(TELEGRAPH)
+			transition(TELEGRAPH)
 			
 	# run from target
 	elif fleeDirection != Vector2.ZERO:		
@@ -49,7 +49,7 @@ func process(_delta: float) -> void:
 	# attacking
 	elif entity.atkRange >= distance:
 		fleeDirection = Vector2.ZERO
-		finished.emit(TELEGRAPH)
+		transition(TELEGRAPH)
 
 ## Called by the state machine on the engine's physics update tick.
 func physicsProcess(_delta: float) -> void:

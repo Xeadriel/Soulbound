@@ -25,4 +25,4 @@ func onAnimationFinished(animatedSprite: String) -> void:
 	if "teleport" not in animatedSprite || entity.animatedSprite.is_playing() == true:
 		return
 	entity.teleport()
-	finished.emit(THINKING)
+	transition(THINKING)
