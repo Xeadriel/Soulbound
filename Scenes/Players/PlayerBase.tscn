@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" uid="uid://b7r3mte1au600" path="res://Scripts/Players/Player.gd" id="1_player"]
+[ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="2_sm"]
+[ext_resource type="Script" uid="uid://bpbji6r7vd3fq" path="res://Scripts/StateMachine/StatesPlayer/StateIdle.gd" id="3_idle"]
+[ext_resource type="Script" uid="uid://cto556i7c71ca" path="res://Scripts/StateMachine/StatesPlayer/StateRun.gd" id="4_run"]
+[ext_resource type="Script" uid="uid://d3jfdm06r0mnu" path="res://Scripts/StateMachine/StatesPlayer/StateAttack.gd" id="5_attack"]
+[ext_resource type="Script" uid="uid://blutkobl052ip" path="res://Scripts/StateMachine/StatesPlayer/StateDash.gd" id="6_dash"]
+[ext_resource type="Script" uid="uid://bkallxg37dshg" path="res://Scripts/StateMachine/StatesPlayer/StateWhipAttack.gd" id="7_whip"]
+[ext_resource type="Script" uid="uid://clx54oeam5rvs" path="res://Scripts/StateMachine/StatesPlayer/StateInteracting.gd" id="8_interacting"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_body"]
+radius = 44.0
+height = 108.0
+
+[node name="PlayerBase" type="CharacterBody2D" groups=["Players"]]
+collision_mask = 15
+motion_mode = 1
+script = ExtResource("1_player")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+autoplay = "idleFront"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_body")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState")]
+script = ExtResource("2_sm")
+currentState = NodePath("StateIdle")
+
+[node name="StateIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("3_idle")
+SLOWDOWNSPEED = 40
+player = NodePath("../..")
+
+[node name="StateRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("4_run")
+SPEED = 250
+player = NodePath("../..")
+
+[node name="StateAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("5_attack")
+player = NodePath("../..")
+
+[node name="StateDash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("6_dash")
+player = NodePath("../..")
+
+[node name="StateWhipAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("7_whip")
+player = NodePath("../..")
+
+[node name="StateInteracting" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("8_interacting")
+player = NodePath("../..")
+
+[node name="AttackPivotPoint" type="Node2D" parent="."]
+
+[node name="WhipAttack" type="Node2D" parent="AttackPivotPoint"]
+
+[node name="Start" type="Node2D" parent="AttackPivotPoint/WhipAttack"]
+position = Vector2(85, 0)
+
+[node name="Goal" type="Node2D" parent="AttackPivotPoint/WhipAttack"]
+position = Vector2(372, 0)
