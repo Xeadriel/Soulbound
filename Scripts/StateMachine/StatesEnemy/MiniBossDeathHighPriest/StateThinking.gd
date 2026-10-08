@@ -24,13 +24,13 @@ var actionsRequireSacrifice := [
 	CAST_SHIELD
 	]
 
-func _ready() -> void:
-	super()
-	weights = baseWeights.duplicate()
-
 func enter(_previous_state_path: String, _data := {}) -> void:
 	#buffer time between each action
 	await get_tree().create_timer(randf_range(0.5, 1.5)).timeout
+	if not isActive:
+		return
+	# every decision starts from the base weights and adjusts them for the current situation
+	weights = baseWeights.duplicate()
 	var closestPlayer: Player = entity.getClosestPlayer()
 	var entityPos = entity.global_position
 	var distance = entityPos.distance_to(closestPlayer.global_position)
@@ -60,13 +60,17 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	decideNextState()
 
 func decideNextState() -> void:
+	# negative weights count as 0 (never chosen)
 	var totalWeight = 0
 	for w in weights.values():
-		totalWeight += w
+		totalWeight += maxi(w, 0)
+	if totalWeight <= 0:
+		transition(IDLE)
+		return
 	var r = randi() % totalWeight
 	var accumul = 0
 	for k in weights:
-		accumul += weights[k]
+		accumul += maxi(weights[k], 0)
 		if r < accumul :
 			if(actionsRequireSacrifice.has(k)):
 				transition(SACRIFICE, {"nextState": k})
