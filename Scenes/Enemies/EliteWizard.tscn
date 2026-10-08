@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dehht20jmbr6h" path="res://Scenes/Enemies/Fireball.tscn" id="2_3ty7g"]
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="3_12gck"]
 [ext_resource type="Script" uid="uid://blr2lvis0gtkh" path="res://Scripts/StateMachine/StatesEnemy/StateIdle.gd" id="4_2u3gb"]
-[ext_resource type="Script" uid="uid://dxv5sn1aoc86a" path="res://Scripts/StateMachine/StatesEnemy/Elite Wizard/StateRunEliteWizard.gd" id="6_2u3gb"]
+[ext_resource type="Script" uid="uid://dxv5sn1aoc86a" path="res://Scripts/StateMachine/StatesEnemy/EliteWizard/StateRunEliteWizard.gd" id="6_2u3gb"]
 [ext_resource type="Script" uid="uid://cmh0dmwy8nmdk" path="res://Scripts/StateMachine/StatesEnemy/StateAtk.gd" id="7_cfgtw"]
 [ext_resource type="Script" uid="uid://bf2js1oj25nid" path="res://Scripts/StateMachine/StatesEnemy/StateTelegraph.gd" id="8_6ahxr"]
 [ext_resource type="Script" uid="uid://dk2l6ks0icnu4" path="res://Scripts/StateMachine/StatesEnemy/StateTaunt.gd" id="9_ssyqf"]

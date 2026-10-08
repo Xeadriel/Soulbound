@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwsxioxj6xx5c"]
 
 [ext_resource type="Texture2D" uid="uid://bdbgnncuxfewp" path="res://Assets/dagger.png" id="1_cog2g"]
-[ext_resource type="Script" uid="uid://b3bwdxxvjjr5a" path="res://Scripts/Enemies/daggerCone.gd" id="1_v46jr"]
+[ext_resource type="Script" uid="uid://b3bwdxxvjjr5a" path="res://Scripts/Enemies/DaggerCone.gd" id="1_v46jr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v46jr"]
 animations = [{
