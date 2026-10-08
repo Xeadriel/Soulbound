@@ -38,14 +38,15 @@ func closeMenu() -> void:
 func updateMapState():
 	var dungeonMapNode: Panel = $Map/MarginContainer/VBoxContainer/MapPanel/Dungeon
 	var pointers: Node = $Map/MarginContainer/VBoxContainer/MapPanel/Dungeon/pointers
-	for key in GlobalStates.seenRooms:
-		var roomNode: AnimatedSprite2D = dungeonMapNode.get_child(GlobalStates.seenRooms[key])
+	var session := GlobalStates.session
+	for key in session.seenRooms:
+		var roomNode: AnimatedSprite2D = dungeonMapNode.get_child(session.seenRooms[key])
 		roomNode.self_modulate = Color(0.329, 0.329, 0.329)
 		roomNode.visible = true
 	for p in pointers.get_children():
 		p.visible = false
-	pointers.get_child(GlobalStates.lastRoomVisited).visible = true
-	dungeonMapNode.get_child(GlobalStates.lastRoomVisited).self_modulate = Color(1, 1, 1)
+	pointers.get_child(session.lastRoomVisited).visible = true
+	dungeonMapNode.get_child(session.lastRoomVisited).self_modulate = Color(1, 1, 1)
 	
 func _process(delta: float) -> void:
 	if InputBuffer.consumePress(p1Input.pause):

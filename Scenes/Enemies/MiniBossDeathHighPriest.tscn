@@ -1,4 +1,4 @@
-[gd_scene load_steps=294 format=3 uid="uid://k5le5iauuik8"]
+[gd_scene load_steps=293 format=3 uid="uid://k5le5iauuik8"]
 
 [ext_resource type="Script" uid="uid://bcn44g4gb3bcc" path="res://Scripts/Enemies/MiniBossDeathHighPriest.gd" id="1_3l0ll"]
 [ext_resource type="PackedScene" uid="uid://buwms73pcarwm" path="res://Scenes/Enemies/DaggerCircling.tscn" id="2_tg00k"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://bql0yr1v0lyt8" path="res://Assets/spritesheetShield.png" id="3_lppw1"]
 [ext_resource type="Script" uid="uid://ctap3ttkvlrey" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateIdle.gd" id="4_eoms6"]
 [ext_resource type="Script" uid="uid://cjdagsts0n8yh" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateStrafe.gd" id="5_hy7xe"]
-[ext_resource type="Script" uid="uid://chxki3s4o7101" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateStunned.gd" id="6_5yec7"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTeleport.gd" id="6_x02iw"]
 [ext_resource type="Script" uid="uid://b6j1dce8bo67a" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTelegraphSwipe.gd" id="7_lppw1"]
 [ext_resource type="Script" uid="uid://dyrtdad8yh5ff" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateAtkSwipe.gd" id="8_x02iw"]
@@ -2221,10 +2220,6 @@ maxDuration4Telegraph = null
 duration4Obstacle = null
 distanceThreshold = null
 obstacleDetection = NodePath("../../MovingCollissionDetection")
-entity = NodePath("../..")
-
-[node name="StateStunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = ExtResource("6_5yec7")
 entity = NodePath("../..")
 
 [node name="StateThinking" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]

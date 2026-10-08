@@ -34,6 +34,10 @@ func takeDamage(dmg: int) -> void:
 	if dmg > 0:
 		hp -= dmg
 
+# the whip is found after this boss, so it cannot affect it
+func onItemHit(_item: GlobalConstants.ItemIndices, _playerIndex: int) -> void:
+	pass
+
 # --- animations and attacks ---
 
 func sacrificeAnimation() -> void:

@@ -32,10 +32,9 @@ func _ready() -> void:
 
 func onInteract(_playerIndex: int) -> void:
 	var keyAvailable = false
-	if !unlocked && GlobalStates.inventory.get(key, 0) > 0:
+	if !unlocked && GlobalStates.session.removeItem(key):
 		keyAvailable = true
 		unlocked = true
-		GlobalStates.inventory[key] -= 1
 
 	if unlocked || keyAvailable || key == GlobalConstants.ItemIndices.NOTHING:
 		if isOpen:

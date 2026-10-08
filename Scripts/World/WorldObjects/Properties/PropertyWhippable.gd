@@ -1,9 +1,10 @@
-class_name PropertyWhippable extends Area2D
+class_name PropertyWhippable extends PropertyItemReactive
+## PropertyItemReactive preset for the whip.
 
-signal gotWhipped
+signal gotWhipped(playerIndex: int)
 
-func onAreaEntered(area: Area2D) -> void:
-	if area is WhipAttack:
-		area.queue_free()
-		var playerNumber = area.getPlayerNumber()
-		gotWhipped.emit(playerNumber)
+func _init() -> void:
+	reactsTo = [GlobalConstants.ItemIndices.WHIP]
+
+func _ready() -> void:
+	triggered.connect(gotWhipped.emit)

@@ -7,11 +7,6 @@ var playerSelectedIndex = [0, 0]
 
 @onready var gridContainer = $MarginContainer/VBoxContainer/InventoryBox/ItemList2/GridContainer
 
-func _ready() -> void:
-	GlobalStates.inventory[GlobalConstants.ItemIndices.POTION] = 5
-	GlobalStates.inventory[GlobalConstants.ItemIndices.WHIP] = 1
-	updateSelector()
-
 ## Input profiles of both players, indexed by player index.
 var playerInputs : Array[PlayerInputProfile] = [PlayerInputProfile.forPlayer(0), PlayerInputProfile.forPlayer(1)]
 
@@ -22,6 +17,9 @@ const QUICK_SLOT_CHECK_ORDER : Array[GlobalConstants.QuickSlotIndices] = [
 	GlobalConstants.QuickSlotIndices.TOP,
 	GlobalConstants.QuickSlotIndices.BOTTOM,
 ]
+
+func _ready() -> void:
+	updateSelector()
 
 func _process(_delta: float) -> void:
 	if not has_focus():
@@ -57,9 +55,9 @@ func handleQuickSlotInput(playerIndex: int) -> bool:
 	return false
 
 func toQuickSlot(itemIndex: int, quickslot: GlobalConstants.QuickSlotIndices, playerIndex: int):
-	var itemSlot: Item = gridContainer.get_child(itemIndex).get_child(0)
+	var itemSlot: Item = getItemInSlot(gridContainer.get_child(itemIndex))
 	if itemSlot != null && itemSlot.visible:
-		EventBus.quickSlotAssigned.emit(playerIndex, itemSlot, quickslot)
+		GlobalStates.session.assignQuickSlot(playerIndex, quickslot, itemSlot.id)
 	else:
 		print("itemSlot is empty: " + str(itemIndex))
 
@@ -88,11 +86,15 @@ func updateDescriptionBox():
 	var p2Text = gridContainer[playerSelectedIndex[1]].get_child(0).Description
 
 func updateInventoryState():
-	for key in GlobalStates.inventory:
+	var inventory := GlobalStates.session.inventory
+	for key in inventory:
 		var itemSlots = gridContainer.get_children()
 		for i in itemSlots.size():
-			var item: Item = itemSlots[i].get_child(0)
+			var item: Item = getItemInSlot(itemSlots[i])
 			if item != null && item.id == key:
 				item.visible = true
-				item.itemAmount = 0
-				item.addItemAmount(GlobalStates.inventory[key])
+				item.setItemAmount(inventory[key])
+
+## The Item shown in an inventory slot, or null if the slot is empty.
+func getItemInSlot(slot: Node) -> Item:
+	return slot.get_child(0) if slot.get_child_count() > 0 else null

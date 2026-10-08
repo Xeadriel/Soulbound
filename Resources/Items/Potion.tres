@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Items/ItemData.gd" id="1_item"]
+[ext_resource type="Texture2D" uid="uid://cw7c8463d0h6m" path="res://Assets/UI Pack OS/minimap_arrow_c.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_item")
+id = 2
+displayName = "Potion"
+description = "yes daddy"
+icon = ExtResource("2_icon")
+category = 1
+equippable = true
+useState = ""

@@ -34,8 +34,11 @@ func _onHpChanged() -> void:
 func takeDamage(dmg: int) -> void:
 	hp -= dmg
 
-func hitByWhip():
-	stateMachine.interrupt(StateEnemy.STUNNED, {"duration" : 1.0})
+## Called when an item hitbox (see ItemHitbox) hits this enemy.
+func onItemHit(item: GlobalConstants.ItemIndices, _playerIndex: int) -> void:
+	match item:
+		GlobalConstants.ItemIndices.WHIP:
+			stateMachine.interrupt(StateEnemy.STUNNED, {"duration" : 1.0})
 
 func getDirectionToPlayer() -> Facing.Direction:
 	return Facing.fromVector(global_position.direction_to(target.global_position))

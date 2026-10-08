@@ -1,33 +1,20 @@
 class_name ItemQuickSelect extends Control
+## Shows one player's four quick slots. The slot contents live in GlobalStates.session.
 
 ## Which player's quick slots this shows (0 or 1).
 @export var playerIndex : int = 0
 
-@onready var quickSlots = [$Control/BottomItem, $Control/TopItem, $Control/LeftItem, $Control/RightItem]
+## Indexed by GlobalConstants.QuickSlotIndices (BOTTOM, TOP, LEFT, RIGHT).
+@onready var quickSlots : Array[Item] = [$Control/BottomItem, $Control/TopItem, $Control/LeftItem, $Control/RightItem]
 
 func _ready() -> void:
-	EventBus.quickSlotAssigned.connect(_onQuickSlotAssigned)
+	GlobalStates.session.quickSlotsChanged.connect(_onQuickSlotsChanged)
+	refresh()
 
-func _onQuickSlotAssigned(forPlayer: int, item: Item, quickslot: GlobalConstants.QuickSlotIndices) -> void:
+func _onQuickSlotsChanged(forPlayer: int) -> void:
 	if forPlayer == playerIndex:
-		switchItem(quickslot, item)
+		refresh()
 
-func switchItem(quickSlotIndex : GlobalConstants.QuickSlotIndices, item : Item):
-	var existedSlot: Item = null
-	var quickSlot : Item = quickSlots[quickSlotIndex]
-	for s: Item in quickSlots:
-		if s.id == item.id:
-			existedSlot = s
-			break
-	if existedSlot != null:
-		existedSlot.id = quickSlot.id
-		existedSlot.itemAmount = quickSlot.itemAmount
-		existedSlot.setItemTexture(quickSlot.texture)
-
-	quickSlot.id = item.id
-	quickSlot.itemAmount = item.itemAmount
-	quickSlot.setItemTexture(item.texture)
-
-func getItem(quickSlotIndex : GlobalConstants.QuickSlotIndices) -> GlobalConstants.ItemIndices:
-	var quickSlot : Item = quickSlots[quickSlotIndex]
-	return quickSlot.id
+func refresh() -> void:
+	for slot in quickSlots.size():
+		quickSlots[slot].id = GlobalStates.session.getQuickSlotItem(playerIndex, slot)

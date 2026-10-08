@@ -3,7 +3,6 @@ class_name Player extends Character
 ## 0 for the first player, 1 for the second. Used everywhere the players need to be told apart.
 @export var playerIndex : int = 0
 @export var inputProfile : PlayerInputProfile
-@export var ItemQuickSlots : ItemQuickSelect
 
 @onready var attackPivotPoint : Node2D = $AttackPivotPoint
 
@@ -19,7 +18,6 @@ var isBlocking : bool = false
 
 func _ready() -> void:
 	assert(inputProfile != null, "inputProfile should not be null")
-	assert(ItemQuickSlots != null, "ItemQuickSlots should not be null")
 	assert(whipAttackSpawner != null, "WhipAttackSpawner should not be null" )
 	hp = maxHp
 	died.connect(_onDied)
@@ -27,12 +25,12 @@ func _ready() -> void:
 func _onDied() -> void:
 	EventBus.playerDied.emit(playerIndex)
 
-func getQuickSlotItemID(index : GlobalConstants.QuickSlotIndices):
-	return ItemQuickSlots.quickSlots[index].id
+func getQuickSlotItemID(index : GlobalConstants.QuickSlotIndices) -> GlobalConstants.ItemIndices:
+	return GlobalStates.session.getQuickSlotItem(playerIndex, index)
 
 # there could be other conditions here later if needed
-func canQuickSlotItemBeUsed(index : GlobalConstants.QuickSlotIndices):
-	return ItemQuickSlots.quickSlots[index].itemAmount >= 1
+func canQuickSlotItemBeUsed(index : GlobalConstants.QuickSlotIndices) -> bool:
+	return GlobalStates.session.getItemCount(getQuickSlotItemID(index)) >= 1
 
 func takeDamage(dmg, dmgSource: Node2D):
 	var hitFrom := Facing.fromDominantAxis(dmgSource.global_position - global_position)
@@ -90,7 +88,7 @@ func whipAttack(attackDelay):
 	whip.rotation = attackPivotPoint.rotation
 	whip.goal = goalWhipAttackGoal.global_position
 	whip.attackDelay = attackDelay
-	whip.player = self
+	whip.playerIndex = playerIndex
 
 	get_parent().add_child(whip)
 

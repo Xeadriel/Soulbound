@@ -193,18 +193,16 @@ y_sort_enabled = true
 z_as_relative = false
 y_sort_enabled = true
 
-[node name="Player" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("9_0r1y5")]
+[node name="Player" parent="2DObjects/Players" instance=ExtResource("9_0r1y5")]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-2491, 3580)
-ItemQuickSlots = NodePath("../../AutoCamera/ItemQuickSelect")
 whipAttackSpawner = ExtResource("10_uhk1o")
 
-[node name="Player2" parent="2DObjects/Players" node_paths=PackedStringArray("ItemQuickSlots") instance=ExtResource("11_pwrpc")]
+[node name="Player2" parent="2DObjects/Players" instance=ExtResource("11_pwrpc")]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-2286, 3595)
-ItemQuickSlots = NodePath("../../AutoCamera/ItemQuickSelect2")
 whipAttackSpawner = ExtResource("10_uhk1o")
 
 [node name="AutoCamera" parent="2DObjects" instance=ExtResource("2_8p3qi")]

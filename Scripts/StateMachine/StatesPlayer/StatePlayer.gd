@@ -62,10 +62,9 @@ func tryUseQuickSlot(slot : GlobalConstants.QuickSlotIndices) -> void:
 	if not player.canQuickSlotItemBeUsed(slot):
 		return
 
-	var id : GlobalConstants.ItemIndices = player.getQuickSlotItemID(slot)
-	match id:
-		GlobalConstants.ItemIndices.WHIP:
-			transition(STATEWHIPATTACK)
+	var data := ItemDatabase.getItem(player.getQuickSlotItemID(slot))
+	if data != null and not data.useState.is_empty():
+		transition(data.useState)
 
 func tryInteract() -> void:
 	var object : WorldObject = player.interactableObject
