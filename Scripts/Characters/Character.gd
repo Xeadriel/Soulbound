@@ -25,6 +25,10 @@ func _physics_process(_delta: float) -> void:
 func playDirectional(base: String, extra: String = "") -> void:
 	animatedSprite.play(base + Facing.ANIM_SUFFIX[facing] + extra)
 
+## Deals damage. [param source] is what caused it (attacker or projectile), if known.
+func takeDamage(_amount: int, _source: Node2D = null) -> void:
+	pass
+
 ## Called whenever hp changes. Override to react, e.g. to die.
 func _onHpChanged() -> void:
 	pass

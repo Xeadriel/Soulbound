@@ -18,6 +18,7 @@ var isBlocking : bool = false
 
 func _ready() -> void:
 	assert(inputProfile != null, "inputProfile should not be null")
+	set_collision_layer_value(PhysicsLayers.PLAYER_PRESENCE, true)
 	assert(whipAttackSpawner != null, "WhipAttackSpawner should not be null" )
 	hp = maxHp
 	died.connect(_onDied)
@@ -32,15 +33,16 @@ func getQuickSlotItemID(index : GlobalConstants.QuickSlotIndices) -> GlobalConst
 func canQuickSlotItemBeUsed(index : GlobalConstants.QuickSlotIndices) -> bool:
 	return GlobalStates.session.getItemCount(getQuickSlotItemID(index)) >= 1
 
-func takeDamage(dmg, dmgSource: Node2D):
-	var hitFrom := Facing.fromDominantAxis(dmgSource.global_position - global_position)
-	if isBlocking and facing == hitFrom:
-		return
-	hp -= dmg
+func takeDamage(amount: int, source: Node2D = null) -> void:
+	if isBlocking and source != null:
+		var hitFrom := Facing.fromDominantAxis(source.global_position - global_position)
+		if facing == hitFrom:
+			return
+	hp -= amount
 	hp = clamp(hp - 1, 0, maxHp)
 	if hp <= 0:
 		died.emit()
-	damaged.emit(dmg)
+	damaged.emit(amount)
 
 # --- facing ---
 
@@ -74,12 +76,13 @@ func blockRunAnimation() -> void:
 func attack(combo : int) -> void:
 	playDirectional("attack", "" if combo == 0 else str(combo))
 
+# while dashing, enemies, attacks and the other player pass through the player
 func dash() -> void:
-	collision_layer = collision_layer & 0b0 #become unhittable
+	set_collision_layer_value(PhysicsLayers.PLAYER, false)
 	playDirectional("dash")
 
 func stopDash() -> void:
-	collision_layer = collision_layer | 0b1 #become hittable
+	set_collision_layer_value(PhysicsLayers.PLAYER, true)
 	idleAnimation()
 
 func whipAttack(attackDelay):

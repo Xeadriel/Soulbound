@@ -43,10 +43,10 @@ func setHitboxActive(hitbox: Area2D, active: bool) -> void:
 func lightAttackHitSomething(body: Node2D) -> void:
 	if body is Enemy:
 		var enemy : Enemy = body
-		enemy.takeDamage(LIGHT_DAMAGE)
+		enemy.takeDamage(LIGHT_DAMAGE, self)
 
 # signal when one of the heavy attacks area2D collides with something
 func heavyAttackHitSomething(body: Node2D) -> void:
 	if body is Enemy:
 		var enemy : Enemy = body
-		enemy.takeDamage(HEAVY_DAMAGE)
+		enemy.takeDamage(HEAVY_DAMAGE, self)

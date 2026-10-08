@@ -3,7 +3,6 @@ class_name EliteWizard extends Enemy
 @onready var atkSpawnPoint: Node2D = $AtkSpawnPoint
 
 @export var fireballScene : PackedScene = null
-@onready var projectileNode: Node = get_tree().get_first_node_in_group("ProjectileNode")
 
 @export var panicRunThresholdDistance := 300
 @export var runChance := 1
@@ -16,10 +15,9 @@ func _ready() -> void:
 	assert(not teleportLocationsRoot == null, "Need a root Node2D that contains Node2Ds that provide
 													all possible teleport locations to the wizard")
 
-func takeDamage(dmg: int) -> void:
-	var state = stateMachine.currentState
-	if state.name == state.STUNNED:
-		hp -= dmg
+func takeDamage(amount: int, _source: Node2D = null) -> void:
+	if stateMachine.currentState.name == StateEnemy.STUNNED:
+		hp -= amount
 		atkTime += 0.2
 		telegraphTime += 0.2
 		teleport()
@@ -40,6 +38,6 @@ func attack() -> void:
 	atkSpawnPoint.global_position = global_position + atkDirection * 100
 	fireball.global_position = atkSpawnPoint.global_position
 	fireball.direction = fireball.global_position.direction_to(target.global_position)
-	projectileNode.add_child(fireball)
+	Projectile.spawnParent(get_tree()).add_child(fireball)
 
 	playDirectional("attack")

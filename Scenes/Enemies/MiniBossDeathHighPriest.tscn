@@ -1,4 +1,4 @@
-[gd_scene load_steps=293 format=3 uid="uid://k5le5iauuik8"]
+[gd_scene load_steps=294 format=3 uid="uid://k5le5iauuik8"]
 
 [ext_resource type="Script" uid="uid://bcn44g4gb3bcc" path="res://Scripts/Enemies/MiniBossDeathHighPriest.gd" id="1_3l0ll"]
 [ext_resource type="PackedScene" uid="uid://buwms73pcarwm" path="res://Scenes/Enemies/DaggerCircling.tscn" id="2_tg00k"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://ctkwamixhth4e" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateSacrifice.gd" id="13_3jfg0"]
 [ext_resource type="Script" uid="uid://dxhb5pptc3ovt" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateAtkCirclingDaggers.gd" id="14_x02iw"]
 [ext_resource type="Script" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateCastShield.gd" id="19_rfjik"]
+[ext_resource type="Script" path="res://Scripts/Enemies/DirectionalHitboxes.gd" id="melee_hitboxes"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ui87"]
 atlas = ExtResource("2_u4yqb")
@@ -2331,6 +2332,13 @@ shape = SubResource("RectangleShape2D_3l0ll")
 position = Vector2(0.500015, 0.500004)
 scale = Vector2(47, 107)
 texture = SubResource("CanvasTexture_3jfg0")
+
+[node name="MeleeHitboxes" type="Node" parent="." node_paths=PackedStringArray("up", "down", "left", "right")]
+script = ExtResource("melee_hitboxes")
+up = NodePath("../AttackUp")
+down = NodePath("../AttackDown")
+left = NodePath("../AttackLeft")
+right = NodePath("../AttackRight")
 
 [connection signal="body_entered" from="AttackUp" to="." method="hitSomething"]
 [connection signal="body_entered" from="AttackDown" to="." method="hitSomething"]

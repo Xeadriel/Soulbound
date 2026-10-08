@@ -4,6 +4,9 @@ class_name PropertyInteractable extends Area2D
 ## Indexed by Player.playerIndex.
 var playersCloseEnough : Array[bool] = [false, false]
 
+func _ready() -> void:
+	PhysicsLayers.detectPlayerPresence(self)
+
 func onBodyEntered(body: Node2D) -> void:
 	if body is Player:
 		body.setInteractable(get_parent())

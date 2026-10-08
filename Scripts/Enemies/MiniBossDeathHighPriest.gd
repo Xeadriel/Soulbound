@@ -21,9 +21,9 @@ var daggerList := []
 func _ready():
 	super._ready()
 	shieldSprite.play()
-	projectileNode = get_tree().get_first_node_in_group("ProjectileNode")
+	projectileNode = Projectile.spawnParent(get_tree())
 
-func takeDamage(dmg: int) -> void:
+func takeDamage(dmg: int, _source: Node2D = null) -> void:
 	var shieldDmg = min(currentShield, dmg)
 	currentShield -= shieldDmg
 	if currentShield <= 0:
@@ -118,20 +118,8 @@ func telegraphSwipe() -> void:
 	playDirectional("telegraphSwipe")
 
 func swipeAtk() -> void:
-	var hitbox : Area2D = {
-		Facing.Direction.UP: attackUp,
-		Facing.Direction.DOWN: attackDown,
-		Facing.Direction.LEFT: attackLeft,
-		Facing.Direction.RIGHT: attackRight,
-	}[facing]
-	hitbox.process_mode = PROCESS_MODE_INHERIT
-	hitbox.visible = true
+	meleeHitboxes.enable(facing)
 	playDirectional("swipe")
-
-func stopAttack() -> void:
-	for hitbox : Area2D in [attackUp, attackDown, attackLeft, attackRight]:
-		hitbox.visible = false
-		hitbox.process_mode = PROCESS_MODE_DISABLED
 
 func teleportAnimation() -> void:
 	playDirectional("teleport")

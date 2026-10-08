@@ -1,30 +1,17 @@
-class_name MagicShot extends Area2D
+class_name MagicShot extends Projectile
+## Player 2's magic shot. Damages enemies and passes through its own player.
 
-@export var SPEED = 500
-@export var dmgValue = 1
+var player : Player = null
 
-var player = null
+func _isValidTarget(body: Node2D) -> bool:
+	return body is Enemy
 
-var direction : Vector2
+func _ignores(node: Node) -> bool:
+	return node == player
 
-#func _ready() -> void:
-	#rotation = direction.angle()
-
-func _physics_process(delta: float) -> void:
-	global_position += SPEED * direction * delta
-
-func _on_area_entered(area: Area2D) -> void:
-	if area.owner != player:
-		queue_free()
-
-func _on_body_entered(body: Node2D) -> void:
-	if(body is Enemy):
-		body.takeDamage(dmgValue)
-	if body != player:
-		queue_free()
-
-func waitForRelease():
+## Charged shots wait (frozen) at their spawn point until released.
+func waitForRelease() -> void:
 	process_mode = PROCESS_MODE_DISABLED
 
-func release():
+func release() -> void:
 	process_mode = PROCESS_MODE_INHERIT

@@ -213,6 +213,8 @@ uiScrollRight2={
 2d_physics/layer_3="Camera Border"
 2d_physics/layer_4="Obstacle"
 2d_physics/layer_5="Whip"
+2d_physics/layer_8="PlayerPresence"
+2d_physics/layer_20="Puzzle"
 
 [rendering]
 

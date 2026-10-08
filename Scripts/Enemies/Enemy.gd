@@ -8,10 +8,8 @@ class_name Enemy extends Character
 var players
 var target: Player
 
-@onready var attackUp : Area2D = $AttackUp
-@onready var attackDown : Area2D = $AttackDown
-@onready var attackLeft : Area2D = $AttackLeft
-@onready var attackRight : Area2D = $AttackRight
+## Melee hitboxes, only present on enemies with melee attacks.
+@onready var meleeHitboxes : DirectionalHitboxes = get_node_or_null("MeleeHitboxes")
 
 @export var DAMAGE = 1
 
@@ -31,8 +29,8 @@ func _onHpChanged() -> void:
 		died.emit()
 		queue_free()
 
-func takeDamage(dmg: int) -> void:
-	hp -= dmg
+func takeDamage(amount: int, _source: Node2D = null) -> void:
+	hp -= amount
 
 ## Called when an item hitbox (see ItemHitbox) hits this enemy.
 func onItemHit(item: GlobalConstants.ItemIndices, _playerIndex: int) -> void:
@@ -65,7 +63,8 @@ func run():
 	playDirectional("run")
 
 func stopAttack() -> void:
-	pass
+	if meleeHitboxes != null:
+		meleeHitboxes.disableAll()
 
 func telegraphAttack() -> void:
 	playDirectional("telegraph")

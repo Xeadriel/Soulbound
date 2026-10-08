@@ -12,12 +12,10 @@ class_name Player2 extends Player
 const CHARGE_SPAWN_INDICES : Array = [[0], [1], [2, 3, 4]]
 
 var heavyAttackCharges = []
-var projecttileNode: Node
 
 func _ready() -> void:
 	super._ready()
 	assert(magicShotSpawner != null, "MagicShotSpawner should not be null")
-	projecttileNode = get_tree().get_first_node_in_group("ProjectileNode")
 
 # attacks in facing direction
 # takes integer combo as parameter to specify which
@@ -31,7 +29,7 @@ func attack(combo : int) -> void:
 	magicShot.rotation = attackPivotPoint.rotation
 	magicShot.direction = Vector2(1, 0).rotated(magicShot.rotation)
 
-	projecttileNode.add_child(magicShot)
+	Projectile.spawnParent(get_tree()).add_child(magicShot)
 
 func stopAttack() -> void:
 	idleAnimation()

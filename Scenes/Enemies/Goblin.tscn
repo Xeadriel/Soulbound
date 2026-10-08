@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://c3weh3qljrsjs"]
+[gd_scene load_steps=117 format=3 uid="uid://c3weh3qljrsjs"]
 
 [ext_resource type="Script" uid="uid://dbhfk6b273blh" path="res://Scripts/Enemies/Goblin.gd" id="1_adqnq"]
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="3_g722j"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://wv24yvld0ns6" path="res://Assets/GoblinSpriteSheet.png" id="8_0td7v"]
 [ext_resource type="Script" uid="uid://bf2js1oj25nid" path="res://Scripts/StateMachine/StatesEnemy/StateTelegraph.gd" id="8_f0wnp"]
 [ext_resource type="Script" uid="uid://bsnvrj26xn6db" path="res://Scripts/StateMachine/StatesEnemy/StateStunned.gd" id="9_6trl6"]
+[ext_resource type="Script" path="res://Scripts/Enemies/DirectionalHitboxes.gd" id="melee_hitboxes"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
 atlas = ExtResource("8_0td7v")
@@ -938,6 +939,13 @@ shape = SubResource("RectangleShape2D_0td7v")
 position = Vector2(0.500015, 0.500004)
 scale = Vector2(47, 107)
 texture = SubResource("CanvasTexture_6do23")
+
+[node name="MeleeHitboxes" type="Node" parent="." node_paths=PackedStringArray("up", "down", "left", "right")]
+script = ExtResource("melee_hitboxes")
+up = NodePath("../AttackUp")
+down = NodePath("../AttackDown")
+left = NodePath("../AttackLeft")
+right = NodePath("../AttackRight")
 
 [connection signal="body_entered" from="AttackUp" to="." method="hitSomething"]
 [connection signal="body_entered" from="AttackDown" to="." method="hitSomething"]

@@ -12,6 +12,9 @@ signal player2Exited
 signal bothPlayersAreNowIn
 signal bothPlayersAreNowOut
 
+func _ready() -> void:
+	PhysicsLayers.detectPlayerPresence(self)
+
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		if body.playerIndex == 0:
