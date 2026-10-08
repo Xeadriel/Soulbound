@@ -38,8 +38,7 @@ func takeDamage(amount: int, source: Node2D = null) -> void:
 		var hitFrom := Facing.fromDominantAxis(source.global_position - global_position)
 		if facing == hitFrom:
 			return
-	hp -= amount
-	hp = clamp(hp - 1, 0, maxHp)
+	hp = clamp(hp - amount, 0, maxHp)
 	if hp <= 0:
 		died.emit()
 	damaged.emit(amount)
