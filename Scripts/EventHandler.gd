@@ -94,7 +94,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			playerInputsJustPressed[input] = false
 		elif event.is_pressed():
 			playerInputsJustPressed[input] = false
-		
 		break
 
 func isPlayerInputJustPressed(input : String):

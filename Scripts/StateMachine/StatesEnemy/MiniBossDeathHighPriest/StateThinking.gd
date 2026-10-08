@@ -37,11 +37,6 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	var entityPos = entity.global_position
 	var distance = entityPos.distance_to(closestPlayer.global_position)
 	
-	# player is outside of the room
-	if(entity.playerOutside):
-		finished.emit(IDLE)
-		return
-	
 	# player in melee range
 	if(distance < meleeRangeThreshold):
 		weights[TELEGRAPH_SWIPE] += 5

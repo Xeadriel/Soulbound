@@ -18,7 +18,6 @@ class_name MiniBossDeathHighPriest extends Enemy
 
 var projectileNode: Node
 var daggerList := []
-var playerOutside: bool = true
 
 func _ready():
 	super._ready()
@@ -34,6 +33,10 @@ func _physics_process(_delta: float) -> void:
 func takeDamage(dmg: int) -> void:
 	var shieldDmg = min(currentShield, dmg)
 	currentShield -= shieldDmg
+	if currentShield <= 0:
+		currentShield = 0
+		shieldSprite.visible = false
+	
 	dmg -= shieldDmg
 	if dmg > 0:
 		currentHp -= dmg
@@ -305,7 +308,3 @@ func castShieldAnimation() -> void:
 func castShield() -> void:
 	currentShield = 5
 	shieldSprite.visible = true
-
-
-func _on_property_detecting_player_both_players_are_now_in() -> void:
-	playerOutside = false

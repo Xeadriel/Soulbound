@@ -40,6 +40,8 @@ signal died
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# rooms are disabled by default, entering activates enemy
+	process_mode = PROCESS_MODE_INHERIT 
 	currentHp = maxHp
 	animatedSprite.animation_finished.connect(animationFinished)
 	players = get_tree().get_nodes_in_group("Players")
@@ -50,6 +52,8 @@ func _process(_delta: float) -> void:
 
 	
 func _physics_process(_delta: float) -> void:
+	# enemies become room independent once they are activated
+	process_mode = PROCESS_MODE_PAUSABLE
 	move_and_slide()
 	
 func takeDamage(dmg: int) -> void:

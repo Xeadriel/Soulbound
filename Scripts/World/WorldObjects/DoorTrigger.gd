@@ -15,22 +15,16 @@ func _ready() -> void:
 		propertyCollidable.rotation_degrees = 90
 		CLOSE = "VerticalClose"
 		OPEN = "VerticalOpen"
-		
-		if open:
-			play("VerticalOpened")
-			propertyCollidable.process_mode = Node.PROCESS_MODE_DISABLED
-		else:
-			play("VerticalClosed")
-			propertyCollidable.process_mode = Node.PROCESS_MODE_INHERIT
-		
-		return
-		
+	
 	if open:
-		play("Opened")
+		play(OPEN + "ed")
 		propertyCollidable.process_mode = Node.PROCESS_MODE_DISABLED
 	else:
-		play("Closed")
+		play(CLOSE + "d")
 		propertyCollidable.process_mode = Node.PROCESS_MODE_INHERIT
+	
+	set_process(false)
+	set_physics_process(false)
 
 func onTriggered(state = true):
 	if state:

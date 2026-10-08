@@ -43,7 +43,11 @@ func exit() -> void:
 func animationFinished(animationName: String):
 	if "sacrifice" not in animationName:
 		return
-	chosenSacrifice.takeDamage(9999)
+	if is_instance_valid(chosenSacrifice):
+		chosenSacrifice.takeDamage(9999)
+	else:
+		finished.emit(THINKING) # if sacrifice was killed before sacrifice cancel spellcast
+		return
 	await get_tree().create_timer(2.0).timeout
 	finished.emit(nextState, {
 		"sacrificePos": sacrificePos

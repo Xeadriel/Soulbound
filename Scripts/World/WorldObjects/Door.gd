@@ -18,11 +18,17 @@ func _ready() -> void:
 		propertyCollidable.rotation_degrees = 90
 		CLOSE = "VerticalClose"
 		OPEN = "VerticalOpen"
-		
-	play(CLOSE)
+	
+	if isOpen:
+		play(OPEN)
+		$PropertyCollidable.process_mode = Node.PROCESS_MODE_DISABLED
+	else:
+		play(CLOSE)
+		$PropertyCollidable.process_mode = Node.PROCESS_MODE_INHERIT
+	
+	set_process(false)
+	set_physics_process(false)
 
-func _process(delta: float) -> void:
-	pass
 
 func onInteract(_playerNumber) -> void:
 	var keyAvailable = false
