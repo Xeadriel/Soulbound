@@ -12,3 +12,7 @@ var projectileNode: Node
 func _ready() -> void:
 	for item in GlobalConstants.ItemIndices:
 		inventory[GlobalConstants.ItemIndices[item]] = 0
+	EventBus.itemReceived.connect(onItemReceived)
+
+func onItemReceived(item : GlobalConstants.ItemIndices, amount : int) -> void:
+	inventory[item] = inventory[item] + amount

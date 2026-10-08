@@ -1,7 +1,8 @@
 extends Area2D
+## Reports players entering and leaving this area.
 
 var isPlayer1Inside = false
-var isPlayer2Inside2 = false
+var isPlayer2Inside = false
 
 signal player1Entered
 signal player2Entered
@@ -13,24 +14,22 @@ signal bothPlayersAreNowOut
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body = body as Player
-		if body is Player1:
+		if body.playerIndex == 0:
 			isPlayer1Inside = true
 			player1Entered.emit()
-		elif body is Player2:
-			isPlayer2Inside2 = true
+		else:
+			isPlayer2Inside = true
 			player2Entered.emit()
-	if isPlayer1Inside && isPlayer2Inside2:
+	if isPlayer1Inside && isPlayer2Inside:
 		bothPlayersAreNowIn.emit()
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
-		body = body as Player
-		if body is Player1:
+		if body.playerIndex == 0:
 			isPlayer1Inside = false
 			player1Exited.emit()
-		elif body is Player2:
-			isPlayer2Inside2 = false
+		else:
+			isPlayer2Inside = false
 			player2Exited.emit()
-	if !isPlayer1Inside && !isPlayer2Inside2:
+	if !isPlayer1Inside && !isPlayer2Inside:
 		bothPlayersAreNowOut.emit()

@@ -2,79 +2,24 @@ class_name StateRun extends StatePlayer
 
 @export var SPEED : int
 
-func handleInput() -> void:
-	pass
-
-func process(_delta: float) -> void:
-	pass
+## Movement speed multiplier while blocking.
+const BLOCKING_SPEED_FACTOR := 0.2
 
 func physicsProcess(_delta: float) -> void:
-	player.isBlocking = EventHandler.isPlayerInputPressed(BLOCK)
+	player.isBlocking = InputBuffer.isHeld(input.block)
 
-	var direction :=  Vector2(Input.get_axis(LEFT, RIGHT), Input.get_axis(UP, DOWN))
+	var direction := input.moveVector()
 	if direction:
-		if(player.isBlocking):
+		if player.isBlocking:
 			player.blockRunAnimation()
-			player.velocity = direction.normalized() * SPEED * 0.2
+			player.velocity = direction.normalized() * SPEED * BLOCKING_SPEED_FACTOR
 		else:
 			player.runAnimation()
 			player.velocity = direction.normalized() * SPEED
-		if (!player.isBlocking):
+			# facing stays locked while blocking
 			player.setPlayerDirection(direction)
 		player.setAttackRotationFromDirection(direction)
 	else:
 		finished.emit(STATEIDLE)
-	if EventHandler.isPlayerInputJustPressed(HIT):
-		finished.emit(STATEATTACK)
-	elif EventHandler.isPlayerInputJustPressed(HEAVY_HIT):
-		finished.emit(STATEHEAVYATTACK)
-	elif EventHandler.isPlayerInputJustPressed(DASH):
-		finished.emit(STATEDASH)
-	elif EventHandler.isPlayerInputJustPressed(QUICKSLOTBOT):
-		checkQuickSlotAndSwitchState(QUICKSLOTBOT)
-	elif EventHandler.isPlayerInputJustPressed(QUICKSLOTTOP):
-		checkQuickSlotAndSwitchState(QUICKSLOTTOP)
-	elif EventHandler.isPlayerInputJustPressed(QUICKSLOTLEFT):
-		checkQuickSlotAndSwitchState(QUICKSLOTLEFT)
-	elif EventHandler.isPlayerInputJustPressed(QUICKSLOTRIGHT):
-		checkQuickSlotAndSwitchState(QUICKSLOTRIGHT)
-	elif EventHandler.isPlayerInputJustPressed(INTERACT):
-		if player.interactableObject == null:
-			pass
-		elif player.interactableObject is PuzzleTerminal:
-				player.interactableObject.onInteract(0 if player is Player1 else 1)
-				finished.emit(STATEINTERACTING)
-		else:
-			player.interactableObject.onInteract(0 if player is Player1 else 1)
 
-func enter(_previous_state_path: String, _data := {}) -> void:
-	pass
-
-func exit() -> void:
-	pass
-
-func checkQuickSlotAndSwitchState(quickSlotInput : String):
-	var index = 0
-	
-	# choose correct index
-	match quickSlotInput:
-		QUICKSLOTBOT:
-			index = GlobalConstants.QuickSlotIndices.BOTTOM
-		QUICKSLOTTOP:
-			index = GlobalConstants.QuickSlotIndices.TOP
-		QUICKSLOTLEFT:
-			index = GlobalConstants.QuickSlotIndices.LEFT
-		QUICKSLOTRIGHT:
-			index = GlobalConstants.QuickSlotIndices.RIGHT
-	
-	if not player.canQuickSlotItemBeUsed(index): return
-	
-	var id : GlobalConstants.ItemIndices = player.getQuickSlotItemID(index)
-	
-	match id:
-		GlobalConstants.ItemIndices.NOTHING:
-			return
-		GlobalConstants.ItemIndices.WHIP:
-			finished.emit(STATEWHIPATTACK)
-		GlobalConstants.ItemIndices.NOTHING:
-			return
+	handleActionInputs()

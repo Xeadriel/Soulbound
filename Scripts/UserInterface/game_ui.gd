@@ -5,6 +5,9 @@ var currentPageIndex = 0;
 var pageWidth;
 var cameraOffset;
 
+var p1Input := PlayerInputProfile.forPlayer(0)
+var p2Input := PlayerInputProfile.forPlayer(1)
+
 func _ready() -> void:
 	pageWidth = $Inventory.size.x ;
 	cameraOffset = pageWidth / 2;
@@ -45,12 +48,12 @@ func updateMapState():
 	dungeonMapNode.get_child(GlobalStates.lastRoomVisited).self_modulate = Color(1, 1, 1)
 	
 func _process(delta: float) -> void:
-	if EventHandler.isPlayerInputJustPressed("pause"):
+	if InputBuffer.consumePress(p1Input.pause):
 		if(self.visible):
 			closeMenu();
 		else:
 			openMenu();
-	elif self.visible && (EventHandler.isPlayerInputJustPressed("interact") || EventHandler.isPlayerInputJustPressed("interact2")):
+	elif self.visible && (InputBuffer.consumePress(p1Input.interact) || InputBuffer.consumePress(p2Input.interact)):
 		if(currentPageIndex < pages.size() - 1):
 			currentPageIndex += 1;
 			pages[currentPageIndex].grab_focus()
@@ -58,7 +61,7 @@ func _process(delta: float) -> void:
 			tw.tween_property(self, "position:x", 
 			-currentPageIndex * pageWidth - cameraOffset, 
 			0.3);
-	elif self.visible && (EventHandler.isPlayerInputJustPressed("block") || EventHandler.isPlayerInputJustPressed("block2")):
+	elif self.visible && (InputBuffer.consumePress(p1Input.block) || InputBuffer.consumePress(p2Input.block)):
 		if(currentPageIndex > 0):
 			currentPageIndex -= 1;
 			pages[currentPageIndex].grab_focus()

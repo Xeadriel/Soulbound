@@ -9,24 +9,18 @@ class_name StateWhipAttack extends StatePlayer
 var attackTimer : float = 0
 var lastAttackTimeStamp : int = 0
 
-func handleInput() -> void:
-	pass
-
 func process(delta: float) -> void:
 	attackTimer += delta
 	player.velocity = Vector2.ZERO
 	
 	if attackTimer >= ATTACK_DELAY:
-		finished.emit("StateIdle")
+		finished.emit(STATEIDLE)
 		lastAttackTimeStamp = Time.get_ticks_msec()
-
-func physicsProcess(_delta: float) -> void:
-	pass
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	attackTimer = 0
 	if Time.get_ticks_msec() - lastAttackTimeStamp < COOLDOWN:
-		finished.emit("StateIdle")
+		finished.emit(STATEIDLE)
 		return
 	
 	player.whipAttack(ATTACK_DELAY)

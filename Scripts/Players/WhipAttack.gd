@@ -27,5 +27,5 @@ func hitSomething(body: Node2D) -> void:
 	else:
 		queue_free()
 
-func getPlayerNumber():
-	return 0 if player is Player1 else 1
+func getPlayerNumber() -> int:
+	return player.playerIndex

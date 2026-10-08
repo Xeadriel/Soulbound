@@ -9,6 +9,10 @@ var goalReached : bool = false
 @onready var reds = $Reds.get_children()
 
 @export var camera : AutoCamera
+
+# player 1 pushes the box, player 2 toggles the colored blocks
+var pusherInput := PlayerInputProfile.forPlayer(0)
+var togglerInput := PlayerInputProfile.forPlayer(1)
 var isSolved = false
 
 func _ready() -> void:
@@ -42,16 +46,16 @@ func deactivate():
 	set_physics_process(false)
 
 func _physics_process(delta: float) -> void:	
-	if EventHandler.isPlayerInputJustPressed(GlobalConstants.P1UP):
+	if InputBuffer.consumePress(pusherInput.up):
 		blueBox.onPushedUp()
-	elif EventHandler.isPlayerInputJustPressed(GlobalConstants.P1DOWN):
+	elif InputBuffer.consumePress(pusherInput.down):
 		blueBox.onPushedDown()
-	elif EventHandler.isPlayerInputJustPressed(GlobalConstants.P1LEFT):
+	elif InputBuffer.consumePress(pusherInput.left):
 		blueBox.onPushedLeft()
-	elif EventHandler.isPlayerInputJustPressed(GlobalConstants.P1RIGHT):
+	elif InputBuffer.consumePress(pusherInput.right):
 		blueBox.onPushedRight()
 	
-	if EventHandler.isPlayerInputJustPressed(GlobalConstants.P2HIT):
+	if InputBuffer.consumePress(togglerInput.hit):
 		var cantToggleBoxes = false
 		
 		var blueBoxTopLeft = blueBox.global_position - Vector2(31, 31)

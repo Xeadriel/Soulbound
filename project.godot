@@ -18,8 +18,9 @@ config/icon="uid://bmdkrb4nsbixh"
 [autoload]
 
 GlobalScope="*res://Scripts/GlobalScope.gd"
-EventHandler="*res://Scripts/EventHandler.gd"
+InputBuffer="*res://Scripts/InputBuffer.gd"
 GlobalConstants="*res://Scripts/GlobalConstants.gd"
+EventBus="*res://Scripts/EventBus.gd"
 GlobalStates="*res://Scripts/GlobalStates.gd"
 
 [display]

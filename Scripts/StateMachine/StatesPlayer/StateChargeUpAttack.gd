@@ -8,20 +8,14 @@ var currentCharge : int = 1
 var attackTimer : float = 0
 var startedRelease : bool = false
 
-func handleInput() -> void:
-	pass
-
 func process(delta: float) -> void:
 	attackTimer += delta
 	player.velocity = Vector2.ZERO
 	
 	# allow alternating directions during charge and release
-	var dir :=  Vector2(Input.get_axis(LEFT, RIGHT), Input.get_axis(UP, DOWN))
-	if dir:
-		player.setPlayerDirection(dir)
-		player.setAttackRotationFromDirection(dir)
+	aimFromInput()
 	
-	if not startedRelease and not EventHandler.isPlayerInputPressed(HEAVY_HIT):
+	if not startedRelease and not InputBuffer.isHeld(input.heavyHit):
 		startedRelease = true
 		attackTimer = 0
 		player.releaseAttackHeavy()
@@ -37,12 +31,6 @@ func process(delta: float) -> void:
 			player.releaseAttackHeavy()
 		elif startedRelease and attackTimer >= ATTACK_RELEASE_DELAY:
 			finished.emit(STATEIDLE)
-
-
-
-
-func physicsProcess(_delta: float) -> void:
-	pass
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	attackTimer = 0

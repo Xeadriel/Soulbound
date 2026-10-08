@@ -12,49 +12,54 @@ func _ready() -> void:
 	GlobalStates.inventory[GlobalConstants.ItemIndices.WHIP] = 1
 	updateSelector()
 
-func _process(delta: float) -> void:
-	if self.has_focus():
-		if EventHandler.isPlayerInputJustPressed("right"):
-				moveSelector(1, 0, 0)
-		elif EventHandler.isPlayerInputJustPressed("left"):
-				moveSelector(-1, 0, 0)
-		elif EventHandler.isPlayerInputJustPressed("up"):
-				moveSelector(0, -1, 0)
-		elif EventHandler.isPlayerInputJustPressed("down"):
-				moveSelector(0, 1, 0)
-		elif EventHandler.isPlayerInputJustPressed("left2"):
-				moveSelector(-1, 0, 1)
-		elif EventHandler.isPlayerInputJustPressed("up2"):
-				moveSelector(0, -1, 1)
-		elif EventHandler.isPlayerInputJustPressed("down2"):
-				moveSelector(0, 1, 1)
-		elif EventHandler.isPlayerInputJustPressed("right2"):
-				moveSelector(1, 0, 1)
-		elif EventHandler.isPlayerInputPressed("quickSlotRight"):
-			toQuickSlot(playerSelectedIndex[0], GlobalConstants.QuickSlotIndices.RIGHT, 1)
-		elif EventHandler.isPlayerInputPressed("quickSlotLeft"):
-			toQuickSlot(playerSelectedIndex[0], GlobalConstants.QuickSlotIndices.LEFT, 1)
-		elif EventHandler.isPlayerInputPressed("quickSlotTop"):
-			toQuickSlot(playerSelectedIndex[0], GlobalConstants.QuickSlotIndices.TOP, 1)
-		elif EventHandler.isPlayerInputPressed("quickSlotBottom"):
-			toQuickSlot(playerSelectedIndex[0], GlobalConstants.QuickSlotIndices.BOTTOM, 1)
-		elif EventHandler.isPlayerInputPressed("quickSlotRight2"):
-			toQuickSlot(playerSelectedIndex[1], GlobalConstants.QuickSlotIndices.RIGHT, 2)
-		elif EventHandler.isPlayerInputPressed("quickSlotLeft2"):
-			toQuickSlot(playerSelectedIndex[1], GlobalConstants.QuickSlotIndices.LEFT, 2)
-		elif EventHandler.isPlayerInputPressed("quickSlotTop2"):
-			toQuickSlot(playerSelectedIndex[1], GlobalConstants.QuickSlotIndices.TOP, 2)
-		elif EventHandler.isPlayerInputPressed("quickSlotBottom2"):
-			toQuickSlot(playerSelectedIndex[1], GlobalConstants.QuickSlotIndices.BOTTOM, 2)
+## Input profiles of both players, indexed by player index.
+var playerInputs : Array[PlayerInputProfile] = [PlayerInputProfile.forPlayer(0), PlayerInputProfile.forPlayer(1)]
 
-func toQuickSlot(itemIndex: int, quickslot: GlobalConstants.QuickSlotIndices, playerNumber: int):
+## Quick slot buttons in the order they are checked.
+const QUICK_SLOT_CHECK_ORDER : Array[GlobalConstants.QuickSlotIndices] = [
+	GlobalConstants.QuickSlotIndices.RIGHT,
+	GlobalConstants.QuickSlotIndices.LEFT,
+	GlobalConstants.QuickSlotIndices.TOP,
+	GlobalConstants.QuickSlotIndices.BOTTOM,
+]
+
+func _process(_delta: float) -> void:
+	if not has_focus():
+		return
+	# only one action per frame: first both players' cursor movement, then quick slot assignment
+	for playerIndex in playerInputs.size():
+		if handleCursorInput(playerIndex):
+			return
+	for playerIndex in playerInputs.size():
+		if handleQuickSlotInput(playerIndex):
+			return
+
+func handleCursorInput(playerIndex: int) -> bool:
+	var input := playerInputs[playerIndex]
+	if InputBuffer.consumePress(input.right):
+		moveSelector(1, 0, playerIndex)
+	elif InputBuffer.consumePress(input.left):
+		moveSelector(-1, 0, playerIndex)
+	elif InputBuffer.consumePress(input.up):
+		moveSelector(0, -1, playerIndex)
+	elif InputBuffer.consumePress(input.down):
+		moveSelector(0, 1, playerIndex)
+	else:
+		return false
+	return true
+
+func handleQuickSlotInput(playerIndex: int) -> bool:
+	var input := playerInputs[playerIndex]
+	for slot in QUICK_SLOT_CHECK_ORDER:
+		if InputBuffer.isHeld(input.quickSlots[slot]):
+			toQuickSlot(playerSelectedIndex[playerIndex], slot, playerIndex)
+			return true
+	return false
+
+func toQuickSlot(itemIndex: int, quickslot: GlobalConstants.QuickSlotIndices, playerIndex: int):
 	var itemSlot: Item = gridContainer.get_child(itemIndex).get_child(0)
 	if itemSlot != null && itemSlot.visible:
-		match playerNumber:
-			1: 
-				EventHandler.itemAssignedToQuickSlot.emit(itemSlot, quickslot)
-			2: 
-				EventHandler.itemAssignedToQuickSlot2.emit(itemSlot, quickslot)
+		EventBus.quickSlotAssigned.emit(playerIndex, itemSlot, quickslot)
 	else:
 		print("itemSlot is empty: " + str(itemIndex))
 

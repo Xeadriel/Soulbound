@@ -11,9 +11,6 @@ var currentCombo : int = 0
 var attackTimer : float = 0
 var lastAttackTimeStamp : int = 0
 
-func handleInput() -> void:
-	pass
-
 func process(delta: float) -> void:
 	attackTimer += delta
 	player.velocity = Vector2.ZERO
@@ -22,10 +19,7 @@ func process(delta: float) -> void:
 		attackTimer = 0
 		
 		# allow alternating directions during combo
-		var dir :=  Vector2(Input.get_axis(LEFT, RIGHT), Input.get_axis(UP, DOWN))
-		if dir:
-			player.setPlayerDirection(dir)
-			player.setAttackRotationFromDirection(dir)
+		aimFromInput()
 		
 		if attackAgain and currentCombo < MAX_COMBO:
 			attackAgain = false
@@ -35,11 +29,8 @@ func process(delta: float) -> void:
 		else:
 			finished.emit(STATEIDLE)
 	
-	if EventHandler.isPlayerInputJustPressed(HIT):
+	if InputBuffer.consumePress(input.hit):
 		attackAgain = true
-
-func physicsProcess(_delta: float) -> void:
-	pass
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	attackTimer = 0

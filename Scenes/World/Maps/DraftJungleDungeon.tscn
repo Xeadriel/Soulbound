@@ -319,6 +319,7 @@ offset_left = -706.0
 offset_top = -260.0
 offset_right = -706.0
 offset_bottom = -260.0
+playerIndex = 0
 
 [node name="ItemQuickSelect2" parent="2DObjects/AutoCamera" instance=ExtResource("6_hkek3")]
 z_index = 99
@@ -326,6 +327,7 @@ offset_left = 704.0
 offset_top = -248.0
 offset_right = 704.0
 offset_bottom = -248.0
+playerIndex = 1
 
 [node name="Rooms" type="Node2D" parent="2DObjects"]
 z_as_relative = false

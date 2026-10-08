@@ -1,21 +1,15 @@
 class_name ItemQuickSelect extends Control
 
+## Which player's quick slots this shows (0 or 1).
+@export var playerIndex : int = 0
+
 @onready var quickSlots = [$Control/BottomItem, $Control/TopItem, $Control/LeftItem, $Control/RightItem]
 
 func _ready() -> void:
-	assert(
-		self.name == "ItemQuickSelect" || self.name == "ItemQuickSelect2", 
-		"Quick Select Node Name Incorrect!"
-	)
-	EventHandler.itemAssignedToQuickSlot.connect(_on_item_inserted)
-	EventHandler.itemAssignedToQuickSlot2.connect(_on_item_inserted2)
+	EventBus.quickSlotAssigned.connect(_onQuickSlotAssigned)
 
-func _on_item_inserted(item: Item, quickslot: GlobalConstants.QuickSlotIndices):
-	if self.name == "ItemQuickSelect":
-		switchItem(quickslot, item)
-
-func _on_item_inserted2(item: Item, quickslot: GlobalConstants.QuickSlotIndices):
-	if self.name == "ItemQuickSelect2":
+func _onQuickSlotAssigned(forPlayer: int, item: Item, quickslot: GlobalConstants.QuickSlotIndices) -> void:
+	if forPlayer == playerIndex:
 		switchItem(quickslot, item)
 
 func switchItem(quickSlotIndex : GlobalConstants.QuickSlotIndices, item : Item):
@@ -29,7 +23,7 @@ func switchItem(quickSlotIndex : GlobalConstants.QuickSlotIndices, item : Item):
 		existedSlot.id = quickSlot.id
 		existedSlot.itemAmount = quickSlot.itemAmount
 		existedSlot.setItemTexture(quickSlot.texture)
-		
+
 	quickSlot.id = item.id
 	quickSlot.itemAmount = item.itemAmount
 	quickSlot.setItemTexture(item.texture)

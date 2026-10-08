@@ -30,7 +30,7 @@ func _ready() -> void:
 	set_physics_process(false)
 
 
-func onInteract(_playerNumber) -> void:
+func onInteract(_playerIndex: int) -> void:
 	var keyAvailable = false
 	if !unlocked && GlobalStates.inventory.get(key, 0) > 0:
 		keyAvailable = true

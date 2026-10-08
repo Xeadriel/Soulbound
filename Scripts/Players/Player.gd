@@ -1,5 +1,8 @@
 class_name Player extends Character
 
+## 0 for the first player, 1 for the second. Used everywhere the players need to be told apart.
+@export var playerIndex : int = 0
+@export var inputProfile : PlayerInputProfile
 @export var ItemQuickSlots : ItemQuickSelect
 
 @onready var attackPivotPoint : Node2D = $AttackPivotPoint
@@ -11,18 +14,18 @@ class_name Player extends Character
 # this is set by an object when getting close enough to it's interact range
 # null means there is none right now
 # the state machine checks this when the interact button is pressed
-var interactableObject = null
+var interactableObject : WorldObject = null
 var isBlocking : bool = false
 
 func _ready() -> void:
+	assert(inputProfile != null, "inputProfile should not be null")
 	assert(ItemQuickSlots != null, "ItemQuickSlots should not be null")
 	assert(whipAttackSpawner != null, "WhipAttackSpawner should not be null" )
 	hp = maxHp
 	died.connect(_onDied)
 
 func _onDied() -> void:
-	var playerNumber := 2 if name == "Player2" else 1
-	EventHandler.playerDied(playerNumber)
+	EventBus.playerDied.emit(playerIndex)
 
 func getQuickSlotItemID(index : GlobalConstants.QuickSlotIndices):
 	return ItemQuickSlots.quickSlots[index].id
@@ -94,5 +97,5 @@ func whipAttack(attackDelay):
 func stopWhipAttack():
 	idleAnimation()
 
-func setInteractable(object):
+func setInteractable(object : WorldObject) -> void:
 	interactableObject = object

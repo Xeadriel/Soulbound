@@ -27,7 +27,7 @@ func _ready() -> void:
 	var leftCounter = 0
 	var rightCounter = 0
 	
-	if player.name == "Player":
+	if player.playerIndex == 0:
 		var nextIsLeft = true
 		for i in range(player.maxHp):
 			if nextIsLeft:
