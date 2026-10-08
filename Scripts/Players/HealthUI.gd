@@ -23,6 +23,7 @@ const HEART_SPACING := 64 + 12
 func _ready() -> void:
 	if player == null:
 		queue_free()
+		return
 
 	player.damaged.connect(playerTookDamage)
 	hp = player.hp

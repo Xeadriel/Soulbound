@@ -47,7 +47,7 @@ func process(delta: float) -> void:
 
 		entity.facing = entity.getDirectionToPlayer()
 		entity.run()
-	elif entity.atkRange >= distance && timer4Telegraph:
+	elif entity.atkRange >= distance && timer4Telegraph <= 0:
 		transition(TELEGRAPH)
 	elif inRangeThresh && timer4DirChange <= 0:
 		timer4DirChange = randf_range(minDuration4DirChange, maxDuration4DirChange)

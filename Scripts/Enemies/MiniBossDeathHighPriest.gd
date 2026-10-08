@@ -11,7 +11,9 @@ class_name MiniBossDeathHighPriest extends Enemy
 @export var currentShield: float:
 	set(newShield):
 		currentShield = newShield
-		shieldSprite.visible = currentShield > 0
+		# the setter also runs while the scene loads, before shieldSprite is set
+		if is_node_ready():
+			shieldSprite.visible = currentShield > 0
 
 @export var SPEED := 100
 
