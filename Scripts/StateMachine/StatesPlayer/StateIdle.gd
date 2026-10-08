@@ -6,12 +6,12 @@ func process(_delta: float) -> void:
 	pass
 
 func physicsProcess(_delta: float) -> void:
+	player.isBlocking = EventHandler.isPlayerInputPressed(BLOCK)
+	
 	if EventHandler.isPlayerInputJustPressed(HIT):
 		finished.emit(STATEATTACK)
 	elif EventHandler.isPlayerInputJustPressed(HEAVY_HIT):
 		finished.emit(STATEHEAVYATTACK)
-	elif EventHandler.isPlayerInputJustPressed(BLOCK):
-		finished.emit(STATEBLOCK)
 	elif EventHandler.isPlayerInputJustPressed(DASH):
 		finished.emit(STATEDASH)
 	elif EventHandler.isPlayerInputJustPressed(QUICKSLOTBOT):
@@ -39,6 +39,11 @@ func physicsProcess(_delta: float) -> void:
 		finished.emit(STATERUN)
 	else:
 		player.velocity = player.velocity.move_toward(Vector2.ZERO, SLOWDOWNSPEED)
+	if(player.velocity == Vector2.ZERO):
+		if(player.isBlocking):
+			player.blockIdleAnimation()
+		else:
+			player.idleAnimation()
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	pass

@@ -21,6 +21,13 @@ enum QuickSlotIndices {
 	RIGHT
 }
 
+enum Direction {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT
+}
+
 const P1UP = "up"
 const P1DOWN = "down"
 const P1LEFT = "left"

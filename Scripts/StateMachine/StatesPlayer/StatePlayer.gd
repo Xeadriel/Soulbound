@@ -27,13 +27,6 @@ const STATEDASH = "StateDash"
 const STATEWHIPATTACK = "StateWhipAttack"
 const STATEINTERACTING = "StateInteracting"
 
-enum Direction {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT
-}
-
 func _ready() -> void:
 	assert(player != null, "don't forget to assign a player to the state")
 	assert(player is Player1 or player is Player2, "player must be either one of the player classes")

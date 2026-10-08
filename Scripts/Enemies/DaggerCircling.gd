@@ -2,7 +2,7 @@ class_name DaggerCircling extends Area2D
 
 @export var radius = 300
 @export var angularSpeed = 3
-@export var dmgValue = 2
+@export var dmgValue := 2.0
 
 @onready var isOrbiting := true
 @onready var sprite := $AnimatedSprite2D
@@ -38,7 +38,8 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if(body is Player):
-		body.takeDamage(dmgValue)
+		var player : Player = body
+		player.takeDamage(dmgValue, self)
 	deleteDagger()
 	
 func activateCollision() -> void:

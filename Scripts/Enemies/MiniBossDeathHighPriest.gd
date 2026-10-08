@@ -11,8 +11,7 @@ class_name MiniBossDeathHighPriest extends Enemy
 @export var currentShield: float:
 	set(newShield):
 		currentShield = newShield
-		if currentShield :
-			shieldSprite.visible = currentShield > 0
+		shieldSprite.visible = currentShield > 0
 
 @export var SPEED := 100
 
@@ -232,7 +231,7 @@ func swipeAtk() -> void:
 func hitSomething(body: Node2D) -> void:
 	if body is Player:
 		var player : Player = body
-		player.takeDamage(DAMAGE)
+		player.takeDamage(DAMAGE, self)
 
 func stopAttack() -> void:
 	attackUp.visible = false

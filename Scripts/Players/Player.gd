@@ -1,19 +1,10 @@
 class_name Player extends CharacterBody2D
 
-enum Direction {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT
-}
-
 signal playerDeath
 signal playerTakesDamage
 
 @export var maxHp = 6
 @export var hp = 6
-
-var direction = Direction.DOWN
 
 @onready var stateMachine = $StateMachine
 @export var ItemQuickSlots : ItemQuickSelect
@@ -24,44 +15,21 @@ var direction = Direction.DOWN
 @onready var spawnLocationWhipAttack = $AttackPivotPoint/WhipAttack/Start 
 @onready var goalWhipAttackGoal = $AttackPivotPoint/WhipAttack/Goal
 
-var blockTimeStamp = 0
-@export var blockDelay = 500
-
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
 # this is set by an object when getting close enough to it's interact range
 # null means there is none right now
 # the state machine checks this when the interact button is pressed
 var interactableObject = null
+var isBlocking :bool = false
+
+var DIRECTION = GlobalConstants.Direction
+var facingDirection = DIRECTION.DOWN
 
 func _ready() -> void:
 	assert(ItemQuickSlots != null, "ItemQuickSlots should not be null")
 	assert(whipAttackSpawner != null, "WhipAttackSpawner should not be null" )
 	playerDeath.connect(EventHandler.playerDied)
-
-func _process(_delta) -> void:
-	if "block" in animatedSprite.animation or "attack" in animatedSprite.animation:
-		return
-	if velocity.x != 0 or velocity.y != 0:
-		match direction:
-			Direction.UP:
-				animatedSprite.play("runBack")
-			Direction.DOWN:
-				animatedSprite.play("runFront")	
-			Direction.LEFT:
-				animatedSprite.play("runLeft")
-			Direction.RIGHT:
-				animatedSprite.play("runRight")
-	else:
-		match direction:
-			Direction.UP:
-				animatedSprite.play("idleBack")
-			Direction.DOWN:
-				animatedSprite.play("idleFront")	
-			Direction.LEFT:
-				animatedSprite.play("idleLeft")
-			Direction.RIGHT:
-				animatedSprite.play("idleRight")
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -73,16 +41,20 @@ func getQuickSlotItemID(index : GlobalConstants.QuickSlotIndices):
 func canQuickSlotItemBeUsed(index : GlobalConstants.QuickSlotIndices):
 	return ItemQuickSlots.quickSlots[index].itemAmount >= 1
 
-func takeDamage(dmg):
-	if stateMachine.currentState.name == "StateBlock" and blockTimeStamp + blockDelay >= Time.get_ticks_msec():
-		# spawn some block particle and make sound
+func takeDamage(dmg, dmgSource: Node2D):
+	#direction from player -> damage source
+	var dmgDir = dmgSource.global_position - global_position
+	if abs(dmgDir.x) > abs(dmgDir.y):
+		dmgDir = DIRECTION.LEFT if dmgDir.x < 0 else DIRECTION.RIGHT
+	else:
+		dmgDir = DIRECTION.UP if dmgDir.y < 0 else DIRECTION.DOWN
+	if(isBlocking && facingDirection == dmgDir):
 		return
 	hp -= dmg
 	hp = clamp(hp - 1, 0, self.maxHp)
 	if hp <= 0:
 		var playerNumber = 2 if name == "Player2" else 1
 		playerDeath.emit(playerNumber)
-
 	playerTakesDamage.emit(dmg)
 
 # attacks in facing direction
@@ -90,75 +62,61 @@ func takeDamage(dmg):
 # animation in a potential attack combo to play
 func attack(combo : int) -> void:
 	var suffix = "" if combo == 0 else str(combo)
-	match direction:
-		Direction.UP:
+	match facingDirection:
+		DIRECTION.UP:
 			animatedSprite.play("attackBack" + suffix)
-		Direction.DOWN:
+		DIRECTION.DOWN:
 			animatedSprite.play("attackFront" + suffix)
-		Direction.LEFT:
+		DIRECTION.LEFT:
 			animatedSprite.play("attackLeft" + suffix)
-		Direction.RIGHT:
+		DIRECTION.RIGHT:
 			animatedSprite.play("attackRight" + suffix)
 
-func stopAttack() -> void:
-	match direction:
-		Direction.UP:
-			animatedSprite.play("idleBack")
-		Direction.DOWN:
-			animatedSprite.play("idleFront")	
-		Direction.LEFT:
-			animatedSprite.play("idleLeft")
-		Direction.RIGHT:
-			animatedSprite.play("idleRight")
-
 # blocks in facing direction
-func block() -> void:
-	blockTimeStamp = Time.get_ticks_msec()
-	# add animation
-	match direction:
-		Direction.UP:
+func blockIdleAnimation() -> void:
+	match facingDirection:
+		DIRECTION.UP:
 			animatedSprite.play("blockBack")
-		Direction.DOWN:
+		DIRECTION.DOWN:
 			animatedSprite.play("blockFront")
-		Direction.LEFT:
+		DIRECTION.LEFT:
 			animatedSprite.play("blockLeft")
-		Direction.RIGHT:
+		DIRECTION.RIGHT:
 			animatedSprite.play("blockRight")
-
-func stopBlock() -> void:
-	blockTimeStamp = 0
-	match direction:
-		Direction.UP:
-			animatedSprite.play("idleBack")
-		Direction.DOWN:
-			animatedSprite.play("idleFront")	
-		Direction.LEFT:
-			animatedSprite.play("idleLeft")
-		Direction.RIGHT:
-			animatedSprite.play("idleRight")
+			
+func blockRunAnimation() -> void:
+	match facingDirection:
+		DIRECTION.UP:
+			animatedSprite.play("blockBack")
+		DIRECTION.DOWN:
+			animatedSprite.play("blockFront")
+		DIRECTION.LEFT:
+			animatedSprite.play("blockLeft")
+		DIRECTION.RIGHT:
+			animatedSprite.play("blockRight")
 
 func dash() -> void:
 	collision_layer = collision_layer & 0b0 #become unhittable
-	match direction:
-		Direction.UP:
+	match facingDirection:
+		DIRECTION.UP:
 			animatedSprite.play("dashBack")
-		Direction.DOWN:
+		DIRECTION.DOWN:
 			animatedSprite.play("dashFront")
-		Direction.LEFT:
+		DIRECTION.LEFT:
 			animatedSprite.play("dashLeft")
-		Direction.RIGHT:
+		DIRECTION.RIGHT:
 			animatedSprite.play("dashRight")
 
 func stopDash() -> void:
 	collision_layer = collision_layer | 0b1 #become hittable
-	match direction:
-		Direction.UP:
+	match facingDirection:
+		DIRECTION.UP:
 			animatedSprite.play("idleBack")
-		Direction.DOWN:
+		DIRECTION.DOWN:
 			animatedSprite.play("idleFront")	
-		Direction.LEFT:
+		DIRECTION.LEFT:
 			animatedSprite.play("idleLeft")
-		Direction.RIGHT:
+		DIRECTION.RIGHT:
 			animatedSprite.play("idleRight")
 
 func whipAttack(attackDelay):
@@ -173,14 +131,14 @@ func whipAttack(attackDelay):
 	get_parent().add_child(whip)
 
 func stopWhipAttack():
-		match direction:
-			Direction.UP:
+		match facingDirection:
+			DIRECTION.UP:
 				animatedSprite.play("idleBack")
-			Direction.DOWN:
+			DIRECTION.DOWN:
 				animatedSprite.play("idleFront")	
-			Direction.LEFT:
+			DIRECTION.LEFT:
 				animatedSprite.play("idleLeft")
-			Direction.RIGHT:
+			DIRECTION.RIGHT:
 				animatedSprite.play("idleRight")
 
 func setInteractable(object):

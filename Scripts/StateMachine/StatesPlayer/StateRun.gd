@@ -2,6 +2,8 @@ class_name StateRun extends StatePlayer
 
 @export var SPEED : int
 
+var DIRECTION = GlobalConstants.Direction
+
 func handleInput() -> void:
 	pass
 
@@ -9,10 +11,18 @@ func process(_delta: float) -> void:
 	pass
 
 func physicsProcess(_delta: float) -> void:
+	player.isBlocking = EventHandler.isPlayerInputPressed(BLOCK)
+
 	var direction :=  Vector2(Input.get_axis(LEFT, RIGHT), Input.get_axis(UP, DOWN))
 	if direction:
-		player.velocity = direction.normalized() * SPEED
-		setPlayerDirection(direction)
+		if(player.isBlocking):
+			player.blockRunAnimation()
+			player.velocity = direction.normalized() * SPEED * 0.2
+		else:
+			player.runAnimation()
+			player.velocity = direction.normalized() * SPEED
+		if (!player.isBlocking):
+			setPlayerDirection(direction)
 		setAttackRotationFromDirection(direction)
 	else:
 		finished.emit(STATEIDLE)
@@ -20,8 +30,6 @@ func physicsProcess(_delta: float) -> void:
 		finished.emit(STATEATTACK)
 	elif EventHandler.isPlayerInputJustPressed(HEAVY_HIT):
 		finished.emit(STATEHEAVYATTACK)
-	elif EventHandler.isPlayerInputJustPressed(BLOCK):
-		finished.emit(STATEBLOCK)
 	elif EventHandler.isPlayerInputJustPressed(DASH):
 		finished.emit(STATEDASH)
 	elif EventHandler.isPlayerInputJustPressed(QUICKSLOTBOT):
@@ -48,15 +56,15 @@ func setAttackRotationFromDirection(dir: Vector2) -> void:
 
 func setPlayerDirection(direction : Vector2) -> void:
 	if direction.y < 0:
-		player.direction = Direction.UP
+		player.facingDirection = DIRECTION.UP
 	elif direction.y > 0:
-		player.direction = Direction.DOWN
+		player.facingDirection = DIRECTION.DOWN
 
 	# horizontal direction prioritized over vertical direction
 	if direction.x < 0:
-		player.direction = Direction.LEFT
+		player.facingDirection = DIRECTION.LEFT
 	elif direction.x > 0:
-		player.direction = Direction.RIGHT
+		player.facingDirection = DIRECTION.RIGHT
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	pass
