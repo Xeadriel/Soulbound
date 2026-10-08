@@ -62,7 +62,7 @@ func process(delta: float) -> void:
 				diffVector.x * dirChanger).normalized()
 			entity.velocity = tangent * entity.SPEED
 		
-		entity.direction = entity.getDirectionToPlayer()
+		entity.facing = entity.getDirectionToPlayer()
 		entity.run()
 	elif inRangeThresh && timer4DirChange <= 0:
 		timer4DirChange = randf_range(minDuration4DirChange, maxDuration4DirChange)

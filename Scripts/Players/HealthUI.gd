@@ -19,7 +19,7 @@ func _ready() -> void:
 	if player == null:
 		queue_free()
 	
-	player.playerTakesDamage.connect(playerTookDamage)
+	player.damaged.connect(playerTookDamage)
 	hp = player.hp
 	
 	hearts = []

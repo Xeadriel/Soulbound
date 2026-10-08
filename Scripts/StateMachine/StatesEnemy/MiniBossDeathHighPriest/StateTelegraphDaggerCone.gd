@@ -15,7 +15,7 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	entity.animatedSprite.speed_scale = 1 / entity.telegraphTime # needs to be reset to 1 in exit
 	
 	entity.target = entity.getClosestPlayer()
-	entity.direction = entity.getDirectionToPlayer()
+	entity.facing = entity.getDirectionToPlayer()
 	entity.velocity = Vector2.ZERO
 	entity.telegraphDaggerCone()
 

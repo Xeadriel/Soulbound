@@ -2,8 +2,6 @@ class_name StateRun extends StatePlayer
 
 @export var SPEED : int
 
-var DIRECTION = GlobalConstants.Direction
-
 func handleInput() -> void:
 	pass
 
@@ -22,8 +20,8 @@ func physicsProcess(_delta: float) -> void:
 			player.runAnimation()
 			player.velocity = direction.normalized() * SPEED
 		if (!player.isBlocking):
-			setPlayerDirection(direction)
-		setAttackRotationFromDirection(direction)
+			player.setPlayerDirection(direction)
+		player.setAttackRotationFromDirection(direction)
 	else:
 		finished.emit(STATEIDLE)
 	if EventHandler.isPlayerInputJustPressed(HIT):
@@ -48,23 +46,6 @@ func physicsProcess(_delta: float) -> void:
 				finished.emit(STATEINTERACTING)
 		else:
 			player.interactableObject.onInteract(0 if player is Player1 else 1)
-
-func setAttackRotationFromDirection(dir: Vector2) -> void:
-	assert(not dir == Vector2.ZERO, "Move direction should never be (0,0)")
-	
-	player.attackPivotPoint.rotation = dir.angle()
-
-func setPlayerDirection(direction : Vector2) -> void:
-	if direction.y < 0:
-		player.facingDirection = DIRECTION.UP
-	elif direction.y > 0:
-		player.facingDirection = DIRECTION.DOWN
-
-	# horizontal direction prioritized over vertical direction
-	if direction.x < 0:
-		player.facingDirection = DIRECTION.LEFT
-	elif direction.x > 0:
-		player.facingDirection = DIRECTION.RIGHT
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	pass

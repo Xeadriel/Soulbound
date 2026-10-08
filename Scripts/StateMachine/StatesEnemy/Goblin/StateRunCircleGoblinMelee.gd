@@ -60,7 +60,7 @@ func process(delta: float) -> void:
 				diffVector.x * dirChanger).normalized()
 			entity.velocity = tangent * SPEED
 		
-		entity.direction = entity.getDirectionToPlayer()
+		entity.facing = entity.getDirectionToPlayer()
 		entity.run()
 	elif entity.atkRange >= distance && timer4Telegraph:
 		finished.emit(TELEGRAPH)

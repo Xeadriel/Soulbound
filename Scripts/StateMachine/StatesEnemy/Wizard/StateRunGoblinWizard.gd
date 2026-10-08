@@ -28,7 +28,7 @@ func process(_delta: float) -> void:
 		fleeDirection = Vector2.ZERO
 		var direction = entity.global_position.direction_to(entity.target.global_position)
 		entity.velocity = direction.normalized() * SPEED
-		entity.direction = entity.getDirectionFromVector(direction)
+		entity.facing = Facing.fromVector(direction)
 		entity.run()
 		
 	elif runDirCooldown <= 0.0 && distance <= entity.panicRunThresholdDistance:
@@ -49,7 +49,7 @@ func process(_delta: float) -> void:
 	# run from target
 	elif fleeDirection != Vector2.ZERO:		
 		entity.velocity = fleeDirection * SPEED
-		entity.direction = entity.getDirectionFromVector(fleeDirection)
+		entity.facing = Facing.fromVector(fleeDirection)
 		entity.run()
 		
 	# attacking

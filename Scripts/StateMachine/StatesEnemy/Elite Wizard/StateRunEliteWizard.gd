@@ -13,7 +13,7 @@ func process(_delta: float) -> void:
 	elif entity.atkRange < distance:
 		var direction = entity.global_position.direction_to(entity.target.global_position)
 		entity.velocity = direction.normalized() * SPEED
-		entity.direction = entity.getDirectionFromVector(direction)
+		entity.facing = Facing.fromVector(direction)
 		entity.run()
 	# attacking when in range
 	elif entity.atkRange >= distance:

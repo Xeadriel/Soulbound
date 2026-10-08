@@ -2167,6 +2167,7 @@ collision_layer = 2
 collision_mask = 11
 motion_mode = 1
 script = ExtResource("1_3l0ll")
+maxHp = 3
 daggerCircleScene = ExtResource("2_tg00k")
 daggerConeScene = ExtResource("3_gyvv3")
 

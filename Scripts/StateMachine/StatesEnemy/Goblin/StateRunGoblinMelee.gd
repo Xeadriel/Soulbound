@@ -15,7 +15,7 @@ func process(_delta: float) -> void:
 	elif entity.atkRange <= distance:
 		var direction = entity.global_position.direction_to(entity.target.global_position)
 		entity.velocity = direction.normalized() * entity.SPEED
-		entity.direction = entity.getDirectionFromVector(direction)
+		entity.facing = Facing.fromVector(direction)
 		entity.run()
 	else:
 		finished.emit(RUNCIRCLE)
