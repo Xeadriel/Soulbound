@@ -196,13 +196,16 @@ y_sort_enabled = true
 [node name="Player" parent="2DObjects/Players" instance=ExtResource("9_0r1y5")]
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(-2491, 3580)
+position = Vector2(4633, 1252)
+LIGHT_DAMAGE = 1
+HEAVY_DAMAGE = 2
 whipAttackSpawner = ExtResource("10_uhk1o")
 
 [node name="Player2" parent="2DObjects/Players" instance=ExtResource("11_pwrpc")]
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(-2286, 3595)
+position = Vector2(4838, 1267)
+DAMAGE = 1
 whipAttackSpawner = ExtResource("10_uhk1o")
 
 [node name="AutoCamera" parent="2DObjects" instance=ExtResource("2_8p3qi")]
@@ -318,7 +321,6 @@ offset_left = -706.0
 offset_top = -260.0
 offset_right = -706.0
 offset_bottom = -260.0
-playerIndex = 0
 
 [node name="ItemQuickSelect2" parent="2DObjects/AutoCamera" instance=ExtResource("6_hkek3")]
 z_index = 99
@@ -448,16 +450,16 @@ process_mode = 1
 z_as_relative = false
 position = Vector2(884, 1204)
 animation = &"VerticalClose"
-isHorizontal = false
 key = 3
+isHorizontal = false
 
 [node name="LockedDoor2" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("12_8p3qi")]
 process_mode = 1
 z_as_relative = false
 position = Vector2(1908, 4404)
 animation = &"VerticalClose"
-isHorizontal = false
 key = 3
+isHorizontal = false
 
 [node name="DungeonExit" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("11_p0qse")]
 z_as_relative = false

@@ -1,18 +1,16 @@
 class_name SlippyBoxPushPuzzleBoxBlue extends CharacterBody2D
-## The box player 1 pushes. SlippyBoxPushPuzzle decides where it slides to.
+## The box player 1 pushes. SlippyBoxPushPuzzle moves it and decides where it stops.
 
 signal stoppedMoving
 signal startedMoving
 
 var moving : bool = false
 
-## Slides to [param target] (local position) at constant speed.
-func slideTo(target : Vector2, duration : float) -> void:
+func startMoving() -> void:
 	moving = true
 	startedMoving.emit()
-	var tween := create_tween()
-	tween.tween_property(self, "position", target, duration)
-	await tween.finished
+
+func stopMoving() -> void:
 	moving = false
 	stoppedMoving.emit()
 

@@ -15,7 +15,8 @@ enum PuzzleState {
 	INACTIVE,
 	## Shown and waiting for input.
 	ACTIVE,
-	## The box is sliding; input is ignored until it stops.
+	## The box is sliding. Player 2 can still toggle the blocks; pushing waits
+	## until the box stops.
 	SLIDING,
 	## Done for good.
 	SOLVED,
@@ -28,6 +29,11 @@ const BLOCK_CENTER_OFFSET := Vector2(CELL_SIZE / 2, CELL_SIZE / 2)
 const BOX_SPEED := 300.0
 ## Safety limit in case a slide is not stopped by any wall.
 const MAX_SLIDE_CELLS := 100
+## Tolerance for "the box has reached the next cell".
+const ARRIVAL_EPSILON := 0.0001
+## Half the box's size when checking whether it overlaps a block. Slightly smaller
+## than half a cell, so a box resting in a cell doesn't count as touching its neighbors.
+const BOX_HALF_EXTENT := 31.0
 
 ## The roles are fixed: player 1 pushes, player 2 toggles.
 const PUSHER_PLAYER_INDEX := 0
@@ -49,8 +55,13 @@ var togglerInput := PlayerInputProfile.forPlayer(TOGGLER_PLAYER_INDEX)
 var _gridOrigin : Vector2
 var _wallCells : Dictionary[Vector2i, bool] = {}
 var _blockCells : Dictionary[Vector2i, SlippyBoxPushPuzzleBoxTogglable] = {}
+## The cell the box is in, or the cell it is leaving while sliding.
 var _boxCell : Vector2i
 var _goalCell : Vector2i
+var _slideDirection := Vector2i.ZERO
+## How far the box has moved from _boxCell towards the next cell (0 to 1).
+var _slideProgress := 0.0
+var _slidCells := 0
 
 func _ready() -> void:
 	assert(camera != null, "assign the camera plz")
@@ -78,44 +89,84 @@ func deactivate() -> void:
 	if state == PuzzleState.ACTIVE:
 		state = PuzzleState.INACTIVE
 
-func _physics_process(_delta: float) -> void:
-	if state != PuzzleState.ACTIVE:
-		return
+func _physics_process(delta: float) -> void:
+	# input only while the puzzle is shown; the box keeps sliding either way
+	if visible and state == PuzzleState.ACTIVE:
+		if InputBuffer.consumePress(pusherInput.up):
+			pushBox(Vector2i.UP)
+		elif InputBuffer.consumePress(pusherInput.down):
+			pushBox(Vector2i.DOWN)
+		elif InputBuffer.consumePress(pusherInput.left):
+			pushBox(Vector2i.LEFT)
+		elif InputBuffer.consumePress(pusherInput.right):
+			pushBox(Vector2i.RIGHT)
 
-	if InputBuffer.consumePress(pusherInput.up):
-		pushBox(Vector2i.UP)
-	elif InputBuffer.consumePress(pusherInput.down):
-		pushBox(Vector2i.DOWN)
-	elif InputBuffer.consumePress(pusherInput.left):
-		pushBox(Vector2i.LEFT)
-	elif InputBuffer.consumePress(pusherInput.right):
-		pushBox(Vector2i.RIGHT)
+	if visible and (state == PuzzleState.ACTIVE or state == PuzzleState.SLIDING):
+		if InputBuffer.consumePress(togglerInput.hit):
+			toggleBlocks()
 
-	if state == PuzzleState.ACTIVE and InputBuffer.consumePress(togglerInput.hit):
-		toggleBlocks()
+	if state == PuzzleState.SLIDING:
+		_advanceSlide(delta)
 
-## Slides the box in [param direction] until the next cell is blocked.
+## Starts sliding the box in [param direction], unless the next cell is blocked.
 func pushBox(direction : Vector2i) -> void:
-	var cell := _boxCell
-	for i in MAX_SLIDE_CELLS:
-		if _isBlocked(cell + direction):
-			break
-		cell += direction
-	if cell == _boxCell:
+	if _isBlocked(_boxCell + direction):
 		return
-
-	_boxCell = cell
+	_slideDirection = direction
+	_slideProgress = 0.0
+	_slidCells = 0
 	state = PuzzleState.SLIDING
-	var target := _positionOf(cell)
-	blueBox.slideTo(target, blueBox.position.distance_to(target) / BOX_SPEED)
+	blueBox.startMoving()
 
-## Swaps which colored blocks are solid. Not possible while the box sits on a
-## colored block's cell, because the box would end up inside a solid block.
+## Swaps which colored blocks are solid. Not possible while the box overlaps a
+## colored block's cell (solid or not), because the box would end up inside a
+## solid block. While sliding between two cells the box overlaps both.
 func toggleBlocks() -> void:
-	if _blockCells.has(_boxCell):
-		return
+	for cell in _occupiedCells():
+		if _blockCells.has(cell):
+			return
 	for block : SlippyBoxPushPuzzleBoxTogglable in greens + reds:
 		block.toggle()
+
+## Moves the box along at BOX_SPEED. Whenever it reaches a cell it checks the
+## next one, so blocks that became solid during the slide stop it.
+func _advanceSlide(delta : float) -> void:
+	# a block may have become solid right in front of the box
+	if _isBlocked(_boxCell + _slideDirection):
+		_slideProgress = 0.0
+		blueBox.position = _positionOf(_boxCell)
+		_stopBox()
+		return
+
+	var remaining := BOX_SPEED * delta / CELL_SIZE
+	while remaining > 0 and state == PuzzleState.SLIDING:
+		var step := minf(remaining, 1.0 - _slideProgress)
+		_slideProgress += step
+		remaining -= step
+		if _slideProgress >= 1.0 - ARRIVAL_EPSILON:
+			_boxCell += _slideDirection
+			_slideProgress = 0.0
+			_slidCells += 1
+			if _isBlocked(_boxCell + _slideDirection) or _slidCells >= MAX_SLIDE_CELLS:
+				_stopBox()
+	blueBox.position = _positionOf(_boxCell) + Vector2(_slideDirection) * _slideProgress * CELL_SIZE
+
+func _stopBox() -> void:
+	_slideDirection = Vector2i.ZERO
+	_slideProgress = 0.0
+	# state is updated in onBoxStoppedMoving, which listens to this
+	blueBox.stopMoving()
+
+## Cells the box currently overlaps. While sliding it overlaps the cell it is
+## leaving and the one it is entering, except right at the start and end.
+func _occupiedCells() -> Array[Vector2i]:
+	var cells : Array[Vector2i] = []
+	var travelled := _slideProgress * CELL_SIZE
+	if travelled - BOX_HALF_EXTENT < CELL_SIZE / 2:
+		cells.append(_boxCell)
+	if _slideDirection != Vector2i.ZERO and travelled + BOX_HALF_EXTENT > CELL_SIZE / 2:
+		cells.append(_boxCell + _slideDirection)
+	return cells
 
 func onBoxStoppedMoving() -> void:
 	if _boxCell == _goalCell:
