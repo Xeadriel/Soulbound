@@ -1,27 +1,10 @@
-extends StateEnemy
+extends StateEnemyAnimated
 
-func process(_delta: float) -> void:
-	pass
-	
-func physicsProcess(_delta: float) -> void:
-	pass
+func _init() -> void:
+	animationPrefix = "daggerExplosion"
+	speed = Speed.SLOW
+	nextState = THINKING
 
-func enter(_previous_state_path: String, _data := {}) -> void:
-	entity.animatedSprite.speed_scale = 0.1
-	entity.target = entity.getClosestPlayer()
-	entity.velocity = Vector2.ZERO
+func _onEnter(data: Dictionary) -> void:
 	entity.daggerExplosion()
-	entity.daggerExplosionAtk(_data["sacrificePos"])
-
-func exit() -> void:
-	entity.animatedSprite.speed_scale = 1.0
-
-func onAnimationFinished(animationName: String) -> void:
-	if animationName not in [
-		"daggerExplosionFront", 
-		"daggerExplosionBack", 
-		"daggerExplosionLeft", 
-		"daggerExplosionRight"
-	]:
-		return
-	transition(THINKING)
+	entity.daggerExplosionAtk(data["sacrificePos"])

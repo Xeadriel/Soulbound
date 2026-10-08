@@ -1,22 +1,12 @@
-extends StateEnemy
+extends StateEnemyAnimated
 
-func process(_delta: float) -> void:
-	pass
-	
-func physicsProcess(_delta: float) -> void:
-	pass
+func _init() -> void:
+	animationPrefix = "swipe"
+	speed = Speed.SLOW
+	nextState = THINKING
 
-func enter(_previous_state_path: String, _data := {}) -> void:
-	entity.animatedSprite.speed_scale = 0.1  #needs to be reset to 1 in exit
-	entity.target = entity.getClosestPlayer()
-	entity.velocity = Vector2.ZERO
+func _onEnter(_data: Dictionary) -> void:
 	entity.swipeAtk()
-	
 
-func exit() -> void:
+func _onExit() -> void:
 	entity.stopAttack()
-	entity.animatedSprite.speed_scale = 1.0
-
-func onAnimationFinished(animationName: String) -> void:
-	if animationName in ["swipeFront", "swipeBack", "swipeLeft", "swipeRight"]:
-		transition(THINKING)

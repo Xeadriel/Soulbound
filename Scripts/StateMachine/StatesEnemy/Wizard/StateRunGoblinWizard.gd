@@ -1,12 +1,12 @@
 extends StateEnemy
+## Not used by any scene at the moment: both wizards use StateRunEliteWizard.
+## Runs towards the target, flees from players that come too close.
 
 @export var SPEED : int
-
 
 var runDirCooldown := 0.0
 var fleeDirection := Vector2.ZERO
 
-## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
 	runDirCooldown  -= _delta
 	entity.target = entity.getClosestPlayer()
@@ -50,17 +50,3 @@ func process(_delta: float) -> void:
 	elif entity.atkRange >= distance:
 		fleeDirection = Vector2.ZERO
 		transition(TELEGRAPH)
-
-## Called by the state machine on the engine's physics update tick.
-func physicsProcess(_delta: float) -> void:
-	pass
-
-## Called by the state machine upon changing the active state. The `data` parameter
-## is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(_previous_state_path: String, _data := {}) -> void:
-	pass
-
-## Called by the state machine before changing the active state. Use this function
-## to clean up the state.
-func exit() -> void:
-	pass

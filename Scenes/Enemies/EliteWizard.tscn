@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dxv5sn1aoc86a" path="res://Scripts/StateMachine/StatesEnemy/EliteWizard/StateRunEliteWizard.gd" id="6_2u3gb"]
 [ext_resource type="Script" uid="uid://cmh0dmwy8nmdk" path="res://Scripts/StateMachine/StatesEnemy/StateAtk.gd" id="7_cfgtw"]
 [ext_resource type="Script" uid="uid://bf2js1oj25nid" path="res://Scripts/StateMachine/StatesEnemy/StateTelegraph.gd" id="8_6ahxr"]
+[ext_resource type="Script" uid="uid://bsnvrj26xn6db" path="res://Scripts/StateMachine/StatesEnemy/StateStunned.gd" id="stunned"]
 [ext_resource type="Script" uid="uid://dk2l6ks0icnu4" path="res://Scripts/StateMachine/StatesEnemy/StateTaunt.gd" id="9_ssyqf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
@@ -817,35 +818,6 @@ animations = [{
 radius = 44.0
 height = 108.0
 
-[sub_resource type="GDScript" id="GDScript_briou"]
-script/source = "extends StateEnemy
-
-var stunDurationSecs = 1.0
-var timePassed = 0
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	super()
-
-func process(delta: float) -> void:
-	timePassed += delta
-	entity.velocity = Vector2.ZERO
-	if timePassed >= stunDurationSecs:
-		finished.emit(\"StateIdle\")
-
-func enter(_previous_state_path: String, data := {}) -> void:
-	timePassed = 0
-	stunDurationSecs = 1.0
-	if data.has(\"duration\"):
-		stunDurationSecs = data[\"duration\"]
-	
-	entity.velocity = Vector2.ZERO
-	entity.idle() # change later
-	entity.stunned()
-
-func exit() -> void:
-	timePassed = 0
-"
-
 [node name="EliteWizard" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 11
@@ -886,7 +858,7 @@ script = ExtResource("8_6ahxr")
 entity = NodePath("../..")
 
 [node name="StateStunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = SubResource("GDScript_briou")
+script = ExtResource("stunned")
 entity = NodePath("../..")
 
 [node name="StateTaunt" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]

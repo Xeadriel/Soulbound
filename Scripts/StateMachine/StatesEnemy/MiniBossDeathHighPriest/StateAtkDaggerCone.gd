@@ -1,27 +1,10 @@
-extends StateEnemy
+extends StateEnemyAnimated
 
-func process(_delta: float) -> void:
-	pass
-	
-func physicsProcess(_delta: float) -> void:
-	pass
+func _init() -> void:
+	animationPrefix = "daggerCone"
+	speed = Speed.SLOW
+	nextState = THINKING
 
-func enter(_previous_state_path: String, _data := {}) -> void:
-	entity.animatedSprite.speed_scale = 0.1 # needs to be reset to 1 in exit
-	entity.target = entity.getClosestPlayer()
-	entity.velocity = Vector2.ZERO
+func _onEnter(_data: Dictionary) -> void:
 	entity.daggerConeAnimation()
 	entity.daggerConeAtk()
-
-func exit() -> void:
-	entity.animatedSprite.speed_scale = 1.0
-
-func onAnimationFinished(animationName: String) -> void:
-	if animationName not in [
-	"daggerConeFront", 
-	"daggerConeBack", 
-	"daggerConeRight", 
-	"daggerConeLeft"
-	]:
-		return
-	transition(THINKING)

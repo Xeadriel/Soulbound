@@ -1,28 +1,16 @@
-extends StateEnemy
+extends StateEnemyAnimated
 
-## Called by the state machine on the engine's main loop tick.
-func process(_delta: float) -> void:
-	pass
+func _init() -> void:
+	animationPrefix = "teleport"
+	speed = Speed.TELEGRAPH_TIME
+	acquireTarget = false
+	nextState = THINKING
 
-## Called by the state machine on the engine's physics update tick.
-func physicsProcess(_delta: float) -> void:
-	pass
-
-## Called by the state machine upon changing the active state. The `data` parameter
-## is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(_previous_state_path: String, _data := {}) -> void:
-	#because the animations are set to 5 Frame scale can be used to decide the duration of the animation
-	entity.animatedSprite.speed_scale = 1 / entity.telegraphTime # needs to be reset to 1 in exit
-	entity.velocity = Vector2.ZERO
+func _onEnter(_data: Dictionary) -> void:
 	entity.teleportAnimation()
 
-## Called by the state machine before changing the active state. Use this function
-## to clean up the state.
-func exit() -> void:
-	entity.animatedSprite.speed_scale = 1
-	
-func onAnimationFinished(animatedSprite: String) -> void:
-	if "teleport" not in animatedSprite || entity.animatedSprite.is_playing() == true:
+func _onAnimationDone() -> void:
+	if entity.animatedSprite.is_playing():
 		return
 	entity.teleport()
-	transition(THINKING)
+	transition(nextState)
