@@ -1,26 +1,11 @@
-extends StateEnemy
+extends StateEnemyAnimated
 
-@export var nextState = IDLE
+func _init() -> void:
+	animationPrefix = "attack"
+	nextState = IDLE
 
-func _ready() -> void:
-	super()
-	entity.animationFinishedSignal.connect(animationFinished)
-	
-func process(_delta: float) -> void:
-	pass
-
-func physicsProcess(_delta: float) -> void:
-	pass
-
-func enter(_previous_state_path: String, _data := {}) -> void:
-	entity.target = entity.getClosestPlayer()
-	entity.velocity = Vector2.ZERO
+func _onEnter(_data: Dictionary) -> void:
 	entity.attack()
 
-func exit() -> void:
+func _onExit() -> void:
 	entity.stopAttack()
-
-func animationFinished(animationName: String) -> void:
-	if animationName not in ["attackFront", "attackBack", "attackLeft", "attackRight"]:
-		return
-	finished.emit(nextState)

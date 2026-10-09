@@ -1,24 +1,20 @@
 class_name PropertyInteractable extends Area2D
+## Makes the parent WorldObject interactable while a player is inside this area.
 
-var player1CloseEnough = false
-var player2CloseEnough = false
+## Indexed by Player.playerIndex.
+var playersCloseEnough : Array[bool] = [false, false]
+
+func _ready() -> void:
+	PhysicsLayers.detectPlayerPresence(self)
 
 func onBodyEntered(body: Node2D) -> void:
 	if body is Player:
 		body.setInteractable(get_parent())
-		if body is Player1:
-			player1CloseEnough = true
-		elif body is Player2:
-			player2CloseEnough = true
-		else:
-			printerr("wtf? wrong player name")
+		playersCloseEnough[body.playerIndex] = true
 
 func onBodyExited(body: Node2D) -> void:
 	if body is Player:
-		body.setInteractable(null)
-		if body.name == "Player":
-			player1CloseEnough = false
-		elif body.name == "Player2":
-			player2CloseEnough = false
-		else:
-			printerr("wtf? wrong player name")
+		# only clear it if the player has not moved into another object's range meanwhile
+		if body.interactableObject == get_parent():
+			body.setInteractable(null)
+		playersCloseEnough[body.playerIndex] = false

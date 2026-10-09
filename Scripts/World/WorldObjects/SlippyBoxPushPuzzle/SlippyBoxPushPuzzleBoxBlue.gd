@@ -1,51 +1,18 @@
 class_name SlippyBoxPushPuzzleBoxBlue extends CharacterBody2D
-
-const SPEED = 300.0
-
-var previousPos : Vector2
-var moving : bool = false
+## The box player 1 pushes. SlippyBoxPushPuzzle moves it and decides where it stops.
 
 signal stoppedMoving
 signal startedMoving
 
-func _ready() -> void:
-	previousPos = position
+var moving : bool = false
 
-func _physics_process(delta: float) -> void:
-	move_and_slide()
-	var distance = previousPos.distance_to(position)
-	previousPos = position
-	
-	if distance <= 1 and moving:
-		velocity.x = 0
-		velocity.y = 0
-		
-		stoppedMoving.emit()
-		moving = false
+func startMoving() -> void:
+	moving = true
+	startedMoving.emit()
 
-func onPushedUp():
-	if velocity.x == 0 and velocity.y == 0:
-		velocity.y = -SPEED
-		moving = true
-		startedMoving.emit()
+func stopMoving() -> void:
+	moving = false
+	stoppedMoving.emit()
 
-func onPushedDown():
-	if velocity.x == 0 and velocity.y == 0:
-		velocity.y = SPEED
-		moving = true
-		startedMoving.emit()
-
-func onPushedLeft():
-	if velocity.x == 0 and velocity.y == 0:
-		velocity.x = -SPEED
-		moving = true
-		startedMoving.emit()
-
-func onPushedRight():
-	if velocity.x == 0 and velocity.y == 0:
-		velocity.x = SPEED
-		moving = true
-		startedMoving.emit()
-
-func solved():
+func solved() -> void:
 	set_physics_process(false)

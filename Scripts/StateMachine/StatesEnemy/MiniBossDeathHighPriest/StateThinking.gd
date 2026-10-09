@@ -1,47 +1,45 @@
 extends StateEnemy
+## Picks the boss's next action at random, weighted by how far away the closest
+## player is. Actions that need a sacrifice go through StateSacrifice first.
+
+## Starting weight of each action. Higher means more likely.
+@export var baseWeights: Dictionary[String, int] = {
+	IDLE: 5,
+	STRAFE: 5,
+	TELEGRAPH_SWIPE: 5,
+	TELEGRAPH_DAGGER_EXPLOSION: 5,
+	TELEGRAPH_DAGGER_CONE: 5,
+	TELEGRAPH_DAGGER_CIRCLING: 5,
+	TELEPORT: 5,
+	CAST_SHIELD: 5,
+}
+@export var meleeRangeThreshold: float = 200.0
+@export var tooCloseThreshold: float = 100.0
+@export var farEnoughThreshold: float = 300.0
 
 var weights: Dictionary[String, int]
-var meleeRangeThreshold: float = 200.0
-var tooCloseThreshold: float = 100.0
-var farEnoughThreshold: float = 300.0
+## Counts how often the state was entered, so a decision delayed from an earlier
+## visit can tell it is outdated.
+var _visit := 0
 var actionsRequireSacrifice := [
-	TELEGRAPH_DAGGER_CIRCLING, 
-	TELEGRAPH_DAGGER_EXPLOSION, 
+	TELEGRAPH_DAGGER_CIRCLING,
+	TELEGRAPH_DAGGER_EXPLOSION,
 	CAST_SHIELD
 	]
 
-func _ready() -> void:
-	weights[IDLE] = 5
-	weights[STRAFE] = 5
-	weights[TELEGRAPH_SWIPE] = 5
-	weights[TELEGRAPH_DAGGER_EXPLOSION] = 5
-	weights[TELEGRAPH_DAGGER_CONE] = 5
-	weights[TELEGRAPH_DAGGER_CIRCLING] = 5
-	weights[TELEPORT] = 5
-	weights[CAST_SHIELD] = 5
-
-## Called by the state machine on the engine's main loop tick.
-func process(_delta: float) -> void:
-	pass
-
-## Called by the state machine on the engine's physics update tick.
-func physicsProcess(_delta: float) -> void:
-	pass
-
-## Called by the state machine upon changing the active state. The `data` parameter
-## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(_previous_state_path: String, _data := {}) -> void:
+	_visit += 1
+	var visit := _visit
 	#buffer time between each action
-	await get_tree().create_timer(randf_range(0.5, 1.5)).timeout 
+	await get_tree().create_timer(randf_range(0.5, 1.5)).timeout
+	if not isActive or visit != _visit:
+		return
+	# every decision starts from the base weights and adjusts them for the current situation
+	weights = baseWeights.duplicate()
 	var closestPlayer: Player = entity.getClosestPlayer()
 	var entityPos = entity.global_position
 	var distance = entityPos.distance_to(closestPlayer.global_position)
-	
-	# player is outside of the room
-	if(entity.playerOutside):
-		finished.emit(IDLE)
-		return
-	
+
 	# player in melee range
 	if(distance < meleeRangeThreshold):
 		weights[TELEGRAPH_SWIPE] += 5
@@ -66,22 +64,21 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 		weights[TELEGRAPH_SWIPE] = 0
 	decideNextState()
 
-## Called by the state machine before changing the active state. Use this function
-## to clean up the state.
-func exit() -> void:
-	pass
-
 func decideNextState() -> void:
+	# negative weights count as 0 (never chosen)
 	var totalWeight = 0
 	for w in weights.values():
-		totalWeight += w
+		totalWeight += maxi(w, 0)
+	if totalWeight <= 0:
+		transition(IDLE)
+		return
 	var r = randi() % totalWeight
 	var accumul = 0
 	for k in weights:
-		accumul += weights[k]
+		accumul += maxi(weights[k], 0)
 		if r < accumul :
 			if(actionsRequireSacrifice.has(k)):
-				finished.emit(SACRIFICE, {"nextState": k})
+				transition(SACRIFICE, {"nextState": k})
 			else:
-				finished.emit(k)
+				transition(k)
 			return

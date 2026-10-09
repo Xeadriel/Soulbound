@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PlayerInputProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Input/PlayerInputProfile.gd" id="1_input"]
+
+[resource]
+script = ExtResource("1_input")
+up = &"up2"
+down = &"down2"
+left = &"left2"
+right = &"right2"
+hit = &"hit2"
+heavyHit = &"heavyHit2"
+block = &"block2"
+dash = &"dash2"
+interact = &"interact2"
+pause = &"pause2"
+quickSlots = Array[StringName]([&"quickSlotBottom2", &"quickSlotTop2", &"quickSlotLeft2", &"quickSlotRight2"])

@@ -25,6 +25,7 @@ size = Vector2(200, 200)
 [node name="PuzzleTerminal" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_jkh0d")
 script = ExtResource("2_hcgoa")
+locksPlayerWhileInteracting = true
 
 [node name="PropertyCollidable" type="Area2D" parent="."]
 script = ExtResource("2_6rlfi")

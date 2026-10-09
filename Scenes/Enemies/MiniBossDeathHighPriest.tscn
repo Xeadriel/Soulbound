@@ -8,8 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bql0yr1v0lyt8" path="res://Assets/spritesheetShield.png" id="3_lppw1"]
 [ext_resource type="Script" uid="uid://ctap3ttkvlrey" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateIdle.gd" id="4_eoms6"]
 [ext_resource type="Script" uid="uid://cjdagsts0n8yh" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateStrafe.gd" id="5_hy7xe"]
-[ext_resource type="Script" uid="uid://chxki3s4o7101" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateStunned.gd" id="6_5yec7"]
-[ext_resource type="Script" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTeleport.gd" id="6_x02iw"]
+[ext_resource type="Script" uid="uid://bnk5kbmdqbrvp" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTeleport.gd" id="6_x02iw"]
 [ext_resource type="Script" uid="uid://b6j1dce8bo67a" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTelegraphSwipe.gd" id="7_lppw1"]
 [ext_resource type="Script" uid="uid://dyrtdad8yh5ff" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateAtkSwipe.gd" id="8_x02iw"]
 [ext_resource type="Script" uid="uid://d1vhc0thbyqo8" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTelegraphDaggerCone.gd" id="9_rfjik"]
@@ -20,7 +19,8 @@
 [ext_resource type="Script" uid="uid://u6eavhyo0s3c" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateThinking.gd" id="12_u4yqb"]
 [ext_resource type="Script" uid="uid://ctkwamixhth4e" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateSacrifice.gd" id="13_3jfg0"]
 [ext_resource type="Script" uid="uid://dxhb5pptc3ovt" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateAtkCirclingDaggers.gd" id="14_x02iw"]
-[ext_resource type="Script" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateCastShield.gd" id="19_rfjik"]
+[ext_resource type="Script" uid="uid://djbwh7msglodh" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateCastShield.gd" id="19_rfjik"]
+[ext_resource type="Script" uid="uid://b1rrq2x1k3pvw" path="res://Scripts/Enemies/DirectionalHitboxes.gd" id="melee_hitboxes"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ui87"]
 atlas = ExtResource("2_u4yqb")
@@ -2169,6 +2169,7 @@ motion_mode = 1
 script = ExtResource("1_3l0ll")
 daggerCircleScene = ExtResource("2_tg00k")
 daggerConeScene = ExtResource("3_gyvv3")
+maxHp = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lc4gu")
@@ -2220,10 +2221,6 @@ maxDuration4Telegraph = null
 duration4Obstacle = null
 distanceThreshold = null
 obstacleDetection = NodePath("../../MovingCollissionDetection")
-entity = NodePath("../..")
-
-[node name="StateStunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = ExtResource("6_5yec7")
 entity = NodePath("../..")
 
 [node name="StateThinking" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
@@ -2335,6 +2332,13 @@ shape = SubResource("RectangleShape2D_3l0ll")
 position = Vector2(0.500015, 0.500004)
 scale = Vector2(47, 107)
 texture = SubResource("CanvasTexture_3jfg0")
+
+[node name="MeleeHitboxes" type="Node" parent="." node_paths=PackedStringArray("up", "down", "left", "right")]
+script = ExtResource("melee_hitboxes")
+up = NodePath("../AttackUp")
+down = NodePath("../AttackDown")
+left = NodePath("../AttackLeft")
+right = NodePath("../AttackRight")
 
 [connection signal="body_entered" from="AttackUp" to="." method="hitSomething"]
 [connection signal="body_entered" from="AttackDown" to="." method="hitSomething"]

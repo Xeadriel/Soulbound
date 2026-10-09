@@ -6,9 +6,8 @@ var whoActivated = [false, false]
 signal start
 signal stop
 
-# playerNumber needs to be either 0 or 1
-func onInteract(playerNumber):
-	whoActivated[playerNumber] = not whoActivated[playerNumber]
+func onInteract(playerIndex: int) -> void:
+	whoActivated[playerIndex] = not whoActivated[playerIndex]
 
 	if not (whoActivated[0] and whoActivated[1]):
 		stop.emit()

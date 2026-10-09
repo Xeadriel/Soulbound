@@ -1,42 +1,22 @@
-class_name Door extends WorldObject
+class_name Door extends DoorBase
+## Door the players open and close by interacting. Locked doors need a key item,
+## which is used up the first time the door is unlocked.
 
 var isOpen = false
 var unlocked = false
 
-var CLOSE = "Close"
-var OPEN = "Open"
-
-@export var isHorizontal = true
 @export var key: GlobalConstants.ItemIndices
 
 func _ready() -> void:
 	if key == GlobalConstants.ItemIndices.NOTHING:
 		unlocked = true
-	var propertyCollidable : PropertyCollidable = $PropertyCollidable
-	
-	if not isHorizontal:
-		propertyCollidable.rotation_degrees = 90
-		CLOSE = "VerticalClose"
-		OPEN = "VerticalOpen"
-		
-	play(CLOSE)
+	super._ready()
+	setOpen(isOpen)
 
-func _process(delta: float) -> void:
-	pass
-
-func onInteract(_playerNumber) -> void:
-	var keyAvailable = false
-	if !unlocked && GlobalStates.inventory.get(key, 0) > 0:
-		keyAvailable = true
+func onInteract(_playerIndex: int) -> void:
+	if !unlocked && GlobalStates.session.removeItem(key):
 		unlocked = true
-		GlobalStates.inventory[key] -= 1
 
-	if unlocked || keyAvailable || key == GlobalConstants.ItemIndices.NOTHING:
-		if isOpen:
-			isOpen = false
-			$PropertyCollidable.process_mode = Node.PROCESS_MODE_INHERIT
-			play(CLOSE)
-		else:
-			isOpen = true
-			$PropertyCollidable.process_mode = Node.PROCESS_MODE_DISABLED
-			play(OPEN)
+	if unlocked:
+		isOpen = not isOpen
+		setOpen(isOpen)

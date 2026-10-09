@@ -18,17 +18,16 @@ config/icon="uid://bmdkrb4nsbixh"
 [autoload]
 
 GlobalScope="*res://Scripts/GlobalScope.gd"
-EventHandler="*res://Scripts/EventHandler.gd"
+InputBuffer="*res://Scripts/InputBuffer.gd"
 GlobalConstants="*res://Scripts/GlobalConstants.gd"
+EventBus="*res://Scripts/EventBus.gd"
 GlobalStates="*res://Scripts/GlobalStates.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
-window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
+window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 
 [global_group]
@@ -213,7 +212,10 @@ uiScrollRight2={
 2d_physics/layer_3="Camera Border"
 2d_physics/layer_4="Obstacle"
 2d_physics/layer_5="Whip"
+2d_physics/layer_8="PlayerPresence"
+2d_physics/layer_20="Puzzle"
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_vertices_to_pixel=true

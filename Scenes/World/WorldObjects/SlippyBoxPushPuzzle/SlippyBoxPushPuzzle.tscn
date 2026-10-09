@@ -374,5 +374,3 @@ position = Vector2(272, -80)
 position = Vector2(-304, 304)
 
 [connection signal="stoppedMoving" from="SlippyBoxPushPuzzleBoxBlue" to="." method="onBoxStoppedMoving"]
-[connection signal="body_entered" from="SlippyBoxPushPuzzleBoxGoal" to="." method="onBoxEnteredGoal"]
-[connection signal="body_exited" from="SlippyBoxPushPuzzleBoxGoal" to="." method="onBoxExitedGoal"]

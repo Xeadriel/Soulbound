@@ -3,11 +3,7 @@ class_name Lever extends WorldObject
 var leverState = false
 signal leverFlipped(state : bool)
 
-# check which traits (destructible, interactible, obstacle etc.) are assigned
-func _ready() -> void:
-	pass 
-
-func onInteract(_playerNumber) -> void:
+func onInteract(_playerIndex: int) -> void:
 	leverState = not leverState
 	match leverState:
 		true:

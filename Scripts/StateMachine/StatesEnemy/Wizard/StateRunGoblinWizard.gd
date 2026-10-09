@@ -1,18 +1,12 @@
-## Virtual base class for all states.
-## Extend this class and override its methods to implement a state.
 extends StateEnemy
+## Not used by any scene at the moment: both wizards use StateRunEliteWizard.
+## Runs towards the target, flees from players that come too close.
 
 @export var SPEED : int
-
 
 var runDirCooldown := 0.0
 var fleeDirection := Vector2.ZERO
 
-## Called by the state machine when receiving unhandled input events.
-func handleInput() -> void:
-	pass
-
-## Called by the state machine on the engine's main loop tick.
 func process(_delta: float) -> void:
 	runDirCooldown  -= _delta
 	entity.target = entity.getClosestPlayer()
@@ -21,14 +15,14 @@ func process(_delta: float) -> void:
 	# not aggroed
 	if  entity.aggroRange < distance:
 		fleeDirection = Vector2.ZERO
-		finished.emit(IDLE)
+		transition(IDLE)
 		
 	# close distance to attack
 	elif entity.atkRange < distance:
 		fleeDirection = Vector2.ZERO
 		var direction = entity.global_position.direction_to(entity.target.global_position)
 		entity.velocity = direction.normalized() * SPEED
-		entity.direction = entity.getDirectionFromVector(direction)
+		entity.facing = Facing.fromVector(direction)
 		entity.run()
 		
 	elif runDirCooldown <= 0.0 && distance <= entity.panicRunThresholdDistance:
@@ -44,29 +38,15 @@ func process(_delta: float) -> void:
 					runDirCooldown = 1.5
 		elif r == 0:
 			fleeDirection = Vector2.ZERO
-			finished.emit(TELEGRAPH)
+			transition(TELEGRAPH)
 			
 	# run from target
 	elif fleeDirection != Vector2.ZERO:		
 		entity.velocity = fleeDirection * SPEED
-		entity.direction = entity.getDirectionFromVector(fleeDirection)
+		entity.facing = Facing.fromVector(fleeDirection)
 		entity.run()
 		
 	# attacking
 	elif entity.atkRange >= distance:
 		fleeDirection = Vector2.ZERO
-		finished.emit(TELEGRAPH)
-
-## Called by the state machine on the engine's physics update tick.
-func physicsProcess(_delta: float) -> void:
-	pass
-
-## Called by the state machine upon changing the active state. The `data` parameter
-## is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(_previous_state_path: String, _data := {}) -> void:
-	pass
-
-## Called by the state machine before changing the active state. Use this function
-## to clean up the state.
-func exit() -> void:
-	pass
+		transition(TELEGRAPH)

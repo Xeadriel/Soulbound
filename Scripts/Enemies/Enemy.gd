@@ -1,84 +1,50 @@
-class_name Enemy extends CharacterBody2D
+class_name Enemy extends Character
 
-@export var maxHp := 3
 @export var atkRange := 100.0
 @export var aggroRange:= 500.0
 @export var telegraphTime := 1.0
 @export var atkTime := 1.0
 
-
 var players
 var target: Player
 
-@onready var stateMachine : StateMachine = $StateMachine
-
-enum Direction {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT
-}
-var direction = Direction.DOWN
-
-@onready var attackUp : Area2D = $AttackUp
-@onready var attackDown : Area2D = $AttackDown
-@onready var attackLeft : Area2D = $AttackLeft
-@onready var attackRight : Area2D = $AttackRight
+## Melee hitboxes, only present on enemies with melee attacks.
+@onready var meleeHitboxes : DirectionalHitboxes = get_node_or_null("MeleeHitboxes")
 
 @export var DAMAGE = 1
-var currentHp: int:
-	set(newHP):
-		currentHp = newHP
-		if currentHp < 1:
-			died.emit()
-			queue_free()
 
-@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
-
-signal animationFinishedSignal
-signal died
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	currentHp = maxHp
-	animatedSprite.animation_finished.connect(animationFinished)
+	hp = maxHp
 	players = get_tree().get_nodes_in_group("Players")
+	# until our room wakes up we only idle: body, hitbox and idle animation stay live,
+	# but the state machine (aggro, attacks) doesn't start
+	var room := Room.containing(self)
+	if room != null and not room.isAwake:
+		stateMachine.startOnReady = false
+		idle()
+		room.awakened.connect(wake, CONNECT_ONE_SHOT)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+## Lets the enemy start fighting.
+func wake() -> void:
+	stateMachine.start()
 
-	
-func _physics_process(_delta: float) -> void:
-	move_and_slide()
-	
-func takeDamage(dmg: int) -> void:
-	currentHp -= dmg
+func _onHpChanged() -> void:
+	if hp < 1:
+		died.emit()
+		queue_free()
 
-func hitByWhip():
-	stateMachine._transition_to_next_state("StateStunned", {"duration" : 1.0})
+func takeDamage(amount: int, _source: Node2D = null) -> void:
+	hp -= amount
 
-func getDirectionToPlayer() -> Direction:
-	var dir = global_position.direction_to(target.global_position)
-	var angle = dir.angle()
-	angle =  rad_to_deg(angle)
-	return getDirectionFromAngle(angle)
+## Called when an item hitbox (see ItemHitbox) hits this enemy.
+func onItemHit(item: GlobalConstants.ItemIndices, _playerIndex: int) -> void:
+	match item:
+		GlobalConstants.ItemIndices.WHIP:
+			stateMachine.interrupt(StateEnemy.STUNNED, {"duration" : 1.0})
 
-func getDirectionFromVector(dir: Vector2) -> Direction:
-	var angle = dir.angle()
-	angle =  rad_to_deg(angle)
-	return getDirectionFromAngle(angle)
+func getDirectionToPlayer() -> Facing.Direction:
+	return Facing.fromVector(global_position.direction_to(target.global_position))
 
-func getDirectionFromAngle(angle: float) -> Direction:
-	if angle > -45 and angle <= 45:
-		return Direction.RIGHT
-	elif angle > 135 or angle <= -135:
-		return Direction.LEFT
-	elif angle < -45 and angle >= -135:
-		return Direction.UP
-	else: 
-		return Direction.DOWN
-		
 func getClosestPlayer() -> Player:
 	var closestPlayer: Player
 	var closestDistance = INF
@@ -89,60 +55,23 @@ func getClosestPlayer() -> Player:
 			closestPlayer = p
 	return closestPlayer
 
-
-"""
-Animations
-"""
-
-func animationFinished():
-	animationFinishedSignal.emit(animatedSprite.animation)
+# --- animations ---
 
 func idle():
-	match direction:
-		Direction.UP:
-			animatedSprite.play("idleBack")
-		Direction.DOWN:
-			animatedSprite.play("idleFront")	
-		Direction.LEFT:
-			animatedSprite.play("idleLeft")
-		Direction.RIGHT:
-			animatedSprite.play("idleRight")
+	playDirectional("idle")
 
 func stunned():
-	match direction:
-		Direction.UP:
-			animatedSprite.play("stunnedBack")
-		Direction.DOWN:
-			animatedSprite.play("stunnedFront")	
-		Direction.LEFT:
-			animatedSprite.play("stunnedLeft")
-		Direction.RIGHT:
-			animatedSprite.play("stunnedRight")
+	playDirectional("stunned")
 
 func run():
-	match direction:
-		Direction.UP:
-			animatedSprite.play("runBack")
-		Direction.DOWN:
-			animatedSprite.play("runFront")	
-		Direction.LEFT:
-			animatedSprite.play("runLeft")
-		Direction.RIGHT:
-			animatedSprite.play("runRight")
+	playDirectional("run")
 
 func stopAttack() -> void:
-	pass
+	if meleeHitboxes != null:
+		meleeHitboxes.disableAll()
 
 func telegraphAttack() -> void:
-	match direction:
-		Direction.UP:
-			animatedSprite.play("telegraphBack")
-		Direction.DOWN:
-			animatedSprite.play("telegraphFront")	
-		Direction.LEFT:
-			animatedSprite.play("telegraphLeft")
-		Direction.RIGHT:
-			animatedSprite.play("telegraphRight")
+	playDirectional("telegraph")
 
 # signal when area2D collides with something
 func hitSomething(body: Node2D) -> void:
