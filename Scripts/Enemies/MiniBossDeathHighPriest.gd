@@ -127,7 +127,7 @@ func teleportAnimation() -> void:
 	playDirectional("teleport")
 
 func isValidTeleportPos(pos: Vector2) -> bool:
-	var bodyFree = checkBodyColission(pos)
+	var bodyFree = checkBodyCollision(pos)
 	var isInsideRoom = checkInsideRoom(pos)
 	return bodyFree && isInsideRoom
 
@@ -144,7 +144,7 @@ func checkInsideRoom(pos: Vector2) -> bool:
 			return true
 	return false
 
-func checkBodyColission(pos: Vector2) -> bool:
+func checkBodyCollision(pos: Vector2) -> bool:
 	var params  = PhysicsShapeQueryParameters2D.new()
 	params.shape = colDetector.shape
 	params.transform = Transform2D(0.0, pos)
