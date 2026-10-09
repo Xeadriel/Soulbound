@@ -13,23 +13,28 @@ const CURRENT_ROOM_COLOR := Color(1, 1, 1)
 @onready var pages : Array[Control] = [$Inventory, $Map, $UI3]
 
 var currentPageIndex := 0
-var pageWidth : float
-var cameraOffset : float
+var pageSlide : Tween
 
 var p1Input := PlayerInputProfile.forPlayer(0)
 var p2Input := PlayerInputProfile.forPlayer(1)
 
 func _ready() -> void:
-	pageWidth = inventory.size.x
-	cameraOffset = pageWidth / 2
+	for page in pages:
+		page.focus_mode = Control.FOCUS_ALL
+	resized.connect(layoutPages)
+	layoutPages()
 
+## Lines the pages up side by side, one screen width apart, and shows the current one.
+func layoutPages() -> void:
+	if pageSlide:
+		pageSlide.kill()
 	for i in pages.size():
-		pages[i].focus_mode = Control.FOCUS_ALL
-		pages[i].position.x = i * pageWidth
+		pages[i].position.x = i * size.x
+	position.x = -currentPageIndex * size.x
 
 func openMenu() -> void:
 	currentPageIndex = 0
-	position.x = -cameraOffset
+	layoutPages()
 	pages[currentPageIndex].grab_focus()
 	visible = true
 	inventory.updateInventoryState()
@@ -68,5 +73,7 @@ func _process(_delta: float) -> void:
 func showPage(index : int) -> void:
 	currentPageIndex = index
 	pages[currentPageIndex].grab_focus()
-	var tw := create_tween()
-	tw.tween_property(self, "position:x", -currentPageIndex * pageWidth - cameraOffset, PAGE_SLIDE_DURATION)
+	if pageSlide:
+		pageSlide.kill()
+	pageSlide = create_tween()
+	pageSlide.tween_property(self, "position:x", -currentPageIndex * size.x, PAGE_SLIDE_DURATION)

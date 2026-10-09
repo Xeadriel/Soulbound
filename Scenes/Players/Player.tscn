@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://rafcdskaova5"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Players/PlayerBase.tscn" id="0_base"]
+[ext_resource type="PackedScene" uid="uid://cxe3gl4qxx6l6" path="res://Scenes/Players/PlayerBase.tscn" id="0_base"]
+[ext_resource type="SpriteFrames" uid="uid://ctcdtu1cfmhjb" path="res://Resources/SpriteFrames/Player1Frames.tres" id="0_frames"]
 [ext_resource type="Script" uid="uid://0jorh7okrj40" path="res://Scripts/Players/Player1.gd" id="1_rpqav"]
 [ext_resource type="Script" uid="uid://c3u2oumh8xcms" path="res://Scripts/StateMachine/StatesPlayer/StateHeavyAttack.gd" id="7_u0nk7"]
 [ext_resource type="Resource" path="res://Resources/Input/Player1Input.tres" id="input_profile"]
-[ext_resource type="SpriteFrames" path="res://Resources/SpriteFrames/Player1Frames.tres" id="0_frames"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0nk7"]
 size = Vector2(46.5, 107)
@@ -28,7 +28,8 @@ size = Vector2(78, 169)
 
 [node name="Player" instance=ExtResource("0_base")]
 script = ExtResource("1_rpqav")
-playerIndex = 0
+LIGHT_DAMAGE = 1
+HEAVY_DAMAGE = 2
 inputProfile = ExtResource("input_profile")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
@@ -38,14 +39,14 @@ animation = &"blockBack"
 [node name="StateAttack" parent="StateMachine" index="2"]
 COOLDOWN = 500
 
-[node name="StateHeavyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+[node name="StateHeavyAttack" type="Node" parent="StateMachine" index="6" node_paths=PackedStringArray("player")]
 script = ExtResource("7_u0nk7")
 ATTACK_WINDUP_DELAY = 0.4
 player = NodePath("../..")
 
-[node name="LightAttacks" type="Node2D" parent="AttackPivotPoint"]
+[node name="LightAttacks" type="Node2D" parent="AttackPivotPoint" index="1"]
 
-[node name="LightAttack0" type="Area2D" parent="AttackPivotPoint/LightAttacks"]
+[node name="LightAttack0" type="Area2D" parent="AttackPivotPoint/LightAttacks" index="0"]
 process_mode = 4
 visible = false
 position = Vector2(79, 0)
@@ -53,15 +54,15 @@ collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/LightAttacks/LightAttack0"]
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/LightAttacks/LightAttack0" index="0"]
 shape = SubResource("RectangleShape2D_u0nk7")
 
-[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/LightAttacks/LightAttack0"]
+[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/LightAttacks/LightAttack0" index="1"]
 self_modulate = Color(0, 0, 1, 1)
 scale = Vector2(47, 107)
 texture = SubResource("CanvasTexture_52ee3")
 
-[node name="LightAttack1" type="Area2D" parent="AttackPivotPoint/LightAttacks"]
+[node name="LightAttack1" type="Area2D" parent="AttackPivotPoint/LightAttacks" index="1"]
 process_mode = 4
 visible = false
 position = Vector2(79, 0)
@@ -69,15 +70,15 @@ collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/LightAttacks/LightAttack1"]
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/LightAttacks/LightAttack1" index="0"]
 shape = SubResource("RectangleShape2D_sw0h5")
 
-[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/LightAttacks/LightAttack1"]
+[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/LightAttacks/LightAttack1" index="1"]
 self_modulate = Color(1, 0, 0, 1)
 scale = Vector2(47, 107)
 texture = SubResource("CanvasTexture_52ee3")
 
-[node name="LightAttack2" type="Area2D" parent="AttackPivotPoint/LightAttacks"]
+[node name="LightAttack2" type="Area2D" parent="AttackPivotPoint/LightAttacks" index="2"]
 process_mode = 4
 visible = false
 position = Vector2(79, 0)
@@ -85,19 +86,19 @@ collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/LightAttacks/LightAttack2"]
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/LightAttacks/LightAttack2" index="0"]
 position = Vector2(26, 0)
 shape = SubResource("RectangleShape2D_80whf")
 
-[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/LightAttacks/LightAttack2"]
+[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/LightAttacks/LightAttack2" index="1"]
 self_modulate = Color(1, 0.733333, 0, 1)
 position = Vector2(26, -1.43051e-06)
 scale = Vector2(100, 44)
 texture = SubResource("CanvasTexture_52ee3")
 
-[node name="HeavyAttacks" type="Node2D" parent="AttackPivotPoint"]
+[node name="HeavyAttacks" type="Node2D" parent="AttackPivotPoint" index="2"]
 
-[node name="HeavyAttack0" type="Area2D" parent="AttackPivotPoint/HeavyAttacks"]
+[node name="HeavyAttack0" type="Area2D" parent="AttackPivotPoint/HeavyAttacks" index="0"]
 process_mode = 4
 visible = false
 position = Vector2(79, 0)
@@ -105,17 +106,17 @@ collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack0"]
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack0" index="0"]
 position = Vector2(30.5, 0)
 shape = SubResource("RectangleShape2D_jarcg")
 
-[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack0"]
+[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack0" index="1"]
 self_modulate = Color(0.545098, 0, 1, 1)
 position = Vector2(30.5, 4.76837e-07)
 scale = Vector2(121, 42)
 texture = SubResource("CanvasTexture_52ee3")
 
-[node name="HeavyAttack1" type="Area2D" parent="AttackPivotPoint/HeavyAttacks"]
+[node name="HeavyAttack1" type="Area2D" parent="AttackPivotPoint/HeavyAttacks" index="1"]
 process_mode = 4
 visible = false
 position = Vector2(79, 0)
@@ -123,17 +124,17 @@ collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack1"]
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack1" index="0"]
 position = Vector2(30.5, 0)
 shape = SubResource("RectangleShape2D_230ox")
 
-[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack1"]
+[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack1" index="1"]
 self_modulate = Color(0.778978, 0.0085343, 0.47451, 1)
 position = Vector2(30.5, 4.76837e-07)
 scale = Vector2(121, 42)
 texture = SubResource("CanvasTexture_52ee3")
 
-[node name="HeavyAttack2" type="Area2D" parent="AttackPivotPoint/HeavyAttacks"]
+[node name="HeavyAttack2" type="Area2D" parent="AttackPivotPoint/HeavyAttacks" index="2"]
 process_mode = 4
 visible = false
 position = Vector2(107, 0)
@@ -141,11 +142,11 @@ collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack2"]
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack2" index="0"]
 position = Vector2(-16, -2.5)
 shape = SubResource("RectangleShape2D_qc7fn")
 
-[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack2"]
+[node name="Sprite2D" type="Sprite2D" parent="AttackPivotPoint/HeavyAttacks/HeavyAttack2" index="1"]
 self_modulate = Color(0.684138, 0.316281, 0, 1)
 position = Vector2(-15.75, -2)
 scale = Vector2(78.5, 170)

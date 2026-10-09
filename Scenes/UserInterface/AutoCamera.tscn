@@ -5,44 +5,36 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tjece"]
 friction = 0.0
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_5jvt3"]
-a = Vector2(805, 451)
-b = Vector2(804, -452)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_top"]
+normal = Vector2(0, 1)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_tjece"]
-a = Vector2(807, 450)
-b = Vector2(-798, 449)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bottom"]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_aluj6"]
-a = Vector2(-796, -450)
-b = Vector2(-794, 451)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_left"]
+normal = Vector2(1, 0)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_bkpw8"]
-a = Vector2(-796, -450)
-b = Vector2(801, -450)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_right"]
+normal = Vector2(-1, 0)
 
-[node name="AutoCamera" type="CharacterBody2D"]
-motion_mode = 1
+[node name="AutoCamera" type="Node2D"]
 script = ExtResource("1_tjece")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
 
 [node name="CameraBorder" type="StaticBody2D" parent="."]
 collision_layer = 4
+collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_tjece")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorder"]
-position = Vector2(-5, 0)
-shape = SubResource("SegmentShape2D_5jvt3")
+[node name="Top" type="CollisionShape2D" parent="CameraBorder"]
+shape = SubResource("WorldBoundaryShape2D_top")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBorder"]
-position = Vector2(-5, 0)
-shape = SubResource("SegmentShape2D_tjece")
+[node name="Bottom" type="CollisionShape2D" parent="CameraBorder"]
+shape = SubResource("WorldBoundaryShape2D_bottom")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="CameraBorder"]
-position = Vector2(-4, 0)
-shape = SubResource("SegmentShape2D_aluj6")
+[node name="Left" type="CollisionShape2D" parent="CameraBorder"]
+shape = SubResource("WorldBoundaryShape2D_left")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="CameraBorder"]
-position = Vector2(-4, 0)
-shape = SubResource("SegmentShape2D_bkpw8")
+[node name="Right" type="CollisionShape2D" parent="CameraBorder"]
+shape = SubResource("WorldBoundaryShape2D_right")
