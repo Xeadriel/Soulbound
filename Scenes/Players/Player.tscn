@@ -4,8 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://ctcdtu1cfmhjb" path="res://Resources/SpriteFrames/Player1Frames.tres" id="0_frames"]
 [ext_resource type="Script" uid="uid://0jorh7okrj40" path="res://Scripts/Players/Player1.gd" id="1_rpqav"]
 [ext_resource type="Script" uid="uid://c3u2oumh8xcms" path="res://Scripts/StateMachine/StatesPlayer/StateHeavyAttack.gd" id="7_u0nk7"]
+[ext_resource type="Script" uid="uid://cbvpqgchavdp7" path="res://Scripts/StateMachine/StatesPlayer/StateBlock.gd" id="8_block"]
 [ext_resource type="Resource" path="res://Resources/Input/Player1Input.tres" id="input_profile"]
-[ext_resource type="Script" path="res://Scripts/StateMachine/StatesPlayer/StateBlock.gd" id="8_block"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0nk7"]
 size = Vector2(46.5, 107)
