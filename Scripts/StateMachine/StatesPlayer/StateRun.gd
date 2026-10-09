@@ -12,7 +12,6 @@ func process(_delta: float) -> void:
 
 func physicsProcess(_delta: float) -> void:
 	player.isBlocking = EventHandler.isPlayerInputPressed(BLOCK)
-
 	var direction :=  Vector2(Input.get_axis(LEFT, RIGHT), Input.get_axis(UP, DOWN))
 	if direction:
 		if(player.isBlocking):
