@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxe3gl4qxx6l6"]
+[gd_scene load_steps=11 format=3 uid="uid://cxe3gl4qxx6l6"]
 
 [ext_resource type="Script" uid="uid://b7r3mte1au600" path="res://Scripts/Players/Player.gd" id="1_player"]
 [ext_resource type="Script" uid="uid://c77840fmq6cp" path="res://Scripts/StateMachine/StateMachine.gd" id="2_sm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://blutkobl052ip" path="res://Scripts/StateMachine/StatesPlayer/StateDash.gd" id="6_dash"]
 [ext_resource type="Script" uid="uid://bkallxg37dshg" path="res://Scripts/StateMachine/StatesPlayer/StateWhipAttack.gd" id="7_whip"]
 [ext_resource type="Script" uid="uid://clx54oeam5rvs" path="res://Scripts/StateMachine/StatesPlayer/StateInteracting.gd" id="8_interacting"]
+[ext_resource type="Texture2D" uid="uid://bt7t10hfomw11" path="res://Assets/placeholder.png" id="9_placeholder"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_body"]
 radius = 44.0
@@ -63,3 +64,20 @@ position = Vector2(85, 0)
 
 [node name="Goal" type="Node2D" parent="AttackPivotPoint/WhipAttack"]
 position = Vector2(372, 0)
+
+[node name="BlockMarkerPivot" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="BlockMarkerPivot"]
+position = Vector2(70, 0)
+scale = Vector2(0.11, 1.28)
+texture = ExtResource("9_placeholder")
+
+[node name="ShieldMarkerPivot" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="ShieldMarkerPivot"]
+self_modulate = Color(0.4, 0.8, 1, 1)
+position = Vector2(70, 0)
+scale = Vector2(0.11, 1.28)
+texture = ExtResource("9_placeholder")

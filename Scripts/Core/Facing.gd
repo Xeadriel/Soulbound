@@ -54,3 +54,14 @@ static func fromAngleDeg(angle: float) -> Direction:
 
 static func fromVector(dir: Vector2) -> Direction:
 	return fromAngleDeg(rad_to_deg(dir.angle()))
+
+## Rotation in radians that points along [param dir] (RIGHT is 0, DOWN is PI/2).
+static func toAngle(dir: Direction) -> float:
+	match dir:
+		Direction.UP:
+			return -PI / 2
+		Direction.DOWN:
+			return PI / 2
+		Direction.LEFT:
+			return PI
+	return 0.0

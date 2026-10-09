@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://rafcdskaova5"]
+[gd_scene load_steps=14 format=3 uid="uid://rafcdskaova5"]
 
 [ext_resource type="PackedScene" uid="uid://cxe3gl4qxx6l6" path="res://Scenes/Players/PlayerBase.tscn" id="0_base"]
 [ext_resource type="SpriteFrames" uid="uid://ctcdtu1cfmhjb" path="res://Resources/SpriteFrames/Player1Frames.tres" id="0_frames"]
 [ext_resource type="Script" uid="uid://0jorh7okrj40" path="res://Scripts/Players/Player1.gd" id="1_rpqav"]
 [ext_resource type="Script" uid="uid://c3u2oumh8xcms" path="res://Scripts/StateMachine/StatesPlayer/StateHeavyAttack.gd" id="7_u0nk7"]
 [ext_resource type="Resource" path="res://Resources/Input/Player1Input.tres" id="input_profile"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/StatesPlayer/StateBlock.gd" id="8_block"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0nk7"]
 size = Vector2(46.5, 107)
@@ -42,6 +43,11 @@ COOLDOWN = 500
 [node name="StateHeavyAttack" type="Node" parent="StateMachine" index="6" node_paths=PackedStringArray("player")]
 script = ExtResource("7_u0nk7")
 ATTACK_WINDUP_DELAY = 0.4
+player = NodePath("../..")
+
+[node name="StateBlock" type="Node" parent="StateMachine" index="7" node_paths=PackedStringArray("player")]
+script = ExtResource("8_block")
+SPEED = 50
 player = NodePath("../..")
 
 [node name="LightAttacks" type="Node2D" parent="AttackPivotPoint" index="1"]

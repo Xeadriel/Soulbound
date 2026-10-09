@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceausjasnh7kj"]
+[gd_scene load_steps=8 format=3 uid="uid://ceausjasnh7kj"]
 
 [ext_resource type="PackedScene" path="res://Scenes/Players/PlayerBase.tscn" id="0_base"]
 [ext_resource type="Script" uid="uid://cc45sc7rs3o0b" path="res://Scripts/Players/Player2.gd" id="1_gv048"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dhfuuek8vxv6m" path="res://Scripts/StateMachine/StatesPlayer/StateChargeUpAttack.gd" id="8_bfxnb"]
 [ext_resource type="Resource" path="res://Resources/Input/Player2Input.tres" id="input_profile"]
 [ext_resource type="SpriteFrames" path="res://Resources/SpriteFrames/Player2Frames.tres" id="0_frames"]
+[ext_resource type="Script" path="res://Scripts/StateMachine/StatesPlayer/StateBlockRedirect.gd" id="9_blockredirect"]
 
 [node name="Player2" instance=ExtResource("0_base")]
 script = ExtResource("1_gv048")
@@ -22,6 +23,11 @@ COOLDOWN = 1000
 
 [node name="StateHeavyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("8_bfxnb")
+player = NodePath("../..")
+
+[node name="StateBlock" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("9_blockredirect")
+SPEED = 50
 player = NodePath("../..")
 
 [node name="LightAttackSpawnLocation" type="Node2D" parent="AttackPivotPoint"]

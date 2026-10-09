@@ -3,10 +3,10 @@ class_name StateIdle extends StatePlayer
 @export var SLOWDOWNSPEED : int
 
 func physicsProcess(_delta: float) -> void:
-	player.isBlocking = InputBuffer.isHeld(input.block)
-
 	if handleActionInputs():
 		pass
+	elif InputBuffer.isHeld(input.block):
+		transition(STATEBLOCK)
 	elif (
 		InputBuffer.isHeld(input.left) or
 		InputBuffer.isHeld(input.right) or
@@ -22,7 +22,4 @@ func physicsProcess(_delta: float) -> void:
 		return
 
 	if player.velocity == Vector2.ZERO:
-		if player.isBlocking:
-			player.blockIdleAnimation()
-		else:
-			player.idleAnimation()
+		player.idleAnimation()

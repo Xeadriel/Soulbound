@@ -15,6 +15,13 @@ class_name Player extends Character
 # the state machine checks this when the interact button is pressed
 var interactableObject : WorldObject = null
 var isBlocking : bool = false
+## True while the partner's block protects this player (in the partner's facing direction).
+var isShielded : bool = false
+## The other player.
+var partner : Player = null
+
+@onready var blockMarkerPivot : Node2D = $BlockMarkerPivot
+@onready var shieldMarkerPivot : Node2D = $ShieldMarkerPivot
 
 func _ready() -> void:
 	assert(inputProfile != null, "inputProfile should not be null")
@@ -22,6 +29,19 @@ func _ready() -> void:
 	assert(whipAttackSpawner != null, "WhipAttackSpawner should not be null" )
 	hp = maxHp
 	died.connect(_onDied)
+	# both players are in the same scene, so both are in the group by now
+	for other : Player in get_tree().get_nodes_in_group("Players"):
+		if other.playerIndex != playerIndex:
+			partner = other
+
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
+	# markers follow facing, not the attack pivot, which keeps turning while blocking
+	blockMarkerPivot.visible = isBlocking
+	blockMarkerPivot.rotation = Facing.toAngle(facing)
+	shieldMarkerPivot.visible = isShielded and is_instance_valid(partner)
+	if shieldMarkerPivot.visible:
+		shieldMarkerPivot.rotation = Facing.toAngle(partner.facing)
 
 func _onDied() -> void:
 	EventBus.playerDied.emit(playerIndex)
@@ -34,14 +54,19 @@ func canQuickSlotItemBeUsed(index : GlobalConstants.QuickSlotIndices) -> bool:
 	return GlobalStates.session.getItemCount(getQuickSlotItemID(index)) >= 1
 
 func takeDamage(amount: int, source: Node2D = null) -> void:
-	if isBlocking and source != null:
-		var hitFrom := Facing.fromDominantAxis(source.global_position - global_position)
-		if facing == hitFrom:
-			return
+	if source != null and _blocksHitFrom(source):
+		return
 	hp = clamp(hp - amount, 0, maxHp)
 	if hp <= 0:
 		died.emit()
 	damaged.emit(amount)
+
+# own block uses own facing, a block from the partner uses the partner's facing
+func _blocksHitFrom(source: Node2D) -> bool:
+	var hitFrom := Facing.fromDominantAxis(source.global_position - global_position)
+	if isBlocking and facing == hitFrom:
+		return true
+	return isShielded and is_instance_valid(partner) and partner.facing == hitFrom
 
 # --- facing ---
 
