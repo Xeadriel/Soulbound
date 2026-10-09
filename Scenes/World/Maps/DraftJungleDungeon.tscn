@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://cy4vn64vtg0f7"]
+[gd_scene load_steps=48 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_ewn0l"]
 [ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/UserInterface/AutoCamera.tscn" id="2_8p3qi"]
@@ -107,12 +107,6 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 navigation_layer_0/layers = 1
 sources/2 = SubResource("TileSetAtlasSource_cs1ky")
 
-[sub_resource type="GDScript" id="GDScript_0kwpc"]
-script/source = "class_name RoomTrap extends Room
-
-signal gottem
-"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3l2s"]
 size = Vector2(2010, 1162)
 
@@ -196,13 +190,13 @@ y_sort_enabled = true
 [node name="Player" parent="2DObjects/Players" instance=ExtResource("9_0r1y5")]
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(4231, 3251)
+position = Vector2(-1566, 1295)
 whipAttackSpawner = ExtResource("10_uhk1o")
 
 [node name="Player2" parent="2DObjects/Players" instance=ExtResource("11_pwrpc")]
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(4436, 3266)
+position = Vector2(-1361, 1310)
 DAMAGE = 1
 whipAttackSpawner = ExtResource("10_uhk1o")
 
@@ -218,10 +212,9 @@ y_sort_enabled = true
 [node name="ChaliceAltarRoom" type="Node2D" parent="2DObjects/Rooms"]
 z_as_relative = false
 y_sort_enabled = true
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/ChaliceAltarRoom"]
-process_mode = 1
 position = Vector2(1321, -762)
 collision_layer = 0
 script = ExtResource("10_p0qse")
@@ -262,7 +255,7 @@ aggroRange = 800.0
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-52, 0)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="Wizard4" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("8_6m3rn")]
 z_as_relative = false
@@ -301,33 +294,28 @@ y_sort_enabled = true
 position = Vector2(2551, 4414)
 
 [node name="Door" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(1396, 228)
 
 [node name="Door2" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(1908, 1204)
 animation = &"VerticalClose"
 isHorizontal = false
 
 [node name="Door5" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(1908, 3124)
 animation = &"VerticalClose"
 isHorizontal = false
 
 [node name="Door6" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(884, 3124)
 animation = &"VerticalClose"
 isHorizontal = false
 
 [node name="LockedDoor" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(884, 1204)
 animation = &"VerticalClose"
@@ -335,7 +323,6 @@ key = 3
 isHorizontal = false
 
 [node name="LockedDoor2" parent="2DObjects/Rooms/MainHallway" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(1908, 4404)
 animation = &"VerticalClose"
@@ -349,7 +336,6 @@ position = Vector2(1392, 4654)
 scale = Vector2(7.0625, 1)
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/MainHallway"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(1360, 1314)
@@ -364,7 +350,6 @@ position = Vector2(40, 1242)
 shape = SubResource("RectangleShape2D_go142")
 
 [node name="PropertyDetectingPlayer2" type="Area2D" parent="2DObjects/Rooms/MainHallway"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(2689, 4024)
@@ -431,7 +416,7 @@ shape = SubResource("RectangleShape2D_crixt")
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(2694, 1200)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="Goblin1" parent="2DObjects/Rooms/PuzzleRoomHallway" instance=ExtResource("7_2n2dr")]
 z_as_relative = false
@@ -451,19 +436,16 @@ atkRange = 500.0
 aggroRange = 800.0
 
 [node name="Door" parent="2DObjects/Rooms/PuzzleRoomHallway" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(1082, 4)
 animation = &"VerticalClose"
 isHorizontal = false
 
 [node name="Door2" parent="2DObjects/Rooms/PuzzleRoomHallway" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(698, 308)
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/PuzzleRoomHallway"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 collision_layer = 0
@@ -480,7 +462,7 @@ shape = SubResource("RectangleShape2D_d6jdp")
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(3982, 1764)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="MoneyChest" parent="2DObjects/Rooms/Barracks" instance=ExtResource("16_pwrpc")]
 z_as_relative = false
@@ -510,7 +492,6 @@ y_sort_enabled = true
 position = Vector2(-794, -7)
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/Barracks"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-682, 34)
@@ -528,7 +509,7 @@ shape = SubResource("RectangleShape2D_hkek3")
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(4522, 844)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="Goblin1" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("7_2n2dr")]
 z_as_relative = false
@@ -548,7 +529,6 @@ atkRange = 500.0
 aggroRange = 800.0
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/PuzzleRoom"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 collision_layer = 0
@@ -563,7 +543,6 @@ position = Vector2(470, 0)
 shape = SubResource("RectangleShape2D_p0qse")
 
 [node name="DoorTrigger" parent="2DObjects/Rooms/PuzzleRoom" instance=ExtResource("11_p0qse")]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-106, -208)
@@ -584,7 +563,7 @@ position = Vector2(701, 122)
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(4522, 844)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="KeyChest" parent="2DObjects/Rooms/PuzzleRoomReward" instance=ExtResource("16_pwrpc")]
 z_as_relative = false
@@ -597,20 +576,19 @@ amount = 1
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-980, 1167)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="Goblin1" parent="2DObjects/Rooms/FoodHallway" instance=ExtResource("7_2n2dr")]
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(232, 145)
+position = Vector2(-10, 147)
 
 [node name="Goblin2" parent="2DObjects/Rooms/FoodHallway" instance=ExtResource("7_2n2dr")]
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(253, -39)
+position = Vector2(11, -37)
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/FoodHallway"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(746, 24)
@@ -625,7 +603,6 @@ position = Vector2(60, 16)
 shape = SubResource("RectangleShape2D_wwhd2")
 
 [node name="Door" parent="2DObjects/Rooms/FoodHallway" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(-236, 41)
 animation = &"VerticalClose"
@@ -635,7 +612,7 @@ isHorizontal = false
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-1508, 1343)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="Wizard3" parent="2DObjects/Rooms/FoodHallway2" instance=ExtResource("8_6m3rn")]
 z_as_relative = false
@@ -652,7 +629,6 @@ atkRange = 500.0
 aggroRange = 800.0
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/FoodHallway2"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 collision_layer = 0
@@ -666,12 +642,10 @@ position = Vector2(50, -99)
 shape = SubResource("RectangleShape2D_0ybw3")
 
 [node name="Door" parent="2DObjects/Rooms/FoodHallway2" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(36, -1115)
 
 [node name="LockedDoor" parent="2DObjects/Rooms/FoodHallway2" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(36, 933)
 key = 2
@@ -680,7 +654,7 @@ key = 2
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-1359, -621)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="MoneyChest" parent="2DObjects/Rooms/FoodRoom" instance=ExtResource("16_pwrpc")]
 z_as_relative = false
@@ -740,7 +714,6 @@ scale = Vector2(2.26852, 19.2692)
 texture = ExtResource("3_5yy2f")
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/FoodRoom"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(23, 237)
@@ -758,7 +731,7 @@ shape = SubResource("RectangleShape2D_2n2dr")
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-2290, 2756)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="Goblin" parent="2DObjects/Rooms/MiniBossHallway" instance=ExtResource("7_2n2dr")]
 z_as_relative = false
@@ -771,7 +744,6 @@ y_sort_enabled = true
 position = Vector2(-136, -84)
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/MiniBossHallway"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(254, 231)
@@ -796,6 +768,7 @@ z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-1538, 4533)
 script = ExtResource("7_6m3rn")
+wakeWhenBothPlayersInside = true
 
 [node name="WhipChest" parent="2DObjects/Rooms/MiniBossRoom" instance=ExtResource("16_pwrpc")]
 process_mode = 4
@@ -808,7 +781,6 @@ containingItem = 1
 amount = 1
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/MiniBossRoom"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 collision_layer = 32
@@ -821,7 +793,6 @@ position = Vector2(72, 92)
 shape = SubResource("RectangleShape2D_75mop")
 
 [node name="DoorTrigger" parent="2DObjects/Rooms/MiniBossRoom" instance=ExtResource("11_p0qse")]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-830, -685)
@@ -829,7 +800,6 @@ animation = &"Opened"
 open = true
 
 [node name="DoorTrigger2" parent="2DObjects/Rooms/MiniBossRoom" instance=ExtResource("11_p0qse")]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(962, -685)
@@ -864,7 +834,7 @@ aggroRange = 800.0
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-616, 3109)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="PropertyCollidable" type="Area2D" parent="2DObjects/Rooms/WhipPuzzleRoom"]
 z_as_relative = false
@@ -888,7 +858,6 @@ position = Vector2(63.5, 168.5)
 shape = SubResource("RectangleShape2D_kqf53")
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/WhipPuzzleRoom"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(462, 13)
@@ -908,7 +877,6 @@ y_sort_enabled = true
 position = Vector2(424, 544)
 
 [node name="DoorTrigger" parent="2DObjects/Rooms/WhipPuzzleRoom" instance=ExtResource("11_p0qse")]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(246, 32)
@@ -940,7 +908,7 @@ shape = SubResource("RectangleShape2D_kqf53")
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(2688, 3109)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="Goblin5" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("7_2n2dr")]
 z_as_relative = false
@@ -953,7 +921,6 @@ y_sort_enabled = true
 position = Vector2(13, 111)
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryHallway"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 collision_layer = 0
@@ -967,27 +934,22 @@ position = Vector2(176, 33)
 shape = SubResource("RectangleShape2D_rx6km")
 
 [node name="Door" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(-64, -189)
 
 [node name="Door2" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(-64, 323)
 
 [node name="Door3" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(704, 319)
 
 [node name="Door4" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(704, -193)
 
 [node name="Door5" parent="2DObjects/Rooms/RuinedDormitoryHallway" instance=ExtResource("12_8p3qi")]
-process_mode = 1
 z_as_relative = false
 position = Vector2(1216, 19)
 animation = &"VerticalClose"
@@ -1011,10 +973,9 @@ aggroRange = 800.0
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(2613, 3698)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryBotLeft"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 collision_layer = 0
@@ -1031,10 +992,9 @@ shape = SubResource("RectangleShape2D_0r1y5")
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(2584, 2622)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryTopLeft"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 collision_layer = 0
@@ -1051,10 +1011,9 @@ shape = SubResource("RectangleShape2D_uhk1o")
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(3365, 2599)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryTopRight"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 collision_layer = 0
@@ -1071,10 +1030,9 @@ shape = SubResource("RectangleShape2D_pwrpc")
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(3375, 3725)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryBotRight"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(29, -39)
@@ -1092,10 +1050,9 @@ shape = SubResource("RectangleShape2D_0kwpc")
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(4249, 3131)
-script = SubResource("GDScript_0kwpc")
+script = ExtResource("7_6m3rn")
 
 [node name="PropertyDetectingPlayer" type="Area2D" parent="2DObjects/Rooms/RuinedDormitoryBig"]
-process_mode = 1
 z_as_relative = false
 y_sort_enabled = true
 collision_layer = 0
@@ -1330,67 +1287,49 @@ playerIndex = 1
 
 [connection signal="body_entered" from="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/ChaliceAltarRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/ChaliceAltarRoom" method="updateRoomStatus"]
 [connection signal="leverFlipped" from="2DObjects/Rooms/MainHallway/Lever" to="2DObjects/Rooms/MainHallway/DungeonExit" method="onTriggered"]
 [connection signal="body_entered" from="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/MainHallway" method="updateRoomStatus"]
 [connection signal="body_entered" from="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer2" to="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer2" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer2" to="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer2" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/MainHallway/PropertyDetectingPlayer2" to="2DObjects/Rooms/MainHallway" method="updateRoomStatus"]
 [connection signal="body_entered" from="2DObjects/Rooms/PuzzleRoomHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoomHallway/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/PuzzleRoomHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoomHallway/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/PuzzleRoomHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoomHallway" method="updateRoomStatus"]
 [connection signal="body_entered" from="2DObjects/Rooms/Barracks/PropertyDetectingPlayer" to="2DObjects/Rooms/Barracks/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/Barracks/PropertyDetectingPlayer" to="2DObjects/Rooms/Barracks/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/Barracks/PropertyDetectingPlayer" to="2DObjects/Rooms/Barracks" method="updateRoomStatus"]
 [connection signal="body_entered" from="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/PuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/PuzzleRoom" method="updateRoomStatus"]
 [connection signal="solved" from="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" to="2DObjects/Rooms/PuzzleRoom/DoorTrigger" method="onTriggered"]
 [connection signal="solved" from="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" to="2DObjects/Rooms/PuzzleRoom/PuzzleTerminal" method="onPuzzleSolved"]
 [connection signal="start" from="2DObjects/Rooms/PuzzleRoom/PuzzleTerminal" to="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" method="activate"]
 [connection signal="stop" from="2DObjects/Rooms/PuzzleRoom/PuzzleTerminal" to="2DObjects/Rooms/PuzzleRoom/SlippyBoxPushPuzzle" method="deactivate"]
 [connection signal="body_entered" from="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/FoodHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodHallway" method="updateRoomStatus"]
 [connection signal="body_entered" from="2DObjects/Rooms/FoodHallway2/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodHallway2/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/FoodHallway2/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodHallway2/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/FoodHallway2/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodHallway2" method="updateRoomStatus"]
 [connection signal="body_entered" from="2DObjects/Rooms/FoodRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodRoom/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/FoodRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodRoom/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/FoodRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/FoodRoom" method="updateRoomStatus"]
 [connection signal="body_entered" from="2DObjects/Rooms/MiniBossHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/MiniBossHallway/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/MiniBossHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/MiniBossHallway/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/MiniBossHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/MiniBossHallway" method="updateRoomStatus"]
-[connection signal="activate" from="2DObjects/Rooms/MiniBossRoom" to="2DObjects/Rooms/MiniBossRoom/DoorTrigger" method="onTriggered" binds= [false]]
-[connection signal="activate" from="2DObjects/Rooms/MiniBossRoom" to="2DObjects/Rooms/MiniBossRoom/DoorTrigger2" method="onTriggered" binds= [false]]
+[connection signal="bothPlayersEntered" from="2DObjects/Rooms/MiniBossRoom" to="2DObjects/Rooms/MiniBossRoom/DoorTrigger" method="onTriggered" binds= [false]]
+[connection signal="bothPlayersEntered" from="2DObjects/Rooms/MiniBossRoom" to="2DObjects/Rooms/MiniBossRoom/DoorTrigger2" method="onTriggered" binds= [false]]
 [connection signal="body_entered" from="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/MiniBossRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/MiniBossRoom" method="updateRoomStatus"]
 [connection signal="enemiesCleared" from="2DObjects/Rooms/MiniBossRoom/EnemiesCounter" to="2DObjects/Rooms/MiniBossRoom/DoorTrigger2" method="onTriggered"]
 [connection signal="died" from="2DObjects/Rooms/MiniBossRoom/MiniBossDeathHighPriest" to="2DObjects/Rooms/MiniBossRoom/EnemiesCounter" method="onEnemyDied"]
 [connection signal="body_entered" from="2DObjects/Rooms/WhipPuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/WhipPuzzleRoom/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/WhipPuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/WhipPuzzleRoom/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/WhipPuzzleRoom/PropertyDetectingPlayer" to="2DObjects/Rooms/WhipPuzzleRoom" method="updateRoomStatus"]
 [connection signal="leverFlipped" from="2DObjects/Rooms/WhipPuzzleRoom/Lever" to="2DObjects/Rooms/WhipPuzzleRoom/DoorTrigger" method="onTriggered"]
 [connection signal="body_entered" from="2DObjects/Rooms/RuinedDormitoryHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryHallway/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/RuinedDormitoryHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryHallway/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/RuinedDormitoryHallway/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryHallway" method="updateRoomStatus"]
 [connection signal="body_entered" from="2DObjects/Rooms/RuinedDormitoryBotLeft/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBotLeft/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/RuinedDormitoryBotLeft/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBotLeft/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/RuinedDormitoryBotLeft/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBotLeft" method="updateRoomStatus"]
 [connection signal="body_entered" from="2DObjects/Rooms/RuinedDormitoryTopLeft/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryTopLeft/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/RuinedDormitoryTopLeft/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryTopLeft/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/RuinedDormitoryTopLeft/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryTopLeft" method="updateRoomStatus"]
 [connection signal="body_entered" from="2DObjects/Rooms/RuinedDormitoryTopRight/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryTopRight/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/RuinedDormitoryTopRight/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryTopRight/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/RuinedDormitoryTopRight/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryTopRight" method="updateRoomStatus"]
 [connection signal="body_entered" from="2DObjects/Rooms/RuinedDormitoryBotRight/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBotRight/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/RuinedDormitoryBotRight/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBotRight/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/RuinedDormitoryBotRight/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBotRight" method="updateRoomStatus"]
 [connection signal="body_entered" from="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer" method="_on_body_entered"]
 [connection signal="body_exited" from="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer" method="_on_body_exited"]
-[connection signal="bothPlayersAreNowIn" from="2DObjects/Rooms/RuinedDormitoryBig/PropertyDetectingPlayer" to="2DObjects/Rooms/RuinedDormitoryBig" method="updateRoomStatus"]
 [connection signal="died" from="2DObjects/Rooms/RuinedDormitoryBig/EliteWizard" to="2DObjects/Rooms/RuinedDormitoryBig/EnemiesCounter" method="onEnemyDied"]
 [connection signal="enemiesCleared" from="2DObjects/Rooms/RuinedDormitoryBig/EnemiesCounter" to="2DObjects/Rooms/RuinedDormitoryBig/KeyChest" method="appear"]

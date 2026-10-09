@@ -1,4 +1,4 @@
-extends Area2D
+class_name PropertyDetectingPlayer extends Area2D
 ## Reports players entering and leaving this area.
 
 var isPlayer1Inside = false

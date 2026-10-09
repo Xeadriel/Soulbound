@@ -9,7 +9,7 @@ const CURRENT_ROOM_COLOR := Color(1, 1, 1)
 
 @onready var inventory : Inventory = $Inventory
 @onready var dungeonMapNode : Panel = $Map/MarginContainer/VBoxContainer/MapPanel/Dungeon
-@onready var pointers : Node = $Map/MarginContainer/VBoxContainer/MapPanel/Dungeon/pointers
+@onready var currentRoomSign : Control = $Map/MarginContainer/VBoxContainer/MapPanel/Dungeon/CurrentLocationSign
 @onready var pages : Array[Control] = [$Inventory, $Map, $UI3]
 
 var currentPageIndex := 0
@@ -45,16 +45,29 @@ func closeMenu() -> void:
 	visible = false
 	get_tree().paused = false
 
+## Shows the seen rooms on the map and marks the current one.
+## Map sprites are named like the rooms in the world.
 func updateMapState() -> void:
 	var session := GlobalStates.session
-	for key in session.seenRooms:
-		var roomNode : AnimatedSprite2D = dungeonMapNode.get_child(session.seenRooms[key])
-		roomNode.self_modulate = SEEN_ROOM_COLOR
-		roomNode.visible = true
-	for p in pointers.get_children():
-		p.visible = false
-	pointers.get_child(session.lastRoomVisited).visible = true
-	dungeonMapNode.get_child(session.lastRoomVisited).self_modulate = CURRENT_ROOM_COLOR
+	for roomName in session.seenRooms:
+		var roomSprite := _mapSprite(roomName)
+		if roomSprite != null:
+			roomSprite.self_modulate = SEEN_ROOM_COLOR
+			roomSprite.visible = true
+
+	var currentSprite := _mapSprite(session.currentRoom)
+	currentRoomSign.visible = currentSprite != null
+	if currentSprite != null:
+		currentSprite.self_modulate = CURRENT_ROOM_COLOR
+		currentRoomSign.position = currentSprite.position - currentRoomSign.size / 2
+
+func _mapSprite(roomName : String) -> AnimatedSprite2D:
+	if roomName.is_empty():
+		return null
+	var sprite := dungeonMapNode.get_node_or_null(NodePath(roomName)) as AnimatedSprite2D
+	if sprite == null:
+		push_warning("Room \"%s\" has no sprite on the menu map" % roomName)
+	return sprite
 
 func _process(_delta: float) -> void:
 	if InputBuffer.consumePress(p1Input.pause):

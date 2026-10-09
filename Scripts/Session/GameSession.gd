@@ -11,8 +11,10 @@ const QUICK_SLOT_COUNT := 4
 @export var inventory : Dictionary[GlobalConstants.ItemIndices, int] = {}
 ## quickSlots[playerIndex][GlobalConstants.QuickSlotIndices] = item id
 @export var quickSlots : Array[Array] = []
-@export var seenRooms : Dictionary[String, int] = {}
-@export var lastRoomVisited : int
+## Names of the rooms the players have been in (used as a set).
+@export var seenRooms : Dictionary[String, bool] = {}
+## Name of the room a player entered last, empty before the first room.
+@export var currentRoom : String = ""
 @export var currentDungeon : String
 
 func _init() -> void:
@@ -65,6 +67,6 @@ func assignQuickSlot(playerIndex : int, slot : GlobalConstants.QuickSlotIndices,
 
 # --- map ---
 
-func markRoomVisited(roomName : String, roomIndex : int) -> void:
-	lastRoomVisited = roomIndex
-	seenRooms[roomName] = roomIndex
+func markRoomVisited(roomName : String) -> void:
+	currentRoom = roomName
+	seenRooms[roomName] = true

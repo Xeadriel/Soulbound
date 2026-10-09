@@ -14,15 +14,19 @@ var target: Player
 @export var DAMAGE = 1
 
 func _ready() -> void:
-	# rooms are disabled by default, entering activates enemy
-	process_mode = PROCESS_MODE_INHERIT
 	hp = maxHp
 	players = get_tree().get_nodes_in_group("Players")
+	# until our room wakes up we only idle: body, hitbox and idle animation stay live,
+	# but the state machine (aggro, attacks) doesn't start
+	var room := Room.containing(self)
+	if room != null and not room.isAwake:
+		stateMachine.startOnReady = false
+		idle()
+		room.awakened.connect(wake, CONNECT_ONE_SHOT)
 
-func _physics_process(delta: float) -> void:
-	# enemies become room independent once they are activated
-	process_mode = PROCESS_MODE_PAUSABLE
-	super._physics_process(delta)
+## Lets the enemy start fighting.
+func wake() -> void:
+	stateMachine.start()
 
 func _onHpChanged() -> void:
 	if hp < 1:
