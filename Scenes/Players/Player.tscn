@@ -158,6 +158,12 @@ position = Vector2(-15.75, -2)
 scale = Vector2(78.5, 170)
 texture = SubResource("CanvasTexture_52ee3")
 
+[node name="BlockMarkerPivot" parent="." index="4"]
+z_index = 20
+
+[node name="ShieldMarkerPivot" parent="." index="5"]
+z_index = 20
+
 [connection signal="body_entered" from="AttackPivotPoint/LightAttacks/LightAttack0" to="." method="lightAttackHitSomething"]
 [connection signal="body_entered" from="AttackPivotPoint/LightAttacks/LightAttack1" to="." method="lightAttackHitSomething"]
 [connection signal="body_entered" from="AttackPivotPoint/LightAttacks/LightAttack2" to="." method="lightAttackHitSomething"]
