@@ -40,7 +40,13 @@ func handleActionInputs() -> bool:
 		transition(STATEATTACK)
 	elif InputBuffer.consumePress(input.heavyHit):
 		transition(STATEHEAVYATTACK)
-	elif InputBuffer.consumePress(input.dash):
+	else:
+		return handleUtilityInputs()
+	return true
+
+## Like handleActionInputs() without the attacks: dash, quick slots, interact.
+func handleUtilityInputs() -> bool:
+	if InputBuffer.consumePress(input.dash):
 		transition(STATEDASH)
 	elif consumeQuickSlotPress():
 		pass
@@ -49,6 +55,11 @@ func handleActionInputs() -> bool:
 	else:
 		return false
 	return true
+
+## Drops buffered attack presses so they don't fire after the current state ends.
+func discardAttackInputs() -> void:
+	InputBuffer.consumePress(input.hit)
+	InputBuffer.consumePress(input.heavyHit)
 
 ## Uses the item in the first pressed quick slot. Returns true if a quick slot button was pressed.
 func consumeQuickSlotPress() -> bool:
