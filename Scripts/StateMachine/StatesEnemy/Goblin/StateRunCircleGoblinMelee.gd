@@ -25,6 +25,10 @@ var timer4Telegraph: float
 
 func process(delta: float) -> void:
 	var distance := targetClosestPlayer()
+	if not canSeeTarget():
+		# the target slipped behind a wall: path around to it again
+		transition(RUN)
+		return
 	var inRangeThresh: bool = entity.atkRange + distanceThreshold >= distance
 
 	timer4DirChange -= delta

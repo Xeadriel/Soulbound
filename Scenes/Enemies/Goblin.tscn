@@ -844,6 +844,8 @@ autoplay = "idleFront"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0td7v")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
 [node name="RunCircleObstacleDetection" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 10

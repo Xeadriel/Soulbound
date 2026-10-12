@@ -1,6 +1,6 @@
 class_name StateRunEliteWizard extends StateEnemy
-## Runs towards the target until it is in attack range, then telegraphs an attack.
-## Used by the wizard and the elite wizard.
+## Runs along the navigation path towards the target until it is in attack range and
+## can see it, then telegraphs an attack. Used by the wizard and the elite wizard.
 
 @export var SPEED : int
 
@@ -8,14 +8,11 @@ func process(_delta: float) -> void:
 	var distance := targetClosestPlayer()
 
 	# not aggroed
-	if entity.aggroRange < distance:
+	if targetOutOfChaseRange():
 		transition(IDLE)
-	# close distance to attack
-	elif entity.atkRange < distance:
-		var direction := directionToTarget()
-		entity.velocity = direction * SPEED
-		entity.facing = Facing.fromVector(direction)
-		entity.run()
-	# attacking when in range
-	elif entity.atkRange >= distance:
+	# attacking when in range and nothing is in the way
+	elif distance <= entity.atkRange and canSeeTarget():
 		transition(TELEGRAPH)
+	# close distance to attack, around walls
+	else:
+		runTowardsTarget(SPEED)

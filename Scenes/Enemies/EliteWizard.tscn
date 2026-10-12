@@ -836,6 +836,8 @@ autoplay = "idleFront"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0td7v")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState")]
 script = ExtResource("3_12gck")
 currentState = NodePath("StateIdle")
