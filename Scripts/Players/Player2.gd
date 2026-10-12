@@ -1,8 +1,6 @@
 class_name Player2 extends Player
 ## Mage: fires magic shots and charges up a volley for the heavy attack.
 
-@export var DAMAGE : int = 1
-
 @export var magicShotSpawner : PackedScene = null
 
 @onready var spawnLocationMagicShot : Node2D = $AttackPivotPoint/LightAttackSpawnLocation
