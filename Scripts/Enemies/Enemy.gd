@@ -10,9 +10,17 @@ class_name Enemy extends Character
 @export var atkTime := 1.0
 ## How often paths and walking distances to the players are recalculated, in seconds.
 @export var repathInterval := 0.25
+## Enemies that don't collide with other enemies (no ENEMY in their collision mask, so they
+## can't jam doorways) push away from enemies closer than this instead. The body is 88 px wide.
+@export var separationRadius := 100.0
+## How fast that push moves the enemy at most, in px/s. Below the run speed, so an enemy
+## still squeezes past another one standing in a doorway.
+@export var separationSpeed := 60.0
 
 ## A path that ends further than this from a player means there is no way to them.
 const REACHABLE_TOLERANCE := 64.0
+## All enemies, so they can keep their distance from each other.
+const GROUP := &"Enemies"
 
 var players
 var target: Player
@@ -26,23 +34,38 @@ var target: Player
 var _nextRepathTime := 0.0
 var _walkingDistances: Dictionary[Player, float] = {}
 var _walkingDistancesExpireTime := 0.0
+var _isAwake := true
 
 @export var DAMAGE = 1
 
 func _ready() -> void:
 	hp = maxHp
+	add_to_group(GROUP)
 	players = get_tree().get_nodes_in_group("Players")
 	# until our room wakes up we only idle: body, hitbox and idle animation stay live,
 	# but the state machine (aggro, attacks) doesn't start
 	var room := Room.containing(self)
 	if room != null and not room.isAwake:
+		_isAwake = false
 		stateMachine.startOnReady = false
 		idle()
 		room.awakened.connect(wake, CONNECT_ONE_SHOT)
 
 ## Lets the enemy start fighting.
 func wake() -> void:
+	_isAwake = true
 	stateMachine.start()
+
+func _physics_process(delta: float) -> void:
+	if not _isAwake or get_collision_mask_value(PhysicsLayers.ENEMY):
+		super._physics_process(delta)
+		return
+	# push away from nearby enemies in every state, also while telegraphing or attacking.
+	# Only for this move: the states keep control of velocity.
+	var stateVelocity := velocity
+	velocity += separationDirection() * separationSpeed
+	super._physics_process(delta)
+	velocity = stateVelocity
 
 func _onHpChanged() -> void:
 	if hp < 1:
@@ -118,6 +141,21 @@ func hasLineOfSightTo(node: Node2D) -> bool:
 		excluded.append(p.get_rid())
 	query.exclude = excluded
 	return get_world_2d().direct_space_state.intersect_ray(query).is_empty()
+
+## Direction away from nearby enemies, stronger the closer they are. Length 0 to 1.
+func separationDirection() -> Vector2:
+	var push := Vector2.ZERO
+	for other: Node2D in get_tree().get_nodes_in_group(GROUP):
+		var offset := global_position - other.global_position
+		if other == self or offset.length_squared() >= separationRadius * separationRadius:
+			continue
+		var distance := offset.length()
+		if distance < 1.0:
+			# exactly on top of each other: each enemy splits off in its own direction
+			push += Vector2.RIGHT.rotated(deg_to_rad(get_instance_id() % 360))
+		else:
+			push += offset / distance * (1.0 - distance / separationRadius)
+	return push.limit_length(1.0)
 
 func _measureWalkingDistance(to: Vector2) -> float:
 	var path := NavigationServer2D.map_get_path(navAgent.get_navigation_map(), global_position, to, true)
