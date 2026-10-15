@@ -34,22 +34,24 @@ func _ready() -> void:
 	assert(owner is Enemy, "StateEnemy Class belongs only to Enemy class!")
 
 ## Targets the closest player (by walking distance) and returns the straight-line
-## distance to it.
+## distance to it. INF when there is no player, e.g. when running an enemy scene on its own.
 func targetClosestPlayer() -> float:
 	entity.target = entity.getClosestPlayer()
+	if entity.target == null:
+		return INF
 	return entity.global_position.distance_to(entity.target.global_position)
 
 ## Whether the target is close enough (walking) to start chasing it.
 func targetInAggroRange() -> bool:
-	return entity.walkingDistanceTo(entity.target) < entity.aggroRange
+	return entity.target != null and entity.walkingDistanceTo(entity.target) < entity.aggroRange
 
-## Whether the target got too far away (walking), or out of reach, to keep chasing it.
+## Whether the target got too far away (walking), out of reach, or is gone, to keep chasing it.
 func targetOutOfChaseRange() -> bool:
-	return entity.walkingDistanceTo(entity.target) > entity.aggroRange * entity.giveUpFactor
+	return entity.target == null or entity.walkingDistanceTo(entity.target) > entity.aggroRange * entity.giveUpFactor
 
 ## Whether nothing solid is between the enemy and its target.
 func canSeeTarget() -> bool:
-	return entity.hasLineOfSightTo(entity.target)
+	return entity.target != null and entity.hasLineOfSightTo(entity.target)
 
 ## Normalized direction from the enemy to its target.
 func directionToTarget() -> Vector2:
