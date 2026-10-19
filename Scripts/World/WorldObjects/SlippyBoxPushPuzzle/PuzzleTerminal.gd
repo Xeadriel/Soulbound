@@ -17,4 +17,3 @@ func onInteract(playerIndex: int) -> void:
 
 func onPuzzleSolved(state: bool) -> void:
 	$PropertyInteractable.process_mode = Node.PROCESS_MODE_DISABLED
-

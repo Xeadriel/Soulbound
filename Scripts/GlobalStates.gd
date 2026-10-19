@@ -5,7 +5,7 @@ extends Node
 
 ## Gives both players the whip in their bottom quick slot and some items at the
 ## start, for testing.
-const DEBUG_START_ITEMS := true
+const DEBUG_START_ITEMS := false
 
 var session: GameSession = null
 var projectileNode: Node
