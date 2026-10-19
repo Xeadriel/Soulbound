@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqfevetwhseag"]
+[gd_scene load_steps=2 format=3 uid="uid://dqfevetwhseag"]
 
 [ext_resource type="Script" uid="uid://dpjqoft4q4t3" path="res://Scripts/World/WorldObjects/EnemyCounter.gd" id="1_wbje5"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_wbje5"]
-
-[node name="EnemiesCounter" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_wbje5")
+[node name="EnemiesCounter" type="Node2D"]
 script = ExtResource("1_wbje5")
