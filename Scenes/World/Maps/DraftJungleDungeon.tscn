@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://cy4vn64vtg0f7"]
+[gd_scene load_steps=50 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_ewn0l"]
 [ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/UserInterface/AutoCamera.tscn" id="2_8p3qi"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://dy1c0bwsa7fng" path="res://Scripts/World/WorldObjects/Properties/PropertyCollidable.gd" id="18_pwrpc"]
 [ext_resource type="Script" uid="uid://bw6ikurratexn" path="res://Scripts/Enemies/EnemySpawner.gd" id="20_spawner"]
 [ext_resource type="PackedScene" uid="uid://cuxujo6x2vj3e" path="res://Scenes/Enemies/EliteWizard.tscn" id="23_vgay6"]
+[ext_resource type="Script" uid="uid://dr1qub3mwumle" path="res://Scripts/World/EnemyNavigation.gd" id="24_enemynav"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
 texture = ExtResource("1_ewn0l")
@@ -168,6 +169,8 @@ size = Vector2(712, 588)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgay6"]
 size = Vector2(1138, 939)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_enemynav"]
 
 [node name="TileMap" type="TileMapLayer"]
 z_index = -1
@@ -1169,6 +1172,11 @@ position = Vector2(216, 0)
 trackedEnemies = [NodePath("../EliteWizard")]
 
 [node name="Projectiles" type="Node" parent="2DObjects" groups=["ProjectileNode"]]
+
+[node name="EnemyNavigation" type="NavigationRegion2D" parent="." node_paths=PackedStringArray("tileMapLayer")]
+navigation_polygon = SubResource("NavigationPolygon_enemynav")
+script = ExtResource("24_enemynav")
+tileMapLayer = NodePath("..")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 

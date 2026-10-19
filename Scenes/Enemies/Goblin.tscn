@@ -830,7 +830,7 @@ size = Vector2(47, 107)
 
 [node name="Goblin" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 11
+collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_adqnq")
 atkRange = 125.0
@@ -844,6 +844,8 @@ autoplay = "idleFront"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0td7v")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="RunCircleObstacleDetection" type="Area2D" parent="."]
 collision_layer = 0

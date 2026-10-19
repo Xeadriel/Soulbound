@@ -1,14 +1,12 @@
 extends StateEnemy
-## Runs towards the target until it is in attack range, then starts circling.
+## Runs along the navigation path towards the target until it is in attack range and
+## can see it, then starts circling.
 
 func process(_delta: float) -> void:
 	var distance := targetClosestPlayer()
-	if entity.aggroRange < distance:
+	if targetOutOfChaseRange():
 		transition(IDLE)
-	elif entity.atkRange <= distance:
-		var direction := directionToTarget()
-		entity.velocity = direction * entity.SPEED
-		entity.facing = Facing.fromVector(direction)
-		entity.run()
-	else:
+	elif distance < entity.atkRange and canSeeTarget():
 		transition(RUNCIRCLE)
+	else:
+		runTowardsTarget(entity.SPEED)
