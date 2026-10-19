@@ -855,6 +855,7 @@ entity = NodePath("../..")
 
 [node name="StateTelegraph" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("8_6ahxr")
+duration = 1.0
 entity = NodePath("../..")
 
 [node name="StateStunned" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]

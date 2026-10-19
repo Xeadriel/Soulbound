@@ -4,4 +4,3 @@ class_name Goblin extends Enemy
 
 func attack() -> void:
 	meleeHitboxes.enable(facing)
-	playDirectional("attack")

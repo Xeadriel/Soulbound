@@ -8,6 +8,11 @@ class_name EliteWizard extends Enemy
 @export var runChance := 1
 
 @export var teleportLocationsRoot : Node2D
+
+## How much shorter the telegraph gets per hit while stunned, in seconds.
+const TELEGRAPH_SPEEDUP := 0.2
+## The telegraph never gets shorter than this, in seconds.
+const MIN_TELEGRAPH_DURATION := 0.4
 @onready var teleportLocations : Array = teleportLocationsRoot.get_children()
 
 func _ready() -> void:
@@ -18,12 +23,16 @@ func _ready() -> void:
 func takeDamage(amount: int, _source: Node2D = null) -> void:
 	if stateMachine.currentState.name == StateEnemy.STUNNED:
 		hp -= amount
-		atkTime += 0.2
-		telegraphTime += 0.2
+		speedUpTelegraph()
 		teleport()
 	else:
 		teleport()
 		stateMachine.interrupt(StateEnemy.TAUNT)
+
+## Each hit while stunned makes the telegraph shorter, down to MIN_TELEGRAPH_DURATION.
+func speedUpTelegraph() -> void:
+	var telegraph : StateEnemyAnimated = stateMachine.get_node(StateEnemy.TELEGRAPH)
+	telegraph.duration = maxf(MIN_TELEGRAPH_DURATION, telegraph.duration - TELEGRAPH_SPEEDUP)
 
 func teleport():
 	var randomIndex = randi() % len(teleportLocations)
@@ -39,5 +48,3 @@ func attack() -> void:
 	fireball.global_position = atkSpawnPoint.global_position
 	fireball.direction = fireball.global_position.direction_to(target.global_position)
 	Projectile.spawnParent(get_tree()).add_child(fireball)
-
-	playDirectional("attack")

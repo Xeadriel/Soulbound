@@ -22,8 +22,22 @@ func _physics_process(_delta: float) -> void:
 
 ## Plays "<base><Back|Front|Left|Right><extra>" for the current facing.
 ## Example: playDirectional("attack", "1") plays "attackFront1" when facing down.
-func playDirectional(base: String, extra: String = "") -> void:
-	animatedSprite.play(base + Facing.ANIM_SUFFIX[facing] + extra)
+## With a [param duration] above 0 the animation is sped up or slowed down to take
+## that many seconds; otherwise it plays at its own speed.
+func playDirectional(base: String, extra: String = "", duration: float = 0.0) -> void:
+	var animationName := base + Facing.ANIM_SUFFIX[facing] + extra
+	var speed := 1.0
+	if duration > 0:
+		speed = animationLength(animationName) / duration
+	animatedSprite.play(animationName, speed)
+
+## How long [param animationName] takes at normal speed, in seconds.
+func animationLength(animationName: String) -> float:
+	var frames := animatedSprite.sprite_frames
+	var totalFrameDuration := 0.0
+	for i in frames.get_frame_count(animationName):
+		totalFrameDuration += frames.get_frame_duration(animationName, i)
+	return totalFrameDuration / frames.get_animation_speed(animationName)
 
 ## Deals damage. [param source] is what caused it (attacker or projectile), if known.
 func takeDamage(_amount: int, _source: Node2D = null) -> void:

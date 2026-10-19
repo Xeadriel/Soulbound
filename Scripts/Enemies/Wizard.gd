@@ -14,4 +14,3 @@ func attack() -> void:
 	fireball.global_position = atkSpawnPoint.global_position
 	fireball.direction = fireball.global_position.direction_to(target.global_position)
 	Projectile.spawnParent(get_tree()).add_child(fireball)
-	playDirectional("attack")

@@ -1,7 +1,8 @@
 extends StateEnemyAnimated
 
 func _init() -> void:
-	animationPrefix = "attack"
+	animation = "attack"
+	keepTarget = true
 	nextState = IDLE
 
 func _onEnter(_data: Dictionary) -> void:
