@@ -21,9 +21,17 @@ class_name Enemy extends Character
 const REACHABLE_TOLERANCE := 64.0
 ## All enemies, so they can keep their distance from each other.
 const GROUP := &"Enemies"
+## No spot, e.g. no firingSpot picked.
+const NO_SPOT := Vector2.INF
+## What blocks sight and projectiles: wall tiles are on OBSTACLE, world objects' static
+## bodies on PLAYER (see PhysicsLayers).
+const _SIGHT_MASK := (1 << (PhysicsLayers.OBSTACLE - 1)) | (1 << (PhysicsLayers.PLAYER - 1))
 
 var players
 var target: Player
+## Where this enemy is on its way to attack from, so others pick different spots instead
+## of all crowding the same one. NO_SPOT when it isn't heading anywhere in particular.
+var firingSpot := NO_SPOT
 
 ## Melee hitboxes, only present on enemies with melee attacks.
 @onready var meleeHitboxes : DirectionalHitboxes = get_node_or_null("MeleeHitboxes")
@@ -133,14 +141,46 @@ func walkingDistanceTo(player: Player) -> float:
 ## Whether nothing solid (wall, world object) is between this enemy and [param node].
 ## Players and other enemies don't block the view.
 func hasLineOfSightTo(node: Node2D) -> bool:
-	# wall tiles are on OBSTACLE, world objects' static bodies on PLAYER (see PhysicsLayers)
-	var query := PhysicsRayQueryParameters2D.create(global_position, node.global_position,
-			PhysicsLayers.bit(PhysicsLayers.OBSTACLE) | PhysicsLayers.bit(PhysicsLayers.PLAYER))
-	var excluded: Array[RID] = [get_rid()]
-	for p in players:
-		excluded.append(p.get_rid())
-	query.exclude = excluded
+	var query := PhysicsRayQueryParameters2D.create(global_position, node.global_position, _SIGHT_MASK)
+	query.exclude = _sightExcludes()
 	return get_world_2d().direct_space_state.intersect_ray(query).is_empty()
+
+## Whether a projectile [param radius] wide flying from [param from] to [param node] gets
+## there without touching anything solid. Stricter than hasLineOfSightTo: a thin line of
+## sight past a wall corner can still be blocked for a projectile, and a start that
+## already touches a wall counts as blocked. Players and other enemies don't block it.
+func hasClearShot(from: Vector2, node: Node2D, radius: float) -> bool:
+	var shape := CircleShape2D.new()
+	shape.radius = radius
+	var query := PhysicsShapeQueryParameters2D.new()
+	query.shape = shape
+	query.transform = Transform2D(0.0, from)
+	query.motion = node.global_position - from
+	query.collision_mask = _SIGHT_MASK
+	query.exclude = _sightExcludes()
+	# [1, 1] when nothing is hit on the way, [0, 0] when the start is already blocked
+	return get_world_2d().direct_space_state.cast_motion(query)[0] >= 1.0
+
+## How crowded [param at] is by other enemies: each one closer than [param radius] to
+## it, or heading for a firingSpot that close, adds up to 1, more the closer it is.
+func crowding(at: Vector2, radius: float) -> float:
+	var total := 0.0
+	for other: Enemy in get_tree().get_nodes_in_group(GROUP):
+		if other == self:
+			continue
+		var distance := at.distance_to(other.global_position)
+		if other.firingSpot.is_finite():
+			distance = minf(distance, at.distance_to(other.firingSpot))
+		if distance < radius:
+			total += 1.0 - distance / radius
+	return total
+
+## Whether another enemy stands closer than [param radius] to this one.
+func isCrowded(radius: float) -> bool:
+	for other: Node2D in get_tree().get_nodes_in_group(GROUP):
+		if other != self and global_position.distance_squared_to(other.global_position) < radius * radius:
+			return true
+	return false
 
 ## Direction away from nearby enemies, stronger the closer they are. Length 0 to 1.
 func separationDirection() -> Vector2:
@@ -156,6 +196,25 @@ func separationDirection() -> Vector2:
 		else:
 			push += offset / distance * (1.0 - distance / separationRadius)
 	return push.limit_length(1.0)
+
+## The point on the navigation mesh closest to [param point], NO_SPOT when there is no
+## navigation mesh (yet).
+func closestNavigationPoint(point: Vector2) -> Vector2:
+	if not _hasNavigation():
+		return NO_SPOT
+	return NavigationServer2D.map_get_closest_point(navAgent.get_navigation_map(), point)
+
+## How far this enemy has to walk to reach [param point], INF when there is no way there.
+func walkingDistanceToPoint(point: Vector2) -> float:
+	if not _hasNavigation():
+		return global_position.distance_to(point)
+	return _measureWalkingDistance(point)
+
+func _sightExcludes() -> Array[RID]:
+	var excluded: Array[RID] = [get_rid()]
+	for p in players:
+		excluded.append(p.get_rid())
+	return excluded
 
 func _measureWalkingDistance(to: Vector2) -> float:
 	var path := NavigationServer2D.map_get_path(navAgent.get_navigation_map(), global_position, to, true)

@@ -60,7 +60,12 @@ func directionToTarget() -> Vector2:
 ## Runs along the navigation path to the target, around walls and world objects.
 ## Stands facing the target when there is nowhere closer to go.
 func runTowardsTarget(speed: float) -> void:
-	var direction := entity.pathDirectionTo(entity.target.global_position)
+	runTo(entity.target.global_position, speed)
+
+## Runs along the navigation path to [param destination], around walls and world objects.
+## Stands facing the target when there is nowhere closer to go.
+func runTo(destination: Vector2, speed: float) -> void:
+	var direction := entity.pathDirectionTo(destination)
 	entity.velocity = direction * speed
 	if direction == Vector2.ZERO:
 		entity.facing = entity.getDirectionToPlayer()
