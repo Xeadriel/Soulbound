@@ -13,7 +13,6 @@ const STRAFE = "StateStrafe"
 const SWIPE = "StateSwipe"
 const TELEGRAPH_SWIPE = "StateTelegraphSwipe"
 const THINKING = "StateThinking"
-const SACRIFICE = "StateSacrifice"
 const DAGGER_CONE = "StateDaggerCone"
 const TELEGRAPH_DAGGER_CONE = "StateTelegraphDaggerCone"
 const DAGGER_EXPLOSION = "StateDaggerExplosion"
@@ -32,6 +31,9 @@ func _ready() -> void:
 		entity = owner as Enemy
 	assert(entity != null, "Entity should not be null")
 	assert(owner is Enemy, "StateEnemy Class belongs only to Enemy class!")
+
+func getInterrupted(newState : String) -> void:
+	pass
 
 ## Targets the closest player and returns the distance to it.
 func targetClosestPlayer() -> float:

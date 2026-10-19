@@ -1,4 +1,4 @@
-[gd_scene load_steps=294 format=3 uid="uid://k5le5iauuik8"]
+[gd_scene load_steps=293 format=3 uid="uid://k5le5iauuik8"]
 
 [ext_resource type="Script" uid="uid://bcn44g4gb3bcc" path="res://Scripts/Enemies/MiniBossDeathHighPriest.gd" id="1_3l0ll"]
 [ext_resource type="PackedScene" uid="uid://buwms73pcarwm" path="res://Scenes/Enemies/DaggerCircling.tscn" id="2_tg00k"]
@@ -17,7 +17,6 @@
 [ext_resource type="Script" uid="uid://duf01t6bhsb6d" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateTelegraphCirclingDaggers.gd" id="11_gyvv3"]
 [ext_resource type="Script" uid="uid://4hykywlhrumg" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateAtkDaggerExplosion.gd" id="12_lppw1"]
 [ext_resource type="Script" uid="uid://u6eavhyo0s3c" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateThinking.gd" id="12_u4yqb"]
-[ext_resource type="Script" uid="uid://ctkwamixhth4e" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateSacrifice.gd" id="13_3jfg0"]
 [ext_resource type="Script" uid="uid://dxhb5pptc3ovt" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateAtkCirclingDaggers.gd" id="14_x02iw"]
 [ext_resource type="Script" uid="uid://djbwh7msglodh" path="res://Scripts/StateMachine/StatesEnemy/MiniBossDeathHighPriest/StateCastShield.gd" id="19_rfjik"]
 [ext_resource type="Script" uid="uid://b1rrq2x1k3pvw" path="res://Scripts/Enemies/DirectionalHitboxes.gd" id="melee_hitboxes"]
@@ -2156,7 +2155,7 @@ height = 108.0
 size = Vector2(152, 164)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3l0ll"]
-size = Vector2(47, 107)
+size = Vector2(100, 107)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_u4yqb"]
 
@@ -2169,7 +2168,7 @@ motion_mode = 1
 script = ExtResource("1_3l0ll")
 daggerCircleScene = ExtResource("2_tg00k")
 daggerConeScene = ExtResource("3_gyvv3")
-maxHp = 3
+maxHp = 9
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lc4gu")
@@ -2210,61 +2209,71 @@ entity = NodePath("../..")
 
 [node name="StateTeleport" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("6_x02iw")
+duration = 0.5
 entity = NodePath("../..")
 
 [node name="StateStrafe" type="Node" parent="StateMachine" node_paths=PackedStringArray("obstacleDetection", "entity")]
 script = ExtResource("5_hy7xe")
-minDuration4DirChange = null
-maxDuration4DirChange = null
-minDuration4Telegraph = null
-maxDuration4Telegraph = null
-duration4Obstacle = null
-distanceThreshold = null
 obstacleDetection = NodePath("../../MovingCollissionDetection")
 entity = NodePath("../..")
 
 [node name="StateThinking" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("12_u4yqb")
-entity = NodePath("../..")
-
-[node name="StateSacrifice" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
-script = ExtResource("13_3jfg0")
+baseWeights = Dictionary[String, int]({
+"StateCastShield": 5,
+"StateIdle": 5,
+"StateStrafe": 10,
+"StateTelegraphDaggerCircling": 5,
+"StateTelegraphDaggerCone": 5,
+"StateTelegraphDaggerExplosion": 5,
+"StateTelegraphSwipe": 10,
+"StateTeleport": 10
+})
 entity = NodePath("../..")
 
 [node name="StateTelegraphSwipe" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("7_lppw1")
+duration = 0.5
 entity = NodePath("../..")
 
 [node name="StateTelegraphDaggerCone" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("9_rfjik")
+duration = 1.5
 entity = NodePath("../..")
 
 [node name="StateTelegraphDaggerExplosion" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("10_tg00k")
+duration = 1.5
 entity = NodePath("../..")
 
 [node name="StateTelegraphDaggerCircling" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("11_gyvv3")
+duration = 2.0
 entity = NodePath("../..")
 
 [node name="StateSwipe" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("8_x02iw")
+duration = 0.5
 entity = NodePath("../..")
 
 [node name="StateDaggerCone" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("10_5yec7")
+duration = 0.5
 entity = NodePath("../..")
 
 [node name="StateDaggerExplosion" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("12_lppw1")
+duration = 0.5
 entity = NodePath("../..")
 
 [node name="StateDaggerCircling" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("14_x02iw")
+duration = 0.5
 entity = NodePath("../..")
 
 [node name="StateCastShield" type="Node" parent="StateMachine" node_paths=PackedStringArray("entity")]
 script = ExtResource("19_rfjik")
+duration = 1.0
 entity = NodePath("../..")
 
 [node name="AttackUp" type="Area2D" parent="."]
@@ -2277,11 +2286,12 @@ collision_mask = 3
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackUp"]
+position = Vector2(-24, 8.7738e-05)
 shape = SubResource("RectangleShape2D_3l0ll")
 
 [node name="Sprite2D" type="Sprite2D" parent="AttackUp"]
-position = Vector2(-9.34601e-05, 0.424103)
-scale = Vector2(46.8024, 105.328)
+position = Vector2(-25.9546, 0.424103)
+scale = Vector2(98.7114, 105.328)
 texture = SubResource("CanvasTexture_u4yqb")
 
 [node name="AttackDown" type="Area2D" parent="."]
@@ -2294,11 +2304,12 @@ collision_mask = 3
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackDown"]
+position = Vector2(32, -0.000116348)
 shape = SubResource("RectangleShape2D_3l0ll")
 
 [node name="Sprite2D" type="Sprite2D" parent="AttackDown"]
-position = Vector2(-0.466232, 0.424421)
-scale = Vector2(46.8024, 105.328)
+position = Vector2(27.4848, 0.424421)
+scale = Vector2(102.704, 105.328)
 texture = SubResource("CanvasTexture_u4yqb")
 
 [node name="AttackRight" type="Area2D" parent="."]
@@ -2310,11 +2321,12 @@ collision_mask = 3
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackRight"]
+position = Vector2(48, 0)
 shape = SubResource("RectangleShape2D_3l0ll")
 
 [node name="Sprite2D" type="Sprite2D" parent="AttackRight"]
-position = Vector2(-0.499998, 0.500004)
-scale = Vector2(47, 107)
+position = Vector2(36, 0.500004)
+scale = Vector2(120, 107)
 texture = SubResource("CanvasTexture_3jfg0")
 
 [node name="AttackLeft" type="Area2D" parent="."]
@@ -2326,11 +2338,12 @@ collision_mask = 3
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="AttackLeft"]
+position = Vector2(-24, 0)
 shape = SubResource("RectangleShape2D_3l0ll")
 
 [node name="Sprite2D" type="Sprite2D" parent="AttackLeft"]
-position = Vector2(0.500015, 0.500004)
-scale = Vector2(47, 107)
+position = Vector2(-25, 0.500004)
+scale = Vector2(98, 107)
 texture = SubResource("CanvasTexture_3jfg0")
 
 [node name="MeleeHitboxes" type="Node" parent="." node_paths=PackedStringArray("up", "down", "left", "right")]

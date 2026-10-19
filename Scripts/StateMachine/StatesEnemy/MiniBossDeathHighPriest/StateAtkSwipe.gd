@@ -1,8 +1,8 @@
 extends StateEnemyAnimated
 
 func _init() -> void:
-	animationPrefix = "swipe"
-	speed = Speed.SLOW
+	animation = "swipe"
+	keepTarget = true
 	nextState = THINKING
 
 func _onEnter(_data: Dictionary) -> void:

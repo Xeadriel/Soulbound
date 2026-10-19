@@ -1,15 +1,10 @@
-extends StateEnemyAnimated
+extends StateTelegraphSacrifice
+## The cast animation is the telegraph. The shield goes up when the minion dies.
 
 func _init() -> void:
-	animationPrefix = "castShield"
-	speed = Speed.TELEGRAPH_TIME
-	acquireTarget = false
-	stopMoving = false
+	animation = "castShield"
 	nextState = THINKING
 
-func _onEnter(_data: Dictionary) -> void:
-	entity.castShieldAnimation()
-
-func _onAnimationDone() -> void:
+func _onSacrifice(_sacrificePos: Vector2) -> void:
 	entity.castShield()
 	transition(nextState)

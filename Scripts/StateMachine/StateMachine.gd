@@ -39,10 +39,11 @@ func _physics_process(delta: float) -> void:
 	currentState.physicsProcess(delta)
 
 ## Forces a switch to another state from outside the state machine, e.g. when an
-## enemy gets stunned or taunted. States switch themselves by emitting `finished`.
+## enemy gets stunned or damaged to a certain point.
 ## Ignored before start().
 func interrupt(targetStatePath: String, data: Dictionary = {}) -> void:
 	if _started:
+		currentState.getInterrupted(targetStatePath)
 		_transition_to_next_state(targetStatePath, data)
 
 func _onAnimationFinished() -> void:

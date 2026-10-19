@@ -13,22 +13,27 @@ var center: Node2D
 var angle := 0.0
 var isLaunching := false
 
+func _enter_tree() -> void:
+	# off before the dagger takes part in physics, so it can't hit anything on spawn
+	$CollisionShape2D.disabled = true
+
 func _ready() -> void:
-	deactivateCollision()
+	# start on the orbit right away instead of at the spawn parent's origin
+	_updateOrbitPosition()
 
 func _physics_process(delta: float) -> void:
 	if isOrbiting:
 		angle += angularSpeed * delta
-		global_position = center.global_position + Vector2.RIGHT.rotated(angle) * radius
-		rotation = angle
+		_updateOrbitPosition()
 	elif isLaunching:
 		super._physics_process(delta)
 
+func _updateOrbitPosition() -> void:
+	global_position = center.global_position + Vector2.RIGHT.rotated(angle) * radius
+	rotation = angle
+
 func activateCollision() -> void:
 	cShape.set_deferred("disabled", false)
-
-func deactivateCollision() -> void:
-	cShape.set_deferred("disabled", true)
 
 func stopOrbiting() -> void:
 	isOrbiting = false

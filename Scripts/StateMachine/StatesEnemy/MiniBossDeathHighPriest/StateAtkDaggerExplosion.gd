@@ -1,10 +1,9 @@
 extends StateEnemyAnimated
 
 func _init() -> void:
-	animationPrefix = "daggerExplosion"
-	speed = Speed.SLOW
+	animation = "daggerExplosion"
+	keepTarget = true
 	nextState = THINKING
 
 func _onEnter(data: Dictionary) -> void:
-	entity.daggerExplosion()
 	entity.daggerExplosionAtk(data["sacrificePos"])

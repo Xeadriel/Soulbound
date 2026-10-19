@@ -30,6 +30,15 @@ static func containing(node: Node) -> Room:
 		parent = parent.get_parent()
 	return null
 
+## The rank-and-file enemies alive in this room: Goblins and Wizards, no bosses or
+## elites. The miniboss sacrifices these, and EnemySpawner caps its spawns by them.
+func minionEnemies() -> Array[Enemy]:
+	var result : Array[Enemy] = []
+	for child in get_children():
+		if (child is Goblin or child is Wizard) and not child.is_queued_for_deletion():
+			result.append(child)
+	return result
+
 func _onPlayerEntered() -> void:
 	GlobalStates.session.markRoomVisited(name)
 	if not wakeWhenBothPlayersInside:

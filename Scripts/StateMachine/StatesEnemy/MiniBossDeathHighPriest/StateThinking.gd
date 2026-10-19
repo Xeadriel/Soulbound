@@ -1,11 +1,11 @@
 extends StateEnemy
 ## Picks the boss's next action at random, weighted by how far away the closest
-## player is. Actions that need a sacrifice go through StateSacrifice first.
+## player is. Actions that cost a minion are left out while the room has none.
 
 ## Starting weight of each action. Higher means more likely.
 @export var baseWeights: Dictionary[String, int] = {
 	IDLE: 5,
-	STRAFE: 5,
+	STRAFE: 10,
 	TELEGRAPH_SWIPE: 5,
 	TELEGRAPH_DAGGER_EXPLOSION: 5,
 	TELEGRAPH_DAGGER_CONE: 5,
@@ -21,6 +21,7 @@ var weights: Dictionary[String, int]
 ## Counts how often the state was entered, so a decision delayed from an earlier
 ## visit can tell it is outdated.
 var _visit := 0
+## Actions that cost a minion (see StateTelegraphSacrifice).
 var actionsRequireSacrifice := [
 	TELEGRAPH_DAGGER_CIRCLING,
 	TELEGRAPH_DAGGER_EXPLOSION,
@@ -40,18 +41,23 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	var entityPos = entity.global_position
 	var distance = entityPos.distance_to(closestPlayer.global_position)
 
+	# if no shield
+	if not entity.hasShield():
+		weights[CAST_SHIELD] += 20
 	# player in melee range
-	if(distance < meleeRangeThreshold):
+	if(distance < meleeRangeThreshold and entity.hasShield()):
 		weights[TELEGRAPH_SWIPE] += 5
 	# player is too close
 	if(distance < tooCloseThreshold):
-		weights[TELEGRAPH_SWIPE] += 5
-		if(entity.currentShield <= 0):
+		# and shield
+		if(entity.hasShield()):
+			weights[TELEGRAPH_SWIPE] += 5
 			weights[TELEGRAPH_DAGGER_CONE] += 5
-		weights[TELEGRAPH_DAGGER_EXPLOSION] -= 10
-		weights[TELEGRAPH_DAGGER_CIRCLING] -= 10
-		weights[TELEPORT] += 5
-		weights[CAST_SHIELD] -= 5
+		else:
+			weights[TELEGRAPH_DAGGER_EXPLOSION] -= 10
+			weights[TELEGRAPH_DAGGER_CIRCLING] -= 10
+			weights[TELEPORT] += 10
+			weights[CAST_SHIELD] -= 5
 	# player is far enough
 	if(distance < farEnoughThreshold && distance > meleeRangeThreshold):
 		weights[TELEPORT] -= 5
@@ -62,6 +68,10 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	# player too far to melee
 	if(distance > meleeRangeThreshold):
 		weights[TELEGRAPH_SWIPE] = 0
+	# no minion left to pay for these
+	if not entity.canSacrifice():
+		for action in actionsRequireSacrifice:
+			weights[action] = 0
 	decideNextState()
 
 func decideNextState() -> void:
@@ -77,8 +87,5 @@ func decideNextState() -> void:
 	for k in weights:
 		accumul += maxi(weights[k], 0)
 		if r < accumul :
-			if(actionsRequireSacrifice.has(k)):
-				transition(SACRIFICE, {"nextState": k})
-			else:
-				transition(k)
+			transition(k)
 			return

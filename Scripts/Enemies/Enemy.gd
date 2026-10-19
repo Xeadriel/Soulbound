@@ -2,8 +2,6 @@ class_name Enemy extends Character
 
 @export var atkRange := 100.0
 @export var aggroRange:= 500.0
-@export var telegraphTime := 1.0
-@export var atkTime := 1.0
 
 var players
 var target: Player
@@ -55,6 +53,13 @@ func getClosestPlayer() -> Player:
 			closestPlayer = p
 	return closestPlayer
 
+## Tint of a minion the miniboss is about to sacrifice.
+const SACRIFICE_TINT := Color(1.0, 0.3, 0.3)
+
+## Shows that the miniboss picked this enemy as the sacrifice for its next ability.
+func setMarkedForSacrifice(marked: bool) -> void:
+	animatedSprite.modulate = SACRIFICE_TINT if marked else Color.WHITE
+
 # --- animations ---
 
 func idle():
@@ -69,9 +74,6 @@ func run():
 func stopAttack() -> void:
 	if meleeHitboxes != null:
 		meleeHitboxes.disableAll()
-
-func telegraphAttack() -> void:
-	playDirectional("telegraph")
 
 # signal when area2D collides with something
 func hitSomething(body: Node2D) -> void:
