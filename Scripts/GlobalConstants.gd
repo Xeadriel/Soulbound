@@ -8,10 +8,18 @@ enum ItemIndices {
 	NOTHING, # TODO: make locations where we find 'nothing' but its 
 			 # actually an item thats tracked with an achievement 
 	WHIP,
-	POTION,
+	## A bottle (key item). What each bottle holds is in GameSession.bottles.
+	BOTTLE,
 	SMALL_KEY,
 	PIECES_OF_EIGHT
 	# insert new items here
+}
+
+## What a bottle holds. New fluids go here, not into ItemIndices.
+enum BottleContent {
+	EMPTY,
+	## Heals the drinker fully.
+	POTION,
 }
 
 enum QuickSlotIndices {

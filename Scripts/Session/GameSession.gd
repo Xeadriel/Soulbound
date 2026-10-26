@@ -4,6 +4,8 @@ class_name GameSession extends Resource
 
 signal inventoryChanged(item: GlobalConstants.ItemIndices, count: int)
 signal quickSlotsChanged(playerIndex: int)
+## A bottle was added, filled or emptied.
+signal bottlesChanged
 
 const PLAYER_COUNT := 2
 const QUICK_SLOT_COUNT := 4
@@ -11,6 +13,9 @@ const QUICK_SLOT_COUNT := 4
 @export var inventory : Dictionary[GlobalConstants.ItemIndices, int] = {}
 ## quickSlots[playerIndex][GlobalConstants.QuickSlotIndices] = item id
 @export var quickSlots : Array[Array] = []
+## What each bottle the players own holds, one entry per bottle. Both players share
+## them. Bottles are never used up; inventory[BOTTLE] is how many there are.
+@export var bottles : Array[GlobalConstants.BottleContent] = []
 ## Names of the rooms the players have been in (used as a set).
 @export var seenRooms : Dictionary[String, bool] = {}
 ## Name of the room a player entered last, empty before the first room.
@@ -45,6 +50,39 @@ func removeItem(item : GlobalConstants.ItemIndices, amount : int = 1) -> bool:
 		return false
 	setItemCount(item, getItemCount(item) - amount)
 	return true
+
+# --- bottles ---
+
+## Gives the players another bottle holding [param content].
+func addBottle(content := GlobalConstants.BottleContent.EMPTY) -> void:
+	bottles.append(content)
+	setItemCount(GlobalConstants.ItemIndices.BOTTLE, bottles.size())
+	bottlesChanged.emit()
+
+## How many bottles hold [param content].
+func bottlesWith(content : GlobalConstants.BottleContent) -> int:
+	return bottles.count(content)
+
+## Empties the first bottle holding [param content]. Returns false (and changes
+## nothing) if no bottle holds it.
+func takeFromBottle(content : GlobalConstants.BottleContent) -> bool:
+	var index := bottles.find(content)
+	if index == -1:
+		return false
+	bottles[index] = GlobalConstants.BottleContent.EMPTY
+	bottlesChanged.emit()
+	return true
+
+## Fills every empty bottle with [param content]. Returns how many were filled.
+func fillEmptyBottles(content : GlobalConstants.BottleContent) -> int:
+	var filled := 0
+	for i in bottles.size():
+		if bottles[i] == GlobalConstants.BottleContent.EMPTY:
+			bottles[i] = content
+			filled += 1
+	if filled > 0:
+		bottlesChanged.emit()
+	return filled
 
 # --- quick slots ---
 

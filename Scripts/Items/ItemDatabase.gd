@@ -5,7 +5,7 @@ class_name ItemDatabase
 
 const _ITEM_PATHS : Dictionary[GlobalConstants.ItemIndices, String] = {
 	GlobalConstants.ItemIndices.WHIP: "res://Resources/Items/Whip.tres",
-	GlobalConstants.ItemIndices.POTION: "res://Resources/Items/Potion.tres",
+	GlobalConstants.ItemIndices.BOTTLE: "res://Resources/Items/Bottle.tres",
 	GlobalConstants.ItemIndices.SMALL_KEY: "res://Resources/Items/SmallKey.tres",
 	GlobalConstants.ItemIndices.PIECES_OF_EIGHT: "res://Resources/Items/PiecesOfEight.tres",
 }

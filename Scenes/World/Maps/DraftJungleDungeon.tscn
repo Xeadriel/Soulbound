@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://cy4vn64vtg0f7"]
+[gd_scene load_steps=51 format=4 uid="uid://cy4vn64vtg0f7"]
 
 [ext_resource type="Texture2D" uid="uid://bao6e6slw0mpr" path="res://Assets/TileSet/wall_sheetx2.png" id="1_ewn0l"]
 [ext_resource type="PackedScene" uid="uid://dbu1akcu0w885" path="res://Scenes/UserInterface/AutoCamera.tscn" id="2_8p3qi"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://bw6ikurratexn" path="res://Scripts/Enemies/EnemySpawner.gd" id="20_spawner"]
 [ext_resource type="PackedScene" uid="uid://cuxujo6x2vj3e" path="res://Scenes/Enemies/EliteWizard.tscn" id="23_vgay6"]
 [ext_resource type="Script" uid="uid://dr1qub3mwumle" path="res://Scripts/World/EnemyNavigation.gd" id="24_enemynav"]
+[ext_resource type="PackedScene" path="res://Scenes/World/WorldObjects/HealingSpring.tscn" id="25_healingspring"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
 texture = ExtResource("1_ewn0l")
@@ -758,6 +759,11 @@ z_as_relative = false
 y_sort_enabled = true
 position = Vector2(813, 359)
 amount = 1
+
+[node name="HealingSpring" parent="2DObjects/Rooms/MiniBossHallway" instance=ExtResource("25_healingspring")]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(813, 159)
 
 [node name="MiniBossRoom" type="Node2D" parent="2DObjects/Rooms"]
 z_as_relative = false

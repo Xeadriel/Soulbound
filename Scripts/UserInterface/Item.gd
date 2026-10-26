@@ -23,3 +23,8 @@ func refresh() -> void:
 func setItemAmount(amount: int) -> void:
 	itemAmount = amount
 	$MarginContainer/ItemCount.text = str(itemAmount)
+
+## Hides the count, for items where it means nothing (e.g. the whip).
+func clearItemAmount() -> void:
+	itemAmount = 0
+	$MarginContainer/ItemCount.text = ""

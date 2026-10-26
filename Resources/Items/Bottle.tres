@@ -6,9 +6,9 @@
 [resource]
 script = ExtResource("1_item")
 id = 2
-displayName = "Potion"
-description = "yes daddy"
+displayName = "Bottle"
+description = "Holds one fluid at a time. Drink a potion from it to heal fully."
 icon = ExtResource("2_icon")
 category = 1
 equippable = true
-useState = ""
+useState = "StateUseBottle"

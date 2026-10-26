@@ -26,6 +26,7 @@ func _ready() -> void:
 		return
 
 	player.damaged.connect(playerTookDamage)
+	player.healed.connect(playerHealed)
 	hp = player.hp
 
 	hearts = []
@@ -48,3 +49,9 @@ func playerTookDamage(dmgValue: int) -> void:
 		if hp == 0: return
 		hp = clamp(hp - 1, 0, player.maxHp)
 		hearts[hp].play(TAKEDAMAGE)
+
+func playerHealed(healValue: int) -> void:
+	for i in range(healValue):
+		if hp == player.maxHp: return
+		hearts[hp].play(HEAL)
+		hp += 1
