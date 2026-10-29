@@ -11,6 +11,7 @@ How items are stored and shown (inventory, quick slots) is in [ui.md](ui.md).
 - Or they choose to **entrap the monster** instead: no extra reward and a few scripted monster outbreaks, but ultimately a good ending where he is not revived.
 - Alternative: helping or not helping only makes him stronger or weaker, he revives either way at the end, and the players simply side for or against him.
 - The chalice revives the players by sending them to the underworld, which they fight their way out of. Show this in the tutorial by having the players die.
+- **First use (Decided, not built):** the first dungeon's end boss can't die without the chalice. Its first version offers the simple choice (kill with the chalice or entrap) and only saves it for later dungeons, with no reward or consequence yet ([bosses.md](bosses.md#end-boss-dungeon-1)).
 
 ## Whip (dungeon 1 item)
 

@@ -37,6 +37,19 @@
 
 How Ideas A and B fit together is still open (see [open-questions.md](open-questions.md#story)).
 
+## Soul personalities
+
+**Status:** Idea
+
+- A Severed's **features reflect the personalities** of the souls it came from. These are instincts, not intelligence: it stays brainless.
+- **Monsters** have common personalities, set **per monster type**. In the first dungeon, goblins, wizards and elite wizards all have the same three: **greedy, lust, cowardly** (see [design/enemies.md](design/enemies.md#overview-built)).
+- **NPCs** will have their own, specific personalities that shape the monster they become (later design).
+- Personalities are **never shown or made obvious** to the player.
+- First use: the features of the first dungeon's end boss ([design/bosses.md](design/bosses.md#personality-features)).
+- Ideas for later personalities, not used by any monster yet:
+  - **Hungry:** the Severed devours its own shed minions to heal, unless they die first.
+  - **Loyal:** its minions guard it and take hits for it.
+
 ## The Hunter Order
 
 - A loosely organized task force of independent people who clean up monsters, help with and prevent outbreaks, and clear infestations.
@@ -70,4 +83,6 @@ How Ideas A and B fit together is still open (see [open-questions.md](open-quest
 
 ## First dungeon story
 
-The miniboss of the first dungeon is a crazed elf, maybe the leader of the "Death Cult" (name pending). Fight details are in [design/bosses.md](design/bosses.md).
+The miniboss of the first dungeon is a crazed elf, maybe the leader of the "Death Cult" (name pending). He **flees and survives** the fight (Decided). Fight details are in [design/bosses.md](design/bosses.md).
+
+The dungeon ends with the Severed born from everyone the players killed in it ([design/bosses.md](design/bosses.md#end-boss-dungeon-1)). The High Priest isn't part of it, since he didn't die.

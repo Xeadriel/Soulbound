@@ -13,6 +13,9 @@ Undecided things from all docs, in one place. When one gets decided, update the 
   - How do Ideas A and B fit together: are they alternatives, or do both hold? (Suggestion by Claude, not decided: the faction believes it creates them, but what it really calls up are fragments of the death god.)
   - Idea B: how do the numbered fragments relate to the chalice and the twins in the Whole/Hole twist? Are the twins numbered too, and how many fragments are there?
   - Where in the game does the first hint at a human-like Severed appear?
+- Soul personalities ([story.md](story.md#soul-personalities)):
+  - What specific personalities do NPCs get, and how do they shape the monster they become?
+  - When do hungry and loyal come in, and for which monsters?
 
 ## Combat and players
 
@@ -25,7 +28,8 @@ Undecided things from all docs, in one place. When one gets decided, update the 
 - Goblin HP (design: 1–2 hits, built: 3) and goblin wizard HP (design: 1, built: 3).
 - Should goblin wizards run away from melee players (design) or hold their position (built)?
 - Miniboss: is it weird that the circling daggers appear before the sacrifice? ([bosses.md](design/bosses.md#miniboss-death-high-priest-dungeon-1))
-- End boss: how it is created or appears, a scripted death at the boss, the reward for killing it with the chalice, and whether kill counts should vary between runs. ([bosses.md](design/bosses.md#end-boss-dungeon-1))
+- Miniboss: make him flee in the game instead of dying (the design says he flees and survives). ([bosses.md](design/bosses.md#miniboss-death-high-priest-dungeon-1))
+- End boss: how it is created or appears, a scripted death at the boss, and the reward for killing it with the chalice. ([bosses.md](design/bosses.md#open-questions))
 
 ## Dungeon 1
 

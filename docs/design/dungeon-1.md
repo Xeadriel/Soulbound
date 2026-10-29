@@ -48,7 +48,7 @@
 | RuinedDormitoryHallway | goblins, wizards; leads to 4 small dormitory rooms |
 | RuinedDormitoryTopLeft / TopRight / BotLeft / BotRight | empty so far |
 | RuinedDormitoryBig | elite wizard; small key chest appears when it is defeated |
-| Area behind MainHallway's 2nd locked door | the lever that opens `DungeonExit`; planned end boss arena ([bosses.md](bosses.md#end-boss-dungeon-1)) |
+| Area behind MainHallway's 2nd locked door | the lever that opens `DungeonExit`. Planned (not built): becomes its own room **ChiefRoom**, the end boss arena. It wakes when both players are inside, a gate closes behind them, and the lever stays hidden until the boss is dealt with ([bosses.md](bosses.md#arena)) |
 
 Systems the rooms use:
 - **Rooms** ([Room.gd](../../Scripts/World/WorldObjects/Room.gd)): enemies idle until the room wakes up; boss rooms wake only when both players are inside.

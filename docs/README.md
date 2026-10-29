@@ -6,7 +6,7 @@ Soulbound is a local two-player co-op, top-down action adventure in the style of
 
 | File | What's in it |
 |---|---|
-| [story.md](story.md) | World, lore, the Severed (and the rare human-like Severed), the chalice, the Hunter Order, ending ideas |
+| [story.md](story.md) | World, lore, the Severed (the rare human-like Severed, soul personalities), the chalice, the Hunter Order, ending ideas |
 | [design/players.md](design/players.md) | The two player characters, combat, blocking, controls |
 | [design/enemies.md](design/enemies.md) | Regular enemies: goblin, goblin wizard, elite wizard, ideas |
 | [design/bosses.md](design/bosses.md) | Miniboss (Death High Priest) and the end boss draft |

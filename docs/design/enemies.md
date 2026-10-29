@@ -12,6 +12,8 @@ Values from the enemy scenes in `Scenes/Enemies/`. Rooms in the map can override
 | Goblin wizard | `Wizard.tscn` | 3 | 400 | 500 (default) | `Fireball`, 2 damage |
 | Elite wizard | `EliteWizard.tscn` | 3 | 800 | 800 | `Fireball`, 2 damage, teleports |
 
+**Personalities** (Idea, not built): every monster type above has the same hidden personalities, **greedy, lust, cowardly**. Players never see them; they only shape the Severed the dead become, such as the end boss's features. See [story.md](../story.md#soul-personalities).
+
 All enemies share [Enemy.gd](../../Scripts/Enemies/Enemy.gd):
 - They follow the navigation mesh around walls and world objects ([EnemyNavigation.gd](../../Scripts/World/EnemyNavigation.gd)).
 - They pass through each other but keep some distance.
