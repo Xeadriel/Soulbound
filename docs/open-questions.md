@@ -7,6 +7,12 @@ Undecided things from all docs, in one place. When one gets decided, update the 
 - Does the god inside the chalice want to be revived, and how much do the heroes know? ([story.md](story.md#the-blood-chalice-and-the-death-god))
 - Name of the death cult.
 - Which ending structure: the chalice "kill vs. entrap" paths, the "helping only makes him stronger or weaker" variant, or the Whole/Hole twist? ([story.md](story.md#ending-ideas))
+- Human-like Severed ([story.md](story.md#human-like-severed-name-pending)):
+  - What are they called?
+  - The faction (Idea A): how does it create them, what is it called, and what is its goal? Is it connected to the death cult, or to the groups that want to bring back the death god?
+  - How do Ideas A and B fit together: are they alternatives, or do both hold? (Suggestion by Claude, not decided: the faction believes it creates them, but what it really calls up are fragments of the death god.)
+  - Idea B: how do the numbered fragments relate to the chalice and the twins in the Whole/Hole twist? Are the twins numbered too, and how many fragments are there?
+  - Where in the game does the first hint at a human-like Severed appear?
 
 ## Combat and players
 

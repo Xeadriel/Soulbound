@@ -6,9 +6,36 @@
 
 - Sentient beings (various races; not important for now, more can be added later) became **immortal** millennia ago by waging a war against the **god of death**. Immortal does not mean invincible.
 - Side effect: people who die from **accidents, violence and other non-natural causes** become monsters, because their souls have nowhere to go. These monsters are the **Severed** (severed souls). Each one reflects the defining aspects of the person it was.
+- **Severed are brainless** (Decided): nothing but hunger and anger. The person's defining aspects shape the monster's form, but nothing of their mind remains. This holds no matter how many die or who dies. The only exception is the extremely rare [human-like Severed](#human-like-severed-name-pending).
 - Not much of this is understood. Maybe it was once, but that knowledge is long lost.
 - The world struggles with **overpopulation** and constant **monster outbreaks**. Some groups want to bring the god of death back; others look for a solution to the severings.
 - Early keyword notes: immortality, the death god is dead, an apocalypse from war, monsters born from deaths by unnatural causes and stress.
+
+## Human-like Severed (name pending)
+
+**Status:** Idea
+
+- A special kind of Severed that shows **intelligence and a personality**, and behaves like a person.
+- **Extremely rare:** the elite of elites, on a very high level.
+- They are **never created by ordinary deaths**, regardless of the quantity or the quality of the beings that die.
+
+### Idea A: a faction that creates them
+
+- A **very small organization** knows how to create human-like Severed.
+- The creatures themselves are **members** of the organization.
+
+### Idea B: numbered fragments of the death god
+
+- Human-like Severed are **numbered**, and are actually **fragments of the death god**.
+- This builds on the fragment idea of the [ending plot twist](#ending-ideas).
+
+### Story timing
+
+- Early in the game, it is firmly established that Severed are brainless monsters of hunger and anger.
+- Human-like Severed appear at most as rare hints before that.
+- The fragment reveal (Idea B) belongs in the **mid-to-late story**, once the brainless Severed are well established.
+
+How Ideas A and B fit together is still open (see [open-questions.md](open-questions.md#story)).
 
 ## The Hunter Order
 
@@ -39,6 +66,7 @@
 
 - See the chalice choices in [design/items.md](design/items.md#chalice-of-death): killing bosses with the chalice leads toward a "bad ending" that revives the death god; entrapping them leads toward a good ending.
 - **Ending plot twist (William's idea):** the death god knew he would be defeated and split himself and his power into fragments: one in the chalice and two living, moving through the world (the player characters). The players have to choose to become **Whole** or **Hole**.
+  - Related: the idea that the numbered [human-like Severed](#idea-b-numbered-fragments-of-the-death-god) are further fragments of the death god. How the two ideas fit together is open.
 
 ## First dungeon story
 

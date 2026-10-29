@@ -75,7 +75,7 @@ Point system: assign points to each action, then divide each action's points by 
 
 **Concept:** a creature born from the living beings the players killed in this dungeon. This is the chalice idea that "enemies come back as one big dungeon monster at the end of each dungeon run" ([items.md](items.md#chalice-of-death)).
 
-**Lore:** nobody dies a natural death anymore since the death god is gone. Beings killed by violence or accidents become Severed, monsters that reflect their defining aspects. The end boss is the Severed born from this dungeon's dead.
+**Lore:** nobody dies a natural death anymore since the death god is gone. Beings killed by violence or accidents become Severed, monsters that reflect their defining aspects. The end boss is the Severed born from this dungeon's dead. Being born from many deaths doesn't make it one of the rare [human-like Severed](../story.md#human-like-severed-name-pending): it is an ordinary, brainless one.
 
 **Open:** how exactly the boss is created or appears is not decided yet.
 - Rejected: the dead bodies crawling together and fusing into one.
