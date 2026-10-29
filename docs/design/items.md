@@ -36,8 +36,10 @@ How items are stored and shown (inventory, quick slots) is in [ui.md](ui.md).
 - The players start with one bottle of potion.
 - **Refill spot:** a healing spring fills all empty bottles and never runs dry. One stands in MiniBossHallway, before the miniboss.
 
-**Built** on branch `feature/drinkable-potions` (not merged yet):
-- `GameSession.bottles`, `StateUseBottle` and the `HealingSpring` world object.
+**Built:**
+- `GameSession.bottles` and [StateUseBottle.gd](../../Scripts/StateMachine/StatesPlayer/StateUseBottle.gd).
+- The [HealingSpring](../../Scripts/World/WorldObjects/HealingSpring.gd) world object.
+- Definition: `Resources/Items/Bottle.tres`.
 - Needed later: a drinking animation and bottle icons per content.
 
 ## Dungeon keys and money
