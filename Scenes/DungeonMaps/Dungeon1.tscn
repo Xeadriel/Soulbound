@@ -164,3 +164,4 @@ sprite_frames = SubResource("SpriteFrames_3wbry")
 
 [node name="CurrentLocationSign" parent="." instance=ExtResource("3_8oat2")]
 visible = false
+layout_mode = 0

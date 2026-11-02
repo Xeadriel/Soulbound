@@ -2,7 +2,7 @@ extends StateEnemy
 ## Circles around the target at attack range, changing direction now and then,
 ## until it is time to attack.
 
-@export var SPEED : float = 100.0
+@export var SPEED : float = 50.0
 @export var minDuration4DirChange: float = 3
 @export var maxDuration4DirChange: float = 7
 
@@ -12,7 +12,7 @@ extends StateEnemy
 @export var duration4Obstacle: float = 0.5
 
 # when the distance is slightly off its fine but otherwise needs correction
-@export var distanceThreshold: float = 10
+@export var distanceThreshold: float = 5
 
 @export var obstacleDetection: Area2D
 

@@ -22,18 +22,18 @@ enum PuzzleState {
 	SOLVED,
 }
 
-const CELL_SIZE := 64.0
+const CELL_SIZE := 16.0
 ## Blocks are positioned by their top-left corner; this is the offset to their center.
 const BLOCK_CENTER_OFFSET := Vector2(CELL_SIZE / 2, CELL_SIZE / 2)
 ## How fast the box slides, in pixels per second.
-const BOX_SPEED := 300.0
+const BOX_SPEED := 75.0
 ## Safety limit in case a slide is not stopped by any wall.
 const MAX_SLIDE_CELLS := 100
 ## Tolerance for "the box has reached the next cell".
 const ARRIVAL_EPSILON := 0.0001
 ## Half the box's size when checking whether it overlaps a block. Slightly smaller
 ## than half a cell, so a box resting in a cell doesn't count as touching its neighbors.
-const BOX_HALF_EXTENT := 31.0
+const BOX_HALF_EXTENT := 7.75
 
 ## The roles are fixed: player 1 pushes, player 2 toggles.
 const PUSHER_PLAYER_INDEX := 0

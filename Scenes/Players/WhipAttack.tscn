@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bt7t10hfomw11" path="res://Assets/placeholder.png" id="2_0d3t0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_un3mk"]
-size = Vector2(30, 30)
+size = Vector2(15, 15)
 
 [node name="WhipAttack" type="Area2D"]
 collision_layer = 16
@@ -17,7 +17,7 @@ shape = SubResource("RectangleShape2D_un3mk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 1, 1)
-scale = Vector2(0.273148, 0.38141)
+scale = Vector2(0.136574, 0.190705)
 texture = ExtResource("2_0d3t0")
 
 [connection signal="body_entered" from="." to="." method="hitSomething"]

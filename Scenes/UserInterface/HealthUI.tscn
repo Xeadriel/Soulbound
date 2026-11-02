@@ -89,34 +89,34 @@ animations = [{
 [node name="HealthUI" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 16.0
+offset_bottom = 16.0
 script = ExtResource("1_ntbqr")
 
 [node name="HalfHeartLeft" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(24, 40)
+position = Vector2(4, 8)
 sprite_frames = SubResource("SpriteFrames_ntbqr")
 animation = &"takeDamage"
 autoplay = "idle"
 
 [node name="HalfHeartRight" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(56, 40)
+position = Vector2(12, 8)
 sprite_frames = SubResource("SpriteFrames_cu4sl")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="HalfHeartLeftPlayer2" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(24, 40)
+position = Vector2(4, 8)
 sprite_frames = SubResource("SpriteFrames_ntbqr")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="HalfHeartRightPlayer2" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(56, 40)
+position = Vector2(12, 8)
 sprite_frames = SubResource("SpriteFrames_cu4sl")
 animation = &"idle"
 autoplay = "idle"

@@ -4,7 +4,7 @@ class_name EliteWizard extends Enemy
 
 @export var fireballScene : PackedScene = null
 
-@export var panicRunThresholdDistance := 300
+@export var panicRunThresholdDistance := 150
 @export var runChance := 1
 
 @export var teleportLocationsRoot : Node2D
@@ -44,7 +44,7 @@ func teleport():
 func attack() -> void:
 	var fireball = fireballScene.instantiate()
 	var atkDirection = global_position.direction_to(target.global_position)
-	atkSpawnPoint.global_position = global_position + atkDirection * 100
+	atkSpawnPoint.global_position = global_position + atkDirection * 50
 	fireball.global_position = atkSpawnPoint.global_position
 	fireball.direction = fireball.global_position.direction_to(target.global_position)
 	Projectile.spawnParent(get_tree()).add_child(fireball)

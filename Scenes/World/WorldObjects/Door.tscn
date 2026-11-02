@@ -7,19 +7,19 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t03iu"]
 atlas = ExtResource("2_qpyks")
-region = Rect2(0, 0, 128, 192)
+region = Rect2(0, 0, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3h2b"]
 atlas = ExtResource("2_qpyks")
-region = Rect2(0, 192, 128, 192)
+region = Rect2(0, 96, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qpyks"]
 atlas = ExtResource("2_qpyks")
-region = Rect2(0, 384, 128, 192)
+region = Rect2(0, 192, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vpyv"]
 atlas = ExtResource("2_qpyks")
-region = Rect2(0, 576, 128, 192)
+region = Rect2(0, 288, 64, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wj75x"]
 animations = [{
@@ -57,10 +57,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpyks"]
-size = Vector2(128, 128)
+size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s3h2b"]
-size = Vector2(128, 12)
+size = Vector2(64, 6)
 
 [node name="Door" type="AnimatedSprite2D"]
 y_sort_enabled = true
@@ -70,7 +70,7 @@ script = ExtResource("1_dxfhr")
 
 [node name="PropertyInteractable" type="Area2D" parent="."]
 visible = false
-position = Vector2(0, 32)
+position = Vector2(0, 16)
 script = ExtResource("3_t03iu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyInteractable"]
@@ -78,7 +78,7 @@ shape = SubResource("RectangleShape2D_qpyks")
 
 [node name="PropertyCollidable" type="Area2D" parent="."]
 visible = false
-position = Vector2(0, 32)
+position = Vector2(0, 16)
 script = ExtResource("5_qpyks")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyCollidable"]

@@ -26,10 +26,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5u7w"]
-size = Vector2(108, 78)
+size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_co6tc"]
-size = Vector2(154, 124)
+size = Vector2(96, 96)
 
 [node name="Chest" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_les2w")

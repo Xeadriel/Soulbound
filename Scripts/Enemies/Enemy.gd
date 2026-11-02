@@ -1,8 +1,8 @@
 class_name Enemy extends Character
 
-@export var atkRange := 100.0
+@export var atkRange := 50.0
 ## Starts chasing a player who is closer than this, measured along the walking path.
-@export var aggroRange:= 500.0
+@export var aggroRange:= 250.0
 ## Stops chasing once the player is this many times aggroRange away (walking), so an
 ## enemy taking a detour around a wall doesn't give up halfway.
 @export var giveUpFactor := 1.25
@@ -11,14 +11,14 @@ class_name Enemy extends Character
 ## How often paths and walking distances to the players are recalculated, in seconds.
 @export var repathInterval := 0.25
 ## Enemies that don't collide with other enemies (no ENEMY in their collision mask, so they
-## can't jam doorways) push away from enemies closer than this instead. The body is 88 px wide.
-@export var separationRadius := 100.0
+## can't jam doorways) push away from enemies closer than this instead. The body is 44 px wide.
+@export var separationRadius := 50.0
 ## How fast that push moves the enemy at most, in px/s. Below the run speed, so an enemy
 ## still squeezes past another one standing in a doorway.
-@export var separationSpeed := 60.0
+@export var separationSpeed := 30.0
 
 ## A path that ends further than this from a player means there is no way to them.
-const REACHABLE_TOLERANCE := 64.0
+const REACHABLE_TOLERANCE := 32.0
 ## All enemies, so they can keep their distance from each other.
 const GROUP := &"Enemies"
 ## No spot, e.g. no firingSpot picked.

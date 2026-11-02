@@ -1,6 +1,6 @@
 extends StateEnemy
 
-@export var slowDownSpeed := 200.0
+@export var slowDownSpeed := 100.0
 
 func process(_delta: float) -> void:
 	targetClosestPlayer()

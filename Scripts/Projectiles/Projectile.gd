@@ -2,7 +2,7 @@ class_name Projectile extends Area2D
 ## Base for everything that flies in a straight line, damages what it hits and
 ## disappears. Subclasses decide what they can damage.
 
-@export var speed : float = 500.0
+@export var speed : float = 250.0
 @export var damage : int = 1
 
 var direction : Vector2

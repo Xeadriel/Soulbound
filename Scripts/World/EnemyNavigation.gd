@@ -12,7 +12,7 @@ const OBSTACLE_GROUP := &"navigationObstacles"
 @export var tileMapLayer: TileMapLayer
 ## How far paths stay away from walls and objects. Roughly the enemies' body radius:
 ## larger snags less on corners, smaller fits through tighter gaps.
-@export var agentRadius := 48.0
+@export var agentRadius := 24.0
 ## Changes within this many seconds are merged into a single rebake.
 @export var rebakeDelay := 0.1
 

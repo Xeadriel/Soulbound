@@ -23,13 +23,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_co6tc"]
-size = Vector2(125, 113)
+size = Vector2(96, 96)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g7syt"]
-radius = 42.0119
+radius = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qa5va"]
-radius = 89.0056
+radius = 48.0104
 
 [node name="Lever" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_5301d")
@@ -40,7 +40,6 @@ script = ExtResource("1_qa5va")
 script = ExtResource("3_12oq8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyInteractable"]
-position = Vector2(1.5, -1.5)
 shape = SubResource("RectangleShape2D_co6tc")
 
 [node name="PropertyCollidable" type="Area2D" parent="."]

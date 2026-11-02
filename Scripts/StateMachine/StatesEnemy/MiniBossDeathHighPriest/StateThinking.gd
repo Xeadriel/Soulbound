@@ -13,9 +13,9 @@ extends StateEnemy
 	TELEPORT: 5,
 	CAST_SHIELD: 5,
 }
-@export var meleeRangeThreshold: float = 200.0
-@export var tooCloseThreshold: float = 100.0
-@export var farEnoughThreshold: float = 300.0
+@export var meleeRangeThreshold: float = 100.0
+@export var tooCloseThreshold: float = 50.0
+@export var farEnoughThreshold: float = 150.0
 
 var weights: Dictionary[String, int]
 ## Counts how often the state was entered, so a decision delayed from an earlier

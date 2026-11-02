@@ -5,18 +5,18 @@ class_name StateRunEliteWizard extends StateEnemy
 ## Used by the wizard and the elite wizard.
 
 @export var SPEED : int
-## Radius of the shot for the clear-shot check: the fireball's (11) plus a margin.
-@export var shotRadius := 14.0
+## Radius of the shot for the clear-shot check: the fireball's (5.6) plus a margin.
+@export var shotRadius := 7.0
 ## Each wizard prefers to shoot from a random distance in this range, as a fraction of
 ## atkRange, so wizards don't all line up on the same circle around the target.
 @export var minRangeFactor := 0.6
 @export var maxRangeFactor := 0.9
 ## Firing spots closer than this to another enemy (or where it is heading) count as crowded.
-@export var firingSpotSpacing := 160.0
+@export var firingSpotSpacing := 80.0
 ## How much a fully crowded spot costs, as extra walking distance in px.
-@export var crowdCost := 300.0
+@export var crowdCost := 150.0
 ## Doesn't start shooting with another enemy closer than this, unless at its firing spot.
-@export var personalSpace := 120.0
+@export var personalSpace := 60.0
 ## Roughly how often a better firing spot is looked for, in seconds.
 @export var repickInterval := 0.5
 ## A spot that is this much cheaper than the current one is worth switching to.
@@ -27,14 +27,14 @@ class_name StateRunEliteWizard extends StateEnemy
 const SPOTS_PER_RING := 16
 const INNER_RING := 0.7
 ## A candidate further than this from the navigation mesh is inside a wall or object.
-const MAX_SNAP_DISTANCE := 32.0
+const MAX_SNAP_DISTANCE := 16.0
 ## The firing spot counts as reached this close to it.
-const ARRIVE_DISTANCE := 32.0
+const ARRIVE_DISTANCE := 16.0
 ## Only this many of the closest candidates get their walking distance measured.
 const WALK_CHECKS := 4
 ## The candidate check uses a slightly wider shot than shooting itself, so standing a bit
 ## off the spot (the separation push) still leaves a clear shot.
-const CANDIDATE_SHOT_MARGIN := 8.0
+const CANDIDATE_SHOT_MARGIN := 4.0
 
 var _rangeFactor := 1.0
 var _repickTimer := 0.0

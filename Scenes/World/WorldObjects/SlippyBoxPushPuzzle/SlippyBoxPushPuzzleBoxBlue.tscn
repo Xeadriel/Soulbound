@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bwynw8g2wrp38" path="res://Scripts/World/WorldObjects/SlippyBoxPushPuzzle/SlippyBoxPushPuzzleBoxBlue.gd" id="1_ue118"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8boa"]
-size = Vector2(63.8, 63.8)
+size = Vector2(15.8, 15.8)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l8boa"]
 animations = [{
@@ -28,5 +28,4 @@ script = ExtResource("1_ue118")
 shape = SubResource("RectangleShape2D_l8boa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1.19209e-07, 7.15256e-07)
 sprite_frames = SubResource("SpriteFrames_l8boa")

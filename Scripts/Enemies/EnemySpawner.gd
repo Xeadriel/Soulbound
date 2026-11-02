@@ -19,9 +19,9 @@ class_name EnemySpawner extends Node2D
 ## Random amount added to or taken from every wait, so spawns don't feel like clockwork.
 @export var intervalJitter := 3.0
 ## Spawn points closer than this to a player are skipped.
-@export var minPlayerDistance := 250.0
+@export var minPlayerDistance := 125.0
 ## Spawn points closer than this to a minion are skipped.
-@export var minEnemyDistance := 100.0
+@export var minEnemyDistance := 50.0
 ## How long the warning shows at the spawn point before the enemy appears. 0 disables it.
 @export var warningTime := 0.75
 ## Blinks at the spawn point during the warning. Without one there is only the delay.

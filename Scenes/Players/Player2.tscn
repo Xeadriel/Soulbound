@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://ceausjasnh7kj"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Players/PlayerBase.tscn" id="0_base"]
+[ext_resource type="PackedScene" uid="uid://cxe3gl4qxx6l6" path="res://Scenes/Players/PlayerBase.tscn" id="0_base"]
+[ext_resource type="SpriteFrames" uid="uid://cxfl8ikj7ylqf" path="res://Resources/SpriteFrames/Player2Frames.tres" id="0_frames"]
 [ext_resource type="Script" uid="uid://cc45sc7rs3o0b" path="res://Scripts/Players/Player2.gd" id="1_gv048"]
 [ext_resource type="PackedScene" uid="uid://bkrktx4p7r5ug" path="res://Scenes/Players/MagicShot.tscn" id="2_p0nx4"]
 [ext_resource type="Script" uid="uid://dhfuuek8vxv6m" path="res://Scripts/StateMachine/StatesPlayer/StateChargeUpAttack.gd" id="8_bfxnb"]
+[ext_resource type="Script" uid="uid://butqqxl8aknvm" path="res://Scripts/StateMachine/StatesPlayer/StateBlockRedirect.gd" id="9_blockredirect"]
 [ext_resource type="Resource" path="res://Resources/Input/Player2Input.tres" id="input_profile"]
-[ext_resource type="SpriteFrames" path="res://Resources/SpriteFrames/Player2Frames.tres" id="0_frames"]
-[ext_resource type="Script" path="res://Scripts/StateMachine/StatesPlayer/StateBlockRedirect.gd" id="9_blockredirect"]
 
 [node name="Player2" instance=ExtResource("0_base")]
 script = ExtResource("1_gv048")
@@ -21,31 +21,32 @@ animation = &"dashBack"
 [node name="StateAttack" parent="StateMachine" index="2"]
 COOLDOWN = 1000
 
-[node name="StateHeavyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+[node name="StateHeavyAttack" type="Node" parent="StateMachine" index="6" node_paths=PackedStringArray("player")]
 script = ExtResource("8_bfxnb")
 player = NodePath("../..")
 
-[node name="StateBlock" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+[node name="StateBlock" type="Node" parent="StateMachine" index="7" node_paths=PackedStringArray("player")]
 script = ExtResource("9_blockredirect")
-SPEED = 50
+SPEED = 25
 player = NodePath("../..")
 
-[node name="LightAttackSpawnLocation" type="Node2D" parent="AttackPivotPoint"]
-position = Vector2(65, 0)
+[node name="LightAttackSpawnLocation" type="Node2D" parent="AttackPivotPoint" index="1"]
+position = Vector2(40, 0)
 
-[node name="HeavyAttackSpawnLocations" type="Node2D" parent="AttackPivotPoint"]
+[node name="HeavyAttackSpawnLocations" type="Node2D" parent="AttackPivotPoint" index="2"]
+position = Vector2(30, 0)
 
-[node name="1" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations"]
-position = Vector2(64, -32)
+[node name="1" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations" index="0"]
+position = Vector2(8, -16)
 
-[node name="2" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations"]
-position = Vector2(64, 32)
+[node name="2" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations" index="1"]
+position = Vector2(8, 16)
 
-[node name="3" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations"]
-position = Vector2(64, 0)
+[node name="3" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations" index="2"]
+position = Vector2(8, 0)
 
-[node name="4" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations"]
-position = Vector2(88, -16)
+[node name="4" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations" index="3"]
+position = Vector2(16, -8)
 
-[node name="5" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations"]
-position = Vector2(88, 16)
+[node name="5" type="Node2D" parent="AttackPivotPoint/HeavyAttackSpawnLocations" index="4"]
+position = Vector2(16, 8)

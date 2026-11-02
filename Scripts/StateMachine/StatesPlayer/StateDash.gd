@@ -1,7 +1,7 @@
 class_name StateDash extends StatePlayer
 
 @export var DASH_DELAY : float = 0.2
-@export var DASH_SPEED : float = 800
+@export var DASH_SPEED : float = 400
 @export var DASH_COOLDOWN : float = 600
 var dashTimer : float = 0
 var lastDashTimeStamp : float = 0

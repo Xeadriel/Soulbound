@@ -1,17 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dehht20jmbr6h"]
+[gd_scene load_steps=5 format=3 uid="uid://dehht20jmbr6h"]
 
 [ext_resource type="Script" uid="uid://cpnsoaj4crx7c" path="res://Scripts/Enemies/Fireball.gd" id="1_bcuy3"]
 [ext_resource type="Texture2D" uid="uid://1oxg0tdndklm" path="res://Assets/Wizard/Fireball.png" id="1_vfhfp"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bcuy3"]
-atlas = ExtResource("1_vfhfp")
-region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pqxrk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bcuy3")
+"texture": ExtResource("1_vfhfp")
 }],
 "loop": true,
 "name": &"Fireball",
@@ -19,17 +15,16 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pqxrk"]
-radius = 11.1803
+radius = 5.59015
 
 [node name="Fireball" type="Area2D"]
 collision_layer = 0
 collision_mask = 9
 script = ExtResource("1_bcuy3")
-speed = 200.0
+speed = 50.0
 damage = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(2.84217e-14, -1)
 scale = Vector2(1.0625, 1.3125)
 sprite_frames = SubResource("SpriteFrames_pqxrk")
 animation = &"Fireball"

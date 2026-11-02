@@ -7,7 +7,7 @@ class_name MiniBossDeathHighPriest extends Enemy
 @export var daggerCircleScene: PackedScene
 @export var daggerConeScene: PackedScene
 @export var bossArea: Area2D
-@export var teleportRange := 300
+@export var teleportRange := 150
 @export var currentShield: float:
 	set(newShield):
 		currentShield = newShield
@@ -15,7 +15,7 @@ class_name MiniBossDeathHighPriest extends Enemy
 		if is_node_ready():
 			shieldSprite.visible = currentShield > 0
 
-@export var SPEED := 100
+@export var SPEED := 50
 
 var projectileNode: Node
 ## Daggers spawned by the circling telegraph that have not been launched yet.
@@ -189,7 +189,7 @@ func teleport() -> void:
 	var targetPos = Vector2.ZERO
 	while(colliding):
 		var angle := randf() * TAU
-		var radius := randf() * 100 + teleportRange
+		var radius := randf() * 50 + teleportRange
 		targetPos = global_position + Vector2.RIGHT.rotated(angle) * radius
 		if isValidTeleportPos(targetPos):
 			colliding = false

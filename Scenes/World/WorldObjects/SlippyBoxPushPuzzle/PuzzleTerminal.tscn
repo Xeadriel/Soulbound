@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://day27nflhuxcp"]
 
-[ext_resource type="Texture2D" uid="uid://i4p766erjo4r" path="res://Assets/UI Pack OS/panel_grey_bolts_dark.png" id="1_o5ua0"]
+[ext_resource type="Texture2D" uid="uid://bt7t10hfomw11" path="res://Assets/placeholder.png" id="1_hcgoa"]
 [ext_resource type="Script" uid="uid://dy1c0bwsa7fng" path="res://Scripts/World/WorldObjects/Properties/PropertyCollidable.gd" id="2_6rlfi"]
 [ext_resource type="Script" uid="uid://b15ci3kl8mon3" path="res://Scripts/World/WorldObjects/SlippyBoxPushPuzzle/PuzzleTerminal.gd" id="2_hcgoa"]
 [ext_resource type="Script" uid="uid://cro3bhfcbtv0j" path="res://Scripts/World/WorldObjects/Properties/PropertyInteractable.gd" id="3_jkh0d"]
@@ -9,7 +9,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_o5ua0")
+"texture": ExtResource("1_hcgoa")
 }],
 "loop": true,
 "name": &"default",
@@ -17,10 +17,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jkh0d"]
-radius = 64.0
+radius = 32.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hcgoa"]
-size = Vector2(200, 200)
+size = Vector2(96, 96)
 
 [node name="PuzzleTerminal" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_jkh0d")

@@ -10,7 +10,7 @@ extends StateEnemy
 @export var duration4Obstacle: float = 0.5
 
 # when the distance is slightly off its fine but otherwise needs correction
-@export var distanceThreshold: float = 100
+@export var distanceThreshold: float = 50
 
 @export var obstacleDetection: Area2D
 

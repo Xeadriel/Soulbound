@@ -17,8 +17,8 @@ const IDLE = "idle"
 const TAKEDAMAGE = "takeDamage"
 const HEAL = "heal"
 
-## Horizontal distance between two hearts of the same half.
-const HEART_SPACING := 64 + 12
+## Horizontal distance between two hearts of the same half: heart width (16) plus a 3px gap.
+const HEART_SPACING := 16 + 3
 
 func _ready() -> void:
 	if player == null:

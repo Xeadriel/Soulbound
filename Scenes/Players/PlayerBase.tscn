@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bt7t10hfomw11" path="res://Assets/placeholder.png" id="9_placeholder"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_body"]
-radius = 44.0
-height = 108.0
+radius = 22
+height = 54
 
 [node name="PlayerBase" type="CharacterBody2D" groups=["Players"]]
 y_sort_enabled = true
@@ -34,12 +34,12 @@ currentState = NodePath("StateIdle")
 
 [node name="StateIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("3_idle")
-SLOWDOWNSPEED = 40
+SLOWDOWNSPEED = 20
 player = NodePath("../..")
 
 [node name="StateRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("4_run")
-SPEED = 250
+SPEED = 125
 player = NodePath("../..")
 
 [node name="StateAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
@@ -67,11 +67,11 @@ y_sort_enabled = true
 
 [node name="Start" type="Node2D" parent="AttackPivotPoint/WhipAttack"]
 y_sort_enabled = true
-position = Vector2(85, 0)
+position = Vector2(42.5, 0)
 
 [node name="Goal" type="Node2D" parent="AttackPivotPoint/WhipAttack"]
 y_sort_enabled = true
-position = Vector2(372, 0)
+position = Vector2(186, 0)
 
 [node name="BlockMarkerPivot" type="Node2D" parent="."]
 visible = false
@@ -81,8 +81,8 @@ y_sort_enabled = true
 [node name="Sprite2D" type="Sprite2D" parent="BlockMarkerPivot"]
 self_modulate = Color(0.4, 0.8, 1, 1)
 y_sort_enabled = true
-position = Vector2(70, 0)
-scale = Vector2(0.11, 1.28)
+position = Vector2(35, 0)
+scale = Vector2(0.055, 0.64)
 texture = ExtResource("9_placeholder")
 
 [node name="ShieldMarkerPivot" type="Node2D" parent="."]
@@ -93,6 +93,6 @@ y_sort_enabled = true
 [node name="Sprite2D" type="Sprite2D" parent="ShieldMarkerPivot"]
 self_modulate = Color(0.4, 0.8, 1, 1)
 y_sort_enabled = true
-position = Vector2(70, 0)
-scale = Vector2(0.11, 1.28)
+position = Vector2(35, 0)
+scale = Vector2(0.055, 0.64)
 texture = ExtResource("9_placeholder")
