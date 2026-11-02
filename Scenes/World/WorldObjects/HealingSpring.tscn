@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://Scripts/World/WorldObjects/HealingSpring.gd" id="1_spring"]
+[ext_resource type="Script" uid="uid://cro3bhfcbtv0j" path="res://Scripts/World/WorldObjects/Properties/PropertyInteractable.gd" id="2_interactable"]
+[ext_resource type="Script" uid="uid://dy1c0bwsa7fng" path="res://Scripts/World/WorldObjects/Properties/PropertyCollidable.gd" id="3_collidable"]
+[ext_resource type="Texture2D" uid="uid://bt7t10hfomw11" path="res://Assets/placeholder.png" id="4_placeholder"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_spring"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_placeholder")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_interact"]
+size = Vector2(160, 160)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_body"]
+radius = 48.0
+
+[node name="HealingSpring" type="AnimatedSprite2D"]
+self_modulate = Color(0.5, 0.8, 1, 1)
+sprite_frames = SubResource("SpriteFrames_spring")
+script = ExtResource("1_spring")
+
+[node name="PropertyInteractable" type="Area2D" parent="."]
+script = ExtResource("2_interactable")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyInteractable"]
+shape = SubResource("RectangleShape2D_interact")
+
+[node name="PropertyCollidable" type="Area2D" parent="."]
+script = ExtResource("3_collidable")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyCollidable"]
+shape = SubResource("CircleShape2D_body")
+
+[node name="CollisionStaticBody" type="StaticBody2D" parent="PropertyCollidable"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PropertyCollidable/CollisionStaticBody"]
+shape = SubResource("CircleShape2D_body")
+
+[connection signal="body_entered" from="PropertyInteractable" to="PropertyInteractable" method="onBodyEntered"]
+[connection signal="body_exited" from="PropertyInteractable" to="PropertyInteractable" method="onBodyExited"]

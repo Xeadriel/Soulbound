@@ -3,6 +3,8 @@ class_name Character extends CharacterBody2D
 ## StateMachine: players, enemies and later NPCs.
 
 signal damaged(amount: int)
+## [param amount] is the hp actually gained, never past maxHp.
+signal healed(amount: int)
 signal died
 
 @export var maxHp: int = 6

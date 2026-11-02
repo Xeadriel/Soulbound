@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://bw6ikurratexn" path="res://Scripts/Enemies/EnemySpawner.gd" id="20_spawner"]
 [ext_resource type="PackedScene" uid="uid://cuxujo6x2vj3e" path="res://Scenes/Enemies/EliteWizard.tscn" id="23_vgay6"]
 [ext_resource type="Script" uid="uid://dr1qub3mwumle" path="res://Scripts/World/EnemyNavigation.gd" id="24_enemynav"]
+[ext_resource type="PackedScene" path="res://Scenes/World/WorldObjects/HealingSpring.tscn" id="25_healingspring"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cs1ky"]
 texture = ExtResource("1_ewn0l")
@@ -720,6 +721,11 @@ z_as_relative = false
 y_sort_enabled = true
 position = Vector2(229, 180)
 amount = 1
+
+[node name="HealingSpring" parent="2DObjects/Rooms/MiniBossHallway" instance=ExtResource("25_healingspring")]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(813, 159)
 
 [node name="MiniBossRoom" type="Node2D" parent="2DObjects/Rooms"]
 z_as_relative = false

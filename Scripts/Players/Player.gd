@@ -61,6 +61,14 @@ func takeDamage(amount: int, source: Node2D = null) -> void:
 		died.emit()
 	damaged.emit(amount)
 
+## Restores up to [param amount] hp, never past maxHp.
+func heal(amount: int) -> void:
+	var gained := mini(amount, maxHp - hp)
+	if gained <= 0:
+		return
+	hp += gained
+	healed.emit(gained)
+
 # own block uses own facing, a block from the partner uses the partner's facing
 func _blocksHitFrom(source: Node2D) -> bool:
 	var hitFrom := Facing.fromDominantAxis(source.global_position - global_position)
