@@ -30,6 +30,10 @@ window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/markdown_docs_viewer/plugin.cfg")
+
 [global_group]
 
 Players="contains all players"
