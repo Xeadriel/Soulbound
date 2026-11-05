@@ -79,6 +79,8 @@ Point system: assign points to each action, then divide each action's points by 
 
 **Lore:** nobody dies a natural death anymore since the death god is gone. Beings killed by violence or accidents become Severed, monsters that reflect their defining aspects. The end boss is the Severed born from this dungeon's dead. Being born from many deaths doesn't make it one of the rare [human-like Severed](../story.md#human-like-severed-name-pending): it is an ordinary, brainless one.
 
+**Look:** like every Severed, it is half dead and half alive and covered by a translucent veil whose end flutters like a tail ([what the Severed look like](../story.md#what-the-severed-look-like)). On top of that come the parts of the souls it carries.
+
 Two layers shape it:
 - **What** the souls were (goblin, wizard, elite wizard) gives it **parts and attacks**.
 - **Who** they were (their [soul personalities](../story.md#soul-personalities)) gives it **extra features**.

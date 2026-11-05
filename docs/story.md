@@ -11,6 +11,24 @@
 - The world struggles with **overpopulation** and constant **monster outbreaks**. Some groups want to bring the god of death back; others look for a solution to the severings.
 - Early keyword notes: immortality, the death god is dead, an apocalypse from war, monsters born from deaths by unnatural causes and stress.
 
+## What the Severed look like
+
+![Severed concept sketch](images/severed-concept.svg)
+
+**Status:** Decided, apart from the details marked Draft.
+
+All Severed share two marks, whatever else they look like:
+- **Half dead, half alive.** Like the Norse goddess Hel, who is described as half living flesh and half dead and black. It shows that a Severed is **neither dead nor alive**: its soul has nowhere to go (see [the death god and the underworld](#the-blood-chalice-and-the-death-god)).
+  - The living half looks like the person or creature it was.
+  - The dead half is dark and corpse-like, with bone showing.
+- **A semi-translucent veil.** A veil or scarf covers the body, and its **end flutters in the wind like a tail**.
+
+These marks are the same for every Severed, ordinary or [human-like](#human-like-severed-name-pending). Everything else about its form reflects the person it was (see [soul personalities](#soul-personalities)).
+
+**Draft:**
+- The veil's color: purple-ish.
+- The split runs vertically down the middle, as in common depictions of Hel.
+
 ## Human-like Severed (name pending)
 
 **Status:** Idea
@@ -18,6 +36,7 @@
 - A special kind of Severed that shows **intelligence and a personality**, and behaves like a person.
 - **Extremely rare:** the elite of elites, on a very high level.
 - They are **never created by ordinary deaths**, regardless of the quantity or the quality of the beings that die.
+- They still carry the shared marks of all Severed: half dead and half alive, and the veil ([what the Severed look like](#what-the-severed-look-like)).
 
 ### Idea A: a faction that creates them
 
@@ -41,7 +60,7 @@ How Ideas A and B fit together is still open (see [open-questions.md](open-quest
 
 **Status:** Idea
 
-- A Severed's **features reflect the personalities** of the souls it came from. These are instincts, not intelligence: it stays brainless.
+- A Severed's **features reflect the personalities** of the souls it came from. These are instincts, not intelligence: it stays brainless. They come on top of the marks every Severed shares ([what the Severed look like](#what-the-severed-look-like)).
 - **Monsters** have common personalities, set **per monster type**. In the first dungeon, goblins, wizards and elite wizards all have the same three: **greedy, lust, cowardly** (see [design/enemies.md](design/enemies.md#overview-built)).
 - **NPCs** will have their own, specific personalities that shape the monster they become (later design).
 - Personalities are **never shown or made obvious** to the player.
