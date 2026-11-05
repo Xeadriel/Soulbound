@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="410" viewBox="0 0 680 410" role="img"><title>Severed concept sketch</title><desc>A humanoid Severed seen from the front: the left half is living skin with a normal eye, the right half is dead, dark grey-blue with a hollow eye socket, bare cheekbone, ribs and bony fingers. A semi-translucent purple veil covers the head and body, and its end flutters out to the right like a tail. A smaller copy at roughly sprite size sits at the bottom right.</desc>
+<defs>
+<clipPath id="sevLeft"><rect x="0" y="0" width="240" height="410"/></clipPath>
+<clipPath id="sevRight"><rect x="240" y="0" width="440" height="410"/></clipPath>
+<g id="sevFig"><circle cx="240" cy="108" r="32"/><rect x="228" y="136" width="24" height="16"/><path d="M196 160 Q240 146 284 160 L276 262 Q240 272 204 262 Z"/><path d="M198 164 Q178 200 176 246 L190 248 Q194 208 210 178 Z"/><path d="M282 164 Q302 200 304 246 L290 248 Q286 208 270 178 Z"/><circle cx="183" cy="254" r="8"/><circle cx="297" cy="254" r="8"/><path d="M208 262 L204 372 L228 372 L236 268 Z"/><path d="M244 268 L252 372 L276 372 L272 262 Z"/></g>
+<g id="sevDetails"><path d="M240 76 L242 90 L238 104 L242 118 L238 140 L242 170 L238 200 L242 230 L238 262 L240 270" fill="none" stroke="#2a2135" stroke-width="1.2"/><ellipse cx="225" cy="104" rx="6" ry="4" fill="#ffffff"/><circle cx="226" cy="104" r="2.4" fill="#3a2a20"/><path d="M217 96 Q225 92 232 96" fill="none" stroke="#6b4a32" stroke-width="1.5"/><ellipse cx="255" cy="104" rx="7" ry="8" fill="#14161c"/><circle cx="256" cy="103" r="1.6" fill="#c8b6f0"/><path d="M250 118 Q262 124 270 116" fill="none" stroke="#d9d4c7" stroke-width="2"/><path d="M228 124 Q234 127 240 125" fill="none" stroke="#8a4b3a" stroke-width="1.5"/><path d="M240 124 L254 124" stroke="#d9d4c7" stroke-width="3" stroke-dasharray="2 1.5"/><path d="M244 182 Q262 176 278 182 M244 196 Q262 190 278 196 M244 210 Q262 204 277 210 M244 224 Q260 218 276 224" fill="none" stroke="#d9d4c7" stroke-width="2"/><path d="M292 260 L290 272 M297 262 L297 275 M302 260 L304 272" stroke="#d9d4c7" stroke-width="2" stroke-linecap="round"/></g>
+<g id="sevVeil" fill="#8e6bbf" fill-opacity="0.36" stroke="#6a4fa0" stroke-width="1"><path d="M200 122 C198 82 220 66 240 66 C260 66 282 82 282 122 C276 96 262 84 240 84 C218 84 204 96 200 122 Z"/><path d="M196 150 C214 140 266 140 286 150 L294 200 C296 230 292 250 288 264 C266 278 214 278 192 264 C186 240 186 210 190 180 Z"/><path d="M284 236 C320 228 336 262 372 250 C404 238 414 208 446 214 C468 218 480 236 500 226 L496 240 C476 252 462 236 446 232 C416 228 404 262 372 270 C334 280 318 252 288 262 Z"/></g>
+</defs>
+<rect x="0" y="0" width="680" height="410" rx="12" fill="#f4efe6"/>
+<ellipse cx="240" cy="380" rx="72" ry="8" fill="#2a2135" fill-opacity="0.15"/>
+<use href="#sevFig" fill="#e0b48e" clip-path="url(#sevLeft)"/>
+<use href="#sevFig" fill="#4a5363" clip-path="url(#sevRight)"/>
+<use href="#sevFig" fill="none" stroke="#2a2135" stroke-width="1.2"/>
+<use href="#sevDetails"/>
+<use href="#sevVeil"/>
+<path d="M330 286 C346 290 356 284 366 290 M420 252 C432 256 442 250 452 256" fill="none" stroke="#6a4fa0" stroke-width="1" stroke-opacity="0.6"/>
+<g fill="none" stroke="#8a8090" stroke-width="0.75" stroke-dasharray="3 3"><path d="M102 88 L202 98"/><path d="M134 210 L196 210"/><path d="M324 136 L280 188"/><path d="M498 258 L488 238"/></g>
+<g font-family="sans-serif" font-size="13" fill="#3a3340"><text x="70" y="92">veil</text><text x="54" y="214">living half</text><text x="328" y="134">dead half</text><text x="500" y="272">veil tail</text><text x="582" y="392" text-anchor="middle">about sprite size</text></g>
+<ellipse cx="572" cy="370" rx="22" ry="3" fill="#2a2135" fill-opacity="0.15"/>
+<g transform="translate(500,256) scale(0.32)"><use href="#sevFig" fill="#e0b48e" clip-path="url(#sevLeft)"/><use href="#sevFig" fill="#4a5363" clip-path="url(#sevRight)"/><use href="#sevFig" fill="none" stroke="#2a2135" stroke-width="3"/><use href="#sevVeil"/></g>
+</svg>
