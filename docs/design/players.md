@@ -79,3 +79,33 @@ Make interesting environments so that every attack can have an impact (knockback
 | Interact | E | O |
 | Quick slots (bottom, top, left, right) | 1 2 3 4 | 7 8 9 0 |
 | Pause menu | Esc | F10 |
+
+## Sprite sheet
+
+**Status:** Decided
+
+Both players use [PlayerSpriteSheet.png](../../Assets/PlayerSpriteSheet.png) (source: `PlayerSpriteSheet.ase`). The canvas is a grid of 128×128 cells, 5 columns by 120 rows. Each animation is one row with 5 frames, read left to right.
+
+| Row | Animation |
+|---|---|
+| 0 | `idleFront` |
+| 1 | `idleBack` |
+| 2 | `idleLeft` |
+| 3 | `idleRight` |
+| 4 | `runFront` |
+| 5 | `runBack` |
+| 6 | `runLeft` |
+| 7 | `runRight` |
+| 8 | `attackFront` |
+| 9 | `attackBack` |
+| 10 | `attackLeft` |
+| 11 | `attackRight` |
+| 12 | `blockFront` |
+| 13 | `blockBack` |
+| 14 | `blockLeft` |
+| 15 | `blockRight` |
+| 16–119 | unused, free for new animations |
+
+The combo steps (`attack*1`, `attack*2`) and all heavy attacks (`attackHeavy*`) reuse the attack row of their direction for now.
+
+**Built:** the frames are set in [Player1Frames.tres](../../Resources/SpriteFrames/Player1Frames.tres) and [Player2Frames.tres](../../Resources/SpriteFrames/Player2Frames.tres), with the same layout in both. The frames are centered on the player's origin with no offset, and the collision shapes were not resized for the 128 px cells.

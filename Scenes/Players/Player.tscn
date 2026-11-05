@@ -35,7 +35,10 @@ inputProfile = ExtResource("input_profile")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("0_frames")
-animation = &"blockBack"
+animation = &"idleFront"
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -6)
 
 [node name="StateAttack" parent="StateMachine" index="2"]
 COOLDOWN = 500
